@@ -10,7 +10,7 @@
             <li class="menu-header">Dashboard</li>
             <li class="<?php if ($menu == 'home') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('home') ?>"><i class="fas fa-columns"></i> <span>Dashboard</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-columns"></i> <span>Dashboard</span></a></li>
             <li class="menu-header">Starter</li>
             <li class="<?php if ($menu == 'users') {
                             echo 'active';
