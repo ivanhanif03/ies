@@ -3,17 +3,14 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Blank Page</h1>
+        <h1>Register</h1>
     </div>
 
     <div class="section-body">
         <div class="row">
-            <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+            <div class="col-12">
                 <div class="card card-primary">
                     <?= view('Myth\Auth\Views\_message_block') ?>
-                    <div class="card-header">
-                        <h4>Register</h4>
-                    </div>
 
                     <div class="card-body">
                         <form action="<?= url_to('register') ?>" method="POST">
@@ -37,7 +34,7 @@
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="phone">Phone</label>
-                                    <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" nname="phone" value="<?= old('phone') ?>" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= old('phone') ?>" maxlength="13" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                             </div>
 
@@ -56,8 +53,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            <div class="form-group d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary btn-lg pull-right">
                                     Register
                                 </button>
                             </div>
