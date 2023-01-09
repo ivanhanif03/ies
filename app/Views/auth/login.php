@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Login &mdash; Stisla</title>
+    <link rel="icon" href="<?= base_url('img/ies_icon.png') ?>">
+
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,8 +27,8 @@
                 <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
                     <div class="p-4 m-3">
                         <img src="<?= base_url('img/ies_icon.png') ?>" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
-                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Stisla</span></h4>
-                        <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
+                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">IES Portal</span></h4>
+                        <p class="text-muted">Bank BTN's IT infrastructure data website. Before you get started, you must login first.</p>
                         <?= view('Myth\Auth\Views\_message_block') ?>
                         <form method="post" action="<?= url_to('login') ?>" class="needs-validation" novalidate="">
                             <?= csrf_field() ?>
@@ -75,7 +77,7 @@
                         </form>
 
                         <div class="text-center mt-5 text-small">
-                            Copyright &copy; IES. Made with 💙 by Stisla
+                            Copyright &copy; 2023. Made with 💙 by IES.
                             <!-- <div class="mt-2">
                                 <a href="#">Privacy Policy</a>
                                 <div class="bullet"></div>
@@ -84,14 +86,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('stisla/img/login-bg.jpg') ?>">
+                <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('img/login_bg.jpg') ?>">
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
-                            <div class="mb-5 pb-3">
-                                <h1 class="mb-2 display-4 font-weight-bold">Good Morning</h1>
-                                <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
+                            <div class="pb-3">
+                                <h1 class="mb-2 display-4 font-weight-bold">Menara Bank BTN</h1>
+                                <h5 class="font-weight-normal text-muted-transparent">Jakarta, Indonesia</h5>
                             </div>
-                            Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
+                            <!-- Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a> -->
                         </div>
                     </div>
                 </div>

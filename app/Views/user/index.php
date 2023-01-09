@@ -25,6 +25,7 @@
                                         <th>Username</th>
                                         <th>Name</th>
                                         <th>Phone</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +39,9 @@
                                             <td><?= $u['username']; ?></td>
                                             <td><?= $u['name']; ?></td>
                                             <td><?= $u['phone']; ?></td>
+                                            <td>
+                                                <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

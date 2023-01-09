@@ -17,8 +17,8 @@ class App extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Order Invitation',
-            'menu' => 'orders',
+            'title' => 'App List',
+            'menu' => 'apps',
             'validation' => \Config\Services::validation(),
             'orders' => $this->AppModel->getApp()
         ];
