@@ -34,7 +34,7 @@
                                         <th>Username</th>
                                         <th>Name</th>
                                         <th>Phone</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +57,9 @@
                                                     <a href="<?= base_url('user/edit') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
+                                                    <a href="<?= base_url('user/role') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
+                                                        <i class="fas fa-flag text-primary"></i> Role
+                                                    </a>
                                                     <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-user<?= $u['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
@@ -66,17 +69,17 @@
 
                                         <!-- Start Modal Delete -->
                                         <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-user<?= $u['id'] ?>">
-                                            <div class="modal-dialog modal-md">
+                                            <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Delete Data</h4>
+                                                        <h5 class="modal-title">Delete User</h5>
                                                     </div>
                                                     <div class="modal-body text-center">
-                                                        <span>Are you sure you want to delete the user?</span><br>
+                                                        <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
                                                             <?= $u['name']; ?>
                                                     </div>
-                                                    <div class="modal-footer justify-content-between">
+                                                    <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                                                         <form action="<?= base_url('/user') . '/' . $u['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
@@ -104,9 +107,11 @@
     document.addEventListener("DOMContentLoaded", function() {
         // Datatables with Buttons
         var datatablesUsers = $("#tableUser").DataTable({
-            "lengthChange": false,
-            "orderable": false,
-            "targets": [0, 5],
+            lengthChange: false,
+            columnDefs: [{
+                orderable: false,
+                targets: [0, 5]
+            }]
         });
         datatablesUsers.buttons().container().appendTo("#tableUser_wrapper .col-md-6:eq(0)");
     });

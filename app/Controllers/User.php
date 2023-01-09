@@ -2,16 +2,19 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\GroupsModel;
+use App\Models\RoleModel;
 use App\Models\UsersModel;
 
 class User extends BaseController
 {
-    protected $UsersModel;
+    protected $UsersModel, $RolesModel, $GroupsModel;
 
     public function __construct()
     {
         $this->UsersModel = new UsersModel();
+        $this->RolesModel = new RoleModel();
+        $this->GroupsModel = new GroupsModel();
     }
 
     public function index()
@@ -34,6 +37,30 @@ class User extends BaseController
         ];
 
         return view('auth/register', $data);
+    }
+
+    public function role($id)
+    {
+        $data = [
+            'title' => 'Role Edit',
+            'menu' => 'role',
+            'role' => $this->RolesModel->getRole($id),
+            'group' => $this->GroupsModel->findAll()
+        ];
+
+        return view('user/role', $data);
+    }
+
+    public function updateRole($id)
+    {
+        $this->RolesModel->save([
+            'user_id' => $id,
+            'group_id' => $this->request->getVar('role'),
+        ]);
+
+        session()->setFlashdata('pesan', 'Data updated successfully');
+
+        return redirect()->to('/user');
     }
 
     public function edit($id)

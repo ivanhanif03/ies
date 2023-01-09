@@ -43,6 +43,8 @@ $routes->get('/user/index', 'User::index', ['filter' => 'role:admin']);
 $routes->get('/user/register', 'User::register', ['filter' => 'role:admin']);
 $routes->get('/user/edit/(:segment)', 'User::edit/$1', ['filter' => 'role:admin']);
 $routes->post('/user/update/(:segment)', 'User::update/$1', ['filter' => 'role:admin']);
+$routes->get('/user/role/(:segment)', 'User::role/$1', ['filter' => 'role:admin']);
+$routes->post('/user/updateRole/(:segment)', 'User::updateRole/$1', ['filter' => 'role:admin']);
 $routes->delete('/user/(:num)', 'User::delete/$1', ['filter' => 'role:admin']);
 
 //APPS
