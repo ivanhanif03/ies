@@ -5,13 +5,22 @@
     <div class="section-header">
         <h1>Users</h1>
         <div class="section-header-breadcrumb">
-            <a href="<?= base_url('user/register') ?>" class="btn btn-md btn-success"><i class="align-middle" data-feather="plus-square"></i> Create User</a>
+            <a href="<?= base_url('user/register') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Create User</a>
         </div>
     </div>
 
     <div class="section-body">
         <div class="row">
             <div class="col-12">
+                <!-- Aler Start -->
+                <?= view('Myth\Auth\Views\_message_block') ?>
+                <?php if (session()->getFlashdata('pesan')) : ?>
+                    <div class="alert alert-success" role="alert" id="alert-delete">
+                        <?= session()->getFlashdata('pesan'); ?>
+                    </div>
+                <?php endif; ?>
+                <!-- Aler End -->
+
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">

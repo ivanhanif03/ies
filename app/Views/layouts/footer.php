@@ -27,6 +27,17 @@
 <script src="<?= base_url('stisla/js/scripts.js') ?>"></script>
 <script src="<?= base_url('stisla/js/custom.js') ?>"></script>
 
+<!-- Custom JS -->
+<script>
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 4000);
+    });
+</script>
+
 <!-- Page Specific JS File -->
 <?= $this->renderSection('script'); ?>
 </body>

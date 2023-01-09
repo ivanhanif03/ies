@@ -16,7 +16,7 @@ return [
 
     // Registration
     'registerDisabled' => 'Sorry, new user accounts are not allowed at this time.',
-    'registerSuccess'  => 'Welcome aboard! Please login with your new credentials.',
+    'registerSuccess'  => 'User created successfully.',
     'registerCLI'      => 'New user created: {0}, #{1}',
 
     // Activation

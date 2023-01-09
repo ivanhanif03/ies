@@ -4,6 +4,10 @@
 <section class="section">
     <div class="section-header">
         <h1>Register</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"><a href="<?= base_url('user') ?>">User List</a></div>
+            <div class="breadcrumb-item">Register</div>
+        </div>
     </div>
 
     <div class="section-body">
@@ -54,7 +58,7 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary btn-lg pull-right">
+                                <button type="submit" class="btn btn-primary btn-md">
                                     Register
                                 </button>
                             </div>
