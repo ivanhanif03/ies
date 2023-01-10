@@ -28,7 +28,7 @@
                                 } ?>"><a class="nav-link" href="<?= base_url('app') ?>">Virtual Machine</a></li>
                     <li class="<?php if ($menu == 'fisik') {
                                     echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('app') ?>">Fisik</a></li>
+                                } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>">Fisik</a></li>
                 </ul>
             </li>
         </ul>

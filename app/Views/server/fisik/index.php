@@ -3,7 +3,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Blank Page</h1>
+        <h1>Server Fisik</h1>
+        <div class="section-header-breadcrumb">
+            <a href="<?= base_url('server/fisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Add New Server</a>
+        </div>
     </div>
 
     <div class="section-body">
@@ -27,38 +30,53 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama App</th>
-                                        <th>Hostname</th>
-                                        <th>IP Address</th>
+                                        <th>Nama Server</th>
+                                        <th>Merk</th>
+                                        <th>Tipe</th>
                                         <th>OS</th>
-                                        <th>Server</th>
+                                        <th>Disk</th>
+                                        <th>Memory</th>
+                                        <th>Processor</th>
+                                        <th>Lokasi</th>
+                                        <th>Vendor</th>
+                                        <th>SOS</th>
+                                        <th>EOS</th>
+                                        <th>Lisensi</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($users as $u) : ?>
+                                    foreach ($fisik as $f) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $u['email']; ?></td>
-                                            <td><?= $u['username']; ?></td>
-                                            <td><?= $u['name']; ?></td>
-                                            <td><?= $u['phone']; ?></td>
+                                            <td><?= $f['nama_server']; ?></td>
+                                            <td><?= $f['merk']; ?></td>
+                                            <td><?= $f['tipe']; ?></td>
+                                            <td><?= $f['os']; ?></td>
+                                            <td><?= $f['disk']; ?></td>
+                                            <td><?= $f['memory']; ?></td>
+                                            <td><?= $f['processor']; ?></td>
+                                            <td><?= $f['lokasi']; ?></td>
+                                            <td><?= $f['vendor_id']; ?></td>
+                                            <td><?= $f['sos']; ?></td>
+                                            <td><?= $f['eos']; ?></td>
+                                            <td><?= $f['lisensi']; ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('user/edit') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('user/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
-                                                    <a href="<?= base_url('user/role') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('user/role') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-flag text-primary"></i> Role
                                                     </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-user<?= $u['id'] ?>">
+                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-user<?= $f['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
                                                 </div>
@@ -66,7 +84,7 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-user<?= $u['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-user<?= $f['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
@@ -75,11 +93,11 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $u['name']; ?>
+                                                            <?= $f['nama_server']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/user') . '/' . $u['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/user') . '/' . $f['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -102,6 +120,16 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
-
+    document.addEventListener("DOMContentLoaded", function() {
+        // Datatables with Buttons
+        var datatablesUsers = $("#tableUser").DataTable({
+            lengthChange: false,
+            columnDefs: [{
+                orderable: false,
+                targets: [0, 5]
+            }]
+        });
+        datatablesUsers.buttons().container().appendTo("#tableUser_wrapper .col-md-6:eq(0)");
+    });
 </script>
 <?= $this->endSection(); ?>
