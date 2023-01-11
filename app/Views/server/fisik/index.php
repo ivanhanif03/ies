@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>Server Fisik</h1>
         <div class="section-header-breadcrumb">
-            <a href="<?= base_url('server/fisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Add New Server</a>
+            <a href="<?= base_url('serverfisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Add New Server</a>
         </div>
     </div>
 
@@ -30,7 +30,7 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama Server</th>
+                                        <th>Nama</th>
                                         <th>Merk</th>
                                         <th>Tipe</th>
                                         <th>OS</th>
@@ -55,11 +55,11 @@
                                             <td><?= $f['nama_server']; ?></td>
                                             <td><?= $f['merk']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
-                                            <td><?= $f['os']; ?></td>
+                                            <td class="text-capitalize"><?= $f['os']; ?></td>
                                             <td><?= $f['disk']; ?></td>
                                             <td><?= $f['memory']; ?></td>
                                             <td><?= $f['processor']; ?></td>
-                                            <td><?= $f['lokasi']; ?></td>
+                                            <td class="text-capitalize"><?= $f['lokasi']; ?></td>
                                             <td><?= $f['vendor_id']; ?></td>
                                             <td><?= $f['sos']; ?></td>
                                             <td><?= $f['eos']; ?></td>
@@ -70,13 +70,10 @@
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('user/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
-                                                    <a href="<?= base_url('user/role') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
-                                                        <i class="fas fa-flag text-primary"></i> Role
-                                                    </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-user<?= $f['id'] ?>">
+                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
                                                 </div>
@@ -84,11 +81,11 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-user<?= $f['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-fisik<?= $f['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Delete User</h5>
+                                                        <h5 class="modal-title">Delete Server</h5>
                                                     </div>
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
@@ -97,7 +94,7 @@
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/user') . '/' . $f['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/serverfisik') . '/' . $f['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -123,11 +120,27 @@
     document.addEventListener("DOMContentLoaded", function() {
         // Datatables with Buttons
         var datatablesUsers = $("#tableUser").DataTable({
+            // responsive: true,
             lengthChange: false,
             columnDefs: [{
                 orderable: false,
                 targets: [0, 5]
-            }]
+            }],
+            buttons: [{
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                    }
+                }
+            ]
         });
         datatablesUsers.buttons().container().appendTo("#tableUser_wrapper .col-md-6:eq(0)");
     });

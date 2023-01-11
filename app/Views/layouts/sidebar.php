@@ -23,12 +23,12 @@
                                 } ?>">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-server"></i><span>Server</span></a>
                 <ul class="dropdown-menu">
-                    <li class="<?php if ($menu == 'vm') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('app') ?>">Virtual Machine</a></li>
-                    <li class="<?php if ($menu == 'fisik') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>">Fisik</a></li>
+                    <li <?php if ($menu == 'vm') {
+                            echo 'class="active"';
+                        } ?>><a class="nav-link" href="<?= base_url('app') ?>">Virtual Machine</a></li>
+                    <li <?php if ($menu == 'fisik') {
+                            echo 'class="active"';
+                        } ?>><a class="nav-link" href="<?= base_url('serverfisik') ?>">Fisik</a></li>
                 </ul>
             </li>
         </ul>

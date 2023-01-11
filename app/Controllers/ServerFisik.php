@@ -4,14 +4,16 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ServerFisikModel;
+use App\Models\VendorModel;
 
 class ServerFisik extends BaseController
 {
-    protected $ServerFisikModel;
+    protected $ServerFisikModel, $VendorModel;
 
     public function __construct()
     {
         $this->ServerFisikModel = new ServerFisikModel();
+        $this->VendorModel = new VendorModel();
     }
 
     public function index()
@@ -20,86 +22,122 @@ class ServerFisik extends BaseController
             'title' => 'Server Fisik List',
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->findAll()
+            'fisik' => $this->ServerFisikModel->getServerFisik()
         ];
 
         return view('server/fisik/index', $data);
     }
 
-    public function register()
+    public function create()
     {
         $data = [
-            'title' => 'User Register',
-            'menu' => 'users',
+            'title' => 'Add New Server',
+            'menu' => 'fisik',
+            'validation' => \Config\Services::validation(),
+            'fisik' => $this->ServerFisikModel->getServerFisik(),
+            'vendor' => $this->VendorModel->getVendor()
         ];
 
-        return view('auth/register', $data);
+        return view('server/fisik/create', $data);
     }
 
-    public function role($id)
+    public function save()
     {
-        $data = [
-            'title' => 'Role Edit',
-            'menu' => 'role',
-            'role' => $this->RolesModel->getRole($id),
-            'group' => $this->GroupsModel->findAll()
-        ];
+        //Validation
+        if (!$this->validate([
+            'nama_server'     => 'required',
+            'lisensi'    => 'required',
+            'merk'  => 'required',
+            'tipe'  => 'required',
+            'os'  => 'required',
+            'disk'  => 'required',
+            'memory'  => 'required',
+            'processor'  => 'required',
+            'lokasi'  => 'required',
+            'vendor'  => 'required',
+            'sos'  => 'required',
+            'eos'  => 'required',
+        ])) {
+            return redirect()->to('serverfisik/create')->withInput()->with('errors', $this->validator->getErrors());
+        }
 
-        return view('user/role', $data);
-    }
-
-    public function updateRole($id)
-    {
-        $this->RolesModel->save([
-            'user_id' => $id,
-            'group_id' => $this->request->getVar('role'),
+        $this->ServerFisikModel->save([
+            'nama_server'    => $this->request->getVar('nama_server'),
+            'lisensi'   => $this->request->getVar('lisensi'),
+            'merk' => $this->request->getVar('merk'),
+            'tipe' => $this->request->getVar('tipe'),
+            'os' => $this->request->getVar('os'),
+            'disk' => $this->request->getVar('disk'),
+            'memory' => $this->request->getVar('memory'),
+            'processor' => $this->request->getVar('processor'),
+            'lokasi' => $this->request->getVar('lokasi'),
+            'vendor_id' => $this->request->getVar('vendor'),
+            'sos' => $this->request->getVar('sos'),
+            'eos' => $this->request->getVar('eos'),
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');
 
-        return redirect()->to('/user');
+        return redirect()->to('serverfisik');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'User Edit',
-            'menu' => 'users',
+            'title' => 'Server Edit',
+            'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
-            'user' => $this->UsersModel->getUser($id)
+            'fisik' => $this->ServerFisikModel->getServerFisik($id),
+            'vendor' => $this->VendorModel->getVendor()
         ];
 
-        return view('user/edit', $data);
+        return view('server/fisik/edit', $data);
     }
 
     public function update($id)
     {
         //Validation
         if (!$this->validate([
-            'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]',
-            'email'    => 'required|valid_email',
-            'name'     => 'required',
-            'phone'    => 'required|min_length[9]|max_length[13]',
+            'nama_server'     => 'required',
+            'lisensi'    => 'required',
+            'merk'  => 'required',
+            'tipe'  => 'required',
+            'os'  => 'required',
+            'disk'  => 'required',
+            'memory'  => 'required',
+            'processor'  => 'required',
+            'lokasi'  => 'required',
+            'vendor'  => 'required',
+            'sos'  => 'required',
+            'eos'  => 'required',
         ])) {
-            return redirect()->to('/user/edit')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('serverfisik/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
-        $this->UsersModel->save([
+        $this->ServerFisikModel->save([
             'id' => $id,
-            'username' => $this->request->getVar('username'),
-            'email' => $this->request->getVar('email'),
-            'name' => $this->request->getVar('name'),
-            'phone' => $this->request->getVar('phone'),
+            'nama_server'    => $this->request->getVar('nama_server'),
+            'lisensi'   => $this->request->getVar('lisensi'),
+            'merk' => $this->request->getVar('merk'),
+            'tipe' => $this->request->getVar('tipe'),
+            'os' => $this->request->getVar('os'),
+            'disk' => $this->request->getVar('disk'),
+            'memory' => $this->request->getVar('memory'),
+            'processor' => $this->request->getVar('processor'),
+            'lokasi' => $this->request->getVar('lokasi'),
+            'vendor_id' => $this->request->getVar('vendor'),
+            'sos' => $this->request->getVar('sos'),
+            'eos' => $this->request->getVar('eos'),
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');
 
-        return redirect()->to('/user');
+        return redirect()->to('serverfisik');
     }
 
     public function delete($id)
     {
-        $this->UsersModel->delete($id);
+        $this->ServerFisikModel->delete($id);
         session()->setFlashdata('pesan', 'Data deleted successfully');
-        return redirect()->to('user/index');
+        return redirect()->to('serverfisik');
     }
 }

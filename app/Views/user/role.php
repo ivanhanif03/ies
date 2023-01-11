@@ -21,11 +21,11 @@
                             <?= csrf_field() ?>
 
                             <div class="row">
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-sm-12">
                                     <label for="username">Username</label>
                                     <input id="username" type="username" class="form-control" name="username" value="<?= $role['username']; ?>" readonly>
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-sm-12">
                                     <label>Role</label>
                                     <select class="form-control select2bs4 text-sm" name="role" id="role" style="width: 100%;">
                                         <?php foreach ($group as $g) : ?>
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <a href="<?= base_url('user') ?>" class="btn btn-md btn-danger mr-1">Cancel</a>
+                                <a href="<?= base_url('user') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-md">
                                     Update
                                 </button>

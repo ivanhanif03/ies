@@ -23,8 +23,8 @@ class ServerFisikSeeder extends Seeder
                 'sos'           => '2023-11-12',
                 'eos'           => '2028-11-12',
                 'lisensi'       => 'SADAW1WEQWEXC',
-                'created_at'            => Time::now(),
-                'updated_at'            => Time::now(),
+                'created_at'    => Time::now(),
+                'updated_at'    => Time::now(),
             ],
         ];
 

@@ -50,6 +50,8 @@ $routes->delete('/user/(:num)', 'User::delete/$1', ['filter' => 'role:admin']);
 //SERVER FISIK
 $routes->get('/serverfisik', 'ServerFisik::index', ['filter' => 'role:admin']);
 $routes->get('/serverfisik/index', 'ServerFisik::index', ['filter' => 'role:admin']);
+$routes->get('/serverfisik/create', 'ServerFisik::create', ['filter' => 'role:admin']);
+$routes->post('/serverfisik/save', 'ServerFisik::save', ['filter' => 'role:admin']);
 $routes->get('/serverfisik/edit/(:segment)', 'ServerFisik::edit/$1', ['filter' => 'role:admin']);
 $routes->post('/serverfisik/update/(:segment)', 'ServerFisik::update/$1', ['filter' => 'role:admin']);
 $routes->post('/serverfisik/updateRole/(:segment)', 'ServerFisik::updateRole/$1', ['filter' => 'role:admin']);
