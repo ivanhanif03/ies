@@ -42,8 +42,8 @@
                                 </div>
                             <?php else : ?>
                                 <div class="form-group mb-3">
-                                    <label for="login"><?= lang('Auth.emailOrUsername') ?></label>
-                                    <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>">
+                                    <label for="login"><?= lang('Auth.email') ?></label>
+                                    <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.email') ?>">
                                     <div class="invalid-feedback">
                                         <?= session('errors.login') ?>
                                     </div>
@@ -67,9 +67,10 @@
                                 </div>
                             <?php endif; ?>
                             <div class="form-group text-right">
-                                <a href="<?= url_to('forgot') ?>" class="float-left mt-3">
+                                <!--<a href="<?= url_to('forgot') ?>" class="float-left mt-3">
                                     Forgot Password?
-                                </a>
+                                </a> 
+                                        -->
                                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
                                     Login
                                 </button>
@@ -90,8 +91,9 @@
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="pb-3">
-                                <h1 class="mb-2 display-4 font-weight-bold">Menara Bank BTN</h1>
-                                <h5 class="font-weight-normal text-muted-transparent">Jakarta, Indonesia</h5>
+                                <h1 class="mb-2 display-4 font-weight-bold">Menara Bank BTN </h1>
+                                <h5 class="font-weight-normal text-muted-transparent">Jl. Gajahmada No 1</h5>
+                                <h5 class="font-weight-normal text-muted-transparent">Jakarta Pusat - DKI Jakarta 10130</h5>
                             </div>
                             <!-- Photo by <a class="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a> -->
                         </div>
