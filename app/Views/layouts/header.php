@@ -15,8 +15,17 @@
     <link rel="stylesheet" href="<?= base_url('stisla/modules/datatables/datatables.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('stisla/modules/datatables/dataTables.bootstrap4.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('stisla/modules/datatables/select.bootstrap4.min.css') ?>">
+    <!--  <link rel="stylesheet" href="../node_modules/jqvmap/dist/jqvmap.min.css"> -->
+    <!--  <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css"> -->
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+ 
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= base_url('stisla/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('stisla/css/components.css') ?>">
+
+    <script src="jquery.min.js"></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
+    
 </head>
