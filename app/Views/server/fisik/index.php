@@ -60,7 +60,7 @@
                                             <td><?= $f['memory']; ?></td>
                                             <td><?= $f['processor']; ?></td>
                                             <td class="text-capitalize"><?= $f['lokasi']; ?></td>
-                                            <td><?= $f['vendor_id']; ?></td>
+                                            <td><?= $f['nama_vendor']; ?></td>
                                             <td><?= $f['sos']; ?></td>
                                             <td><?= $f['eos']; ?></td>
                                             <td><?= $f['lisensi']; ?></td>

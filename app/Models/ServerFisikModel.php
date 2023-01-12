@@ -20,4 +20,14 @@ class ServerFisikModel extends Model
         }
         return $this->where(['id' => $id])->first();
     }
+
+    public function getAll()
+    {
+        return $this->db->table('server_fisik')
+            ->join('vendor', 'vendor.id=server_fisik.vendor_id', 'left')
+            ->select('server_fisik.*')
+            ->select('vendor.*')
+            ->orderBy('server_fisik.id')
+            ->get()->getResultArray();
+    }
 }

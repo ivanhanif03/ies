@@ -22,7 +22,7 @@ class ServerFisik extends BaseController
             'title' => 'Server Fisik List',
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->getServerFisik()
+            'fisik' => $this->ServerFisikModel->getAll()
         ];
 
         return view('server/fisik/index', $data);
