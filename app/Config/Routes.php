@@ -57,6 +57,16 @@ $routes->post('/serverfisik/update/(:segment)', 'ServerFisik::update/$1', ['filt
 $routes->post('/serverfisik/updateRole/(:segment)', 'ServerFisik::updateRole/$1', ['filter' => 'role:admin']);
 $routes->delete('/serverfisik/(:num)', 'ServerFisik::delete/$1', ['filter' => 'role:admin']);
 
+//VENDOR
+$routes->get('/vendor', 'Vendor::index', ['filter' => 'role:admin']);
+$routes->get('/vendor/index', 'Vendor::index', ['filter' => 'role:admin']);
+$routes->get('/vendor/create', 'Vendor::create', ['filter' => 'role:admin']);
+$routes->post('/vendor/save', 'Vendor::save', ['filter' => 'role:admin']);
+$routes->get('/vendor/edit/(:segment)', 'Vendor::edit/$1', ['filter' => 'role:admin']);
+$routes->post('/vendor/update/(:segment)', 'Vendor::update/$1', ['filter' => 'role:admin']);
+$routes->post('/vendor/updateRole/(:segment)', 'Vendor::updateRole/$1', ['filter' => 'role:admin']);
+$routes->delete('/vendor/(:num)', 'Vendor::delete/$1', ['filter' => 'role:admin']);
+
 //APPS
 $routes->get('/app', 'App::index');
 // $routes->get('/app', 'App::index', ['filter' => 'role:admin']);

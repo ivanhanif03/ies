@@ -14,23 +14,22 @@
             <li class="menu-header">Data Master</li>
             <li class="<?php if ($menu == 'users') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('user') ?>"><i class="fas fa-user"></i> <span>Users</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url('user') ?>"><i class="fas fa-user"></i> <span>User</span></a></li>
+            <li class="<?php if ($menu == 'vendor') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('vendor') ?>"><i class="fas fa-user"></i> <span>Vendor</span></a></li>
+            <li class="menu-header">Aplikasi</li>
             <li class="<?php if ($menu == 'apps') {
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('app') ?>"><i class="fas fa-rocket"></i> <span>Apps</span></a></li>
-            <li class="dropdown <?php if (($menu == 'vm') || ($menu == 'fisik')) {
-                                    echo 'active';
-                                } ?>">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-server"></i><span>Server</span></a>
-                <ul class="dropdown-menu">
-                    <li <?php if ($menu == 'vm') {
-                            echo 'class="active"';
-                        } ?>><a class="nav-link" href="<?= base_url('app') ?>">Virtual Machine</a></li>
-                    <li <?php if ($menu == 'fisik') {
-                            echo 'class="active"';
-                        } ?>><a class="nav-link" href="<?= base_url('serverfisik') ?>">Fisik</a></li>
-                </ul>
-            </li>
+            <li class="menu-header">Server</li>
+            <li class="<?php if ($menu == 'fisik') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>"><i class="fas fa-server"></i> <span>Baremetal</span></a></li>
+            <li class="<?php if ($menu == 'vm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
+
         </ul>
     </aside>
 </div>
