@@ -47,7 +47,12 @@
                                 Disk
                             </div>
                             <div class="col-9">
-                                <p>: <?= $fisik['disk'] ?></p>
+                                <p>:<?php
+                                    if ($fisik['disk'] > 999) : ?>
+                                    <?= $fisik['disk'] / 1000 ?> Tb
+                                <?php else : ?>
+                                    <?= $fisik['disk'] ?> Gb
+                                <?php endif; ?></p>
                             </div>
                         </div>
                         <div class="row">
@@ -55,7 +60,7 @@
                                 Memory
                             </div>
                             <div class="col-9">
-                                <p>: <?= $fisik['memory'] ?></p>
+                                <p>: <?= $fisik['memory'] ?> Gb</p>
                             </div>
                         </div>
                         <div class="row">

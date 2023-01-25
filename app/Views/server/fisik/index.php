@@ -56,8 +56,15 @@
                                             <td><?= $f['merk']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
                                             <td class="text-capitalize"><?= $f['os']; ?></td>
-                                            <td><?= $f['disk']; ?></td>
-                                            <td><?= $f['memory']; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($f['disk'] > 999) : ?>
+                                                    <?= $f['disk'] / 1000 ?> Tb
+                                                <?php else : ?>
+                                                    <?= $f['disk'] ?> Gb
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= $f['memory']; ?> Gb</td>
                                             <td><?= $f['processor']; ?></td>
                                             <td class="text-capitalize"><?= $f['lokasi']; ?></td>
                                             <td><?= $f['nama_vendor']; ?></td>
