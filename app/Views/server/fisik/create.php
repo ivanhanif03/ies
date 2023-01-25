@@ -132,7 +132,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex justify-content-end">
+                            <div class="d-flex justify-content-end">
                                 <a href="<?= base_url('serverfisik') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-md">
                                     Save
