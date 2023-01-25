@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group d-flex justify-content-end">
+                    <div class="card-footer form-group d-flex justify-content-end">
                         <a href="<?= base_url('vendor') ?>" class="btn btn-md btn-primary mr-1">Kembali</a>
                     </div>
                 </div>
