@@ -3,10 +3,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Add Server Fisik</h1>
+        <h1>Form Tambah Server Fisik</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="<?= base_url('serverfisik') ?>">Server Fisik</a></div>
-            <div class="breadcrumb-item">Add</div>
+            <div class="breadcrumb-item">Tambah</div>
         </div>
     </div>
 

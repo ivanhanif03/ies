@@ -26,64 +26,72 @@ class Vendor extends BaseController
         return view('vendor/index', $data);
     }
 
+    public function detail($id)
+    {
+        $data = [
+            'title' => 'Detail Vendor',
+            'menu' => 'vendor',
+            'vendor' => $this->VendorModel->getVendor($id)
+        ];
+
+        return view('vendor/detail', $data);
+    }
+
     public function create()
     {
         $data = [
-            'title' => 'Add New Server',
-            'menu' => 'fisik',
+            'title' => 'Tambah Vendor',
+            'menu' => 'vendor',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->getServerFisik(),
             'vendor' => $this->VendorModel->getVendor()
         ];
 
-        return view('server/fisik/create', $data);
+        return view('vendor/create', $data);
     }
 
     public function save()
     {
         //Validation
         if (!$this->validate([
-            'nama_server'     => 'required',
-            'lisensi'    => 'required',
-            'merk'  => 'required',
-            'tipe'  => 'required',
-            'os'  => 'required',
-            'disk'  => 'required',
-            'memory'  => 'required',
-            'processor'  => 'required',
-            'lokasi'  => 'required',
-            'vendor'  => 'required',
-            'sos'  => 'required',
-            'eos'  => 'required',
+            'nama_vendor'     => 'required',
+            'alamat'    => 'required',
+            'pic'  => 'required',
+            'pic_phone'  => 'required',
+            'akun_manager'  => 'required',
+            'akun_manager_phone'  => 'required',
+            'helpdesk'  => 'required',
+            'helpdesk_phone'  => 'required',
+            'scope_work'  => 'required',
+            'nilai_kontrak'  => 'required',
+            'tempo_pembayaran'  => 'required',
         ])) {
-            return redirect()->to('serverfisik/create')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('vendor/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $this->ServerFisikModel->save([
-            'nama_server'    => $this->request->getVar('nama_server'),
-            'lisensi'   => $this->request->getVar('lisensi'),
-            'merk' => $this->request->getVar('merk'),
-            'tipe' => $this->request->getVar('tipe'),
-            'os' => $this->request->getVar('os'),
-            'disk' => $this->request->getVar('disk'),
-            'memory' => $this->request->getVar('memory'),
-            'processor' => $this->request->getVar('processor'),
-            'lokasi' => $this->request->getVar('lokasi'),
-            'vendor_id' => $this->request->getVar('vendor'),
-            'sos' => $this->request->getVar('sos'),
-            'eos' => $this->request->getVar('eos'),
+        $this->VendorModel->save([
+            'nama_vendor'    => $this->request->getVar('nama_vendor'),
+            'alamat'   => $this->request->getVar('alamat'),
+            'pic' => $this->request->getVar('pic'),
+            'pic_phone' => $this->request->getVar('pic_phone'),
+            'akun_manager' => $this->request->getVar('akun_manager'),
+            'akun_manager_phone' => $this->request->getVar('akun_manager_phone'),
+            'helpdesk' => $this->request->getVar('helpdesk'),
+            'helpdesk_phone' => $this->request->getVar('helpdesk_phone'),
+            'scope_work' => $this->request->getVar('scope_work'),
+            'nilai_kontrak' => $this->request->getVar('nilai_kontrak'),
+            'tempo_pembayaran' => $this->request->getVar('tempo_pembayaran'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully');
+        session()->setFlashdata('pesan', 'Data vendor baru berhasil ditambahkan');
 
-        return redirect()->to('serverfisik');
+        return redirect()->to('vendor');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'Vendor Edit',
-            'menu' => 'fisik',
+            'title' => 'Edit Vendor',
+            'menu' => 'vendor',
             'validation' => \Config\Services::validation(),
             'vendor' => $this->VendorModel->getVendor($id)
         ];
@@ -95,46 +103,44 @@ class Vendor extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_server'     => 'required',
-            'lisensi'    => 'required',
-            'merk'  => 'required',
-            'tipe'  => 'required',
-            'os'  => 'required',
-            'disk'  => 'required',
-            'memory'  => 'required',
-            'processor'  => 'required',
-            'lokasi'  => 'required',
-            'vendor'  => 'required',
-            'sos'  => 'required',
-            'eos'  => 'required',
+            'nama_vendor'     => 'required',
+            'alamat'    => 'required',
+            'pic'  => 'required',
+            'pic_phone'  => 'required',
+            'akun_manager'  => 'required',
+            'akun_manager_phone'  => 'required',
+            'helpdesk'  => 'required',
+            'helpdesk_phone'  => 'required',
+            'scope_work'  => 'required',
+            'nilai_kontrak'  => 'required',
+            'tempo_pembayaran'  => 'required',
         ])) {
-            return redirect()->to('serverfisik/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('vendor/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
-        $this->ServerFisikModel->save([
+        $this->VendorModel->save([
             'id' => $id,
-            'nama_server'    => $this->request->getVar('nama_server'),
-            'lisensi'   => $this->request->getVar('lisensi'),
-            'merk' => $this->request->getVar('merk'),
-            'tipe' => $this->request->getVar('tipe'),
-            'os' => $this->request->getVar('os'),
-            'disk' => $this->request->getVar('disk'),
-            'memory' => $this->request->getVar('memory'),
-            'processor' => $this->request->getVar('processor'),
-            'lokasi' => $this->request->getVar('lokasi'),
-            'vendor_id' => $this->request->getVar('vendor'),
-            'sos' => $this->request->getVar('sos'),
-            'eos' => $this->request->getVar('eos'),
+            'nama_vendor'    => $this->request->getVar('nama_vendor'),
+            'alamat'   => $this->request->getVar('alamat'),
+            'pic' => $this->request->getVar('pic'),
+            'pic_phone' => $this->request->getVar('pic_phone'),
+            'akun_manager' => $this->request->getVar('akun_manager'),
+            'akun_manager_phone' => $this->request->getVar('akun_manager_phone'),
+            'helpdesk' => $this->request->getVar('helpdesk'),
+            'helpdesk_phone' => $this->request->getVar('helpdesk_phone'),
+            'scope_work' => $this->request->getVar('scope_work'),
+            'nilai_kontrak' => $this->request->getVar('nilai_kontrak'),
+            'tempo_pembayaran' => $this->request->getVar('tempo_pembayaran'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully');
+        session()->setFlashdata('pesan', 'Data vendor berhasil diedit');
 
-        return redirect()->to('serverfisik');
+        return redirect()->to('vendor');
     }
 
     public function delete($id)
     {
         $this->ServerFisikModel->delete($id);
-        session()->setFlashdata('pesan', 'Data deleted successfully');
-        return redirect()->to('serverfisik');
+        session()->setFlashdata('pesan', 'Data vendor berhasil dihapus');
+        return redirect()->to('vendor');
     }
 }

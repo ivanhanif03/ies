@@ -19,7 +19,7 @@ class ServerFisik extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Server Fisik List',
+            'title' => 'Daftar Server Fisik',
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
             'fisik' => $this->ServerFisikModel->getAll()
@@ -28,10 +28,23 @@ class ServerFisik extends BaseController
         return view('server/fisik/index', $data);
     }
 
+    public function detail($id)
+    {
+        $data = [
+            'title' => 'Detail Server Fisik',
+            'menu' => 'fisik',
+            'fisik' => $this->ServerFisikModel->getServerFisik($id),
+            'nama_vendor' => $this->ServerFisikModel->getNamaVendor($id),
+            'vendor' => $this->VendorModel->getVendor()
+        ];
+
+        return view('server/fisik/detail', $data);
+    }
+
     public function create()
     {
         $data = [
-            'title' => 'Add New Server',
+            'title' => 'Tambah Server Fisik',
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
             'fisik' => $this->ServerFisikModel->getServerFisik(),
@@ -76,7 +89,7 @@ class ServerFisik extends BaseController
             'eos' => $this->request->getVar('eos'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully');
+        session()->setFlashdata('pesan', 'Data server fisik baru berhasil ditambahkan');
 
         return redirect()->to('serverfisik');
     }
@@ -84,7 +97,7 @@ class ServerFisik extends BaseController
     public function edit($id)
     {
         $data = [
-            'title' => 'Server Edit',
+            'title' => 'Edit Server Fisik',
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
             'fisik' => $this->ServerFisikModel->getServerFisik($id),
@@ -129,7 +142,7 @@ class ServerFisik extends BaseController
             'eos' => $this->request->getVar('eos'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully');
+        session()->setFlashdata('pesan', 'Data server fisik berhasil diedit');
 
         return redirect()->to('serverfisik');
     }
@@ -137,7 +150,7 @@ class ServerFisik extends BaseController
     public function delete($id)
     {
         $this->ServerFisikModel->delete($id);
-        session()->setFlashdata('pesan', 'Data deleted successfully');
+        session()->setFlashdata('pesan', 'Data server fisik berhasil dihapus');
         return redirect()->to('serverfisik');
     }
 }
