@@ -3,10 +3,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Add Server Fisik</h1>
+        <h1>Form Tambah Server Fisik</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="<?= base_url('serverfisik') ?>">Server Fisik</a></div>
-            <div class="breadcrumb-item">Add</div>
+            <div class="breadcrumb-item">Tambah</div>
         </div>
     </div>
 
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex justify-content-end">
+                            <div class="d-flex justify-content-end">
                                 <a href="<?= base_url('serverfisik') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-md">
                                     Save

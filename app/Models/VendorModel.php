@@ -8,7 +8,7 @@ class VendorModel extends Model
 {
     protected $table            = 'vendor';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nama_vendor', 'alamat', 'pic', 'pic_phone', 'akun_manager', 'akun_manager_phone', 'helpdesk', 'helpdesk_phone', 'scope_work', 'nilai_kontrak', 'tempo_pembayaran'];
 
     // Dates
     protected $useTimestamps = true;
