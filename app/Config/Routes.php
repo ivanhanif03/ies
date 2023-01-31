@@ -55,7 +55,6 @@ $routes->get('/serverfisik/create', 'ServerFisik::create', ['filter' => 'role:ad
 $routes->post('/serverfisik/save', 'ServerFisik::save', ['filter' => 'role:admin']);
 $routes->get('/serverfisik/edit/(:segment)', 'ServerFisik::edit/$1', ['filter' => 'role:admin']);
 $routes->post('/serverfisik/update/(:segment)', 'ServerFisik::update/$1', ['filter' => 'role:admin']);
-$routes->post('/serverfisik/updateRole/(:segment)', 'ServerFisik::updateRole/$1', ['filter' => 'role:admin']);
 $routes->delete('/serverfisik/(:num)', 'ServerFisik::delete/$1', ['filter' => 'role:admin']);
 
 //VENDOR
@@ -66,8 +65,16 @@ $routes->get('/vendor/create', 'Vendor::create', ['filter' => 'role:admin']);
 $routes->post('/vendor/save', 'Vendor::save', ['filter' => 'role:admin']);
 $routes->get('/vendor/edit/(:segment)', 'Vendor::edit/$1', ['filter' => 'role:admin']);
 $routes->post('/vendor/update/(:segment)', 'Vendor::update/$1', ['filter' => 'role:admin']);
-$routes->post('/vendor/updateRole/(:segment)', 'Vendor::updateRole/$1', ['filter' => 'role:admin']);
 $routes->delete('/vendor/(:num)', 'Vendor::delete/$1', ['filter' => 'role:admin']);
+
+//RAK
+$routes->get('/rak', 'Rak::index', ['filter' => 'role:admin']);
+$routes->get('/rak/index', 'Rak::index', ['filter' => 'role:admin']);
+$routes->get('/rak/create', 'Rak::create', ['filter' => 'role:admin']);
+$routes->post('/rak/save', 'Rak::save', ['filter' => 'role:admin']);
+$routes->get('/rak/edit/(:segment)', 'Rak::edit/$1', ['filter' => 'role:admin']);
+$routes->post('/rak/update/(:segment)', 'Rak::update/$1', ['filter' => 'role:admin']);
+$routes->delete('/rak/(:num)', 'Rak::delete/$1', ['filter' => 'role:admin']);
 
 //APPS
 $routes->get('/app', 'App::index');

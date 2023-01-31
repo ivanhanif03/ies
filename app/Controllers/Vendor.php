@@ -53,7 +53,7 @@ class Vendor extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_vendor'     => 'required',
+            'nama_vendor'     => 'required|is_unique[vendor.nama_vendor,id,{id}]',
             'alamat'    => 'required',
             'pic'  => 'required',
             'pic_phone'  => 'required',
@@ -139,7 +139,7 @@ class Vendor extends BaseController
 
     public function delete($id)
     {
-        $this->ServerFisikModel->delete($id);
+        $this->VendorModel->delete($id);
         session()->setFlashdata('pesan', 'Data vendor berhasil dihapus');
         return redirect()->to('vendor');
     }
