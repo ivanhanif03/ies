@@ -24,10 +24,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableFisik">
+                            <table class="table table-striped" id="tableFisik" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
+                                        <th class=" text-center">
                                             No
                                         </th>
                                         <th>Nama</th>
@@ -129,10 +129,8 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Datatables with Buttons
-        var datatablesUsers = $("#tableFisik").DataTable({
-            // responsive: true,
+        var datatablesFisik = $("#tableFisik").DataTable({
             lengthChange: false,
-            pageLength: 500,
             columnDefs: [{
                 orderable: false,
                 targets: [0]
@@ -160,7 +158,7 @@
                 }
             ]
         });
-        datatablesUsers.buttons().container().appendTo("#tableFisik_wrapper .col-md-6:eq(0)");
+        datatablesFisik.buttons().container().appendTo("#tableFisik_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>
