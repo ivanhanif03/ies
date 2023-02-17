@@ -10,11 +10,9 @@ class App extends Migration
     {
         $this->forge->addField([
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'nama'             => ['type' => 'varchar', 'constraint' => 100],
-            'hostname'         => ['type' => 'varchar', 'constraint' => 30],
-            'ip_address'       => ['type' => 'varchar', 'constraint' => 30],
-            'os'               => ['type' => 'varchar', 'constraint' => 30],
-            'jenis_server'     => ['type' => 'varchar', 'constraint' => 50],
+            'nama_app'         => ['type' => 'varchar', 'constraint' => 100],
+            'pic'              => ['type' => 'varchar', 'constraint' => 100],
+            'no_hp_pic'        => ['type' => 'varchar', 'constraint' => 20],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

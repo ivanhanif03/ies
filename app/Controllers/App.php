@@ -20,7 +20,7 @@ class App extends BaseController
             'title' => 'App List',
             'menu' => 'apps',
             'validation' => \Config\Services::validation(),
-            'orders' => $this->AppModel->getApp()
+            'app' => $this->AppModel->getApp()
         ];
 
         return view('apps/index', $data);
@@ -29,42 +29,41 @@ class App extends BaseController
     public function create()
     {
         $data = [
-            'title' => 'Create New Order',
-            'menu' => 'orders',
+            'title' => 'Tambah App',
+            'menu' => 'apps',
             'validation' => \Config\Services::validation(),
-            'user' => $this->AppModel->getOrder()
+            'app' => $this->AppModel->getApp()
         ];
 
-        return view('order/create', $data);
+        return view('apps/create', $data);
     }
 
     public function save()
     {
         //Validation
         if (!$this->validate([
-            'name'     => 'required',
-            'phone'    => 'required|min_length[9]|max_length[13]',
-            'address'  => 'required',
+            'nama_app'     => 'required',
+            'pic'     => 'required',
+            'no_hp_pic'    => 'required|min_length[9]|max_length[13]',
         ])) {
-            return redirect()->to('/user/create')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('/apps/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $this->AppModel->save([
-            'name'    => $this->request->getVar('name'),
-            'phone'   => $this->request->getVar('phone'),
-            'address' => $this->request->getVar('username'),
-            'package' => $this->request->getVar('email'),
+            'nama_app'    => $this->request->getVar('nama_app'),
+            'pic'   => $this->request->getVar('pic'),
+            'no_hp_pic' => $this->request->getVar('no_hp_pic'),
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');
 
-        return redirect()->to('/order');
+        return redirect()->to('/apps');
     }
 
     public function delete($id)
     {
         $this->AppModel->delete($id);
         session()->setFlashdata('pesan', 'Data deleted successfully');
-        return redirect()->to('order/index');
+        return redirect()->to('/apps');
     }
 }

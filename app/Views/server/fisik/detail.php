@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-3 mt-n4">
                                 Tipe
                             </div>
                             <div class="col-9">

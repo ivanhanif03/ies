@@ -21,7 +21,7 @@
             <li class="menu-header">Aplikasi</li>
             <li class="<?php if ($menu == 'apps') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('app') ?>"><i class="fas fa-rocket"></i> <span>Apps</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Apps</span></a></li>
             <li class="menu-header">Server</li>
             <li class="<?php if ($menu == 'rak') {
                             echo 'active';

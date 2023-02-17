@@ -30,7 +30,7 @@
                                         <th class=" text-center">
                                             No
                                         </th>
-                                        <th>Nama</th>
+                                        <th>Nama Server</th>
                                         <th>Merk</th>
                                         <th>Tipe</th>
                                         <th>OS</th>
@@ -41,7 +41,7 @@
                                         <th>Vendor</th>
                                         <th>SOS</th>
                                         <th>EOS</th>
-                                        <th>Lisensi</th>
+                                        <th>No PKS</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>

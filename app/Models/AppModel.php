@@ -14,7 +14,7 @@ class AppModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'hostname', 'ip_address', 'os', 'jenis_server'];
+    protected $allowedFields    = ['nama_app', 'pic', 'no_hp_pic'];
 
     // Dates
     protected $useTimestamps = false;
