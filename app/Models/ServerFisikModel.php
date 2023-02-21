@@ -8,7 +8,7 @@ class ServerFisikModel extends Model
 {
     protected $table            = 'server_fisik';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['nama_server', 'merk', 'tipe', 'os', 'disk', 'memory', 'processor', 'lokasi', 'vendor_id', 'sos', 'eos',  'lisensi'];
+    protected $allowedFields    = ['kode_aset', 'app_id', 'jenis_app', 'ip_address', 'hostname', 'rak_id', 'rak_unit', 'vendor_id', 'merk', 'tipe', 'os', 'disk', 'memory', 'processor',  'sos', 'eos',  'no_pks'];
 
     // Dates
     protected $useTimestamps = true;
@@ -25,18 +25,27 @@ class ServerFisikModel extends Model
     {
         return $this->db->table('server_fisik')
             ->join('vendor', 'vendor.id=server_fisik.vendor_id', 'left')
+            ->join('apps', 'apps.id=server_fisik.app_id', 'left')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
             ->select('server_fisik.*')
             ->select('vendor.*')
+            ->select('apps.*')
+            ->select('raks.*')
             ->orderBy('server_fisik.id')
             ->get()->getResultArray();
     }
 
-    public function getNamaVendor($id)
+    public function getOneServerFisik($id)
     {
         return $this->db->table('server_fisik')
             ->join('vendor', 'vendor.id=server_fisik.vendor_id', 'left')
-            ->select('vendor.nama_vendor', 'nama_vendor')
+            ->join('apps', 'apps.id=server_fisik.app_id', 'left')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->select('server_fisik.*')
+            ->select('vendor.*')
+            ->select('apps.*')
+            ->select('raks.*')
             ->where('server_fisik.id', $id)
-            ->get()->getRow()->nama_vendor;
+            ->get()->getRow();
     }
 }

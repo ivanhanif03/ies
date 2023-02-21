@@ -10,18 +10,23 @@ class ServerFisik extends Migration
     {
         $this->forge->addField([
             'id'                => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'nama_server'       => ['type' => 'varchar', 'constraint' => 100],
-            'merk'              => ['type' => 'varchar', 'constraint' => 30],
-            'tipe'              => ['type' => 'varchar', 'constraint' => 30],
+            'kode_aset'         => ['type' => 'varchar', 'constraint' => 100],
+            'app_id'            => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'jenis_app'         => ['type' => 'varchar', 'constraint' => 100],
+            'ip_address'        => ['type' => 'varchar', 'constraint' => 50],
+            'hostname'          => ['type' => 'varchar', 'constraint' => 100],
+            'rak_id'            => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'rak_unit'          => ['type' => 'varchar', 'constraint' => 30],
+            'vendor_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'merk'              => ['type' => 'varchar', 'constraint' => 100],
+            'tipe'              => ['type' => 'varchar', 'constraint' => 100],
             'os'                => ['type' => 'varchar', 'constraint' => 30],
             'disk'              => ['type' => 'int', 'constraint' => 30],
             'memory'            => ['type' => 'int', 'constraint' => 30],
             'processor'         => ['type' => 'varchar', 'constraint' => 50],
-            'lokasi'            => ['type' => 'varchar', 'constraint' => 50],
-            'vendor_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'sos'               => ['type' => 'date'],
             'eos'               => ['type' => 'date'],
-            'lisensi'           => ['type' => 'varchar', 'constraint' => 100],
+            'no_pks'           => ['type' => 'varchar', 'constraint' => 100],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],
@@ -29,6 +34,8 @@ class ServerFisik extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('vendor_id', 'vendor', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('app_id', 'apps', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('rak_id', 'raks', 'id', '', 'CASCADE');
 
         $this->forge->createTable('server_fisik', true);
     }

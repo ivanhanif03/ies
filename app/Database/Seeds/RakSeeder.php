@@ -16,6 +16,12 @@ class RakSeeder extends Seeder
                 'created_at'    => Time::now(),
                 'updated_at'    => Time::now(),
             ],
+            [
+                'nama_rak'   => 'Rack 32',
+                'lokasi'          => 'Surabaya',
+                'created_at'    => Time::now(),
+                'updated_at'    => Time::now(),
+            ],
         ];
 
         $this->db->table('raks')->insertBatch($data);

@@ -3,9 +3,9 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Edit Vendor</h1>
+        <h1>Edit Aplikasi</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="<?= base_url('vendor') ?>">Vendor</a></div>
+            <div class="breadcrumb-item active"><a href="<?= base_url('vendor') ?>">Aplikasi</a></div>
             <div class="breadcrumb-item">Edit</div>
         </div>
     </div>
@@ -16,106 +16,35 @@
                 <div class="card card-primary">
 
                     <div class="card-body">
-                        <form action="<?= base_url('vendor/update') . '/' . $vendor['id']; ?>" method="post">
+                        <form action="<?= base_url('apps/update') . '/' . $app['id']; ?>" method="post">
                             <?= csrf_field() ?>
 
                             <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="nama_vendor" class="font-weight-bolder">Nama Vendor</label>
-                                    <input id="nama_vendor" type="text" class="form-control <?php if (session('errors.nama_vendor')) : ?>is-invalid<?php endif ?>" name="nama_vendor" value="<?= $vendor['nama_vendor']; ?>" placeholder="Masukkan nama vendor">
+                                <div class="form-group col-12">
+                                    <label for="nama_app" class="font-weight-bolder">Nama Aplikasi</label>
+                                    <input id="nama_app" type="text" class="form-control <?php if (session('errors.nama_app')) : ?>is-invalid<?php endif ?>" name="nama_app" value="<?= $app['nama_app']; ?>" placeholder="Masukkan nama vendor">
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('nama_vendor'); ?>
+                                        <?= $validation->getError('nama_app'); ?>
                                     </div>
                                 </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="alamat">Alamat</label>
-                                    <input type="text" id="alamat" class="form-control <?php if (session('errors.alamat')) : ?>is-invalid<?php endif ?>" name="alamat" value="<?= $vendor['alamat']; ?>" placeholder="Masukkan alamat vendor">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('alamat'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="pic">PIC</label>
-                                    <input id="pic" type="text" class="form-control <?php if (session('errors.pic')) : ?>is-invalid<?php endif ?>" name="pic" value="<?= $vendor['pic']; ?>" placeholder="Masukkan nama pic">
+                                <div class="form-group col-12">
+                                    <label for="pic">Nama PIC</label>
+                                    <input type="text" id="pic" class="form-control <?php if (session('errors.pic')) : ?>is-invalid<?php endif ?>" name="pic" value="<?= $app['pic']; ?>" placeholder="Masukkan pic vendor">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('pic'); ?>
                                     </div>
                                 </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="helpdesk_phone">PIC Phone</label>
-                                    <input id="pic_phone" type="text" class="form-control <?php if (session('errors.pic_phone')) : ?>is-invalid<?php endif ?>" name="pic_phone" value="<?= $vendor['pic_phone']; ?>" placeholder="Masukkan pic phone" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('pic_phone'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="helpdesk">Helpdesk</label>
-                                    <input id="helpdesk" type="text" class="form-control <?php if (session('errors.helpdesk')) : ?>is-invalid<?php endif ?>" name="helpdesk" value="<?= $vendor['helpdesk']; ?>" placeholder="Masukkan nama helpdesk">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('helpdesk'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="helpdesk_phone">Helpdesk Phone</label>
-                                    <input id="helpdesk_phone" type="text" class="form-control <?php if (session('errors.helpdesk_phone')) : ?>is-invalid<?php endif ?>" name="helpdesk_phone" value="<?= $vendor['helpdesk_phone']; ?>" placeholder="Masukkan pic phone" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('helpdesk_phone'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="akun_manager">Akun Manager</label>
-                                    <input id="akun_manager" type="text" class="form-control <?php if (session('errors.akun_manager')) : ?>is-invalid<?php endif ?>" name="akun_manager" value="<?= $vendor['akun_manager']; ?>" placeholder="Masukkan nama akun manager">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('akun_manager'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="akun_manager_phone">Akun Manager Phone</label>
-                                    <input id="akun_manager_phone" type="text" class="form-control <?php if (session('errors.akun_manager_phone')) : ?>is-invalid<?php endif ?>" name="akun_manager_phone" value="<?= $vendor['akun_manager_phone']; ?>" placeholder="Masukkan pic phone" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('akun_manager_phone'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="form-group col-12">
-                                    <label for="scope_work">Scope of Work</label>
-                                    <textarea id="scope_work" class="form-control <?php if (session('errors.scope_work')) : ?>is-invalid<?php endif ?>" name="scope_work" placeholder="Masukkan scope of work" rows="4"><?= $vendor['scope_work']; ?></textarea>
+                                    <label for="no_hp_pic">Nomor HP PIC</label>
+                                    <input id="no_hp_pic" type="text" class="form-control <?php if (session('errors.no_hp_pic')) : ?>is-invalid<?php endif ?>" name="no_hp_pic" value="<?= $app['no_hp_pic']; ?>" placeholder="Masukkan pic phone" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('scope_work'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="nilai_kontrak">Nilai Kontrak</label>
-                                    <input id="nilai_kontrak" type="text" class="form-control <?php if (session('errors.nilai_kontrak')) : ?>is-invalid<?php endif ?>" name="nilai_kontrak" value="<?= $vendor['nilai_kontrak']; ?>" placeholder="Masukkan pic phone" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nilai_kontrak'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="tempo_pembayaran">Tempo Pembayaran</label>
-                                    <input id="tempo_pembayaran" type="text" class="form-control datepicker <?php if (session('errors.tempo_pembayaran')) : ?>is-invalid<?php endif ?>" name="tempo_pembayaran" value="<?= $vendor['tempo_pembayaran']; ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('tempo_pembayaran'); ?>
+                                        <?= $validation->getError('no_hp_pic'); ?>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-end">
-                                <a href="<?= base_url('vendor') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
+                                <a href="<?= base_url('apps') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-md">
                                     Save
                                 </button>

@@ -29,10 +29,12 @@
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="lokasi">Lokasi</label>
-                                    <input type="text" id="lokasi" class="form-control <?php if (session('errors.lokasi')) : ?>is-invalid<?php endif ?>" name="lokasi" value="<?= old('lokasi') ?>" placeholder="Masukkan lokasi rak">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('lokasi'); ?>
-                                    </div>
+                                    <select class="form-control selectric text-sm" name="lokasi" id="lokasi" style="width: 100%;">
+                                        <option value="" disabled selected>Pilih Lokasi</option>
+                                        <option value="Sentul">Sentul</option>
+                                        <option value="Surabaya">Surabaya</option>
+                                        <option value="HO">Head Office</option>
+                                    </select>
                                 </div>
                             </div>
 

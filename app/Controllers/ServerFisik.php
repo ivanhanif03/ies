@@ -3,17 +3,21 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AppModel;
+use App\Models\RakModel;
 use App\Models\ServerFisikModel;
 use App\Models\VendorModel;
 
 class ServerFisik extends BaseController
 {
-    protected $ServerFisikModel, $VendorModel;
+    protected $ServerFisikModel, $VendorModel, $AppModel, $RakModel;
 
     public function __construct()
     {
         $this->ServerFisikModel = new ServerFisikModel();
         $this->VendorModel = new VendorModel();
+        $this->RakModel = new RakModel();
+        $this->AppModel = new AppModel();
     }
 
     public function index()
@@ -33,10 +37,12 @@ class ServerFisik extends BaseController
         $data = [
             'title' => 'Detail Server Fisik',
             'menu' => 'fisik',
-            'fisik' => $this->ServerFisikModel->getServerFisik($id),
-            'nama_vendor' => $this->ServerFisikModel->getNamaVendor($id),
-            'vendor' => $this->VendorModel->getVendor()
+            'fisik' => $this->ServerFisikModel->getOneServerFisik($id),
+            // 'nama_vendor' => $this->ServerFisikModel->getNamaVendor($id),
+            // 'vendor' => $this->VendorModel->getVendor()
         ];
+
+        // dd($data);
 
         return view('server/fisik/detail', $data);
     }

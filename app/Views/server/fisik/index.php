@@ -30,15 +30,21 @@
                                         <th class=" text-center">
                                             No
                                         </th>
-                                        <th>Nama Server</th>
-                                        <th>Merk</th>
+                                        <th>Kode Aset</th>
+                                        <th>Nama App</th>
+                                        <th>Jenis App</th>
+                                        <th>IP Address</th>
+                                        <th>Hostname</th>
+                                        <th>Rak</th>
+                                        <th>Rak Unit</th>
+                                        <th>Vendor</th>
+                                        <th>Merek</th>
                                         <th>Tipe</th>
                                         <th>OS</th>
                                         <th>Disk</th>
                                         <th>Memory</th>
                                         <th>Processor</th>
                                         <th>Lokasi</th>
-                                        <th>Vendor</th>
                                         <th>SOS</th>
                                         <th>EOS</th>
                                         <th>No PKS</th>
@@ -52,7 +58,14 @@
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $f['nama_server']; ?></td>
+                                            <td><?= $f['kode_aset']; ?></td>
+                                            <td><?= $f['nama_app']; ?></td>
+                                            <td><?= $f['jenis_app']; ?></td>
+                                            <td><?= $f['ip_address']; ?></td>
+                                            <td><?= $f['hostname']; ?></td>
+                                            <td><?= $f['nama_rak']; ?></td>
+                                            <td><?= $f['rak_unit']; ?></td>
+                                            <td><?= $f['nama_vendor']; ?></td>
                                             <td><?= $f['merk']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
                                             <td class="text-capitalize"><?= $f['os']; ?></td>
@@ -67,10 +80,9 @@
                                             <td><?= $f['memory']; ?> Gb</td>
                                             <td><?= $f['processor']; ?></td>
                                             <td class="text-capitalize"><?= $f['lokasi']; ?></td>
-                                            <td><?= $f['nama_vendor']; ?></td>
                                             <td><?= $f['sos']; ?></td>
                                             <td><?= $f['eos']; ?></td>
-                                            <td><?= $f['lisensi']; ?></td>
+                                            <td><?= $f['no_pks']; ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
@@ -100,7 +112,7 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $f['nama_server']; ?>
+                                                            <?= $f['nama_app']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
@@ -128,6 +140,7 @@
 <?= $this->section('script'); ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
         // Datatables with Buttons
         var datatablesFisik = $("#tableFisik").DataTable({
             lengthChange: false,
@@ -136,14 +149,14 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [2, 3, 10, 11, 12],
+                targets: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
                     title: 'Server Fisik',
                     messageTop: 'Data Total Server Fisik Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
                     }
                 },
                 {
@@ -153,7 +166,7 @@
                     title: 'Server Fisik',
                     messageTop: 'Data Total Server Fisik Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
                     }
                 }
             ]

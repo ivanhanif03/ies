@@ -81,8 +81,11 @@ $routes->get('/apps', 'App::index', ['filter' => 'role:admin, operator']);
 $routes->get('/apps/index', 'App::index', ['filter' => 'role:admin, operator']);
 $routes->get('/apps/create', 'App::create', ['filter' => 'role:admin, operator']);
 $routes->post('/apps/save', 'App::save', ['filter' => 'role:admin, operator']);
+$routes->post('/apps/saveExcel', 'App::saveExcel', ['filter' => 'role:admin, operator']);
 $routes->get('/apps/edit/(:segment)', 'App::edit/$1', ['filter' => 'role:admin, operator']);
 $routes->post('/apps/update/(:segment)', 'App::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/apps/(:num)', 'App::delete/$1', ['filter' => 'role:admin, operator']);
+
 
 /*
  * --------------------------------------------------------------------

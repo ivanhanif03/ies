@@ -87,10 +87,10 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="form-group col-12">
                                     <label for="scope_work">Scope of Work</label>
-                                    <textarea id="scope_work" class="form-control <?php if (session('errors.scope_work')) : ?>is-invalid<?php endif ?>" name="scope_work" placeholder="Masukkan scope of work" rows="4"><?= old('scope_work') ?></textarea>
+                                    <textarea id="scope_work" class="form-control <?php if (session('errors.scope_work')) : ?>is-invalid<?php endif ?>" name="scope_work" placeholder="Masukkan scope of work" rows="5" style="height:100%;"><?= old('scope_work') ?></textarea>
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('scope_work'); ?>
                                     </div>

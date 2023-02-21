@@ -11,21 +11,25 @@
             <li class="<?php if ($menu == 'home') {
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-columns"></i> <span>Dashboard</span></a></li>
+
+            <!-- DATA MASTER -->
             <li class="menu-header">Data Master</li>
             <li class="<?php if ($menu == 'users') {
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('user') ?>"><i class="fas fa-user"></i> <span>User</span></a></li>
-            <li class="<?php if ($menu == 'vendor') {
-                            echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('vendor') ?>"><i class="fas fa-user"></i> <span>Vendor</span></a></li>
-            <li class="menu-header">Aplikasi</li>
+
             <li class="<?php if ($menu == 'apps') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Apps</span></a></li>
-            <li class="menu-header">Server</li>
+                        } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Aplikasi</span></a></li>
             <li class="<?php if ($menu == 'rak') {
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('rak') ?>"><i class="fas fa-th"></i> <span>Rak Server</span></a></li>
+            <li class="<?php if ($menu == 'vendor') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('vendor') ?>"><i class="fas fa-users-cog"></i> <span>Vendor</span></a></li>
+
+            <!-- SERVER -->
+            <li class="menu-header">Server</li>
             <li class="<?php if ($menu == 'fisik') {
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>"><i class="fas fa-server"></i> <span>Baremetal</span></a></li>

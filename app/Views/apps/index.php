@@ -3,9 +3,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Daftra App</h1>
-        <div class="section-header-breadcrumb">
-            <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Tambah App</a>
+        <h1>Daftar Aplikasi</h1>
+        <div class="section-header-breadcrumb buttons">
+            <a href="" class="btn btn-outline-success btn-d" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Aplikasi</a>
         </div>
     </div>
 
@@ -30,7 +31,7 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama App</th>
+                                        <th>Nama Aplikasi</th>
                                         <th>PIC</th>
                                         <th>Nomor HP PIC</th>
                                         <th class="text-center">Action</th>
@@ -52,7 +53,7 @@
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('app/edit') . '/' . $a['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('apps/edit') . '/' . $a['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
                                                     <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-app<?= $a['id'] ?>">
@@ -96,6 +97,40 @@
         </div>
     </div>
 </section>
+
+<!-- Start Modal Upload Excel -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content border-0">
+            <div class="modal-header">
+                <h5 class="modal-title">File Excel Aplikasi</h5>
+            </div>
+            <div class="modal-body text-center">
+                <?php
+                if (session()->getFlashdata('message')) {
+                ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('message') ?>
+                    </div>
+                <?php
+                }
+                ?>
+                <form method="post" action="/apps/saveExcel" enctype="multipart/form-data">
+                    <?= csrf_field() ?>
+                    <div class="form-group">
+                        <label for="filexcel">Upload file excel</label>
+                        <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
+                    </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Upload Excel -->
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
@@ -108,25 +143,25 @@
                 orderable: false,
                 targets: [0]
             }],
-            // buttons: [{
-            //         extend: 'excelHtml5',
-            //         title: 'Daftar Aplikasi',
-            //         messageTop: 'Data Total Aplikasi Bank BTN',
-            //         exportOptions: {
-            //             columns: [0, 1, 2]
-            //         }
-            //     },
-            //     {
-            //         extend: 'pdfHtml5',
-            //         orientation: 'landscape',
-            //         pageSize: 'LEGAL',
-            //         title: 'Daftar Aplikasi',
-            //         messageTop: 'Data Total Aplikasi Bank BTN',
-            //         exportOptions: {
-            //             columns: [0, 1, 2]
-            //         }
-            //     }
-            // ]
+            buttons: [{
+                    extend: 'excelHtml5',
+                    title: 'Daftar Aplikasi',
+                    messageTop: 'Data Total Aplikasi Bank BTN',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL',
+                    title: 'Daftar Aplikasi',
+                    messageTop: 'Data Total Aplikasi Bank BTN',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3]
+                    }
+                }
+            ]
         });
         datatablesApps.buttons().container().appendTo("#tableApp_wrapper .col-md-6:eq(0)");
     });
