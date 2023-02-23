@@ -4,8 +4,9 @@
 <section class="section">
     <div class="section-header">
         <h1>Vendor</h1>
-        <div class="section-header-breadcrumb">
-            <a href="<?= base_url('vendor/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Tambah Vendor</a>
+        <div class="section-header-breadcrumb buttons">
+            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <a href="<?= base_url('vendor/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Vendor</a>
         </div>
     </div>
 
@@ -30,6 +31,7 @@
                                         <th class="text-center">
                                             No
                                         </th>
+                                        <th>ID</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>PIC</th>
@@ -51,6 +53,7 @@
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
+                                            <td><?= $v['id']; ?></td>
                                             <td><?= $v['nama_vendor']; ?></td>
                                             <td><?= $v['alamat']; ?></td>
                                             <td><?= $v['pic']; ?></td>
@@ -60,8 +63,8 @@
                                             <td><?= $v['helpdesk']; ?></td>
                                             <td><?= $v['helpdesk_phone']; ?></td>
                                             <td><?= $v['scope_work']; ?></td>
-                                            <td>Rp <?= number_format($v['nilai_kontrak'], 0, '', '.'); ?></td>
-                                            <td><?= $v['tempo_pembayaran']; ?></td>
+                                            <td>Rp<?= number_format($v['nilai_kontrak'], 0, '', '.'); ?></td>
+                                            <td><?= date("d-m-Y", strtotime($v['tempo_pembayaran'])); ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
@@ -115,39 +118,86 @@
         </div>
     </div>
 </section>
+
+<!-- Start Modal Upload Excel -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content border-0">
+            <div class="modal-header">
+                <h5 class="modal-title">File Excel Vendor</h5>
+            </div>
+            <div class="modal-body text-center">
+                <?php
+                if (session()->getFlashdata('message')) {
+                ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('message') ?>
+                    </div>
+                <?php
+                }
+                ?>
+                <form method="post" action="/vendor/saveExcel" enctype="multipart/form-data">
+                    <?= csrf_field() ?>
+                    <div class="form-group">
+                        <label for="filexcel">Upload file excel</label>
+                        <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
+                    </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Upload Excel -->
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Current Date
+        var currentdate = new Date();
+        var datetime = " - " + currentdate.getDate() + "/" +
+            (currentdate.getMonth() + 1) + "/" +
+            currentdate.getFullYear() + " " +
+            currentdate.getHours() + ":" +
+            currentdate.getMinutes() + ":" +
+            currentdate.getSeconds();
+
         // Datatables with Buttons
         var datatablesUsers = $("#tableVendor").DataTable({
+
             // responsive: true,
             lengthChange: false,
             columnDefs: [{
                     orderable: false,
-                    targets: [0, 5]
+                    targets: [0]
                 },
                 {
                     visible: false,
-                    targets: [5, 6, 7, 8, 9]
+                    targets: [1, 3, 6, 7, 8, 9, 10]
                 }
             ],
             buttons: [{
                     extend: 'excelHtml5',
+                    className: 'btn btn-outline-success',
                     title: 'Daftar Vendor',
-                    messageTop: 'Data Total Vendor Server Bank BTN',
+                    messageTop: 'Data Total Vendor Server Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                     }
                 },
                 {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
+                    className: 'btn btn-outline-danger',
                     pageSize: 'LEGAL',
                     title: 'Daftar Vendor',
-                    messageTop: 'Data Total Vendor Server Bank BTN',
+                    // messageBottom: datetime,
+                    messageTop: 'Data Total Vendor Server Bank BTN ' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                     }
                 }
             ]

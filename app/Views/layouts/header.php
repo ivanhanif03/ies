@@ -8,10 +8,10 @@
     <link rel="icon" href="<?= base_url('img/ies_icon.png') ?>">
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="<?= base_url('stisla/modules/bootstrap/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('stisla/modules/bootstrap/daterangepicker.css') ?>">
     <link rel="stylesheet" href="<?= base_url('stisla/modules/bootstrap/bootstrap-timepicker.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('stisla/modules/select2/select2.min.css') ?>">
@@ -23,7 +23,7 @@
     <!--  <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css"> -->
     <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
     <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
- 
+
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= base_url('stisla/css/style.css') ?>">
@@ -31,5 +31,5 @@
 
     <script src="jquery.min.js"></script>
     <script src="owlcarousel/owl.carousel.min.js"></script>
-    
+
 </head>

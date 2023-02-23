@@ -69,6 +69,46 @@ class Rak extends BaseController
         return redirect()->to('rak');
     }
 
+    public function saveExcel()
+    {
+        $file_excel = $this->request->getFile('fileexcel');
+        $ext = $file_excel->getClientExtension();
+        if ($ext == 'xls') {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        } else {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        }
+        $spreadsheet = $render->load($file_excel);
+
+        $data = $spreadsheet->getActiveSheet()->toArray();
+        foreach ($data as $x => $row) {
+            if ($x == 0) {
+                continue;
+            }
+
+            // $id = $row[0];
+            $nama_rak = $row[0];
+            $lokasi = $row[1];
+
+            $db = \Config\Database::connect();
+
+            $cek_rak = $db->table('apps')->getWhere(['nama_app' => $nama_rak])->getResult();
+
+            if (count($cek_rak) > 0) {
+                session()->setFlashdata('message', '<b>Data gagal diimport, nama rak sudah ada</b>');
+            } else {
+
+                $this->RakModel->save([
+                    'nama_rak' => $nama_rak,
+                    'lokasi' => $lokasi,
+                ]);
+                session()->setFlashdata('message', 'Berhasil import excel data rak');
+            }
+        }
+
+        return redirect()->to('/rak');
+    }
+
     public function edit($id)
     {
         $data = [

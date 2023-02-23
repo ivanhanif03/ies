@@ -20,7 +20,7 @@ class Vendor extends Migration
             'helpdesk_phone'    => ['type' => 'varchar', 'constraint' => 50],
             'scope_work'        => ['type' => 'varchar', 'constraint' => 50],
             'nilai_kontrak'     => ['type' => 'int', 'constraint' => 50],
-            'tempo_pembayaran'  => ['type' => 'varchar', 'constraint' => 100],
+            'tempo_pembayaran'  => ['type' => 'date'],
             'created_at'        => ['type' => 'datetime', 'null' => true],
             'updated_at'        => ['type' => 'datetime', 'null' => true],
             'deleted_at'        => ['type' => 'datetime', 'null' => true],

@@ -11,13 +11,17 @@ class ServerFisik extends Migration
         $this->forge->addField([
             'id'                => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'kode_aset'         => ['type' => 'varchar', 'constraint' => 100],
+            'serial_number'         => ['type' => 'varchar', 'constraint' => 100],
             'app_id'            => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'jenis_app'         => ['type' => 'varchar', 'constraint' => 100],
-            'ip_address'        => ['type' => 'varchar', 'constraint' => 50],
+            'ip_address_data'        => ['type' => 'varchar', 'constraint' => 50],
+            'ip_address_management'        => ['type' => 'varchar', 'constraint' => 50],
             'hostname'          => ['type' => 'varchar', 'constraint' => 100],
+            'jenis_appliance'          => ['type' => 'varchar', 'constraint' => 100],
             'rak_id'            => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'rak_unit'          => ['type' => 'varchar', 'constraint' => 30],
-            'vendor_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'vendor_software_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'vendor_hardware_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'merk'              => ['type' => 'varchar', 'constraint' => 100],
             'tipe'              => ['type' => 'varchar', 'constraint' => 100],
             'os'                => ['type' => 'varchar', 'constraint' => 30],
@@ -33,7 +37,8 @@ class ServerFisik extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('vendor_id', 'vendor', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('vendor_software_id', 'vendor', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('vendor_hardware_id', 'vendor', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('app_id', 'apps', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('rak_id', 'raks', 'id', '', 'CASCADE');
 

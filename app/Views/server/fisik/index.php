@@ -4,9 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Server Fisik</h1>
-        <div class="section-header-breadcrumb">
-            <a href="<?= base_url('serverfisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Tambah Server</a>
-        </div>
+        <?php if (in_groups('operator') || in_groups('admin')) : ?>
+            <div class="section-header-breadcrumb buttons">
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('serverfisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="section-body">
@@ -31,13 +34,17 @@
                                             No
                                         </th>
                                         <th>Kode Aset</th>
+                                        <th>Serial Number</th>
                                         <th>Nama App</th>
                                         <th>Jenis App</th>
-                                        <th>IP Address</th>
+                                        <th>IP Address Data</th>
+                                        <th>IP Address Mngmt</th>
                                         <th>Hostname</th>
+                                        <th>Jenis Appliance</th>
                                         <th>Rak</th>
                                         <th>Rak Unit</th>
-                                        <th>Vendor</th>
+                                        <th>Vendor SW</th>
+                                        <th>Vendor HW</th>
                                         <th>Merek</th>
                                         <th>Tipe</th>
                                         <th>OS</th>
@@ -59,13 +66,17 @@
                                                 <?= $i++; ?>
                                             </td>
                                             <td><?= $f['kode_aset']; ?></td>
+                                            <td><?= $f['serial_number']; ?></td>
                                             <td><?= $f['nama_app']; ?></td>
                                             <td><?= $f['jenis_app']; ?></td>
-                                            <td><?= $f['ip_address']; ?></td>
+                                            <td><?= $f['ip_address_data']; ?></td>
+                                            <td><?= $f['ip_address_management']; ?></td>
                                             <td><?= $f['hostname']; ?></td>
+                                            <td><?= $f['jenis_appliance']; ?></td>
                                             <td><?= $f['nama_rak']; ?></td>
                                             <td><?= $f['rak_unit']; ?></td>
-                                            <td><?= $f['nama_vendor']; ?></td>
+                                            <td><?= $f['v1']; ?></td>
+                                            <td><?= $f['v2']; ?></td>
                                             <td><?= $f['merk']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
                                             <td class="text-capitalize"><?= $f['os']; ?></td>
@@ -84,20 +95,28 @@
                                             <td><?= $f['eos']; ?></td>
                                             <td><?= $f['no_pks']; ?></td>
                                             <td class="dropdown text-center">
-                                                <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
-                                                        <i class="far fa-edit text-success"></i> Edit
-                                                    </a>
+                                                    <!-- AKSES ADMIN & OPERATOR -->
+                                                    <?php if (in_groups('operator') || in_groups('admin')) : ?>
+                                                        <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                            <i class="far fa-edit text-success"></i> Edit
+                                                        </a>
+                                                    <?php endif; ?>
+
+                                                    <!-- AKSES ALL -->
                                                     <a href="<?= base_url('serverfisik/detail') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
-                                                        <i class="fas fa-trash text-danger"></i> Delete
-                                                    </a>
+
+                                                    <!-- AKSES ADMIN & OPERATOR -->
+                                                    <?php if (in_groups('operator') || in_groups('admin')) : ?>
+                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
+                                                            <i class="fas fa-trash text-danger"></i> Delete
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -140,6 +159,14 @@
 <?= $this->section('script'); ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Current Date
+        var currentdate = new Date();
+        var datetime = " - " + currentdate.getDate() + "/" +
+            (currentdate.getMonth() + 1) + "/" +
+            currentdate.getFullYear() + " " +
+            currentdate.getHours() + ":" +
+            currentdate.getMinutes() + ":" +
+            currentdate.getSeconds();
 
         // Datatables with Buttons
         var datatablesFisik = $("#tableFisik").DataTable({
@@ -149,24 +176,26 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+                targets: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
+                    className: 'btn btn-outline-success',
                     title: 'Server Fisik',
-                    messageTop: 'Data Total Server Fisik Bank BTN',
+                    messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     }
                 },
                 {
                     extend: 'pdfHtml5',
+                    className: 'btn btn-outline-danger',
                     orientation: 'landscape',
                     pageSize: 'LEGAL',
                     title: 'Server Fisik',
-                    messageTop: 'Data Total Server Fisik Bank BTN',
+                    messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     }
                 }
             ]

@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>Daftar Aplikasi</h1>
         <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-d" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
             <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Aplikasi</a>
         </div>
     </div>
@@ -25,14 +25,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableApp">
+                            <table class="table table-striped" id="tableApp" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
                                             No
                                         </th>
+                                        <th>ID</th>
                                         <th>Nama Aplikasi</th>
                                         <th>PIC</th>
+                                        <th>Divisi</th>
                                         <th>Nomor HP PIC</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -44,8 +46,10 @@
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
+                                            <td><?= $a['id']; ?></td>
                                             <td><?= $a['nama_app']; ?></td>
                                             <td><?= $a['pic']; ?></td>
+                                            <td><?= $a['divisi']; ?></td>
                                             <td><?= $a['no_hp_pic']; ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
@@ -135,6 +139,15 @@
 <?= $this->section('script'); ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Current Date
+        var currentdate = new Date();
+        var datetime = " - " + currentdate.getDate() + "/" +
+            (currentdate.getMonth() + 1) + "/" +
+            currentdate.getFullYear() + " " +
+            currentdate.getHours() + ":" +
+            currentdate.getMinutes() + ":" +
+            currentdate.getSeconds();
+
         // Datatables with Buttons
         var datatablesApps = $("#tableApp").DataTable({
             // responsive: true,
@@ -142,23 +155,29 @@
             columnDefs: [{
                 orderable: false,
                 targets: [0]
-            }],
+            }, {
+                visible: false,
+                targets: [1],
+            }, ],
             buttons: [{
                     extend: 'excelHtml5',
                     title: 'Daftar Aplikasi',
-                    messageTop: 'Data Total Aplikasi Bank BTN',
+                    className: 'btn btn-outline-success',
+                    messageTop: 'Data Total Aplikasi Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4]
                     }
                 },
                 {
                     extend: 'pdfHtml5',
-                    orientation: 'landscape',
+                    className: 'btn btn-outline-danger',
+                    // text: 'Download PDF',
+                    // orientation: 'landscape',
                     pageSize: 'LEGAL',
                     title: 'Daftar Aplikasi',
-                    messageTop: 'Data Total Aplikasi Bank BTN',
+                    messageTop: 'Data Total Aplikasi Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 2, 3, 4]
                     }
                 }
             ]

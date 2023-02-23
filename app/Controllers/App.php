@@ -44,6 +44,7 @@ class App extends BaseController
         if (!$this->validate([
             'nama_app'     => 'required',
             'pic'     => 'required',
+            'divisi'     => 'required',
             'no_hp_pic'    => 'required|min_length[9]|max_length[13]',
         ])) {
             return redirect()->to('/apps/create')->withInput()->with('errors', $this->validator->getErrors());
@@ -52,6 +53,7 @@ class App extends BaseController
         $this->AppModel->save([
             'nama_app'    => $this->request->getVar('nama_app'),
             'pic'   => $this->request->getVar('pic'),
+            'divisi'   => $this->request->getVar('divisi'),
             'no_hp_pic' => $this->request->getVar('no_hp_pic'),
         ]);
 
@@ -80,21 +82,23 @@ class App extends BaseController
             // $id = $row[0];
             $nama_app = $row[0];
             $pic = $row[1];
-            $no_hp_pic = $row[2];
+            $divisi = $row[2];
+            $no_hp_pic = $row[3];
 
             $db = \Config\Database::connect();
 
-            $cek_id = $db->table('apps')->getWhere(['nama_app' => $nama_app])->getResult();
+            $cek_app = $db->table('apps')->getWhere(['nama_app' => $nama_app])->getResult();
 
-            if (count($cek_id) > 0) {
+            if (count($cek_app) > 0) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, aplikasi sudah terdaftar</b>');
             } else {
 
-                $save_data = [
-                    'nama_app' => $nama_app, 'pic' => $pic, 'no_hp_pic' => $no_hp_pic
-                ];
-
-                $db->table('apps')->insert($save_data);
+                $this->AppModel->save([
+                    'nama_app' => $nama_app,
+                    'pic' => $pic,
+                    'divisi' => $divisi,
+                    'no_hp_pic' => $no_hp_pic
+                ]);
                 session()->setFlashdata('message', 'Berhasil import excel data aplikasi');
             }
         }
@@ -120,6 +124,7 @@ class App extends BaseController
         if (!$this->validate([
             'nama_app'     => 'required',
             'pic'     => 'required',
+            'divisi'     => 'required',
             'no_hp_pic'    => 'required|min_length[9]|max_length[13]',
         ])) {
             return redirect()->to('apps/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
@@ -128,6 +133,7 @@ class App extends BaseController
             'id' => $id,
             'nama_app'    => $this->request->getVar('nama_app'),
             'pic'   => $this->request->getVar('pic'),
+            'divisi'   => $this->request->getVar('divisi'),
             'no_hp_pic' => $this->request->getVar('no_hp_pic'),
         ]);
 

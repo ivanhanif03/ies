@@ -13,6 +13,7 @@ class AppSeeder extends Seeder
             [
                 'nama_app' => 'BTN Properti',
                 'pic'    => 'Malik',
+                'divisi'    => 'DCD',
                 'no_hp_pic'    => '0852273631111',
                 'created_at'            => Time::now(),
                 'updated_at'            => Time::now(),
@@ -20,6 +21,7 @@ class AppSeeder extends Seeder
             [
                 'nama_app' => 'BTN Residence',
                 'pic'    => 'Sopi',
+                'divisi'    => 'DCD',
                 'no_hp_pic'    => '081322139876',
                 'created_at'            => Time::now(),
                 'updated_at'            => Time::now(),

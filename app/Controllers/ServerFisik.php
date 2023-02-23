@@ -29,6 +29,8 @@ class ServerFisik extends BaseController
             'fisik' => $this->ServerFisikModel->getAll()
         ];
 
+        // dd($data);
+
         return view('server/fisik/index', $data);
     }
 

@@ -35,6 +35,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
+                                    <label for="divisi" class="font-weight-bolder">Divisi</label>
+                                    <input id="divisi" type="text" class="form-control <?php if (session('errors.divisi')) : ?>is-invalid<?php endif ?>" name="divisi" value="<?= old('divisi') ?>" placeholder="Masukkan divisi">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('divisi'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
                                     <label for="no_hp_pic" class="font-weight-bolder">Nomor HP PIC</label>
                                     <input id="no_hp_pic" type="text" class="form-control <?php if (session('errors.no_hp_pic')) : ?>is-invalid<?php endif ?>" name="no_hp_pic" value="<?= old('no_hp_pic') ?>" placeholder="Masukkan nomor handphone PIC" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
@@ -44,7 +51,7 @@
                             </div>
 
                             <div class="d-flex justify-content-end">
-                                <a href="<?= base_url('vendor') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
+                                <a href="<?= base_url('apps') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-md">
                                     Save
                                 </button>

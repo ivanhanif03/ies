@@ -87,6 +87,63 @@ class Vendor extends BaseController
         return redirect()->to('vendor');
     }
 
+    public function saveExcel()
+    {
+        $file_excel = $this->request->getFile('fileexcel');
+        $ext = $file_excel->getClientExtension();
+        if ($ext == 'xls') {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        } else {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        }
+        $spreadsheet = $render->load($file_excel);
+
+        $data = $spreadsheet->getActiveSheet()->toArray();
+        foreach ($data as $x => $row) {
+            if ($x == 0) {
+                continue;
+            }
+
+            $nama_vendor = $row[0];
+            $alamat = $row[1];
+            $pic = $row[2];
+            $pic_phone = $row[3];
+            $akun_manager = $row[4];
+            $akun_manager_phone = $row[5];
+            $helpdesk = $row[6];
+            $helpdesk_phone = $row[7];
+            $scope_work = $row[8];
+            $nilai_kontrak = $row[9];
+            $tempo_pembayaran = $row[10];
+
+            $db = \Config\Database::connect();
+
+            $cek_vendor = $db->table('apps')->getWhere(['nama_app' => $nama_vendor])->getResult();
+
+            if (count($cek_vendor) > 0) {
+                session()->setFlashdata('message', '<b>Data gagal diimport, nama vendor sudah ada</b>');
+            } else {
+
+                $this->VendorModel->save([
+                    'nama_vendor' => $nama_vendor,
+                    'alamat' => $alamat,
+                    'pic' => $pic,
+                    'pic_phone' => $pic_phone,
+                    'akun_manager' => $akun_manager,
+                    'akun_manager_phone' => $akun_manager_phone,
+                    'helpdesk' => $helpdesk,
+                    'helpdesk_phone' => $helpdesk_phone,
+                    'scope_work' => $scope_work,
+                    'nilai_kontrak' => $nilai_kontrak,
+                    'tempo_pembayaran' => $tempo_pembayaran,
+                ]);
+                session()->setFlashdata('message', 'Berhasil import excel data rak');
+            }
+        }
+
+        return redirect()->to('/vendor');
+    }
+
     public function edit($id)
     {
         $data = [

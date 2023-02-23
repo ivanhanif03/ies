@@ -22,16 +22,23 @@
                             <div class="row">
                                 <div class="form-group col-12">
                                     <label for="nama_app" class="font-weight-bolder">Nama Aplikasi</label>
-                                    <input id="nama_app" type="text" class="form-control <?php if (session('errors.nama_app')) : ?>is-invalid<?php endif ?>" name="nama_app" value="<?= $app['nama_app']; ?>" placeholder="Masukkan nama vendor">
+                                    <input id="nama_app" type="text" class="form-control <?php if (session('errors.nama_app')) : ?>is-invalid<?php endif ?>" name="nama_app" value="<?= $app['nama_app']; ?>" placeholder="Masukkan nama aplikasi">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('nama_app'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="pic">Nama PIC</label>
-                                    <input type="text" id="pic" class="form-control <?php if (session('errors.pic')) : ?>is-invalid<?php endif ?>" name="pic" value="<?= $app['pic']; ?>" placeholder="Masukkan pic vendor">
+                                    <input type="text" id="pic" class="form-control <?php if (session('errors.pic')) : ?>is-invalid<?php endif ?>" name="pic" value="<?= $app['pic']; ?>" placeholder="Masukkan pic">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('pic'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="divisi">Divisi</label>
+                                    <input type="text" id="divisi" class="form-control <?php if (session('errors.divisi')) : ?>is-invalid<?php endif ?>" name="divisi" value="<?= $app['divisi']; ?>" placeholder="Masukkan divisi">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('divisi'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-12">

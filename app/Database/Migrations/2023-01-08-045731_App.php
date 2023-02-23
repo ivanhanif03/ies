@@ -12,6 +12,7 @@ class App extends Migration
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'nama_app'         => ['type' => 'varchar', 'constraint' => 100],
             'pic'              => ['type' => 'varchar', 'constraint' => 100],
+            'divisi'              => ['type' => 'varchar', 'constraint' => 100],
             'no_hp_pic'        => ['type' => 'varchar', 'constraint' => 20],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
