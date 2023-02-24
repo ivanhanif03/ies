@@ -70,7 +70,7 @@
                                     </tr>
                                     <tr>
                                         <td>Merek</td>
-                                        <td><?= $fisik->merk ?></td>
+                                        <td><?= $fisik->merek ?></td>
                                     </tr>
                                     <tr>
                                         <td>Tipe</td>

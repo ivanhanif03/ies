@@ -92,7 +92,7 @@ class Rak extends BaseController
 
             $db = \Config\Database::connect();
 
-            $cek_rak = $db->table('apps')->getWhere(['nama_app' => $nama_rak])->getResult();
+            $cek_rak = $db->table('raks')->getWhere(['nama_rak' => $nama_rak])->getResult();
 
             if (count($cek_rak) > 0) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, nama rak sudah ada</b>');

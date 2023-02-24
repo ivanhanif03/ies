@@ -3,10 +3,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Daftar Aplikasi</h1>
+        <h1>Daftar Operating System</h1>
         <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Aplikasi</a>
+            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-os"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <a href="<?= base_url('os/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah OS</a>
         </div>
     </div>
 
@@ -25,42 +25,36 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableApp" width="100%">
+                            <table class="table table-striped" id="tableOs" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
+                                        <th class="text-center" width="5%">
                                             No
                                         </th>
                                         <th>ID</th>
-                                        <th>Nama Aplikasi</th>
-                                        <th>PIC</th>
-                                        <th>Divisi</th>
-                                        <th>Nomor HP PIC</th>
+                                        <th>Operating System</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($app as $a) : ?>
+                                    foreach ($os as $o) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $a['id']; ?></td>
-                                            <td><?= $a['nama_app']; ?></td>
-                                            <td><?= $a['pic']; ?></td>
-                                            <td><?= $a['divisi']; ?></td>
-                                            <td><?= $a['no_hp_pic']; ?></td>
+                                            <td><?= $o['id']; ?></td>
+                                            <td><?= $o['nama_os']; ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('apps/edit') . '/' . $a['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('os/edit') . '/' . $o['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-app<?= $a['id'] ?>">
+                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-os<?= $o['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
                                                 </div>
@@ -68,20 +62,20 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-app<?= $a['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-os<?= $o['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Delete Aplikasi</h5>
+                                                        <h5 class="modal-title">Delete OS</h5>
                                                     </div>
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $a['nama_app']; ?>
+                                                            <?= $o['nama_os']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/apps') . '/' . $a['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/os') . '/' . $o['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -103,11 +97,11 @@
 </section>
 
 <!-- Start Modal Upload Excel -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-os">
     <div class="modal-dialog modal-sm">
         <div class="modal-content border-0">
             <div class="modal-header">
-                <h5 class="modal-title">File Excel Aplikasi</h5>
+                <h5 class="modal-title">File Excel OS</h5>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -119,7 +113,7 @@
                 <?php
                 }
                 ?>
-                <form method="post" action="/apps/saveExcel" enctype="multipart/form-data">
+                <form method="post" action="/os/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
@@ -149,7 +143,7 @@
             currentdate.getSeconds();
 
         // Datatables with Buttons
-        var datatablesApps = $("#tableApp").DataTable({
+        var datatablesOs = $("#tableOs").DataTable({
             // responsive: true,
             lengthChange: false,
             columnDefs: [{
@@ -161,11 +155,11 @@
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
-                    title: 'Daftar Aplikasi',
+                    title: 'Daftar Operating System',
                     className: 'btn btn-outline-success',
-                    messageTop: 'Data Total Aplikasi Bank BTN' + datetime,
+                    messageTop: 'Data Total OS Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
+                        columns: [0, 1, 2]
                     }
                 },
                 {
@@ -174,15 +168,15 @@
                     // text: 'Download PDF',
                     // orientation: 'landscape',
                     pageSize: 'LEGAL',
-                    title: 'Daftar Aplikasi',
-                    messageTop: 'Data Total Aplikasi Bank BTN' + datetime,
+                    title: 'Daftar Operating System',
+                    messageTop: 'Data Total OS Bank BTN' + datetime,
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5]
+                        columns: [0, 2]
                     }
                 }
             ]
         });
-        datatablesApps.buttons().container().appendTo("#tableApp_wrapper .col-md-6:eq(0)");
+        datatablesOs.buttons().container().appendTo("#tableOs_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>

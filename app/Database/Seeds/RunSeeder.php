@@ -11,6 +11,7 @@ class RunSeeder extends Seeder
         $this->call('UserSeeder');
         $this->call('GroupSeeder');
         $this->call('GroupUserSeeder');
+        $this->call('OsSeeder');
         $this->call('AppSeeder');
         $this->call('RakSeeder');
         $this->call('VendorSeeder');

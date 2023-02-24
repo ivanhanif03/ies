@@ -24,6 +24,11 @@
 
             <?php if (in_groups('operator') || in_groups('admin')) : ?>
                 <li class="menu-header">Data Master</li>
+                <!-- OS -->
+                <li class="<?php if ($menu == 'os') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('os') ?>"><i class="fab fa-windows"></i> <span>Operating System</span></a></li>
+
                 <!-- APLIKASI -->
                 <li class="<?php if ($menu == 'apps') {
                                 echo 'active';

@@ -77,7 +77,7 @@
                                             <td><?= $f['rak_unit']; ?></td>
                                             <td><?= $f['v1']; ?></td>
                                             <td><?= $f['v2']; ?></td>
-                                            <td><?= $f['merk']; ?></td>
+                                            <td><?= $f['merek']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
                                             <td class="text-capitalize"><?= $f['os']; ?></td>
                                             <td>
@@ -155,6 +155,40 @@
         </div>
     </div>
 </section>
+
+<!-- Start Modal Upload Excel -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content border-0">
+            <div class="modal-header">
+                <h5 class="modal-title">File Excel Server Fisik</h5>
+            </div>
+            <div class="modal-body text-center">
+                <?php
+                if (session()->getFlashdata('message')) {
+                ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('message') ?>
+                    </div>
+                <?php
+                }
+                ?>
+                <form method="post" action="/serverfisik/saveExcel" enctype="multipart/form-data">
+                    <?= csrf_field() ?>
+                    <div class="form-group">
+                        <label for="filexcel">Upload file excel</label>
+                        <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
+                    </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Upload Excel -->
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
@@ -187,17 +221,17 @@
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     }
                 },
-                {
-                    extend: 'pdfHtml5',
-                    className: 'btn btn-outline-danger',
-                    orientation: 'landscape',
-                    pageSize: 'LEGAL',
-                    title: 'Server Fisik',
-                    messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-                    }
-                }
+                // {
+                //     extend: 'pdfHtml5',
+                //     className: 'btn btn-outline-danger',
+                //     orientation: 'landscape',
+                //     pageSize: 'LEGAL',
+                //     title: 'Server Fisik',
+                //     messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
+                //     exportOptions: {
+                //         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+                //     }
+                // }
             ]
         });
         datatablesFisik.buttons().container().appendTo("#tableFisik_wrapper .col-md-6:eq(0)");

@@ -53,7 +53,7 @@ $routes->get('/serverfisik/index', 'ServerFisik::index');
 $routes->get('/serverfisik/detail/(:segment)', 'ServerFisik::detail/$1');
 $routes->get('/serverfisik/create', 'ServerFisik::create');
 $routes->post('/serverfisik/save', 'ServerFisik::save');
-$routes->post('/vendor/saveExcel', 'Vendor::saveExcel');
+$routes->post('/serverfisik/saveExcel', 'ServerFisik::saveExcel');
 $routes->get('/serverfisik/edit/(:segment)', 'ServerFisik::edit/$1');
 $routes->post('/serverfisik/update/(:segment)', 'ServerFisik::update/$1');
 $routes->delete('/serverfisik/(:num)', 'ServerFisik::delete/$1');
@@ -88,6 +88,16 @@ $routes->post('/apps/saveExcel', 'App::saveExcel', ['filter' => 'role:admin, ope
 $routes->get('/apps/edit/(:segment)', 'App::edit/$1', ['filter' => 'role:admin, operator']);
 $routes->post('/apps/update/(:segment)', 'App::update/$1', ['filter' => 'role:admin, operator']);
 $routes->delete('/apps/(:num)', 'App::delete/$1', ['filter' => 'role:admin, operator']);
+
+//OS
+$routes->get('/os', 'Os::index', ['filter' => 'role:admin, operator']);
+$routes->get('/os/index', 'Os::index', ['filter' => 'role:admin, operator']);
+$routes->get('/os/create', 'Os::create', ['filter' => 'role:admin, operator']);
+$routes->post('/os/save', 'Os::save', ['filter' => 'role:admin, operator']);
+$routes->post('/os/saveExcel', 'Os::saveExcel', ['filter' => 'role:admin, operator']);
+$routes->get('/os/edit/(:segment)', 'Os::edit/$1', ['filter' => 'role:admin, operator']);
+$routes->post('/os/update/(:segment)', 'Os::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/os/(:num)', 'Os::delete/$1', ['filter' => 'role:admin, operator']);
 
 
 /*

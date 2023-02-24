@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>Tambah Aplikasi</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="<?= base_url('vendor') ?>">Aplikasi</a></div>
+            <div class="breadcrumb-item active"><a href="<?= base_url('apps') ?>">Aplikasi</a></div>
             <div class="breadcrumb-item">Tambah</div>
         </div>
     </div>

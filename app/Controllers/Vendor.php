@@ -118,7 +118,7 @@ class Vendor extends BaseController
 
             $db = \Config\Database::connect();
 
-            $cek_vendor = $db->table('apps')->getWhere(['nama_app' => $nama_vendor])->getResult();
+            $cek_vendor = $db->table('vendor')->getWhere(['nama_vendor' => $nama_vendor])->getResult();
 
             if (count($cek_vendor) > 0) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, nama vendor sudah ada</b>');
