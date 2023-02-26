@@ -14,7 +14,7 @@ class ServerFisikModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'ip_address_management', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'processor', 'sos', 'eos', 'no_pks'];
+    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'ip_address_management', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'processor', 'sos', 'eos', 'no_pks'];
 
     // Dates
     protected $useTimestamps = true;
@@ -55,10 +55,12 @@ class ServerFisikModel extends Model
             ->join('vendor v_hw', 'server_fisik.vendor_hardware_id=v_hw.id', 'left')
             ->join('apps', 'apps.id=server_fisik.app_id', 'left')
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->join('os', 'os.id=server_fisik.os_id', 'left')
             ->select('v_sw.nama_vendor v1')
             ->select('v_hw.nama_vendor v2')
             ->select('apps.*')
             ->select('raks.*')
+            ->select('os.*')
             ->select('server_fisik.*')
             ->orderBy('server_fisik.id')
             ->get()->getResultArray();
@@ -71,11 +73,13 @@ class ServerFisikModel extends Model
             ->join('vendor v_hw', 'server_fisik.vendor_hardware_id=v_hw.id', 'left')
             ->join('apps', 'apps.id=server_fisik.app_id', 'left')
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->join('os', 'os.id=server_fisik.os_id', 'left')
             ->select('server_fisik.*')
             ->select('v_sw.nama_vendor v1')
             ->select('v_hw.nama_vendor v2')
             ->select('apps.*')
             ->select('raks.*')
+            ->select('os.*')
             ->where('server_fisik.id', $id)
             ->get()->getRow();
     }

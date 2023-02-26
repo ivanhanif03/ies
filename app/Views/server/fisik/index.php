@@ -79,7 +79,7 @@
                                             <td><?= $f['v2']; ?></td>
                                             <td><?= $f['merek']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
-                                            <td class="text-capitalize"><?= $f['os']; ?></td>
+                                            <td class="text-capitalize"><?= $f['nama_os']; ?></td>
                                             <td>
                                                 <?php
                                                 if ($f['disk'] > 999) : ?>
@@ -215,7 +215,7 @@
             buttons: [{
                     extend: 'excelHtml5',
                     className: 'btn btn-outline-success',
-                    title: 'Server Fisik',
+                    title: 'Server Fisik Bank BTN',
                     messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]

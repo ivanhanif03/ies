@@ -24,7 +24,7 @@ class ServerFisik extends Migration
             'vendor_hardware_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'merek'              => ['type' => 'varchar', 'constraint' => 100],
             'tipe'              => ['type' => 'varchar', 'constraint' => 100],
-            'os'                => ['type' => 'varchar', 'constraint' => 30],
+            'os_id'            => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'disk'              => ['type' => 'int', 'constraint' => 30],
             'tipe_disk'              => ['type' => 'varchar', 'constraint' => 100],
             'memory'            => ['type' => 'int', 'constraint' => 30],
@@ -43,6 +43,7 @@ class ServerFisik extends Migration
         $this->forge->addForeignKey('vendor_hardware_id', 'vendor', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('app_id', 'apps', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('rak_id', 'raks', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('os_id', 'os', 'id', '', 'CASCADE');
 
         $this->forge->createTable('server_fisik', true);
     }

@@ -56,11 +56,11 @@ class Vendor extends BaseController
             'nama_vendor'     => 'required|is_unique[vendor.nama_vendor,id,{id}]',
             'alamat'    => 'required',
             'pic'  => 'required',
-            'pic_phone'  => 'required',
+            'pic_phone'  => 'required|min_length[9]|max_length[13]',
             'akun_manager'  => 'required',
-            'akun_manager_phone'  => 'required',
+            'akun_manager_phone'  => 'required|min_length[9]|max_length[13]',
             'helpdesk'  => 'required',
-            'helpdesk_phone'  => 'required',
+            'helpdesk_phone'  => 'required|min_length[9]|max_length[13]',
             'scope_work'  => 'required',
             'nilai_kontrak'  => 'required',
             'tempo_pembayaran'  => 'required',
@@ -122,6 +122,9 @@ class Vendor extends BaseController
 
             if (count($cek_vendor) > 0) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, nama vendor sudah ada</b>');
+            }
+            if (($nama_vendor == null) || ($alamat == null) || ($pic == null) || ($pic_phone == null) || ($akun_manager == null) || ($akun_manager_phone == null) || ($helpdesk == null) || ($helpdesk_phone == null) || ($scope_work == null) || ($nilai_kontrak == null) || ($tempo_pembayaran == null)) {
+                session()->setFlashdata('message', '<b>Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
 
                 $this->VendorModel->save([
@@ -137,7 +140,7 @@ class Vendor extends BaseController
                     'nilai_kontrak' => $nilai_kontrak,
                     'tempo_pembayaran' => $tempo_pembayaran,
                 ]);
-                session()->setFlashdata('message', 'Berhasil import excel data rak');
+                session()->setFlashdata('message', 'Berhasil import excel data vendor');
             }
         }
 
@@ -163,11 +166,11 @@ class Vendor extends BaseController
             'nama_vendor'     => 'required',
             'alamat'    => 'required',
             'pic'  => 'required',
-            'pic_phone'  => 'required',
+            'pic_phone'  => 'required|min_length[9]|max_length[13]',
             'akun_manager'  => 'required',
-            'akun_manager_phone'  => 'required',
+            'akun_manager_phone'  => 'required|min_length[9]|max_length[13]',
             'helpdesk'  => 'required',
-            'helpdesk_phone'  => 'required',
+            'helpdesk_phone'  => 'required|min_length[9]|max_length[13]',
             'scope_work'  => 'required',
             'nilai_kontrak'  => 'required',
             'tempo_pembayaran'  => 'required',

@@ -114,9 +114,9 @@
                                     <label>Jenis Appliance</label>
                                     <select class="form-control selectric text-sm <?php if (session('errors.jenis_appliance')) : ?>is-invalid<?php endif ?>" name="jenis_appliance" id="jenis_appliance" style="width: 100%;">
                                         <option value="" disabled selected>Pilih Jenis Appliance</option>
-                                        <option value="Windows">WEB</option>
-                                        <option value="Linux">APP</option>
-                                        <option value="Unix">DB</option>
+                                        <option value="Server">Server</option>
+                                        <option value="Storage">Storage</option>
+                                        <option value="San Switch">San Switch</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('jenis_appliance'); ?>
@@ -215,15 +215,17 @@
                             <div class="row">
                                 <!-- Start Field OS -->
                                 <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="os">Operating System</label>
-                                    <select class="form-control selectric text-sm <?php if (session('errors.os')) : ?>is-invalid<?php endif ?>" name="os" id="os" style="width: 100%;">
+                                    <label>Operating System</label>
+                                    <select class="form-control select2 text-sm <?php if (session('errors.os_id')) : ?>is-invalid<?php endif ?>" name="os_id" id="os_id" style="width: 100%;">
                                         <option value="" disabled selected>Pilih OS</option>
-                                        <option value="Windows">Windows</option>
-                                        <option value="Linux">Linux</option>
-                                        <option value="Unix">Unix</option>
+                                        <?php foreach ($os as $o) : ?>
+                                            <option value="<?= $o['id']; ?>">
+                                                <?= $o['nama_os']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('os'); ?>
+                                        <?= $validation->getError('os_id'); ?>
                                     </div>
                                 </div>
                                 <!-- End Field OS -->

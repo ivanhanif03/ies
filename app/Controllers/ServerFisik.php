@@ -4,13 +4,14 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AppModel;
+use App\Models\OsModel;
 use App\Models\RakModel;
 use App\Models\ServerFisikModel;
 use App\Models\VendorModel;
 
 class ServerFisik extends BaseController
 {
-    protected $ServerFisikModel, $VendorModel, $AppModel, $RakModel;
+    protected $ServerFisikModel, $VendorModel, $AppModel, $RakModel, $OsModel;
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class ServerFisik extends BaseController
         $this->VendorModel = new VendorModel();
         $this->RakModel = new RakModel();
         $this->AppModel = new AppModel();
+        $this->OsModel = new OsModel();
     }
 
     public function index()
@@ -56,7 +58,8 @@ class ServerFisik extends BaseController
             'fisik' => $this->ServerFisikModel->getServerFisik(),
             'vendor' => $this->VendorModel->getVendor(),
             'app' => $this->AppModel->getApp(),
-            'rak' => $this->RakModel->getRak()
+            'rak' => $this->RakModel->getRak(),
+            'os' => $this->OsModel->getOs()
         ];
 
         return view('server/fisik/create', $data);
@@ -80,7 +83,7 @@ class ServerFisik extends BaseController
             'vendor_hardware_id'  => 'required',
             'merek'  => 'required',
             'tipe'  => 'required',
-            'os'  => 'required',
+            'os_id'  => 'required',
             'disk'  => 'required',
             'tipe_disk'  => 'required',
             'memory'  => 'required',
@@ -108,7 +111,7 @@ class ServerFisik extends BaseController
             'vendor_hardware_id' => $this->request->getVar('vendor_hardware_id'),
             'merek' => $this->request->getVar('merek'),
             'tipe' => $this->request->getVar('tipe'),
-            'os' => $this->request->getVar('os'),
+            'os_id' => $this->request->getVar('os_id'),
             'disk' => $this->request->getVar('disk'),
             'tipe_disk' => $this->request->getVar('tipe_disk'),
             'memory' => $this->request->getVar('memory'),
@@ -155,7 +158,7 @@ class ServerFisik extends BaseController
             $vendor_hardware_id = $row[11];
             $merek = $row[12];
             $tipe = $row[13];
-            $os = $row[14];
+            $os_id = $row[14];
             $disk = $row[15];
             $tipe_disk = $row[16];
             $memory = $row[17];
@@ -171,8 +174,10 @@ class ServerFisik extends BaseController
 
             if (count($cek_kode_aset) > 0) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, kode aset sudah ada</b>');
+            }
+            if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($processor == null) || ($sos == null) || ($eos == null) || ($no_pks == null)) {
+                session()->setFlashdata('message', '<b>Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
-
                 $this->ServerFisikModel->save([
                     'kode_aset' => $kode_aset,
                     'serial_number' => $serial_number,
@@ -188,7 +193,7 @@ class ServerFisik extends BaseController
                     'vendor_hardware_id' => $vendor_hardware_id,
                     'merek' => $merek,
                     'tipe' => $tipe,
-                    'os' => $os,
+                    'os_id' => $os_id,
                     'disk' => $disk,
                     'tipe_disk' => $tipe_disk,
                     'memory' => $memory,
@@ -214,7 +219,8 @@ class ServerFisik extends BaseController
             'fisik' => $this->ServerFisikModel->getServerFisik($id),
             'vendor' => $this->VendorModel->getVendor(),
             'app' => $this->AppModel->getApp(),
-            'rak' => $this->RakModel->getRak()
+            'rak' => $this->RakModel->getRak(),
+            'os' => $this->OsModel->getOs()
         ];
 
         return view('server/fisik/edit', $data);
@@ -238,7 +244,7 @@ class ServerFisik extends BaseController
             'vendor_hardware_id'  => 'required',
             'merek'  => 'required',
             'tipe'  => 'required',
-            'os'  => 'required',
+            'os_id'  => 'required',
             'disk'  => 'required',
             'tipe_disk'  => 'required',
             'memory'  => 'required',
@@ -266,7 +272,7 @@ class ServerFisik extends BaseController
             'vendor_hardware_id' => $this->request->getVar('vendor_hardware_id'),
             'merek' => $this->request->getVar('merek'),
             'tipe' => $this->request->getVar('tipe'),
-            'os' => $this->request->getVar('os'),
+            'os_id' => $this->request->getVar('os_id'),
             'disk' => $this->request->getVar('disk'),
             'tipe_disk' => $this->request->getVar('tipe_disk'),
             'memory' => $this->request->getVar('memory'),

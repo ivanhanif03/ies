@@ -78,7 +78,7 @@
                                     </tr>
                                     <tr>
                                         <td>Operating System</td>
-                                        <td><?= $fisik->os ?></td>
+                                        <td><?= $fisik->nama_os ?></td>
                                     </tr>
                                     <tr>
                                         <td>Disk</td>
@@ -93,8 +93,16 @@
                                         <?php endif; ?>
                                     </tr>
                                     <tr>
+                                        <td>Tipe Disk</td>
+                                        <td><?= $fisik->tipe_disk ?></td>
+                                    </tr>
+                                    <tr>
                                         <td>Memory</td>
                                         <td><?= $fisik->memory ?> GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tipe Memory</td>
+                                        <td><?= $fisik->tipe_memory ?></td>
                                     </tr>
                                     <tr>
                                         <td>Processor</td>

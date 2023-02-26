@@ -124,18 +124,18 @@
                                     <label>Jenis Appliance</label>
                                     <select class="form-control selectric text-sm <?php if (session('errors.jenis_appliance')) : ?>is-invalid<?php endif ?>" name="jenis_appliance" id="jenis_appliance" style="width: 100%;">
                                         <option value="" disabled selected>Pilih Jenis Appliance</option>
-                                        <?php if ($fisik['jenis_appliance'] == 'WEB') : ?>
-                                            <option value="WEB" selected>WEB</option>
-                                            <option value="APP">APP</option>
-                                            <option value="DB">DB</option>
-                                        <?php elseif ($fisik['jenis_appliance'] == 'APP') : ?>
-                                            <option value="WEB">WEB</option>
-                                            <option value="APP" selected>APP</option>
-                                            <option value="DB">DB</option>
+                                        <?php if ($fisik['jenis_appliance'] == 'Server') : ?>
+                                            <option value="Server" selected>Server</option>
+                                            <option value="Storage">Storage</option>
+                                            <option value="San Switch">San Switch</option>
+                                        <?php elseif ($fisik['jenis_appliance'] == 'Storage') : ?>
+                                            <option value="Server">Server</option>
+                                            <option value="Storage" selected>Storage</option>
+                                            <option value="San Switch">San Switch</option>
                                         <?php else : ?>
-                                            <option value="WEB">WEB</option>
-                                            <option value="APP">APP</option>
-                                            <option value="DB" selected>DB</option>
+                                            <option value="Server">Server</option>
+                                            <option value="Storage">Storage</option>
+                                            <option value="San Switch" selected>San Switch</option>
                                         <?php endif; ?>
                                     </select>
                                     <div class="invalid-feedback">
@@ -235,25 +235,17 @@
                             <div class="row">
                                 <!-- Start Field OS -->
                                 <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="os">Operating System</label>
-                                    <select class="form-control selectric text-sm <?php if (session('errors.os')) : ?>is-invalid<?php endif ?>" name="os" id="os" style="width: 100%;">
+                                    <label>Operating System</label>
+                                    <select class="form-control select2 text-sm <?php if (session('errors.os_id')) : ?>is-invalid<?php endif ?>" name="os_id" id="os_id" style="width: 100%;">
                                         <option value="" disabled selected>Pilih OS</option>
-                                        <?php if ($fisik['os'] == 'Windows') : ?>
-                                            <option value="Windows" selected>Windows</option>
-                                            <option value="Linux">Linux</option>
-                                            <option value="Unix">Unix</option>
-                                        <?php elseif ($fisik['os'] == 'Linux') : ?>
-                                            <option value="Windows">Windows</option>
-                                            <option value="Linux" selected>Linux</option>
-                                            <option value="Unix">Unix</option>
-                                        <?php else : ?>
-                                            <option value="Windows">Windows</option>
-                                            <option value="Linux">Linux</option>
-                                            <option value="Unix" selected>Unix</option>
-                                        <?php endif; ?>
+                                        <?php foreach ($os as $o) : ?>
+                                            <option value="<?= $o['id']; ?>" <?php if ($o['id'] == $fisik['os_id']) : ?>selected<?php endif; ?>>
+                                                <?= $o['nama_os']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('os'); ?>
+                                        <?= $validation->getError('os_id'); ?>
                                     </div>
                                 </div>
                                 <!-- End Field OS -->

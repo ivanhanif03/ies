@@ -18,7 +18,7 @@ class Vendor extends Migration
             'akun_manager_phone' => ['type' => 'varchar', 'constraint' => 50],
             'helpdesk'          => ['type' => 'varchar', 'constraint' => 50],
             'helpdesk_phone'    => ['type' => 'varchar', 'constraint' => 50],
-            'scope_work'        => ['type' => 'varchar', 'constraint' => 50],
+            'scope_work'        => ['type' => 'varchar', 'constraint' => 1000],
             'nilai_kontrak'     => ['type' => 'int', 'constraint' => 50],
             'tempo_pembayaran'  => ['type' => 'date'],
             'created_at'        => ['type' => 'datetime', 'null' => true],

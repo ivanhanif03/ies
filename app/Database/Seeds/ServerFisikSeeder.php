@@ -25,7 +25,7 @@ class ServerFisikSeeder extends Seeder
                 'vendor_hardware_id'     => 2,
                 'merek'     => 'Dell',
                 'tipe'     => 'R250',
-                'os'     => 'Windows',
+                'os_id'     => 2,
                 'disk'        => '2000',
                 'tipe_disk'        => 'SATA',
                 'memory'        => '8',
