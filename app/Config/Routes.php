@@ -99,6 +99,15 @@ $routes->get('/os/edit/(:segment)', 'Os::edit/$1', ['filter' => 'role:admin, ope
 $routes->post('/os/update/(:segment)', 'Os::update/$1', ['filter' => 'role:admin, operator']);
 $routes->delete('/os/(:num)', 'Os::delete/$1', ['filter' => 'role:admin, operator']);
 
+//Cluster
+$routes->get('/cluster', 'Cluster::index', ['filter' => 'role:admin, operator']);
+$routes->get('/cluster/index', 'Cluster::index', ['filter' => 'role:admin, operator']);
+$routes->get('/cluster/create', 'Cluster::create', ['filter' => 'role:admin, operator']);
+$routes->post('/cluster/save', 'Cluster::save', ['filter' => 'role:admin, operator']);
+$routes->post('/cluster/saveExcel', 'Cluster::saveExcel', ['filter' => 'role:admin, operator']);
+$routes->get('/cluster/edit/(:segment)', 'Cluster::edit/$1', ['filter' => 'role:admin, operator']);
+$routes->post('/cluster/update/(:segment)', 'Cluster::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/cluster/(:num)', 'Cluster::delete/$1', ['filter' => 'role:admin, operator']);
 
 /*
  * --------------------------------------------------------------------
