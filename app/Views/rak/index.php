@@ -160,11 +160,16 @@
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
-                    title: 'Daftar Rak Server',
+                    title: 'Daftar Rak Server' + datetime,
                     className: 'btn btn-outline-success',
-                    messageTop: 'Data Total Rak Server Bank BTN' + datetime,
+                    messageTop: 'Data Total Rak Server Bank BTN',
                     exportOptions: {
                         columns: [0, 1, 2, 3]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 },
                 {
@@ -172,10 +177,15 @@
                     // orientation: 'potrait',
                     pageSize: 'LEGAL',
                     className: 'btn btn-outline-danger',
-                    title: 'Daftar Rak Server',
-                    messageTop: 'Data Total Rak Server Bank BTN' + datetime,
+                    title: 'Daftar Rak Server' + datetime,
+                    messageTop: 'Data Total Rak Server Bank BTN',
                     exportOptions: {
                         columns: [0, 1, 2, 3]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 }
             ]

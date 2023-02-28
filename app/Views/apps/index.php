@@ -161,11 +161,16 @@
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
-                    title: 'Daftar Aplikasi',
+                    title: 'Daftar Aplikasi' + datetime,
                     className: 'btn btn-outline-success',
-                    messageTop: 'Data Total Aplikasi Bank BTN' + datetime,
+                    messageTop: 'Data Total Aplikasi Bank BTN',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 },
                 {
@@ -174,10 +179,15 @@
                     // text: 'Download PDF',
                     // orientation: 'landscape',
                     pageSize: 'LEGAL',
-                    title: 'Daftar Aplikasi',
-                    messageTop: 'Data Total Aplikasi Bank BTN' + datetime,
+                    title: 'Daftar Aplikasi' + datetime,
+                    messageTop: 'Data Total Aplikasi Bank BTN',
                     exportOptions: {
                         columns: [0, 2, 3, 4, 5]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 }
             ]

@@ -155,11 +155,16 @@
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
-                    title: 'Daftar Operating System',
+                    title: 'Daftar Operating System' + datetime,
                     className: 'btn btn-outline-success',
-                    messageTop: 'Data Total OS Bank BTN' + datetime,
+                    messageTop: 'Data Total OS Bank BTN',
                     exportOptions: {
                         columns: [0, 1, 2]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 },
                 {
@@ -168,10 +173,15 @@
                     // text: 'Download PDF',
                     // orientation: 'landscape',
                     pageSize: 'LEGAL',
-                    title: 'Daftar Operating System',
-                    messageTop: 'Data Total OS Bank BTN' + datetime,
+                    title: 'Daftar Operating System' + datetime,
+                    messageTop: 'Data Total OS Bank BTN',
                     exportOptions: {
                         columns: [0, 2]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 }
             ]

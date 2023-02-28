@@ -43,14 +43,11 @@
                 <li class="<?php if ($menu == 'vendor') {
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('vendor') ?>"><i class="fas fa-users-cog"></i> <span>Vendor</span></a></li>
-                <!-- END SECTION DATA MASTER -->
-
-                <li class="menu-header">Data Master VM</li>
                 <!-- Cluster -->
                 <li class="<?php if ($menu == 'cluster') {
                                 echo 'active';
-                            } ?>"><a class="nav-link" href="<?= base_url('cluster') ?>"><i class="fas fa-th-list"></i><span>Cluster</span></a></li>
-
+                            } ?>"><a class="nav-link" href="<?= base_url('cluster') ?>"><i class="fas fa-th-list"></i><span>Cluster VM</span></a></li>
+                <!-- END SECTION DATA MASTER -->
             <?php endif; ?>
 
 
@@ -63,7 +60,7 @@
             <!-- VIRTUAL MACHINE -->
             <li class="<?php if ($menu == 'vm') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url('vm') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
 
         </ul>

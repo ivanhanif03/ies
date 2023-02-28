@@ -182,10 +182,15 @@
             buttons: [{
                     extend: 'excelHtml5',
                     className: 'btn btn-outline-success',
-                    title: 'Daftar Vendor',
-                    messageTop: 'Data Total Vendor Server Bank BTN' + datetime,
+                    title: 'Daftar Vendor' + datetime,
+                    messageTop: 'Data Total Vendor Server Bank BTN',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 },
                 {
@@ -193,11 +198,16 @@
                     orientation: 'landscape',
                     className: 'btn btn-outline-danger',
                     pageSize: 'LEGAL',
-                    title: 'Daftar Vendor',
+                    title: 'Daftar Vendor' + datetime,
                     // messageBottom: datetime,
-                    messageTop: 'Data Total Vendor Server Bank BTN ' + datetime,
+                    messageTop: 'Data Total Vendor Server Bank BTN ',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
                     }
                 }
             ]

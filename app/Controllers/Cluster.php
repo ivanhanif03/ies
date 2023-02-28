@@ -20,7 +20,7 @@ class Cluster extends BaseController
             'title' => 'Cluster List',
             'menu' => 'cluster',
             'validation' => \Config\Services::validation(),
-            'os' => $this->ClusterModel->getCluster()
+            'cluster' => $this->ClusterModel->getCluster()
         ];
 
         return view('cluster/index', $data);
@@ -30,30 +30,32 @@ class Cluster extends BaseController
     {
         $data = [
             'title' => 'Tambah Operating System',
-            'menu' => 'os',
+            'menu' => 'cluster',
             'validation' => \Config\Services::validation(),
-            'os' => $this->OsModel->getOs()
+            'cluster' => $this->ClusterModel->getCluster()
         ];
 
-        return view('os/create', $data);
+        return view('cluster/create', $data);
     }
 
     public function save()
     {
         //Validation
         if (!$this->validate([
-            'nama_os'     => 'required|is_unique[os.nama_os,id,{id}]',
+            'data_center'     => 'required',
+            'nama_cluster'     => 'required|is_unique[cluster.nama_cluster,id,{id}]',
         ])) {
-            return redirect()->to('/os/create')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('/cluster/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $this->OsModel->save([
-            'nama_os'    => $this->request->getVar('nama_os'),
+        $this->ClusterModel->save([
+            'data_center'    => $this->request->getVar('data_center'),
+            'nama_cluster'    => $this->request->getVar('nama_cluster'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data operating system baru berhasil ditambahkan');
+        session()->setFlashdata('pesan', 'Data cluster baru berhasil ditambahkan');
 
-        return redirect()->to('/os');
+        return redirect()->to('/cluster');
     }
 
     public function saveExcel()
@@ -73,61 +75,64 @@ class Cluster extends BaseController
                 continue;
             }
 
-            // $id = $row[0];
-            $nama_os = $row[0];
+            $data_center = $row[0];
+            $nama_cluster = $row[1];
 
             $db = \Config\Database::connect();
 
-            $cek_os = $db->table('os')->getWhere(['nama_os' => $nama_os])->getResult();
+            $cek_cluster = $db->table('cluster')->getWhere(['nama_cluster' => $nama_cluster])->getResult();
 
-            if (count($cek_os) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, operating system sudah terdaftar</b>');
+            if (count($cek_cluster) > 0) {
+                session()->setFlashdata('message', '<b>Data gagal diimport, cluster sudah terdaftar</b>');
             } else {
 
-                $this->OsModel->save([
-                    'nama_os' => $nama_os
+                $this->ClusterModel->save([
+                    'data_center' => $data_center,
+                    'nama_cluster' => $nama_cluster
                 ]);
-                session()->setFlashdata('message', 'Berhasil import excel data operating system');
+                session()->setFlashdata('message', 'Berhasil import excel data cluster');
             }
         }
 
-        return redirect()->to('/os');
+        return redirect()->to('/cluster');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'Edit Os',
-            'menu' => 'os',
+            'title' => 'Edit Cluster',
+            'menu' => 'cluster',
             'validation' => \Config\Services::validation(),
-            'os' => $this->OsModel->getOs($id)
+            'cluster' => $this->ClusterModel->getCluster($id)
         ];
 
-        return view('os/edit', $data);
+        return view('cluster/edit', $data);
     }
 
     public function update($id)
     {
         //Validation
         if (!$this->validate([
-            'nama_os'     => 'required',
+            'data_center'     => 'required',
+            'nama_cluster'     => 'required',
         ])) {
-            return redirect()->to('os/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('cluster/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
-        $this->OsModel->save([
+        $this->ClusterModel->save([
             'id' => $id,
-            'nama_os'    => $this->request->getVar('nama_os'),
+            'data_center'    => $this->request->getVar('data_center'),
+            'nama_cluster'    => $this->request->getVar('nama_cluster'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data operating system berhasil diedit');
+        session()->setFlashdata('pesan', 'Data cluster berhasil diedit');
 
-        return redirect()->to('os');
+        return redirect()->to('cluster');
     }
 
     public function delete($id)
     {
-        $this->OsModel->delete($id);
-        session()->setFlashdata('pesan', 'Data os berhasil dihapus');
-        return redirect()->to('/os');
+        $this->ClusterModel->delete($id);
+        session()->setFlashdata('pesan', 'Data cluster berhasil dihapus');
+        return redirect()->to('/cluster');
     }
 }
