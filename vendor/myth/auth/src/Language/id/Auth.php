@@ -16,7 +16,7 @@ return [
 
     // Registration
     'registerDisabled' => 'Maaf, akun pengguna baru tidak diperbolehkan untuk saat ini.',
-    'registerSuccess'  => 'User baru berhasil dibuat.',
+    'registerSuccess'  => 'Selamat bergabung! Harap masuk dengan kredensial baru Anda.',
     'registerCLI'      => 'Pengguna baru dibuat: {0}, #{1}',
 
     // Activation
