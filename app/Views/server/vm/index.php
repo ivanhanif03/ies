@@ -3,11 +3,11 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Server Fisik</h1>
+        <h1>Server Virtual Machine</h1>
         <?php if (in_groups('operator') || in_groups('admin')) : ?>
             <div class="section-header-breadcrumb buttons">
-                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-                <a href="<?= base_url('serverfisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-vm"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('virtualmachine/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
             </div>
         <?php endif; ?>
     </div>
@@ -27,73 +27,49 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableFisik" width="100%">
+                            <table class="table table-striped" id="tableVm" width="100%">
                                 <thead>
                                     <tr>
                                         <th class=" text-center">
                                             No
                                         </th>
-                                        <th>Kode Aset</th>
-                                        <th>Serial Number</th>
-                                        <th>Nama App</th>
-                                        <th>Jenis App</th>
-                                        <th>IP Address Data</th>
-                                        <th>IP Address Mngmt</th>
+                                        <th>Cluster</th>
+                                        <th>Operating System</th>
+                                        <th>Host</th>
+                                        <th>IP Address</th>
                                         <th>Hostname</th>
-                                        <th>Jenis Appliance</th>
-                                        <th>Rak</th>
-                                        <th>Rak Unit</th>
-                                        <th>Vendor SW</th>
-                                        <th>Vendor HW</th>
-                                        <th>Merek</th>
-                                        <th>Tipe</th>
-                                        <th>OS</th>
                                         <th>Disk</th>
                                         <th>Memory</th>
                                         <th>Processor</th>
-                                        <th>Lokasi</th>
-                                        <th>SOS</th>
-                                        <th>EOS</th>
-                                        <th>No PKS</th>
+                                        <th>Jenis Server</th>
+                                        <th>Lisence</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($fisik as $f) : ?>
+                                    foreach ($virtual_machine as $vm) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $f['kode_aset']; ?></td>
-                                            <td><?= $f['serial_number']; ?></td>
-                                            <td><?= $f['nama_app']; ?></td>
-                                            <td><?= $f['jenis_app']; ?></td>
-                                            <td><?= $f['ip_address_data']; ?></td>
-                                            <td><?= $f['ip_address_management']; ?></td>
-                                            <td><?= $f['hostname']; ?></td>
-                                            <td><?= $f['jenis_appliance']; ?></td>
-                                            <td><?= $f['nama_rak']; ?></td>
-                                            <td><?= $f['rak_unit']; ?></td>
-                                            <td><?= $f['v1']; ?></td>
-                                            <td><?= $f['v2']; ?></td>
-                                            <td><?= $f['merek']; ?></td>
-                                            <td><?= $f['tipe']; ?></td>
-                                            <td class="text-capitalize"><?= $f['nama_os']; ?></td>
+                                            <td><?= $vm['nama_cluster']; ?></td>
+                                            <td class="text-capitalize"><?= $vm['nama_os']; ?></td>
+                                            <td><?= $vm['host']; ?></td>
+                                            <td><?= $vm['ip_address']; ?></td>
+                                            <td><?= $vm['hostname']; ?></td>
                                             <td>
                                                 <?php
-                                                if ($f['disk'] > 999) : ?>
-                                                    <?= $f['disk'] / 1000 ?> Tb
+                                                if ($vm['disk'] > 999) : ?>
+                                                    <?= $vm['disk'] / 1000 ?> Tb
                                                 <?php else : ?>
-                                                    <?= $f['disk'] ?> Gb
+                                                    <?= $vm['disk'] ?> Gb
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?= $f['memory']; ?> Gb</td>
-                                            <td><?= $f['processor']; ?></td>
-                                            <td class="text-capitalize"><?= $f['lokasi']; ?></td>
-                                            <td><?= $f['sos']; ?></td>
-                                            <td><?= $f['eos']; ?></td>
-                                            <td><?= $f['no_pks']; ?></td>
+                                            <td><?= $vm['memory']; ?> Gb</td>
+                                            <td><?= $vm['processor']; ?></td>
+                                            <td><?= $vm['jenis_server']; ?></td>
+                                            <td><?= $vm['lisence']; ?></td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -101,19 +77,19 @@
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
                                                     <!-- AKSES ADMIN & OPERATOR -->
                                                     <?php if (in_groups('operator') || in_groups('admin')) : ?>
-                                                        <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                        <a href="<?= base_url('virtualmachine/edit') . '/' . $vm['id'] ?>" class="dropdown-item has-icon">
                                                             <i class="far fa-edit text-success"></i> Edit
                                                         </a>
                                                     <?php endif; ?>
 
                                                     <!-- AKSES ALL -->
-                                                    <a href="<?= base_url('serverfisik/detail') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('virtualmachine/detail') . '/' . $vm['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
 
                                                     <!-- AKSES ADMIN & OPERATOR -->
                                                     <?php if (in_groups('operator') || in_groups('admin')) : ?>
-                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
+                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-vm<?= $vm['id'] ?>">
                                                             <i class="fas fa-trash text-danger"></i> Delete
                                                         </a>
                                                     <?php endif; ?>
@@ -122,7 +98,7 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-fisik<?= $f['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-vm<?= $vm['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
@@ -131,11 +107,11 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $f['nama_app']; ?>
+                                                            Server VM : <?= $vm['hostname']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/serverfisik') . '/' . $f['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/virtualmachine') . '/' . $vm['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -157,11 +133,11 @@
 </section>
 
 <!-- Start Modal Upload Excel -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-vm">
     <div class="modal-dialog modal-sm">
         <div class="modal-content border-0">
             <div class="modal-header">
-                <h5 class="modal-title">File Excel Server Fisik</h5>
+                <h5 class="modal-title">File Excel Server Virtual Machine</h5>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -173,7 +149,7 @@
                 <?php
                 }
                 ?>
-                <form method="post" action="/serverfisik/saveExcel" enctype="multipart/form-data">
+                <form method="post" action="/virtualmachine/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
@@ -203,22 +179,22 @@
             currentdate.getSeconds();
 
         // Datatables with Buttons
-        var datatablesFisik = $("#tableFisik").DataTable({
+        var datatablesVm = $("#tableVm").DataTable({
             lengthChange: false,
             columnDefs: [{
                 orderable: false,
                 targets: [0]
             }, {
                 visible: false,
-                targets: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                targets: [2, 6, 7, 8, 10],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
                     className: 'btn btn-outline-success',
-                    title: 'Server Fisik Bank BTN' + datetime,
-                    messageTop: 'Data Total Server Fisik Bank BTN',
+                    title: 'Server VM Bank BTN' + datetime,
+                    messageTop: 'Data Total Server Virtual Machine Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -226,20 +202,25 @@
                         window.location.reload(false); //Relode the page
                     }
                 },
-                // {
-                //     extend: 'pdfHtml5',
-                //     className: 'btn btn-outline-danger',
-                //     orientation: 'landscape',
-                //     pageSize: 'LEGAL',
-                //     title: 'Server Fisik',
-                //     messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
-                //     exportOptions: {
-                //         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-                //     }
-                // }
+                {
+                    extend: 'pdfHtml5',
+                    className: 'btn btn-outline-danger',
+                    orientation: 'potrait',
+                    pageSize: 'LEGAL',
+                    title: 'Server VM Bank BTN' + datetime,
+                    messageTop: 'Data Total Server Virtual Machine Bank BTN',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    },
+                    action: function(e, dt, button, config) {
+                        //The action of the button
+                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, config); //Export the data
+                        window.location.reload(false); //Relode the page
+                    }
+                }
             ]
         });
-        datatablesFisik.buttons().container().appendTo("#tableFisik_wrapper .col-md-6:eq(0)");
+        datatablesVm.buttons().container().appendTo("#tableVm_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>

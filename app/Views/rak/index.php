@@ -56,9 +56,9 @@
                                                     <a href="<?= base_url('rak/edit') . '/' . $r['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
-                                                    <!-- <a href="<?= base_url('rak/detail') . '/' . $r['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('rak/detail') . '/' . $r['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
-                                                    </a> -->
+                                                    </a>
                                                     <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $r['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
