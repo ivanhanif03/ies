@@ -30,11 +30,11 @@ class VirtualMachine extends Migration
         $this->forge->addForeignKey('cluster_id', 'cluster', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('os_id', 'os', 'id', '', 'CASCADE');
 
-        $this->forge->createTable('virtual_machine', true);
+        $this->forge->createTable('virtualmachine', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('virtual_machine', true);
+        $this->forge->dropTable('virtualmachine', true);
     }
 }

@@ -27,6 +27,6 @@ class VirtualMachineSeeder extends Seeder
             ],
         ];
 
-        $this->db->table('virtual_machine')->insertBatch($data);
+        $this->db->table('virtualmachine')->insertBatch($data);
     }
 }

@@ -24,7 +24,7 @@ class VirtualMachine extends BaseController
             'title' => 'Daftar Server Virtual Machine',
             'menu' => 'vm',
             'validation' => \Config\Services::validation(),
-            'virtual_machine' => $this->VirtualMachineModel->getAll()
+            'virtualmachine' => $this->VirtualMachineModel->getAll()
         ];
 
         // dd($data);
@@ -37,7 +37,7 @@ class VirtualMachine extends BaseController
         $data = [
             'title' => 'Detail Server Virtual Machine',
             'menu' => 'vm',
-            'virtual_machine' => $this->VirtualMachineModel->getOneServerVirtualMachine($id),
+            'virtualmachine' => $this->VirtualMachineModel->getOneServerVirtualMachine($id),
             // 'nama_vendor' => $this->VirtualMachineModel->getNamaVendor($id),
             // 'vendor' => $this->VendorModel->getVendor()
         ];
@@ -51,7 +51,7 @@ class VirtualMachine extends BaseController
             'title' => 'Tambah Server Virtual Machine',
             'menu' => 'vm',
             'validation' => \Config\Services::validation(),
-            'virtual_machine' => $this->VirtualMachineModel->getServerVirtualMachine(),
+            'virtualmachine' => $this->VirtualMachineModel->getServerVirtualMachine(),
             'cluster' => $this->ClusterModel->getCluster(),
             'os' => $this->OsModel->getOs()
         ];
@@ -65,7 +65,7 @@ class VirtualMachine extends BaseController
         if (!$this->validate([
             'cluster_id'  => 'required',
             'os_id'  => 'required',
-            'nama_vm'  => 'required|is_unique[virtual_machine.nama_vm,id,{id}]',
+            'nama_vm'  => 'required|is_unique[virtualmachine.nama_vm,id,{id}]',
             'host'  => 'required',
             'ip_address'  => 'required',
             'hostname'  => 'required',
@@ -128,7 +128,7 @@ class VirtualMachine extends BaseController
 
             $db = \Config\Database::connect();
 
-            $cek_kode_aset = $db->table('virtual_machine')->getWhere(['nama_vm' => $nama_vm])->getResult();
+            $cek_kode_aset = $db->table('virtualmachine')->getWhere(['nama_vm' => $nama_vm])->getResult();
 
             if (count($cek_kode_aset) > 0) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, vm sudah ada</b>');
@@ -162,7 +162,7 @@ class VirtualMachine extends BaseController
             'title' => 'Edit Server Virtual Machine',
             'menu' => 'vm',
             'validation' => \Config\Services::validation(),
-            'virtual_machine' => $this->VirtualMachineModel->getServerVirtualMachine($id),
+            'virtualmachine' => $this->VirtualMachineModel->getServerVirtualMachine($id),
             'cluster' => $this->ClusterModel->getCluster(),
             'os' => $this->OsModel->getOs()
         ];

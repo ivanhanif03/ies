@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class VirtualMachineModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'virtual_machine';
+    protected $table            = 'virtualmachine';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -50,25 +50,25 @@ class VirtualMachineModel extends Model
 
     public function getAll()
     {
-        return $this->db->table('virtual_machine')
-            ->join('cluster', 'cluster.id=virtual_machine.cluster_id', 'left')
-            ->join('os', 'os.id=virtual_machine.os_id', 'left')
+        return $this->db->table('virtualmachine')
+            ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
+            ->join('os', 'os.id=virtualmachine.os_id', 'left')
             ->select('cluster.*')
             ->select('os.*')
-            ->select('virtual_machine.*')
-            ->orderBy('virtual_machine.id')
+            ->select('virtualmachine.*')
+            ->orderBy('virtualmachine.id')
             ->get()->getResultArray();
     }
 
     public function getOneServerVirtualMachine($id)
     {
-        return $this->db->table('virtual_machine')
-            ->join('cluster', 'cluster.id=virtual_machine.cluster_id', 'left')
-            ->join('os', 'os.id=virtual_machine.os_id', 'left')
+        return $this->db->table('virtualmachine')
+            ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
+            ->join('os', 'os.id=virtualmachine.os_id', 'left')
             ->select('cluster.*')
             ->select('os.*')
-            ->select('virtual_machine.*')
-            ->where('virtual_machine.id', $id)
+            ->select('virtualmachine.*')
+            ->where('virtualmachine.id', $id)
             ->get()->getRow();
     }
 }
