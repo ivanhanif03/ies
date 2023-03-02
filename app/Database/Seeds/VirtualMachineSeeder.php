@@ -20,7 +20,6 @@ class VirtualMachineSeeder extends Seeder
                 'memory'            => 16,
                 'processor'            => 'Intel',
                 'jenis_server'          => 'DB',
-                'lisence'          => 'L1231XXX',
                 'created_at'    => Time::now(),
                 'updated_at'    => Time::now(),
             ],

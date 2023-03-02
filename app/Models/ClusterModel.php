@@ -17,7 +17,7 @@ class ClusterModel extends Model
     protected $allowedFields    = ['data_center', 'nama_cluster'];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

@@ -58,17 +58,6 @@ $routes->get('/serverfisik/edit/(:segment)', 'ServerFisik::edit/$1');
 $routes->post('/serverfisik/update/(:segment)', 'ServerFisik::update/$1');
 $routes->delete('/serverfisik/(:num)', 'ServerFisik::delete/$1');
 
-//SERVER VM
-$routes->get('/virtual_machine', 'VirtualMachine::index');
-$routes->get('/virtual_machine/index', 'VirtualMachine::index');
-$routes->get('/virtual_machine/detail/(:segment)', 'VirtualMachine::detail/$1');
-$routes->get('/virtual_machine/create', 'VirtualMachine::create');
-$routes->post('/virtual_machine/save', 'VirtualMachine::save');
-$routes->post('/virtual_machine/saveExcel', 'VirtualMachine::saveExcel');
-$routes->get('/virtual_machine/edit/(:segment)', 'VirtualMachine::edit/$1');
-$routes->post('/virtual_machine/update/(:segment)', 'VirtualMachine::update/$1');
-$routes->delete('/virtual_machine/(:num)', 'VirtualMachine::delete/$1');
-
 //VENDOR
 $routes->get('/vendor', 'Vendor::index', ['filter' => 'role:admin, operator']);
 $routes->get('/vendor/index', 'Vendor::index', ['filter' => 'role:admin, operator']);
