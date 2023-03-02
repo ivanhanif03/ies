@@ -60,7 +60,7 @@
             <!-- VIRTUAL MACHINE -->
             <li class="<?php if ($menu == 'vm') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('vm') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url('virtual_machine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
 
         </ul>

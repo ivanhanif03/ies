@@ -10,7 +10,7 @@ class VirtualMachine extends Migration
     {
         $this->forge->addField([
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'cluster_id'       => ['type' => 'varchar', 'constraint' => 100],
+            'cluster_id'       => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'os_id'            => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'host'             => ['type' => 'varchar', 'constraint' => 100],
             'ip_address'       => ['type' => 'varchar', 'constraint' => 100],
