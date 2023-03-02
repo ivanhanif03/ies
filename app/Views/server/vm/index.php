@@ -60,40 +60,40 @@
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($fisik as $f) : ?>
+                                    foreach ($virtual_machine as $vm) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $f['kode_aset']; ?></td>
-                                            <td><?= $f['serial_number']; ?></td>
-                                            <td><?= $f['nama_app']; ?></td>
-                                            <td><?= $f['jenis_app']; ?></td>
-                                            <td><?= $f['ip_address_data']; ?></td>
-                                            <td><?= $f['ip_address_management']; ?></td>
-                                            <td><?= $f['hostname']; ?></td>
-                                            <td><?= $f['jenis_appliance']; ?></td>
-                                            <td><?= $f['nama_rak']; ?></td>
-                                            <td><?= $f['rak_unit']; ?></td>
-                                            <td><?= $f['v1']; ?></td>
-                                            <td><?= $f['v2']; ?></td>
-                                            <td><?= $f['merek']; ?></td>
-                                            <td><?= $f['tipe']; ?></td>
-                                            <td class="text-capitalize"><?= $f['nama_os']; ?></td>
+                                            <td><?= $vm['kode_aset']; ?></td>
+                                            <td><?= $vm['serial_number']; ?></td>
+                                            <td><?= $vm['nama_app']; ?></td>
+                                            <td><?= $vm['jenis_app']; ?></td>
+                                            <td><?= $vm['ip_address_data']; ?></td>
+                                            <td><?= $vm['ip_address_management']; ?></td>
+                                            <td><?= $vm['hostname']; ?></td>
+                                            <td><?= $vm['jenis_appliance']; ?></td>
+                                            <td><?= $vm['nama_rak']; ?></td>
+                                            <td><?= $vm['rak_unit']; ?></td>
+                                            <td><?= $vm['v1']; ?></td>
+                                            <td><?= $vm['v2']; ?></td>
+                                            <td><?= $vm['merek']; ?></td>
+                                            <td><?= $vm['tipe']; ?></td>
+                                            <td class="text-capitalize"><?= $vm['nama_os']; ?></td>
                                             <td>
                                                 <?php
-                                                if ($f['disk'] > 999) : ?>
-                                                    <?= $f['disk'] / 1000 ?> Tb
+                                                if ($vm['disk'] > 999) : ?>
+                                                    <?= $vm['disk'] / 1000 ?> Tb
                                                 <?php else : ?>
-                                                    <?= $f['disk'] ?> Gb
+                                                    <?= $vm['disk'] ?> Gb
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?= $f['memory']; ?> Gb</td>
-                                            <td><?= $f['processor']; ?></td>
-                                            <td class="text-capitalize"><?= $f['lokasi']; ?></td>
-                                            <td><?= $f['sos']; ?></td>
-                                            <td><?= $f['eos']; ?></td>
-                                            <td><?= $f['no_pks']; ?></td>
+                                            <td><?= $vm['memory']; ?> Gb</td>
+                                            <td><?= $vm['processor']; ?></td>
+                                            <td class="text-capitalize"><?= $vm['lokasi']; ?></td>
+                                            <td><?= $vm['sos']; ?></td>
+                                            <td><?= $vm['eos']; ?></td>
+                                            <td><?= $vm['no_pks']; ?></td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -101,19 +101,19 @@
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
                                                     <!-- AKSES ADMIN & OPERATOR -->
                                                     <?php if (in_groups('operator') || in_groups('admin')) : ?>
-                                                        <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                        <a href="<?= base_url('serverfisik/edit') . '/' . $vm['id'] ?>" class="dropdown-item has-icon">
                                                             <i class="far fa-edit text-success"></i> Edit
                                                         </a>
                                                     <?php endif; ?>
 
                                                     <!-- AKSES ALL -->
-                                                    <a href="<?= base_url('serverfisik/detail') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('serverfisik/detail') . '/' . $vm['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
 
                                                     <!-- AKSES ADMIN & OPERATOR -->
                                                     <?php if (in_groups('operator') || in_groups('admin')) : ?>
-                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
+                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $vm['id'] ?>">
                                                             <i class="fas fa-trash text-danger"></i> Delete
                                                         </a>
                                                     <?php endif; ?>
@@ -122,7 +122,7 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-fisik<?= $f['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-fisik<?= $vm['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
@@ -131,11 +131,11 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $f['nama_app']; ?>
+                                                            <?= $vm['nama_app']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/serverfisik') . '/' . $f['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/serverfisik') . '/' . $vm['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>

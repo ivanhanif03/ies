@@ -13,6 +13,7 @@ class VirtualMachineSeeder extends Seeder
             [
                 'cluster_id'     => 1,
                 'os_id'     => 2,
+                'nama_vm'          => 'NAMAVM1',
                 'host'          => 'HOSTVM1',
                 'ip_address'          => '172.15.1.229',
                 'hostname'            => 'GEMMONPOL',
@@ -20,6 +21,7 @@ class VirtualMachineSeeder extends Seeder
                 'memory'            => 16,
                 'processor'            => 'Intel',
                 'jenis_server'          => 'DB',
+                'lisence'          => 'L12312ASA',
                 'created_at'    => Time::now(),
                 'updated_at'    => Time::now(),
             ],

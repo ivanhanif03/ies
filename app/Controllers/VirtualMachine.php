@@ -21,106 +21,80 @@ class VirtualMachine extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Daftar Server Fisik',
-            'menu' => 'fisik',
+            'title' => 'Daftar Server Virtual Machine',
+            'menu' => 'vm',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->getAll()
+            'virtual_machine' => $this->VirtualMachineModel->getAll()
         ];
 
         // dd($data);
 
-        return view('server/fisik/index', $data);
+        return view('server/vm/index', $data);
     }
 
     public function detail($id)
     {
         $data = [
-            'title' => 'Detail Server Fisik',
-            'menu' => 'fisik',
-            'fisik' => $this->ServerFisikModel->getOneServerFisik($id),
-            // 'nama_vendor' => $this->ServerFisikModel->getNamaVendor($id),
+            'title' => 'Detail Server Virtual Machine',
+            'menu' => 'vm',
+            'virtual_machine' => $this->VirtualMachineModel->getOneServerVirtualMachine($id),
+            // 'nama_vendor' => $this->VirtualMachineModel->getNamaVendor($id),
             // 'vendor' => $this->VendorModel->getVendor()
         ];
 
-        return view('server/fisik/detail', $data);
+        return view('server/vm/detail', $data);
     }
 
     public function create()
     {
         $data = [
-            'title' => 'Tambah Server Fisik',
-            'menu' => 'fisik',
+            'title' => 'Tambah Server Virtual Machine',
+            'menu' => 'vm',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->getServerFisik(),
-            'vendor' => $this->VendorModel->getVendor(),
-            'app' => $this->AppModel->getApp(),
-            'rak' => $this->RakModel->getRak(),
+            'virtual_machine' => $this->VirtualMachineModel->getServerVirtualMachine(),
+            'cluster' => $this->ClusterModel->getCluster(),
             'os' => $this->OsModel->getOs()
         ];
 
-        return view('server/fisik/create', $data);
+        return view('server/vm/create', $data);
     }
 
     public function save()
     {
         //Validation
         if (!$this->validate([
-            'kode_aset'     => 'required|is_unique[server_fisik.kode_aset,id,{id}]',
-            'serial_number'   => 'required|is_unique[server_fisik.serial_number,id,{id}]',
-            'app_id'  => 'required',
-            'jenis_app'  => 'required',
-            'ip_address_data'  => 'required',
-            'ip_address_management'  => 'required',
-            'hostname'  => 'required',
-            'jenis_appliance'  => 'required',
-            'rak_id'  => 'required',
-            'rak_unit'  => 'required',
-            'vendor_software_id'  => 'required',
-            'vendor_hardware_id'  => 'required',
-            'merek'  => 'required',
-            'tipe'  => 'required',
+            'cluster_id'  => 'required',
             'os_id'  => 'required',
+            'nama_vm'  => 'required|is_unique[virtual_machine.nama_vm,id,{id}]',
+            'host'  => 'required',
+            'ip_address'  => 'required',
+            'hostname'  => 'required',
             'disk'  => 'required',
-            'tipe_disk'  => 'required',
             'memory'  => 'required',
-            'tipe_memory'  => 'required',
             'processor'  => 'required',
-            'sos'  => 'required',
-            'eos'  => 'required',
-            'no_pks'  => 'required',
+            'jenis_server'  => 'required',
+            'lisence'  => 'required',
         ])) {
-            return redirect()->to('serverfisik/create')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('virtualmachine/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $this->ServerFisikModel->save([
-            'kode_aset'    => $this->request->getVar('kode_aset'),
-            'serial_number'   => $this->request->getVar('serial_number'),
-            'app_id' => $this->request->getVar('app_id'),
-            'jenis_app' => $this->request->getVar('jenis_app'),
-            'ip_address_data' => $this->request->getVar('ip_address_data'),
-            'ip_address_management' => $this->request->getVar('ip_address_management'),
+        $this->VirtualMachineModel->save([
+            'cluster_id'    => $this->request->getVar('cluster_id'),
+            'os_id'   => $this->request->getVar('os_id'),
+            'nama_vm' => $this->request->getVar('nama_vm'),
+            'host' => $this->request->getVar('host'),
+            'ip_address' => $this->request->getVar('ip_address'),
             'hostname' => $this->request->getVar('hostname'),
-            'jenis_appliance' => $this->request->getVar('jenis_appliance'),
-            'rak_id' => $this->request->getVar('rak_id'),
-            'rak_unit' => $this->request->getVar('rak_unit'),
-            'vendor_software_id' => $this->request->getVar('vendor_software_id'),
-            'vendor_hardware_id' => $this->request->getVar('vendor_hardware_id'),
-            'merek' => $this->request->getVar('merek'),
-            'tipe' => $this->request->getVar('tipe'),
-            'os_id' => $this->request->getVar('os_id'),
             'disk' => $this->request->getVar('disk'),
-            'tipe_disk' => $this->request->getVar('tipe_disk'),
             'memory' => $this->request->getVar('memory'),
-            'tipe_memory' => $this->request->getVar('tipe_memory'),
             'processor' => $this->request->getVar('processor'),
-            'sos' => $this->request->getVar('sos'),
-            'eos' => $this->request->getVar('eos'),
-            'no_pks' => $this->request->getVar('no_pks'),
+            'jenis_server' => $this->request->getVar('jenis_server'),
+            'lisence' => $this->request->getVar('lisence'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data server fisik baru berhasil ditambahkan');
+        session()->setFlashdata('pesan', 'Data server virtual machine baru berhasil ditambahkan');
 
-        return redirect()->to('serverfisik');
+        return redirect()->to('virtualmachine');
     }
 
     public function saveExcel()
@@ -140,154 +114,104 @@ class VirtualMachine extends BaseController
                 continue;
             }
 
-            $kode_aset = $row[0];
-            $serial_number = $row[1];
-            $app_id = $row[2];
-            $jenis_app = $row[3];
-            $ip_address_data = $row[4];
-            $ip_address_management = $row[5];
-            $hostname = $row[6];
-            $jenis_appliance = $row[7];
-            $rak_id = $row[8];
-            $rak_unit = $row[9];
-            $vendor_software_id = $row[10];
-            $vendor_hardware_id = $row[11];
-            $merek = $row[12];
-            $tipe = $row[13];
-            $os_id = $row[14];
-            $disk = $row[15];
-            $tipe_disk = $row[16];
-            $memory = $row[17];
-            $tipe_memory = $row[18];
-            $processor = $row[19];
-            $sos = $row[20];
-            $eos = $row[21];
-            $no_pks = $row[22];
+            $cluster_id = $row[0];
+            $os_id = $row[1];
+            $nama_vm = $row[2];
+            $host = $row[3];
+            $ip_address = $row[4];
+            $hostname = $row[5];
+            $disk = $row[6];
+            $memory = $row[7];
+            $processor = $row[8];
+            $jenis_server = $row[9];
+            $lisence = $row[10];
 
             $db = \Config\Database::connect();
 
-            $cek_kode_aset = $db->table('server_fisik')->getWhere(['kode_aset' => $kode_aset])->getResult();
+            $cek_kode_aset = $db->table('virtual_machine')->getWhere(['nama_vm' => $nama_vm])->getResult();
 
             if (count($cek_kode_aset) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, kode aset sudah ada</b>');
+                session()->setFlashdata('message', '<b>Data gagal diimport, vm sudah ada</b>');
             }
-            if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($processor == null) || ($sos == null) || ($eos == null) || ($no_pks == null)) {
+            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($host == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null)) {
                 session()->setFlashdata('message', '<b>Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
-                $this->ServerFisikModel->save([
-                    'kode_aset' => $kode_aset,
-                    'serial_number' => $serial_number,
-                    'app_id' => $app_id,
-                    'jenis_app' => $jenis_app,
-                    'ip_address_data' => $ip_address_data,
-                    'ip_address_management' => $ip_address_management,
-                    'hostname' => $hostname,
-                    'jenis_appliance' => $jenis_appliance,
-                    'rak_id' => $rak_id,
-                    'rak_unit' => $rak_unit,
-                    'vendor_software_id' => $vendor_software_id,
-                    'vendor_hardware_id' => $vendor_hardware_id,
-                    'merek' => $merek,
-                    'tipe' => $tipe,
+                $this->VirtualMachineModel->save([
+                    'cluster_id' => $cluster_id,
                     'os_id' => $os_id,
+                    'nama_vm' => $nama_vm,
+                    'host' => $host,
+                    'ip_address' => $ip_address,
+                    'hostname' => $hostname,
                     'disk' => $disk,
-                    'tipe_disk' => $tipe_disk,
                     'memory' => $memory,
-                    'tipe_memory' => $tipe_memory,
                     'processor' => $processor,
-                    'sos' => $sos,
-                    'eos' => $eos,
-                    'no_pks' => $no_pks,
+                    'jenis_server' => $jenis_server,
+                    'lisence' => $lisence,
                 ]);
-                session()->setFlashdata('message', 'Berhasil import excel data server fisik');
+                session()->setFlashdata('message', 'Berhasil import excel data server virtual machine');
             }
         }
 
-        return redirect()->to('/serverfisik');
+        return redirect()->to('/virtualmachine');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'Edit Server Fisik',
-            'menu' => 'fisik',
+            'title' => 'Edit Server Virtual Machine',
+            'menu' => 'vm',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->getServerFisik($id),
-            'vendor' => $this->VendorModel->getVendor(),
-            'app' => $this->AppModel->getApp(),
-            'rak' => $this->RakModel->getRak(),
+            'virtual_machine' => $this->VirtualMachineModel->getServerVirtualMachine($id),
+            'cluster' => $this->ClusterModel->getCluster(),
             'os' => $this->OsModel->getOs()
         ];
 
-        return view('server/fisik/edit', $data);
+        return view('server/vm/edit', $data);
     }
 
     public function update($id)
     {
         //Validation
         if (!$this->validate([
-            'kode_aset'     => 'required',
-            'serial_number'   => 'required',
-            'app_id'  => 'required',
-            'jenis_app'  => 'required',
-            'ip_address_data'  => 'required',
-            'ip_address_management'  => 'required',
-            'hostname'  => 'required',
-            'jenis_appliance'  => 'required',
-            'rak_id'  => 'required',
-            'rak_unit'  => 'required',
-            'vendor_software_id'  => 'required',
-            'vendor_hardware_id'  => 'required',
-            'merek'  => 'required',
-            'tipe'  => 'required',
+            'cluster_id'  => 'required',
             'os_id'  => 'required',
+            'nama_vm'  => 'required',
+            'host'  => 'required',
+            'ip_address'  => 'required',
+            'hostname'  => 'required',
             'disk'  => 'required',
-            'tipe_disk'  => 'required',
             'memory'  => 'required',
-            'tipe_memory'  => 'required',
             'processor'  => 'required',
-            'sos'  => 'required',
-            'eos'  => 'required',
-            'no_pks'  => 'required',
+            'jenis_server'  => 'required',
+            'lisence'  => 'required',
         ])) {
-            return redirect()->to('serverfisik/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('virtualmachine/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
-        $this->ServerFisikModel->save([
+        $this->VirtualMachineModel->save([
             'id' => $id,
-            'kode_aset'    => $this->request->getVar('kode_aset'),
-            'serial_number'   => $this->request->getVar('serial_number'),
-            'app_id' => $this->request->getVar('app_id'),
-            'jenis_app' => $this->request->getVar('jenis_app'),
-            'ip_address_data' => $this->request->getVar('ip_address_data'),
-            'ip_address_management' => $this->request->getVar('ip_address_management'),
+            'cluster_id'    => $this->request->getVar('cluster_id'),
+            'os_id'   => $this->request->getVar('os_id'),
+            'nama_vm' => $this->request->getVar('nama_vm'),
+            'host' => $this->request->getVar('host'),
+            'ip_address' => $this->request->getVar('ip_address'),
             'hostname' => $this->request->getVar('hostname'),
-            'jenis_appliance' => $this->request->getVar('jenis_appliance'),
-            'rak_id' => $this->request->getVar('rak_id'),
-            'rak_unit' => $this->request->getVar('rak_unit'),
-            'vendor_software_id' => $this->request->getVar('vendor_software_id'),
-            'vendor_hardware_id' => $this->request->getVar('vendor_hardware_id'),
-            'merek' => $this->request->getVar('merek'),
-            'tipe' => $this->request->getVar('tipe'),
-            'os_id' => $this->request->getVar('os_id'),
             'disk' => $this->request->getVar('disk'),
-            'tipe_disk' => $this->request->getVar('tipe_disk'),
             'memory' => $this->request->getVar('memory'),
-            'tipe_memory' => $this->request->getVar('tipe_memory'),
             'processor' => $this->request->getVar('processor'),
-            'sos' => $this->request->getVar('sos'),
-            'eos' => $this->request->getVar('eos'),
-            'no_pks' => $this->request->getVar('no_pks'),
+            'jenis_server' => $this->request->getVar('jenis_server'),
+            'lisence' => $this->request->getVar('lisence'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data server fisik berhasil diedit');
+        session()->setFlashdata('pesan', 'Data server virtual machine berhasil diedit');
 
-        return redirect()->to('serverfisik');
+        return redirect()->to('virtualmachine');
     }
 
     public function delete($id)
     {
-        $this->ServerFisikModel->delete($id);
-        session()->setFlashdata('pesan', 'Data server fisik berhasil dihapus');
-        return redirect()->to('serverfisik');
+        $this->VirtualMachineModel->delete($id);
+        session()->setFlashdata('pesan', 'Data server virtual machine berhasil dihapus');
+        return redirect()->to('virtualmachine');
     }
 }
