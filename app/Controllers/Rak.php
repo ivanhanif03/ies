@@ -109,6 +109,7 @@ class Rak extends BaseController
         return redirect()->to('/rak');
     }
 
+
     public function edit($id)
     {
         $data = [

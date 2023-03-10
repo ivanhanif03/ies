@@ -45,7 +45,11 @@
                                                 <?= $i++; ?>
                                             </td>
                                             <td><?= $r['id']; ?></td>
-                                            <td><?= $r['nama_rak']; ?></td>
+                                            <td>
+                                                <a data-toggle="tooltip" data-placement="top" title="Detail Rak Server" href="<?= base_url('rak/detail') . '/' . $r['id'] ?>">
+                                                    <?= $r['nama_rak']; ?>
+                                                </a>
+                                            </td>
                                             <td><?= $r['lokasi']; ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
