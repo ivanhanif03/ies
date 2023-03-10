@@ -16,7 +16,7 @@ class Auth extends BaseConfig
      *
      * @var string
      */
-    public $defaultUserGroup = 'user';
+    public $defaultUserGroup;
 
     /**
      * --------------------------------------------------------------------
@@ -74,10 +74,8 @@ class Auth extends BaseConfig
      * @var array
      */
     public $views = [
-        // 'login'           => 'Myth\Auth\Views\login',
-        // 'register'        => 'Myth\Auth\Views\register',
-        'login'           => '\App\Views\auth\login',
-        'register'        => '\App\Views\auth\register',
+        'login'           => 'Myth\Auth\Views\login',
+        'register'        => 'Myth\Auth\Views\register',
         'forgot'          => 'Myth\Auth\Views\forgot',
         'reset'           => 'Myth\Auth\Views\reset',
         'emailForgot'     => 'Myth\Auth\Views\emails\forgot',
@@ -125,7 +123,7 @@ class Auth extends BaseConfig
      *
      * @var string[]
      */
-    public $personalFields = ['name', 'phone'];
+    public $personalFields = [];
 
     /**
      * --------------------------------------------------------------------
@@ -188,7 +186,7 @@ class Auth extends BaseConfig
      *
      * @var string|null Name of the ActivatorInterface class
      */
-    public $requireActivation = null;
+    public $requireActivation = 'Myth\Auth\Authentication\Activators\EmailActivator';
 
     /**
      * --------------------------------------------------------------------
@@ -200,7 +198,7 @@ class Auth extends BaseConfig
      *
      * @var string|null Name of the ResetterInterface class
      */
-    public $activeResetter = null;
+    public $activeResetter = 'Myth\Auth\Authentication\Resetters\EmailResetter';
 
     /**
      * --------------------------------------------------------------------
@@ -215,7 +213,7 @@ class Auth extends BaseConfig
      *
      * @var bool
      */
-    public $allowRemembering = true;
+    public $allowRemembering = false;
 
     /**
      * --------------------------------------------------------------------
@@ -227,7 +225,7 @@ class Auth extends BaseConfig
      *
      * @var int
      */
-    public $rememberLength = 1 * DAY;
+    public $rememberLength = 30 * DAY;
 
     /**
      * --------------------------------------------------------------------
