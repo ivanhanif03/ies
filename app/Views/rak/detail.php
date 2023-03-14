@@ -4,61 +4,100 @@
 <section class="section">
     <div class="section-header">
         <h1>Detail <?= $rak['nama_rak']; ?></h1>
-        <!-- <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('rak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Rak</a>
-        </div> -->
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"><a href="<?= base_url('rak') ?>">Daftar Rak</a></div>
+            <div class="breadcrumb-item">Detail Rak</div>
+        </div>
     </div>
 
     <div class="section-body">
         <div class="row">
+            <!-- <div class="col-lg-3 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <img class="img-fluid" src="https://images.unsplash.com/flagged/photo-1579274216947-86eaa4b00475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" alt="">
+                        <button class="btn btn-sm btn-block btn-primary"></button>
+                    </div>
+                </div>
+            </div> -->
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableRak" width="100%">
+                            <table class="table table-striped" id="tableFisik" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" width="5%">
+                                        <th class=" text-center">
                                             No
                                         </th>
-                                        <th>ID</th>
-                                        <th>Nama</th>
+                                        <th>Rak Unit</th>
+                                        <th>Kode Aset</th>
+                                        <th>Serial Number</th>
+                                        <th>Nama App</th>
+                                        <th>Jenis App</th>
+                                        <th>IP Address Data</th>
+                                        <th>IP Address Mngmt</th>
+                                        <th>Hostname</th>
+                                        <th>Jenis Appliance</th>
+                                        <th>Rak</th>
+                                        <th>Vendor SW</th>
+                                        <th>Vendor HW</th>
+                                        <th>Merek</th>
+                                        <th>Tipe</th>
+                                        <th>OS</th>
+                                        <th>Disk</th>
+                                        <th>Memory</th>
+                                        <th>Processor</th>
                                         <th>Lokasi</th>
-                                        <th class="text-center">Action</th>
+                                        <th>SOS</th>
+                                        <th>EOS</th>
+                                        <th>No PKS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($rak as $r) : ?>
+                                    foreach ($server_fisik as $sf) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $r['id']; ?></td>
-                                            <td><?= $r['nama_rak']; ?></td>
-                                            <td><?= $r['lokasi']; ?></td>
-                                            <td class="dropdown text-center">
-                                                <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
-                                                <a href="#" data-toggle="dropdown">
-                                                    <i class="fas fa-ellipsis-h"></i>
+                                            <td>
+                                                <a data-toggle="tooltip" data-placement="top" title="Detail Server" href="<?= base_url('rak/detail_server') . '/' . $sf['id'] ?>">
+                                                    <?= $sf['rak_unit']; ?>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('rak/edit') . '/' . $r['id'] ?>" class="dropdown-item has-icon">
-                                                        <i class="far fa-edit text-success"></i> Edit
-                                                    </a>
-                                                    <!-- <a href="<?= base_url('rak/detail') . '/' . $r['id'] ?>" class="dropdown-item has-icon">
-                                                        <i class="fas fa-info text-primary"></i> Detail
-                                                    </a> -->
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $r['id'] ?>">
-                                                        <i class="fas fa-trash text-danger"></i> Delete
-                                                    </a>
-                                                </div>
                                             </td>
+                                            <td><?= $sf['kode_aset']; ?></td>
+                                            <td><?= $sf['serial_number']; ?></td>
+                                            <td><?= $sf['nama_app']; ?></td>
+                                            <td><?= $sf['jenis_app']; ?></td>
+                                            <td><?= $sf['ip_address_data']; ?></td>
+                                            <td><?= $sf['ip_address_management']; ?></td>
+                                            <td><?= $sf['hostname']; ?></td>
+                                            <td><?= $sf['jenis_appliance']; ?></td>
+                                            <td><?= $sf['nama_rak']; ?></td>
+                                            <td><?= $sf['v1']; ?></td>
+                                            <td><?= $sf['v2']; ?></td>
+                                            <td><?= $sf['merek']; ?></td>
+                                            <td><?= $sf['tipe']; ?></td>
+                                            <td class="text-capitalize"><?= $sf['nama_os']; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($sf['disk'] > 999) : ?>
+                                                    <?= $sf['disk'] / 1000 ?> Tb
+                                                <?php else : ?>
+                                                    <?= $sf['disk'] ?> Gb
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= $sf['memory']; ?> Gb</td>
+                                            <td><?= $sf['processor']; ?></td>
+                                            <td class="text-capitalize"><?= $sf['lokasi']; ?></td>
+                                            <td><?= $sf['sos']; ?></td>
+                                            <td><?= $sf['eos']; ?></td>
+                                            <td><?= $sf['no_pks']; ?></td>
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete<?= $r['id'] ?>">
+                                        <div class="modal fade" id="modal-delete-fisik<?= $sf['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
@@ -67,11 +106,11 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $r['nama_rak']; ?>
+                                                            <?= $sf['nama_rak']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('rak') . '/' . $r['id']; ?>" method="post">
+                                                        <form action="<?= base_url('rak') . '/' . $sf['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -139,23 +178,22 @@
             currentdate.getSeconds();
 
         // Datatables with Buttons
-        var datatablesRaks = $("#tableRak").DataTable({
-            // responsive: true,
+        var datatablesFisik = $("#tableFisik").DataTable({
             lengthChange: false,
             columnDefs: [{
                 orderable: false,
                 targets: [0]
             }, {
                 visible: false,
-                targets: [1],
+                targets: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
-                    title: 'Daftar Rak Server' + datetime,
                     className: 'btn btn-outline-success',
-                    messageTop: 'Data Total Rak Server Bank BTN',
+                    title: 'Server Fisik Bank BTN' + datetime,
+                    messageTop: ' <?= $rak['nama_rak']; ?>',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -163,25 +201,20 @@
                         window.location.reload(false); //Relode the page
                     }
                 },
-                {
-                    extend: 'pdfHtml5',
-                    // orientation: 'potrait',
-                    pageSize: 'LEGAL',
-                    className: 'btn btn-outline-danger',
-                    title: 'Daftar Rak Server' + datetime,
-                    messageTop: 'Data Total Rak Server Bank BTN',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3]
-                    },
-                    action: function(e, dt, button, config) {
-                        //The action of the button
-                        $.fn.dataTable.ext.buttons.pdfHtml5.action.call(this, e, dt, button, config); //Export the data
-                        window.location.reload(false); //Relode the page
-                    }
-                }
+                // {
+                //     extend: 'pdfHtml5',
+                //     className: 'btn btn-outline-danger',
+                //     orientation: 'landscape',
+                //     pageSize: 'LEGAL',
+                //     title: 'Server Fisik',
+                //     messageTop: 'Data Total Server Fisik Bank BTN' + datetime,
+                //     exportOptions: {
+                //         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+                //     }
+                // }
             ]
         });
-        datatablesRaks.buttons().container().appendTo("#tableRak_wrapper .col-md-6:eq(0)");
+        datatablesFisik.buttons().container().appendTo("#tableFisik_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>

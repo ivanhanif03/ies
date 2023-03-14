@@ -84,6 +84,7 @@ $routes->delete('/vendor/(:num)', 'Vendor::delete/$1', ['filter' => 'role:admin,
 $routes->get('/rak', 'Rak::index', ['filter' => 'role:admin, operator']);
 $routes->get('/rak/index', 'Rak::index', ['filter' => 'role:admin, operator']);
 $routes->get('/rak/detail/(:segment)', 'Rak::detail/$1', ['filter' => 'role:admin, operator']);
+$routes->get('/rak/detail_server/(:segment)', 'Rak::detail_server/$1', ['filter' => 'role:admin, operator']);
 $routes->get('/rak/create', 'Rak::create', ['filter' => 'role:admin, operator']);
 $routes->post('/rak/save', 'Rak::save', ['filter' => 'role:admin, operator']);
 $routes->post('/rak/saveExcel', 'Rak::saveExcel', ['filter' => 'role:admin, operator']);

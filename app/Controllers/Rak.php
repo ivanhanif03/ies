@@ -31,10 +31,26 @@ class Rak extends BaseController
         $data = [
             'title' => 'Detail Rak',
             'menu' => 'rak',
-            'rak' => $this->RakModel->getRak($id)
+            'rak' => $this->RakModel->getRak($id),
+            'server_fisik' => $this->RakModel->getServerFisik($id),
+            'fisik' => $this->RakModel->getOneServerFisik($id)
         ];
+        // dd($data);
 
         return view('rak/detail', $data);
+    }
+
+    public function detail_server($id)
+    {
+        $data = [
+            'title' => 'Detail Server',
+            'menu' => 'rak',
+            'fisik' => $this->RakModel->getOneServerFisik($id),
+        ];
+
+        // dd($data);
+
+        return view('rak/detail_server', $data);
     }
 
     public function create()
