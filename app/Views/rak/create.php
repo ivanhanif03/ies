@@ -29,12 +29,15 @@
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="lokasi">Lokasi</label>
-                                    <select class="form-control selectric text-sm" name="lokasi" id="lokasi" style="width: 100%;">
+                                    <select class="form-control selectric text-sm <?php if (session('errors.lokasi')) : ?>is-invalid<?php endif ?>" name="lokasi" id="lokasi" style="width: 100%;">
                                         <option value="" disabled selected>Pilih Lokasi</option>
                                         <option value="Sentul">Sentul</option>
                                         <option value="Surabaya">Surabaya</option>
                                         <option value="HO">Head Office</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('lokasi'); ?>
+                                    </div>
                                 </div>
                             </div>
 
