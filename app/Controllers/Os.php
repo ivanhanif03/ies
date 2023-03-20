@@ -81,7 +81,7 @@ class Os extends BaseController
             $cek_os = $db->table('os')->getWhere(['nama_os' => $nama_os])->getResult();
 
             if (count($cek_os) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, operating system sudah terdaftar</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, operating system sudah terdaftar</b>');
             } else {
 
                 $this->OsModel->save([

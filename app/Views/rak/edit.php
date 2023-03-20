@@ -17,7 +17,7 @@
                 <div class="card card-primary">
 
                     <div class="card-body">
-                        <form action="<?= base_url('rak/update') . '/' . $rak['id']; ?>" method="post">
+                        <form action="<?= base_url('rak/update') . '/' . $rak['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
 
                             <div class="row">
@@ -46,6 +46,18 @@
                                             <option value="HO" selected>Head Office</option>
                                         <?php endif; ?>
                                     </select>
+                                </div>
+                                <div class=" col-lg-2 col-sm-12">
+                                    <img class="img-thumbnail img-preview" src="/img/gambar_rak/<?= $rak['gambar_rak'] ?>" alt="Gambar Rak">
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-12">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input <?php if (session('errors.gambar_rak')) : ?>is-invalid<?php endif ?>" id="gambar_rak" name="gambar_rak" onchange="previewImg()">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('gambar_rak'); ?>
+                                        </div>
+                                        <label class="custom-file-label" for="gambar_rak"><?= $rak['gambar_rak'] ?></label>
+                                    </div>
                                 </div>
                             </div>
 

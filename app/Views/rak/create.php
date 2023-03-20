@@ -16,9 +16,8 @@
 
                 <div class="card card-primary">
                     <div class="card-body">
-                        <form action="<?= base_url('rak/save') ?>" method="post">
+                        <form action="<?= base_url('rak/save') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="nama_rak" class="font-weight-bolder">Nama Rak</label>
@@ -39,6 +38,18 @@
                                         <?= $validation->getError('lokasi'); ?>
                                     </div>
                                 </div>
+                                <div class=" col-lg-2 col-sm-12">
+                                    <img class="img-thumbnail img-preview" src="/img/gambar_rak/default_gambar_rak.jpg" alt="Gambar Rak">
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-12">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input <?php if (session('errors.gambar_rak')) : ?>is-invalid<?php endif ?>" id="gambar_rak" name="gambar_rak" onchange="previewImg()">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('gambar_rak'); ?>
+                                        </div>
+                                        <label class="custom-file-label" for="gambar_rak">Pilih Gambar Rak</label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -57,6 +68,20 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
+    function previewImg() {
+        //Gambar Rak
+        const gambar_rak = document.querySelector('#gambar_rak');
+        const gambar_rak_label = document.querySelector('.custom-file-label');
+        const img_preview = document.querySelector('.img-preview');
 
+        gambar_rak_label.textContent = gambar_rak.files[0].name;
+
+        const file_gambar_rak = new FileReader();
+        file_gambar_rak.readAsDataURL(gambar_rak.files[0]);
+
+        file_gambar_rak.onload = function(e) {
+            img_preview.src = e.target.result;
+        }
+    }
 </script>
 <?= $this->endSection(); ?>

@@ -88,9 +88,10 @@ class App extends BaseController
             $db = \Config\Database::connect();
 
             $cek_app = $db->table('apps')->getWhere(['nama_app' => $nama_app])->getResult();
+            // dd($cek_app);
 
             if (count($cek_app) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, aplikasi sudah terdaftar</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, nama aplikasi sudah terdaftar</b>');
             } else {
 
                 $this->AppModel->save([

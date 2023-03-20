@@ -131,10 +131,10 @@ class VirtualMachine extends BaseController
             $cek_kode_aset = $db->table('virtualmachine')->getWhere(['nama_vm' => $nama_vm])->getResult();
 
             if (count($cek_kode_aset) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, vm sudah ada</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, vm sudah ada</b>');
             }
             if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($host == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null)) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->VirtualMachineModel->save([
                     'cluster_id' => $cluster_id,

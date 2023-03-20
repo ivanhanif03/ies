@@ -39,12 +39,13 @@
 
 <!-- Custom JS -->
 <script>
+    //Time Alert
     $(document).ready(function() {
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
-        }, 10000);
+        }, 5000);
     });
 </script>
 

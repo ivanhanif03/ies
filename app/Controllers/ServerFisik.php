@@ -173,10 +173,10 @@ class ServerFisik extends BaseController
             $cek_kode_aset = $db->table('server_fisik')->getWhere(['kode_aset' => $kode_aset])->getResult();
 
             if (count($cek_kode_aset) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, kode aset sudah ada</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, kode aset sudah ada</b>');
             }
             if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($processor == null) || ($sos == null) || ($eos == null) || ($no_pks == null)) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->ServerFisikModel->save([
                     'kode_aset' => $kode_aset,

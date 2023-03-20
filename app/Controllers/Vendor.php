@@ -121,10 +121,10 @@ class Vendor extends BaseController
             $cek_vendor = $db->table('vendor')->getWhere(['nama_vendor' => $nama_vendor])->getResult();
 
             if (count($cek_vendor) > 0) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, nama vendor sudah ada</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, nama vendor sudah ada</b>');
             }
             if (($nama_vendor == null) || ($alamat == null) || ($pic == null) || ($pic_phone == null) || ($akun_manager == null) || ($akun_manager_phone == null) || ($helpdesk == null) || ($helpdesk_phone == null) || ($scope_work == null) || ($nilai_kontrak == null) || ($tempo_pembayaran == null)) {
-                session()->setFlashdata('message', '<b>Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
 
                 $this->VendorModel->save([

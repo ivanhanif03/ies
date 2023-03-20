@@ -14,7 +14,7 @@ class RakModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_rak', 'lokasi'];
+    protected $allowedFields    = ['nama_rak', 'lokasi', 'gambar_rak'];
 
     // Dates
     protected $useTimestamps = true;

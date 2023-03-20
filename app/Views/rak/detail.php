@@ -15,8 +15,7 @@
             <div class="col-lg-3 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <img class="img-fluid" src="https://images.unsplash.com/flagged/photo-1579274216947-86eaa4b00475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" alt="">
-                        <button class="btn btn-sm btn-block btn-primary"></button>
+                        <img class="img-fluid" src="<?= base_url() . "/img/gambar_rak/" . $rak['gambar_rak']; ?>" alt="Gambar <?= $rak['nama_rak']; ?>">
                     </div>
                 </div>
             </div>
