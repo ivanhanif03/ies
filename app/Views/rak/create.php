@@ -13,8 +13,8 @@
     <div class="section-body">
         <div class="row">
             <div class="col-12">
-                <div class="card card-primary">
 
+                <div class="card card-primary">
                     <div class="card-body">
                         <form action="<?= base_url('rak/save') ?>" method="post">
                             <?= csrf_field() ?>

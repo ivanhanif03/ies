@@ -5,8 +5,8 @@
     <div class="section-header">
         <h1>Detail Server Fisik</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="<?= base_url('serverfisik') ?>">Server Fisik</a></div>
-            <div class="breadcrumb-item">Detail</div>
+            <div class="breadcrumb-item active"><a href="<?= base_url('rak/detail') . '/' . $fisik->rak_id ?>">Detail <?= $fisik->nama_rak ?></a></div>
+            <div class="breadcrumb-item">Detail Server Fisik</div>
         </div>
     </div>
 

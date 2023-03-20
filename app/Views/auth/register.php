@@ -13,8 +13,8 @@
     <div class="section-body">
         <div class="row">
             <div class="col-12">
+                <?= view('Myth\Auth\Views\_message_block') ?>
                 <div class="card card-primary">
-                    <?= view('Myth\Auth\Views\_message_block') ?>
 
                     <div class="card-body">
                         <form action="<?= url_to('register') ?>" method="POST">

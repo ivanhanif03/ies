@@ -12,15 +12,15 @@
 
     <div class="section-body">
         <div class="row">
-            <!-- <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12">
                 <div class="card">
                     <div class="card-body">
                         <img class="img-fluid" src="https://images.unsplash.com/flagged/photo-1579274216947-86eaa4b00475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" alt="">
                         <button class="btn btn-sm btn-block btn-primary"></button>
                     </div>
                 </div>
-            </div> -->
-            <div class="col-12">
+            </div>
+            <div class="col-lg-9">
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">

@@ -44,7 +44,7 @@ class Os extends BaseController
         if (!$this->validate([
             'nama_os'     => 'required|is_unique[os.nama_os,id,{id}]',
         ])) {
-            return redirect()->to('/os/create')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('os/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $this->OsModel->save([
