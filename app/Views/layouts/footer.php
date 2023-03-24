@@ -24,6 +24,7 @@
 <script src="<?= base_url('stisla/js/stisla.js') ?>"></script>
 
 <!-- JS Libraies -->
+<script src="<?= base_url('stisla/modules/chocolat/dist/js/jquery.chocolat.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/datatables/datatables.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/bootstrap/daterangepicker.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/bootstrap/bootstrap-timepicker.min.js') ?>"></script>

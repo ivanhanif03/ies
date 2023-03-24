@@ -15,7 +15,12 @@
             <div class="col-lg-3 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <img class="img-fluid" src="<?= base_url() . "/img/gambar_rak/" . $rak['gambar_rak']; ?>" alt="Gambar <?= $rak['nama_rak']; ?>">
+                        <div class="gallery gallery-fw" data-item-height="350">
+                            <div class="gallery-item" data-image="<?= base_url() . "/img/gambar_rak/" . $rak['gambar_rak']; ?>">
+
+                            </div>
+                            <!-- <img class="img-fluid" src="<?= base_url() . "/img/gambar_rak/" . $rak['gambar_rak']; ?>" alt="Gambar <?= $rak['nama_rak']; ?>"> -->
+                        </div>
                     </div>
                 </div>
             </div>

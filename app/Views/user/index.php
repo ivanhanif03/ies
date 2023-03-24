@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>Users</h1>
         <div class="section-header-breadcrumb">
-            <a href="<?= base_url('user/register') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Create User</a>
+            <a href="<?= base_url('user/register') ?>" class="btn btn-md btn-success"><i class="fas fa-plus mr-1"></i> Tambah User</a>
         </div>
     </div>
 

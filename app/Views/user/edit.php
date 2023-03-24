@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <a href="<?= base_url('user') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
+                                <a href="<?= base_url('user') ?>" class="btn btn-md btn-secondary mr-1">Batal</a>
                                 <button type="submit" class="btn btn-primary btn-md">
                                     Update
                                 </button>

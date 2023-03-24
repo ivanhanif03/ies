@@ -58,7 +58,10 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary btn-md">
+                                <a href="<?= base_url('user') ?>" class="btn btn-secondary btn-md">
+                                    Batal
+                                </a>
+                                <button type="submit" class="btn btn-primary btn-md ml-1">
                                     Register
                                 </button>
                             </div>
