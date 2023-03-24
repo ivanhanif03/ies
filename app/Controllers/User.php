@@ -48,6 +48,8 @@ class User extends BaseController
             'group' => $this->GroupsModel->findAll()
         ];
 
+        // dd($data);
+
         return view('user/role', $data);
     }
 

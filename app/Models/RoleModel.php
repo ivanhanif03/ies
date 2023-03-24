@@ -11,7 +11,7 @@ class RoleModel extends Model
     protected $allowedFields    = ['group_id', 'user_id'];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
     // Get Role by User Id
     public function getRole($id)

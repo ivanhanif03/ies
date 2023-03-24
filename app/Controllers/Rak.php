@@ -180,10 +180,16 @@ class Rak extends BaseController
 
         //if not upload gambar rak
         if ($gambarRak->getError() == 4) {
-            $gambarRakName =  'default_gambar_rak.jpg';
+            $gambarRakName =  $this->request->getVar('gambar_rak_lama');
         } else {
+            //generate nama file random
             $gambarRakName = $gambarRak->getRandomName();
+            //move to folder gambar rak
             $gambarRak->move('img/gambar_rak', $gambarRakName);
+            //delete old file gambar rak
+            if ($this->request->getVar('gambar_rak_lama') != 'default_gambar_rak.jpg') {
+                unlink('img/gambar_rak/' . $this->request->getVar('gambar_rak_lama'));
+            }
         }
 
         $this->RakModel->save([

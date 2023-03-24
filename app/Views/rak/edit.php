@@ -13,13 +13,11 @@
     <div class="section-body">
         <div class="row">
             <div class="col-12">
-
                 <div class="card card-primary">
-
                     <div class="card-body">
                         <form action="<?= base_url('rak/update') . '/' . $rak['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-
+                            <input type="hidden" name="gambar_rak_lama" value="<?= $rak['gambar_rak'] ?>">
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="nama_rak" class="font-weight-bolder">Nama Rak</label>
@@ -77,6 +75,20 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
+    function previewImg() {
+        //Gambar Rak
+        const gambar_rak = document.querySelector('#gambar_rak');
+        const gambar_rak_label = document.querySelector('.custom-file-label');
+        const img_preview = document.querySelector('.img-preview');
 
+        gambar_rak_label.textContent = gambar_rak.files[0].name;
+
+        const file_gambar_rak = new FileReader();
+        file_gambar_rak.readAsDataURL(gambar_rak.files[0]);
+
+        file_gambar_rak.onload = function(e) {
+            img_preview.src = e.target.result;
+        }
+    }
 </script>
 <?= $this->endSection(); ?>
