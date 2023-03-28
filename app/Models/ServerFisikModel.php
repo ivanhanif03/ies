@@ -118,4 +118,52 @@ class ServerFisikModel extends Model
             ->distinct('app_id')
             ->countAllResults();
     }
+
+    public function getTotalJenisAppFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('*')
+            ->where('jenis_app', 'APP')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisWebFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('*')
+            ->where('jenis_app', 'WEB')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisDbFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('*')
+            ->where('jenis_app', 'DB')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisMngmtFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('*')
+            ->where('jenis_app', 'MNGMT')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisDmzFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('*')
+            ->where('jenis_app', 'DMZ')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisDevFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('*')
+            ->where('jenis_app', 'DEV')
+            ->countAllResults();
+    }
 }

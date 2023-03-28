@@ -69,6 +69,9 @@
                                         <option value="WEB">WEB</option>
                                         <option value="APP">APP</option>
                                         <option value="DB">DB</option>
+                                        <option value="MNGMT">MNGMT</option>
+                                        <option value="DMZ">DMZ</option>
+                                        <option value="DEV">DEV</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('jenis_app'); ?>

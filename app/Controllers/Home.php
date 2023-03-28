@@ -27,6 +27,13 @@ class Home extends BaseController
             'vm_surabaya' => $this->VirtualMachineModel->getTotalVmSurabaya(),
             'vm_oc' => $this->VirtualMachineModel->getTotalVmOc(),
             'total_app_fisik' => $this->ServerFisikModel->getTotalAppFisik(),
+            'total_jenis_app' => $this->ServerFisikModel->getTotalJenisAppFisik(),
+            'total_jenis_web' => $this->ServerFisikModel->getTotalJenisWebFisik(),
+            'total_jenis_db' => $this->ServerFisikModel->getTotalJenisDbFisik(),
+            'total_jenis_mngmt' => $this->ServerFisikModel->getTotalJenisMngmtFisik(),
+            'total_jenis_dmz' => $this->ServerFisikModel->getTotalJenisDmzFisik(),
+            'total_jenis_dev' => $this->ServerFisikModel->getTotalJenisDevFisik(),
+
         ];
 
         // dd($data);

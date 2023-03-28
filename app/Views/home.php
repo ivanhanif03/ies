@@ -59,7 +59,7 @@
     <div class="col-lg-4">
       <div class="card h-100 d-flex align-items-center justify-content-center">
         <div class="card-header">
-          <h4 class="text-center">Server Fisik</h4>
+          <h4 class="text-center">Jenis Server Fisik</h4>
         </div>
         <div class="card-body">
           <canvas id="myChart" height="300"></canvas>
@@ -68,16 +68,16 @@
           <div class="card-header">Jenis Server</div>
           <div class="card-stats-items">
             <div class="card-stats-item">
-              <div class="card-stats-item-count">10</div>
-              <div class="card-stats-item-label">app</div>
+              <div class="card-stats-item-count"><?= $total_jenis_web ?></div>
+              <div class="card-stats-item-label">WEB</div>
             </div>
             <div class="card-stats-item">
-              <div class="card-stats-item-count">20</div>
-              <div class="card-stats-item-label">bla bla</div>
+              <div class="card-stats-item-count"><?= $total_jenis_app ?></div>
+              <div class="card-stats-item-label">APP</div>
             </div>
             <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
+              <div class="card-stats-item-count"><?= $total_jenis_db ?></div>
+              <div class="card-stats-item-label">DB</div>
             </div>
           </div>
         </div>
@@ -85,16 +85,16 @@
         <div class="card-stats">
           <div class="card-stats-items">
             <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
+              <div class="card-stats-item-count"><?= $total_jenis_mngmt ?></div>
+              <div class="card-stats-item-label">MNGMT</div>
             </div>
             <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
+              <div class="card-stats-item-count"><?= $total_jenis_dmz ?></div>
+              <div class="card-stats-item-label">DMZ</div>
             </div>
             <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
+              <div class="card-stats-item-count"><?= $total_jenis_dev ?></div>
+              <div class="card-stats-item-label">DEV</div>
             </div>
           </div>
         </div>
@@ -287,15 +287,21 @@
 <?= $this->section('script'); ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+  var totalJenisApp = <?= json_encode($total_jenis_app); ?>;
+  var totalJenisWeb = <?= json_encode($total_jenis_web); ?>;
+  var totalJenisDb = <?= json_encode($total_jenis_db); ?>;
+  var totalJenisMngmt = <?= json_encode($total_jenis_mngmt); ?>;
+  var totalJenisDmz = <?= json_encode($total_jenis_dmz); ?>;
+  var totalJenisDev = <?= json_encode($total_jenis_dev); ?>;
   var ctx = document.getElementById('myChart').getContext('2d');
   var chart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ['Web', 'App', 'DB', 'MNGMT', 'DMZ', 'Dev'],
+      labels: ['APP', 'WEB', 'DB', 'MNGMT', 'DMZ', 'DEV'],
       datasets: [{
-        label: 'Bare-metal',
+        label: 'Jumlah',
         backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
-        data: [10, 20, 30, 15, 25, 5] // Masukkan data Anda di sini
+        data: [totalJenisApp, totalJenisWeb, totalJenisDb, totalJenisMngmt, totalJenisDmz, totalJenisDev] // Masukkan data Anda di sini
       }]
     },
     options: {
@@ -312,7 +318,7 @@
   var chart2 = new Chart(ctx2, {
     type: 'pie',
     data: {
-      labels: ['Web', 'App', 'DB', 'MNGMT', 'DMZ', 'Dev'],
+      labels: ['WEB', 'APP', 'DB', 'MNGMT', 'DMZ', 'DEV'],
       datasets: [{
         label: 'Bare-metal',
         backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
@@ -333,7 +339,7 @@
   var chart3 = new Chart(ctx3, {
     type: 'pie',
     data: {
-      labels: ['Web', 'App', 'DB', 'MNGMT', 'DMZ', 'Dev'],
+      labels: ['WEB', 'APP', 'DB', 'MNGMT', 'DMZ', 'DEV'],
       datasets: [{
         label: 'Bare-metal',
         backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
