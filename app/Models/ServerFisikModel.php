@@ -83,4 +83,39 @@ class ServerFisikModel extends Model
             ->where('server_fisik.id', $id)
             ->get()->getRow();
     }
+
+    public function getTotalServerFisikSentul()
+    {
+        return $this->db->table('server_fisik')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->select('*')
+            ->where('raks.lokasi', 'Sentul')
+            ->countAllResults();
+    }
+
+    public function getTotalServerFisikSurabaya()
+    {
+        return $this->db->table('server_fisik')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->select('*')
+            ->where('raks.lokasi', 'Surabaya')
+            ->countAllResults();
+    }
+
+    public function getTotalServerFisikOc()
+    {
+        return $this->db->table('server_fisik')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->select('*')
+            ->where('raks.lokasi', 'HO')
+            ->countAllResults();
+    }
+
+    public function getTotalAppFisik()
+    {
+        return $this->db->table('server_fisik')
+            ->select('app_id')
+            ->distinct('app_id')
+            ->countAllResults();
+    }
 }

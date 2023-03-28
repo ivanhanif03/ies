@@ -9,96 +9,45 @@
   <div class="row">
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
-        <div class="card-stats">
-          <div class="card-stats-title">Server Fisik</div>
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">20</div>
-              <div class="card-stats-item-label">OC Jkt</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">10</div>
-              <div class="card-stats-item-label">DC Stl</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">15</div>
-              <div class="card-stats-item-label">DRC Sby</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-icon shadow-primary bg-light">
-          <i class="fa fa-server" aria-hidden="true"></i>
+        <div class="card-icon shadow-primary bg-primary">
+          <i class="fa fa-server text-white" aria-hidden="true"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
             <h4>Total Server Fisik</h4>
           </div>
           <div class="card-body">
-            45
+            <?= $fisik_oc + $fisik_sentul + $fisik_surabaya ?>
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
-        <div class="card-stats">
-          <div class="card-stats-title">Virtual Machine</div>
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">40</div>
-              <div class="card-stats-item-label">OC Jkt</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">DC Stl</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">20</div>
-              <div class="card-stats-item-label">DRC Sby</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-icon shadow-primary bg-light">
-          <i class="fa fa-cloud" aria-hidden="true"></i>
+        <div class="card-icon shadow-primary bg-warning">
+          <i class="fa fa-cloud text-white" aria-hidden="true"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
             <h4>Total VM</h4>
           </div>
           <div class="card-body">
-            90
+            <?= $vm_sentul + $vm_surabaya  ?>
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
-        <div class="card-stats">
-          <div class="card-stats-title">Aplikasi</div>
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">40</div>
-              <div class="card-stats-item-label">OC Jkt</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">DC Stl</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">20</div>
-              <div class="card-stats-item-label">DRC Sby</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-icon shadow-primary bg-light">
-          <i class="fa fa-rocket" aria-hidden="true"></i>
+        <div class="card-icon shadow-primary bg-danger">
+          <i class="fa fa-rocket text-white" aria-hidden="true"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
             <h4>Total Aplikasi</h4>
           </div>
           <div class="card-body">
-            90
+            <?= $total_app_fisik ?>
           </div>
         </div>
       </div>
@@ -110,7 +59,7 @@
     <div class="col-lg-4">
       <div class="card h-100 d-flex align-items-center justify-content-center">
         <div class="card-header">
-          <h4 class="text-center text-primary">Sentul</h4>
+          <h4 class="text-center">Server Fisik</h4>
         </div>
         <div class="card-body">
           <canvas id="myChart" height="300"></canvas>
@@ -149,108 +98,6 @@
             </div>
           </div>
         </div>
-
-        <div class="card-body">
-          <canvas id="myChart" height="30"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card h-100 d-flex align-items-center justify-content-center">
-        <div class="card-header">
-          <h4 class="text-center text-primary">Bandung</h4>
-        </div>
-        <div class="card-body">
-          <canvas id="myChart2" height="300"></canvas>
-        </div>
-
-        <div class="card-stats">
-          <div class="card-header">Jenis Server</div>
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">10</div>
-              <div class="card-stats-item-label">app</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">20</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="card-stats">
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="card-body">
-          <canvas id="myChart" height="30"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card h-100 d-flex align-items-center justify-content-center">
-        <div class="card-header">
-          <h4 class="text-center text-primary">Bandung</h4>
-        </div>
-        <div class="card-body">
-          <canvas id="myChart3" height="300"></canvas>
-        </div>
-
-        <div class="card-stats">
-          <div class="card-header">Jenis Server</div>
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">10</div>
-              <div class="card-stats-item-label">app</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">20</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="card-stats">
-          <div class="card-stats-items">
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-            <div class="card-stats-item">
-              <div class="card-stats-item-count">30</div>
-              <div class="card-stats-item-label">bla bla</div>
-            </div>
-          </div>
-        </div>
-
-
 
         <div class="card-body">
           <canvas id="myChart" height="30"></canvas>

@@ -71,4 +71,39 @@ class VirtualMachineModel extends Model
             ->where('virtualmachine.id', $id)
             ->get()->getRow();
     }
+
+    public function getTotalVmSentul()
+    {
+        return $this->db->table('virtualmachine')
+            ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
+            ->select('*')
+            ->where('cluster.data_center', 'Sentul')
+            ->countAllResults();
+    }
+
+    public function getTotalVmSurabaya()
+    {
+        return $this->db->table('virtualmachine')
+            ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
+            ->select('*')
+            ->where('cluster.data_center', 'Surabaya')
+            ->countAllResults();
+    }
+
+    public function getTotalVmOc()
+    {
+        return $this->db->table('virtualmachine')
+            ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
+            ->select('*')
+            ->where('cluster.data_center', 'HO')
+            ->countAllResults();
+    }
+
+    public function getTotalAppVm()
+    {
+        return $this->db->table('server_fisik')
+            ->select('app_id')
+            ->distinct('app_id')
+            ->countAllResults();
+    }
 }
