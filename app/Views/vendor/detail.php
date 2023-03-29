@@ -20,7 +20,7 @@
                             <thead></thead>
                             <tbody>
                                 <tr>
-                                    <td width="30%">Kode Asset</td>
+                                    <td width="30%">Nama Vendor</td>
                                     <td><?= $vendor['nama_vendor'] ?></td>
                                 </tr>
                                 <tr>
