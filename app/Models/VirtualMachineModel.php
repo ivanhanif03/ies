@@ -101,9 +101,8 @@ class VirtualMachineModel extends Model
 
     public function getTotalAppVm()
     {
-        return $this->db->table('server_fisik')
-            ->select('app_id')
-            ->distinct('app_id')
+        return $this->db->table('virtualmachine')
+            ->select('*')
             ->countAllResults();
     }
 }
