@@ -155,123 +155,76 @@
     </div>
 
     <div class="col-lg-4">
-              <div class="card gradient-bottom">
-                <div class="card-header">
-                  <h4>Aplikasi</h4>
-                  <div class="card-header-action dropdown">
-                    <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">View More</a>
-                    <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                      <li class="dropdown-title">Select Period</li>
-                      <li><a href="#" class="dropdown-item">Today</a></li>
-                      <li><a href="#" class="dropdown-item">Week</a></li>
-                      <li><a href="#" class="dropdown-item active">Month</a></li>
-                      <li><a href="#" class="dropdown-item">This Year</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="card-body" height="400">
-                  <ul class="list-unstyled list-unstyled-border">
-                    <li class="media">
-                    <img class="mr-3 rounded" width="55" src="http://localhost:8080/img/btn_p.png" alt="product">
-                      <div class="media-body">
-                        <div class="media-title">BTN Properti</div>
-                        <div class="mt-1">
-                          <div class="budget-price">
-                            
-                            <div class="budget-price-label">- Total Storage 4 TB</div>
-                          </div>
-                          <div class="budget-price">
-                            <div class="budget-price-label">- PIC</div>
-                            <div class="budget-price-label">Malik</div>
-                            <div class="budget-price-label">/</div>
-                            <div class="budget-price-label">DCD</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="media">
-                      <img class="mr-3 rounded" width="55" src="http://localhost:8080/img/btn_mb.png" alt="product">
-                      <div class="media-body">
-                        <div class="media-title">BTN Mobile Banking</div>
-                        <div class="mt-1">
-                          <div class="budget-price">
-                            
-                            <div class="budget-price-label">- Total Storage 3 TB</div>
-                          </div>
-                          <div class="budget-price">
-                            <div class="budget-price-label">- PIC</div>
-                            <div class="budget-price-label">Wisnu</div>
-                            <div class="budget-price-label">/</div>
-                            <div class="budget-price-label">DCD</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="media">
-                    <img class="mr-3 rounded" width="55" src="http://localhost:8080/img/btn_r.png" alt="product">
-                      <div class="media-body">
-                        <div class="media-title">BTN Residence</div>
-                        <div class="mt-1">
-                          <div class="budget-price">
-                    
-                            <div class="budget-price-label">- Total Storage 2 TB</div>
-                          </div>
-                          <div class="budget-price">
-                            <div class="budget-price-label">- PIC</div>
-                            <div class="budget-price-label">Sopi</div>
-                            <div class="budget-price-label">/</div>
-                            <div class="budget-price-label">DCD</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="media">
-                    <img class="mr-3 rounded" width="55" src="http://localhost:8080/img/btn_r.png" alt="product">
-                      <div class="media-body">
-                        <div class="media-title">BTN Residence</div>
-                        <div class="mt-1">
-                          <div class="budget-price">
-                            
-                            <div class="budget-price-label">- Total Storage 1.5 TB</div>
-                          </div>
-                          <div class="budget-price">
-                            <div class="budget-price-label">- PIC</div>
-                            <div class="budget-price-label">Sopi</div>
-                            <div class="budget-price-label">/</div>
-                            <div class="budget-price-label">DCD</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="media">
-                    <img class="mr-3 rounded" width="55" src="http://localhost:8080/img/btn_r.png" alt="product">
-                      <div class="media-body">
-                        <div class="media-title">BTN Residence</div>
-                        <div class="mt-1">
-                          <div class="budget-price">
-                            
-                            <div class="budget-price-label">- Total Storage 3.5 TB</div>
-                          </div>
-                          <div class="budget-price">
-                            <div class="budget-price-label">- PIC</div>
-                            <div class="budget-price-label">Sopi</div>
-                            <div class="budget-price-label">/</div>
-                            <div class="budget-price-label">DCD</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                </div>
-                <div class="card-footer pt-3 d-flex justify-content-center">
-                  <div class="budget-price justify-content-center">
-                    <div class="budget-price-square bg-primary" data-width="20"></div>
-                    <div class="budget-price-label">Storage</div>
-                  </div>  
-                </div>
-              </div>
-            </div>
+      <div class="card h-100">
+        <div class="card-header">
+          <h4>Aplikasi Terbaru pada Server Fisik</h4>
+          <div class="card-header-action ">
+            <a href="<?= base_url('serverfisik') ?>" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
+        <div class="card-body">
+          <ul class="list-unstyled list-unstyled-border">
+            <?php $i = 1;
+            foreach ($aplikasi_terbaru as $at) : ?>
+              <li class="media">
+                <?php if ($at['jenis_app'] == 'APP') : ?>
+                  <span class="fa-stack fa-2x mr-2">
+                    <i class="fa fa-circle fa-stack-2x icon-background text-primary"></i>
+                    <i class="fa fa-mobile fa-stack-1x text-white"></i>
+                  </span>
+                <?php elseif ($at['jenis_app'] == 'WEB') : ?>
+                  <span class="fa-stack fa-2x mr-2">
+                    <i class="fa fa-circle fa-stack-2x icon-background text-danger"></i>
+                    <i class="fa fa-globe fa-stack-1x text-white"></i>
+                  </span>
+                <?php elseif ($at['jenis_app'] == 'MNGMT') : ?>
+                  <span class="fa-stack fa-2x mr-2">
+                    <i class="fa fa-circle fa-stack-2x icon-background text-warning"></i>
+                    <i class="fa fa-users-cog fa-stack-1x text-white"></i>
+                  </span>
+                <?php elseif ($at['jenis_app'] == 'DMZ') : ?>
+                  <span class="fa-stack fa-2x mr-2">
+                    <i class="fa fa-circle fa-stack-2x icon-background text-success"></i>
+                    <i class="fa fa-fingerprint fa-stack-1x text-white"></i>
+                  </span>
+                <?php elseif ($at['jenis_app'] == 'DB') : ?>
+                  <span class="fa-stack fa-2x mr-2">
+                    <i class="fa fa-circle fa-stack-2x icon-background text-info"></i>
+                    <i class="fa fa-database fa-stack-1x text-white"></i>
+                  </span>
+                <?php else : ?>
+                  <span class="fa-stack fa-2x mr-2">
+                    <i class="fa fa-circle fa-stack-2x icon-background text-secondary"></i>
+                    <i class="fa fa-terminal fa-stack-1x text-white"></i>
+                  </span>
+                <?php endif; ?>
+                <div class="media-body">
+                  <div class="media-title"><?= $at['nama_app'] ?></div>
+                  <div class="mt-1">
+                    <div class="budget-price">
+
+                      <div class="budget-price-label">- Total Storage :
+                        <?php if ($at['disk'] > 999) : ?>
+                          <?= $at['disk'] / 1000  ?> TB
+                        <?php else : ?>
+                          <?= $at['disk']  ?> GB
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                    <div class="budget-price">
+                      <div class="budget-price-label">- PIC</div>
+                      <div class="budget-price-label"><?= $at['pic'] ?></div>
+                      <div class="budget-price-label">/</div>
+                      <div class="budget-price-label"><?= $at['divisi'] ?></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </div>
   <br>
 
   <div class="row">
@@ -412,7 +365,7 @@
                 <td class="font-weight-600">Windows Server 2019</td>
                 <td class="font-weight-600">DB</td>
                 <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td> 
+                <td class="font-weight-600">cap halal mui</td>
               </tr>
               <tr>
                 <td><a href="#">07/05/2023</a></td>

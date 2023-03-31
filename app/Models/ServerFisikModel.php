@@ -166,4 +166,14 @@ class ServerFisikModel extends Model
             ->where('jenis_app', 'DEV')
             ->countAllResults();
     }
+
+    public function getAplikasiTerbaru()
+    {
+        return $this->db->table('server_fisik')
+            ->join('apps', 'apps.id=server_fisik.app_id', 'left')
+            ->select('*')
+            ->limit(6)
+            ->orderBy('server_fisik.id', 'DESC')
+            ->get()->getResultArray();
+    }
 }

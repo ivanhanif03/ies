@@ -39,7 +39,7 @@ class Home extends BaseController
             'total_jenis_mngmt_vm' => $this->VirtualMachineModel->getTotalJenisMngmtVm(),
             'total_jenis_dmz_vm' => $this->VirtualMachineModel->getTotalJenisDmzVm(),
             'total_jenis_dev_vm' => $this->VirtualMachineModel->getTotalJenisDevVm(),
-
+            'aplikasi_terbaru' => $this->ServerFisikModel->getAplikasiTerbaru(),
         ];
 
         // dd($data);

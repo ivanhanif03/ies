@@ -66,35 +66,35 @@
                                     <label>Jenis App</label>
                                     <select class="form-control selectric text-sm <?php if (session('errors.jenis_app')) : ?>is-invalid<?php endif ?>" name="jenis_app" id="jenis_app" style="width: 100%;">
                                         <option value="" disabled selected>Pilih Jenis App</option>
-                                        <?php if ($virtualmachine['jenis_app'] == 'WEB') : ?>
+                                        <?php if ($fisik['jenis_app'] == 'WEB') : ?>
                                             <option value="WEB" selected>WEB</option>
                                             <option value="APP">APP</option>
                                             <option value="DB">DB</option>
                                             <option value="MNGMT">MNGMT</option>
                                             <option value="DMZ">DMZ</option>
                                             <option value="DEV">DEV</option>
-                                        <?php elseif ($virtualmachine['jenis_app'] == 'APP') : ?>
+                                        <?php elseif ($fisik['jenis_app'] == 'APP') : ?>
                                             <option value="WEB">WEB</option>
                                             <option value="APP" selected>APP</option>
                                             <option value="DB">DB</option>
                                             <option value="MNGMT">MNGMT</option>
                                             <option value="DMZ">DMZ</option>
                                             <option value="DEV">DEV</option>
-                                        <?php elseif ($virtualmachine['jenis_app'] == 'DB') : ?>
+                                        <?php elseif ($fisik['jenis_app'] == 'DB') : ?>
                                             <option value="WEB">WEB</option>
                                             <option value="APP">APP</option>
                                             <option value="DB" selected>DB</option>
                                             <option value="MNGMT">MNGMT</option>
                                             <option value="DMZ">DMZ</option>
                                             <option value="DEV">DEV</option>
-                                        <?php elseif ($virtualmachine['jenis_app'] == 'MNGMT') : ?>
+                                        <?php elseif ($fisik['jenis_app'] == 'MNGMT') : ?>
                                             <option value="WEB">WEB</option>
                                             <option value="APP">APP</option>
                                             <option value="DB">DB</option>
                                             <option value="MNGMT" selected>MNGMT</option>
                                             <option value="DMZ">DMZ</option>
                                             <option value="DEV">DEV</option>
-                                        <?php elseif ($virtualmachine['jenis_app'] == 'DMZ') : ?>
+                                        <?php elseif ($fisik['jenis_app'] == 'DMZ') : ?>
                                             <option value="WEB">WEB</option>
                                             <option value="APP">APP</option>
                                             <option value="DB">DB</option>
