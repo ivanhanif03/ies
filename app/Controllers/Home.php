@@ -33,6 +33,12 @@ class Home extends BaseController
             'total_jenis_mngmt' => $this->ServerFisikModel->getTotalJenisMngmtFisik(),
             'total_jenis_dmz' => $this->ServerFisikModel->getTotalJenisDmzFisik(),
             'total_jenis_dev' => $this->ServerFisikModel->getTotalJenisDevFisik(),
+            'total_jenis_app_vm' => $this->VirtualMachineModel->getTotalJenisAppVm(),
+            'total_jenis_web_vm' => $this->VirtualMachineModel->getTotalJenisWebVm(),
+            'total_jenis_db_vm' => $this->VirtualMachineModel->getTotalJenisDbVm(),
+            'total_jenis_mngmt_vm' => $this->VirtualMachineModel->getTotalJenisMngmtVm(),
+            'total_jenis_dmz_vm' => $this->VirtualMachineModel->getTotalJenisDmzVm(),
+            'total_jenis_dev_vm' => $this->VirtualMachineModel->getTotalJenisDevVm(),
 
         ];
 

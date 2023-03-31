@@ -105,4 +105,53 @@ class VirtualMachineModel extends Model
             ->select('*')
             ->countAllResults();
     }
+
+
+    public function getTotalJenisAppVm()
+    {
+        return $this->db->table('virtualmachine')
+            ->select('*')
+            ->where('jenis_server', 'APP')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisWebVm()
+    {
+        return $this->db->table('virtualmachine')
+            ->select('*')
+            ->where('jenis_server', 'WEB')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisDbVm()
+    {
+        return $this->db->table('virtualmachine')
+            ->select('*')
+            ->where('jenis_server', 'DB')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisMngmtVm()
+    {
+        return $this->db->table('virtualmachine')
+            ->select('*')
+            ->where('jenis_server', 'MNGMT')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisDmzVm()
+    {
+        return $this->db->table('virtualmachine')
+            ->select('*')
+            ->where('jenis_server', 'DMZ')
+            ->countAllResults();
+    }
+
+    public function getTotalJenisDevVm()
+    {
+        return $this->db->table('virtualmachine')
+            ->select('*')
+            ->where('jenis_server', 'DEV')
+            ->countAllResults();
+    }
 }

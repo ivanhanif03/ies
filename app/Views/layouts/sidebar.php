@@ -2,7 +2,7 @@
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="<?= base_url() ?>">IES PORTAL</a>
-        </div>
+</div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="<?= base_url() ?>">IP</a>
         </div>
