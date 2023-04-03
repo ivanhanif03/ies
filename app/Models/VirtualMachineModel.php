@@ -154,4 +154,15 @@ class VirtualMachineModel extends Model
             ->where('jenis_server', 'DEV')
             ->countAllResults();
     }
+
+    public function getVmTerbaru()
+    {
+        return $this->db->table('virtualmachine')
+            ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
+            ->join('os', 'os.id=virtualmachine.os_id', 'left')
+            ->select('*')
+            ->limit(5)
+            ->orderBy('virtualmachine.id', 'DESC')
+            ->get()->getResultArray();
+    }
 }

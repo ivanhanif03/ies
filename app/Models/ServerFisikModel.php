@@ -176,4 +176,16 @@ class ServerFisikModel extends Model
             ->orderBy('server_fisik.id', 'DESC')
             ->get()->getResultArray();
     }
+
+    public function getServerFisikTerbaru()
+    {
+        return $this->db->table('server_fisik')
+            ->join('apps', 'apps.id=server_fisik.app_id', 'left')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->join('os', 'os.id=server_fisik.os_id', 'left')
+            ->select('*')
+            ->limit(5)
+            ->orderBy('server_fisik.id', 'DESC')
+            ->get()->getResultArray();
+    }
 }

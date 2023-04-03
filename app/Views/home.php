@@ -5,7 +5,7 @@
 
 <section class="section">
 
-  <!-- ROW 1 -->
+  <!-- Primary Info -->
   <div class="row">
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <!-- CHART -->
+  <!-- Chart -->
   <div class="row d-flex align-items-stretch">
     <div class="col-lg-4">
       <div class="card h-100 d-flex align-items-center justify-content-center">
@@ -228,176 +228,106 @@
   </div>
   <br>
 
+  <!-- Table Last Data Server Fisik -->
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4>Latest Virtual Machine Server</h4>
-          <div class="card-header-action">
-            <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+          <h4>Server Fisik Terbaru</h4>
+          <div class="card-header-action dropdown">
+            <a href="<?= base_url('serverfisik') ?>" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-        <div class="card-body p-0">
-          <div class="table-responsive table-invoice">
-            <table class="table table-striped">
-              <tr>
-                <th>Date</th>
-                <th>VM Name</th>
-                <th>IP Address</th>
-                <th>Hostname</th>
-                <th>Disk (GB)</th>
-                <th>Memory (GB)</th>
-                <th>Operating System</th>
-                <th>Jenis Server</th>
-                <th>Processor</th>
-                <th>License</th>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped" id="tableFisik" width="100%">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    No
+                  </th>
+                  <th>Kode Aset</th>
+                  <th>Serial Number</th>
+                  <th>Nama App</th>
+                  <th>Jenis App</th>
+                  <th>IP Address Data</th>
+                  <th>IP Address Management</th>
+                  <th>Hostname</th>
+                  <th>Lokasi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1;
+                foreach ($server_fisik_terbaru as $sft) : ?>
+                  <tr>
+                    <td class="text-center">
+                      <?= $i++; ?>
+                    </td>
+                    <td><?= $sft['kode_aset']; ?></td>
+                    <td><?= $sft['serial_number']; ?></td>
+                    <td><?= $sft['nama_app']; ?></td>
+                    <td><?= $sft['jenis_app']; ?></td>
+                    <td><?= $sft['ip_address_data']; ?></td>
+                    <td><?= $sft['ip_address_management']; ?></td>
+                    <td><?= $sft['hostname']; ?></td>
+                    <td><?= $sft['lokasi']; ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
             </table>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Table Last Data VM -->
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4>Latest Baremetal Server</h4>
-          <div class="card-header-action">
-            <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+          <h4>Virtual Machine Terbaru</h4>
+          <div class="card-header-action dropdown">
+            <a href="<?= base_url('virtualmachine') ?>" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-        <div class="card-body p-0">
-          <div class="table-responsive table-invoice">
-            <table class="table table-striped">
-              <tr>
-                <th>Date</th>
-                <th>VM Name</th>
-                <th>IP Address</th>
-                <th>Hostname</th>
-                <th>Disk (GB)</th>
-                <th>Memory (GB)</th>
-                <th>Operating System</th>
-                <th>Jenis Server</th>
-                <th>Processor</th>
-                <th>License</th>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
-              <tr>
-                <td><a href="#">07/05/2023</a></td>
-                <td class="font-weight-600">mas ivan server gacor</td>
-                <td>
-                  <div class="badge badge-warning">192.168.1.1</div>
-                </td>
-                <td>sdas </td>
-                <td class="font-weight-600">1.2TB</td>
-                <td class="font-weight-600">128 GB</td>
-                <td class="font-weight-600">Windows Server 2019</td>
-                <td class="font-weight-600">DB</td>
-                <td class="font-weight-600">Intel Pentium</td>
-                <td class="font-weight-600">cap halal mui</td>
-              </tr>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped" id="tableVm" width="100%">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    No
+                  </th>
+                  <th>Cluster</th>
+                  <th>Operating System</th>
+                  <th>Nama VM</th>
+                  <th>Host</th>
+                  <th>IP Address</th>
+                  <th>Hostname</th>
+                  <th>Jenis Server</th>
+                  <th>Lisence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1;
+                foreach ($vm_terbaru as $vt) : ?>
+                  <tr>
+                    <td class="text-center">
+                      <?= $i++; ?>
+                    </td>
+                    <td><?= $vt['nama_cluster']; ?></td>
+                    <td><?= $vt['nama_os']; ?></td>
+                    <td><?= $vt['nama_vm']; ?></td>
+                    <td><?= $vt['host']; ?></td>
+                    <td><?= $vt['ip_address']; ?></td>
+                    <td><?= $vt['hostname']; ?></td>
+                    <td><?= $vt['jenis_server']; ?></td>
+                    <td><?= $vt['lisence']; ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
             </table>
-
           </div>
         </div>
       </div>
@@ -447,7 +377,7 @@
     data: {
       labels: ['WEB', 'APP', 'DB', 'MNGMT', 'DMZ', 'DEV'],
       datasets: [{
-        label: 'Bare-metal',
+        label: 'Jumlah',
         backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
         data: [totalJenisAppVm, totalJenisWebVm, totalJenisDbVm, totalJenisMngmtVm, totalJenisDmzVm, totalJenisDevVm] // Masukkan data Anda di sini
       }]
@@ -462,23 +392,32 @@
 </script>
 
 <script>
-  var ctx3 = document.getElementById('myChart3').getContext('2d');
-  var chart3 = new Chart(ctx3, {
-    type: 'pie',
-    data: {
-      labels: ['WEB', 'APP', 'DB', 'MNGMT', 'DMZ', 'DEV'],
-      datasets: [{
-        label: 'Bare-metal',
-        backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
-        data: [68, 23, 12, 14, 27, 24] // Masukkan data Anda di sini
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Bare-metal Bandung'
-      }
-    }
+  document.addEventListener("DOMContentLoaded", function() {
+    var datatablesFisik = $("#tableFisik").DataTable({
+      paging: false,
+      searching: false,
+      lengthChange: false,
+      columnDefs: [{
+        orderable: false,
+        targets: [0]
+      }, ],
+    });
+    datatablesFisik.buttons().container().appendTo("#tableFisik_wrapper .col-md-6:eq(0)");
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var datatablesVm = $("#tableVm").DataTable({
+      paging: false,
+      searching: false,
+      lengthChange: false,
+      columnDefs: [{
+        orderable: false,
+        targets: [0]
+      }, ],
+    });
+    datatablesVm.buttons().container().appendTo("#tableVm_wrapper .col-md-6:eq(0)");
   });
 </script>
 <?= $this->endSection(); ?>
