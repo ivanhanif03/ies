@@ -14,6 +14,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
+            <!-- Totak Fisik -->
             <h4>Total Server Fisik</h4>
           </div>
           <div class="card-body">
