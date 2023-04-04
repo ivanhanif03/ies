@@ -351,7 +351,7 @@
       labels: ['APP', 'WEB', 'DB', 'MNGMT', 'DMZ', 'DEV'],
       datasets: [{
         label: 'Jumlah',
-        backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
+        backgroundColor: ['#143F6B', '#F55353', '#FEB139', '#F6F54D', '#2f70b1', '#fd8d8d'],
         data: [totalJenisApp, totalJenisWeb, totalJenisDb, totalJenisMngmt, totalJenisDmz, totalJenisDev] // Masukkan data Anda di sini
       }]
     },
@@ -378,7 +378,7 @@
       labels: ['WEB', 'APP', 'DB', 'MNGMT', 'DMZ', 'DEV'],
       datasets: [{
         label: 'Jumlah',
-        backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#ffa500', '#800080', '#008000'],
+        backgroundColor: ['#143F6B', '#F55353', '#FEB139', '#F6F54D', '#2f70b1', '#fd8d8d'],
         data: [totalJenisAppVm, totalJenisWebVm, totalJenisDbVm, totalJenisMngmtVm, totalJenisDmzVm, totalJenisDevVm] // Masukkan data Anda di sini
       }]
     },
