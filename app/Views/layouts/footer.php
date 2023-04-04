@@ -31,6 +31,7 @@
 <script src="<?= base_url('stisla/modules/datatables/dataTables.bootstrap4.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/datatables/dataTables.select.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/jquery-ui/jquery-ui.min.js') ?>"></script>
+<script src="<?= base_url('stisla/modules/chart.js/chart.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/select2/select2.full.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/selectric/jquery.selectric.min.js') ?>"></script>
 

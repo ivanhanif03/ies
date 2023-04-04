@@ -336,7 +336,6 @@
 </section>
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   var totalJenisApp = <?= json_encode($total_jenis_app); ?>;
   var totalJenisWeb = <?= json_encode($total_jenis_web); ?>;
