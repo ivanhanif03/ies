@@ -1,9 +1,9 @@
-<div class="main-sidebar">
+<div class="main-sidebar ">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="<?= base_url() ?>">IES PORTAL</a>
 </div>
-        <div class="sidebar-brand sidebar-brand-sm">
+        <div class="sidebar-brand sidebar-brand-sm ">
             <a href="<?= base_url() ?>">IP</a>
         </div>
         <ul class="sidebar-menu">
@@ -52,7 +52,7 @@
 
 
             <!-- START SECTION SERVER -->
-            <li class="menu-header">Server</li>
+            <li class="menu-header">Head Office</li>
             <!-- SERVER FISIK -->
             <li class="<?php if ($menu == 'fisik') {
                             echo 'active';
@@ -62,6 +62,40 @@
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
+
+     <!-- START SECTION SERVER -->
+<li class="menu-header">Branch Infrastructure</li>
+<!-- SERVER FISIK -->
+<li class="dropdown <?php if ($menu == 'fisik') { echo 'active'; } ?>">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-server"></i> <span>Server</span></a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="<?= base_url('pc') ?>">Server</a>
+        <a class="dropdown-item" href="<?= base_url('genset') ?>">Swith</a>
+        <a class="dropdown-item" href="<?= base_url('genset') ?>">Router</a>
+        <a class="dropdown-item" href="<?= base_url('genset') ?>">UPS</a>
+    </div>
+</li>
+
+            <!-- PC -->
+            <li class="<?php if ($menu == 'vm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>PC</span></a></li>
+            <!-- END SECTION PC -->
+            <!-- Printer -->
+            <li class="<?php if ($menu == 'vm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Printer</span></a></li>
+            <!-- END SECTION Printer -->
+            <!-- PINPAD -->
+            <li class="<?php if ($menu == 'vm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>PINPAD Machine</span></a></li>
+            <!-- END SECTION PINPAD -->                
+            <!-- Genset -->
+            <li class="<?php if ($menu == 'vm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Genset Machine</span></a></li>
+            <!-- END SECTION Genset -->
 
         </ul>
     </aside>
