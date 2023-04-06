@@ -60,7 +60,7 @@ class User extends BaseController
             'group_id' => $this->request->getVar('role'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully');
+        session()->setFlashdata('pesan', 'Data berhasil diupdate');
 
         return redirect()->to('/user');
     }
@@ -96,7 +96,7 @@ class User extends BaseController
             'phone' => $this->request->getVar('phone'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully');
+        session()->setFlashdata('pesan', 'Data berhasil diupdate');
 
         return redirect()->to('/user');
     }

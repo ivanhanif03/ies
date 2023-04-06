@@ -20,7 +20,7 @@
 <script src="<?= base_url('stisla/modules/jquery/jquery.nicescroll.min.js') ?>"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
 <script src="<?= base_url('stisla/modules/moment/moment.min.js') ?>"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 <script src="<?= base_url('stisla/js/stisla.js') ?>"></script>
 
 <!-- JS Libraies -->
@@ -31,12 +31,12 @@
 <script src="<?= base_url('stisla/modules/datatables/dataTables.bootstrap4.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/datatables/dataTables.select.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/jquery-ui/jquery-ui.min.js') ?>"></script>
-<script src="<?= base_url('stisla/modules/chart.js/chart.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/select2/select2.full.min.js') ?>"></script>
 <script src="<?= base_url('stisla/modules/selectric/jquery.selectric.min.js') ?>"></script>
 
 <!-- Template JS File -->
 <script src="<?= base_url('stisla/js/scripts.js') ?>"></script>
+<script src="<?= base_url('stisla/modules/chart.js/chart.js') ?>"></script>
 <script src="<?= base_url('stisla/js/custom.js') ?>"></script>
 
 <!-- Custom JS -->
