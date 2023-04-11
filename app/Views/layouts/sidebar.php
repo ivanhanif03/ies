@@ -71,7 +71,7 @@
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-server"></i></i> <span>Server</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Server</a></li>
-                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Switch</a></li>
+                <li><a class="nav-link" href="<?= base_url('router') ?>">Switch</a></li>
                 <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Router</a></li>
                 <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">UPS</a></li>
               </ul>
