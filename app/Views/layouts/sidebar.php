@@ -66,15 +66,17 @@
      <!-- START SECTION SERVER -->
 <li class="menu-header">Branch Infrastructure</li>
 <!-- SERVER FISIK -->
-<li class="dropdown <?php if ($menu == 'fisik') { echo 'active'; } ?>">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-server"></i> <span>Server</span></a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="<?= base_url('pc') ?>">Server</a>
-        <a class="dropdown-item" href="<?= base_url('genset') ?>">Swith</a>
-        <a class="dropdown-item" href="<?= base_url('genset') ?>">Router</a>
-        <a class="dropdown-item" href="<?= base_url('genset') ?>">UPS</a>
-    </div>
-</li>
+
+     <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-server"></i></i> <span>Server</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Server</a></li>
+                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Switch</a></li>
+                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Router</a></li>
+                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">UPS</a></li>
+              </ul>
+            </li>
+
 
             <!-- PC -->
             <li class="<?php if ($menu == 'vm') {
