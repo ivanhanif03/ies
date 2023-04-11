@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Server Fisik</h1>
+        <h1>Virtual Machine</h1>
         <?php if (in_groups('operator') || in_groups('admin')) : ?>
             <div class="section-header-breadcrumb buttons">
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-vm"><i class="fas fa-file-excel"></i> Import Excel</a>
@@ -135,7 +135,7 @@
 </section>
 
 <!-- Start Modal Upload Excel -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-vm">
     <div class="modal-dialog modal-sm">
         <div class="modal-content border-0">
             <div class="modal-header">
