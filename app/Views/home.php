@@ -380,7 +380,7 @@
         backgroundColor: ['#143F6B', '#F55353', '#FEB139', '#F6F54D', '#2f70b1', '#fd8d8d'],
         data: [totalJenisAppVm, totalJenisWebVm, totalJenisDbVm, totalJenisMngmtVm, totalJenisDmzVm, totalJenisDevVm] // Masukkan data Anda di sini
       }]
-    },
+    }, 
     options: {
       title: {
         display: true,
