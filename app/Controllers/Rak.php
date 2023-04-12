@@ -130,7 +130,7 @@ class Rak extends BaseController
             $cek_rak = $db->table('raks')->getWhere(['nama_rak' => $nama_rak])->getResult();
 
             if (count($cek_rak) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, nama rak sudah ada</b>');
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama rak sudah ada</b>');
             } else {
 
                 $this->RakModel->save([

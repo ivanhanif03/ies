@@ -10,7 +10,8 @@
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="<?= base_url('stisla/modules/bootstrap/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="<?= base_url('stisla/fontawesome-free-5.15.4-web/css/all.css') ?>">
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="<?= base_url('stisla/node_modules/bootstrap-social/bootstrap-social.css') ?>">
@@ -87,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('img/login_bg.webp') ?>">
+                <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('img/login_bg.jpg') ?>">
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="pb-3">

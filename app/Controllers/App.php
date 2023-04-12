@@ -91,7 +91,7 @@ class App extends BaseController
             // dd($cek_app);
 
             if (count($cek_app) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, nama aplikasi sudah terdaftar</b>');
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama aplikasi sudah terdaftar</b>');
             } else {
 
                 $this->AppModel->save([

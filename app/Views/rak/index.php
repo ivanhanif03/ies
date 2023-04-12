@@ -107,10 +107,11 @@
 
 <!-- Start Modal Upload Excel -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
                 <h5 class="modal-title">File Excel Rak Server</h5>
+                <a href="<?= base_url('template_xls/template_rak.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -159,8 +160,8 @@
                 orderable: false,
                 targets: [0]
             }, {
-                visible: false,
-                targets: [1],
+                // visible: false,
+                // targets: [1],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',

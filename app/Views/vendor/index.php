@@ -121,10 +121,11 @@
 
 <!-- Start Modal Upload Excel -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
                 <h5 class="modal-title">File Excel Vendor</h5>
+                <a href="<?= base_url('template_xls/template_vendor.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -176,7 +177,7 @@
                 },
                 {
                     visible: false,
-                    targets: [1, 3, 6, 7, 8, 9, 10]
+                    targets: [ 3, 6, 7, 8, 9, 10]
                 }
             ],
             buttons: [{

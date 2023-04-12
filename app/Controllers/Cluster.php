@@ -83,7 +83,7 @@ class Cluster extends BaseController
             $cek_cluster = $db->table('cluster')->getWhere(['nama_cluster' => $nama_cluster])->getResult();
 
             if (count($cek_cluster) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger">Data gagal diimport, cluster sudah terdaftar</b>');
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, cluster sudah terdaftar</b>');
             } else {
 
                 $this->ClusterModel->save([

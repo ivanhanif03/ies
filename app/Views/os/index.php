@@ -98,10 +98,11 @@
 
 <!-- Start Modal Upload Excel -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-os">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
                 <h5 class="modal-title">File Excel OS</h5>
+                <a href="<?= base_url('template_xls/template_os.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -116,6 +117,7 @@
                 <form method="post" action="/os/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="form-group">
+                        <br>
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
                     </div>
@@ -150,8 +152,8 @@
                 orderable: false,
                 targets: [0]
             }, {
-                visible: false,
-                targets: [1],
+                // visible: false,
+                // targets: [1],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
