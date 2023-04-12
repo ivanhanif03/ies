@@ -2,7 +2,7 @@
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="<?= base_url() ?>">IES PORTAL</a>
-</div>
+        </div>
         <div class="sidebar-brand sidebar-brand-sm ">
             <a href="<?= base_url() ?>">IP</a>
         </div>
@@ -63,18 +63,31 @@
                         } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
 
-     <!-- START SECTION SERVER -->
-<li class="menu-header">Branch Infrastructure</li>
-<!-- SERVER FISIK -->
+            <!-- START SECTION SERVER -->
+            <li class="menu-header">Branch Infrastructure</li>
+            <!-- SERVER FISIK -->
 
-     <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-server"></i></i> <span>Server</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Server</a></li>
-                <li><a class="nav-link" href="<?= base_url('router') ?>">Switch</a></li>
-                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Router</a></li>
-                <li><a class="nav-link" href="<?= base_url('virtualmachine') ?>">UPS</a></li>
-              </ul>
+            <li class="dropdown <?php if (($menu == 'server_cabang') || ($menu == 'switch') || ($menu == 'router') || ($menu == 'ups') || ($menu == 'pinpad')) {
+                                    echo 'active';
+                                } ?>">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-server"></i></i> <span>Ruang Server</span></a>
+                <ul class="dropdown-menu">
+                    <li class="<?php if ($menu == 'server_cabang') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('ruang_server/server') ?>">Server</a></li>
+                    <li class="<?php if ($menu == 'switch') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('router') ?>">Switch</a></li>
+                    <li class="<?php if ($menu == 'router') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Router</a></li>
+                    <li class="<?php if ($menu == 'pinpad') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Pinpad</a></li>
+                    <li class="<?php if ($menu == 'ups') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>">UPS</a></li>
+                </ul>
             </li>
 
 
@@ -92,7 +105,7 @@
             <li class="<?php if ($menu == 'vm') {
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>PINPAD Machine</span></a></li>
-            <!-- END SECTION PINPAD -->                
+            <!-- END SECTION PINPAD -->
             <!-- Genset -->
             <li class="<?php if ($menu == 'vm') {
                             echo 'active';
