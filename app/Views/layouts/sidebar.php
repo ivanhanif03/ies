@@ -68,7 +68,27 @@
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
+            <li class="menu-header">Branch Infrastructure</li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Ruang Server</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="forms-advanced-form.html">Server</a></li>
+                <li><a class="nav-link" href="forms-editor.html">Router</a></li>
+                <li><a class="nav-link" href="forms-validation.html">Switch</a></li>
+                <li><a class="nav-link" href="forms-validation.html">UPS</a></li>
+              </ul>
+            </li>
+            <li class="<?php if ($menu == 'apps') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Pinpad</span></a></li>
+            <li class="<?php if ($menu == 'apps') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Printer</span></a></li>
+             <li class="<?php if ($menu == 'apps') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>PC</span></a></li>
 
         </ul>
+        
     </aside>
 </div>
