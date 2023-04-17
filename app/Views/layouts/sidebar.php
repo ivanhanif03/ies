@@ -2,7 +2,7 @@
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="<?= base_url() ?>">IES PORTAL</a>
-</div>
+        </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="<?= base_url() ?>">IP</a>
         </div>
@@ -48,7 +48,7 @@
                 <li class="<?php if ($menu == 'kontrak') {
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('kontrak') ?>"><i class="fas fa-list"></i> <span>Kontrak</span></a></li>
-                            
+
                 <!-- Cluster -->
                 <li class="<?php if ($menu == 'cluster') {
                                 echo 'active';
@@ -68,27 +68,52 @@
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
-            <li class="menu-header">Branch Infrastructure</li>
-            <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Ruang Server</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="forms-advanced-form.html">Server</a></li>
-                <li><a class="nav-link" href="forms-editor.html">Router</a></li>
-                <li><a class="nav-link" href="forms-validation.html">Switch</a></li>
-                <li><a class="nav-link" href="forms-validation.html">UPS</a></li>
-              </ul>
-            </li>
-            <li class="<?php if ($menu == 'apps') {
-                                echo 'active';
-                            } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Pinpad</span></a></li>
-            <li class="<?php if ($menu == 'apps') {
-                                echo 'active';
-                            } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>Printer</span></a></li>
-             <li class="<?php if ($menu == 'apps') {
-                                echo 'active';
-                            } ?>"><a class="nav-link" href="<?= base_url('apps') ?>"><i class="fas fa-rocket"></i> <span>PC</span></a></li>
 
+            <!-- START SECTION BRANCH -->
+            <li class="menu-header">Branch Infrastructure</li>
+            <!-- RUANG SERVER -->
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown <?php if (($menu == 'server_branch') || ($menu == 'router') || ($menu == 'switch') || ($menu == 'ups')) {
+                                                                echo 'active';
+                                                            } ?>"><i class="far fa-file-alt"></i> <span>Ruang Server</span></a>
+                <ul class="dropdown-menu">
+                    <!-- SERVER -->
+                    <li><a class="nav-link <?php if ($menu == 'server_branch') {
+                                                echo 'active';
+                                            } ?>" href="forms-advanced-form.html">Server</a></li>
+
+                    <!-- ROUTER -->
+                    <li><a class="nav-link <?php if ($menu == 'router') {
+                                                echo 'active';
+                                            } ?>" href="forms-editor.html">Router</a></li>
+
+                    <!-- SWITCH -->
+                    <li><a class="nav-link <?php if ($menu == 'switch') {
+                                                echo 'active';
+                                            } ?>" href="forms-validation.html">Switch</a></li>
+
+                    <!-- UPS -->
+                    <li><a class="nav-link <?php if ($menu == 'ups') {
+                                                echo 'active';
+                                            } ?>" href="forms-validation.html">UPS</a></li>
+                </ul>
+            </li>
+
+            <!-- PINPAD -->
+            <li class="<?php if ($menu == 'pinpad') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('pinpad') ?>"><i class="fas fa-rocket"></i> <span>Pinpad</span></a></li>
+
+            <!-- PRINTER -->
+            <li class="<?php if ($menu == 'printer') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('printer') ?>"><i class="fas fa-rocket"></i> <span>Printer</span></a></li>
+
+            <!-- PC -->
+            <li class="<?php if ($menu == 'pc') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('pc') ?>"><i class="fas fa-rocket"></i> <span>PC</span></a></li>
+            <!-- END SECTION BRANCH -->
         </ul>
-        
     </aside>
 </div>
