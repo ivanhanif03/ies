@@ -31,10 +31,6 @@ class ServerBranch extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('vendor_software_id', 'vendor', 'id', '', 'CASCADE');
-        $this->forge->addForeignKey('vendor_hardware_id', 'vendor', 'id', '', 'CASCADE');
-        $this->forge->addForeignKey('app_id', 'apps', 'id', '', 'CASCADE');
-        $this->forge->addForeignKey('rak_id', 'raks', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('os_id', 'os', 'id', '', 'CASCADE');
 
         $this->forge->createTable('server_fisik', true);
