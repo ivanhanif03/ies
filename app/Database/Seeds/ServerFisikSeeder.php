@@ -33,7 +33,6 @@ class ServerFisikSeeder extends Seeder
                 'processor'        => 'Intel Xeon E-2314G',
                 'sos'           => '2023-11-12',
                 'eos'           => '2028-11-12',
-                'no_pks'       => 'SADAW1WEQWEXC',
                 'created_at'    => Time::now(),
                 'updated_at'    => Time::now(),
             ],

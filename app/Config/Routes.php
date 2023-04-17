@@ -80,6 +80,17 @@ $routes->get('/vendor/edit/(:segment)', 'Vendor::edit/$1', ['filter' => 'role:ad
 $routes->post('/vendor/update/(:segment)', 'Vendor::update/$1', ['filter' => 'role:admin, operator']);
 $routes->delete('/vendor/(:num)', 'Vendor::delete/$1', ['filter' => 'role:admin, operator']);
 
+//KONTRAK
+$routes->get('/kontrak', 'Kontrak::index', ['filter' => 'role:admin, operator']);
+$routes->get('/kontrak/index', 'Kontrak::index', ['filter' => 'role:admin, operator']);
+$routes->get('/kontrak/detail/(:segment)', 'Kontrak::detail/$1', ['filter' => 'role:admin, operator']);
+$routes->get('/kontrak/create', 'Kontrak::create', ['filter' => 'role:admin, operator']);
+$routes->post('/kontrak/save', 'Kontrak::save', ['filter' => 'role:admin, operator']);
+$routes->post('/kontrak/saveExcel', 'Kontrak::saveExcel', ['filter' => 'role:admin, operator']);
+$routes->get('/kontrak/edit/(:segment)', 'Kontrak::edit/$1', ['filter' => 'role:admin, operator']);
+$routes->post('/kontrak/update/(:segment)', 'Kontrak::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/kontrak/(:num)', 'Kontrak::delete/$1', ['filter' => 'role:admin, operator']);
+
 //RAK
 $routes->get('/rak', 'Rak::index', ['filter' => 'role:admin, operator']);
 $routes->get('/rak/index', 'Rak::index', ['filter' => 'role:admin, operator']);

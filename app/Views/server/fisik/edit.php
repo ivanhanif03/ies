@@ -211,10 +211,9 @@
                                     <label>Vendor Software</label>
                                     <select class="form-control select2 text-sm <?php if (session('errors.vendor_software_id')) : ?>is-invalid<?php endif ?>" name="vendor_software_id" id="vendor_software_id" style="width: 100%;">
                                         <option value="" disabled selected>Pilih Vendor</option>
-                                        <?php foreach ($vendor as $v) : ?>
-                                            <option value="<?= $v['id']; ?>" <?php if ($v['id'] == $fisik['vendor_software_id']) : ?>selected<?php endif; ?>>
-                                                <?= $v['nama_vendor']; ?>
-                                            </option>
+                                        <?php foreach ($kontrak as $k) : ?>
+                                            <option value="<?= $k['id']; ?>" <?php if ($k['id'] == $fisik['vendor_software_id']) : ?>selected<?php endif; ?>>
+                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
@@ -228,10 +227,9 @@
                                     <label>Vendor Hardware</label>
                                     <select class="form-control select2 text-sm <?php if (session('errors.vendor_hardware_id')) : ?>is-invalid<?php endif ?>" name="vendor_hardware_id" id="vendor_hardware_id" style="width: 100%;">
                                         <option value="" disabled selected>Pilih Vendor</option>
-                                        <?php foreach ($vendor as $v) : ?>
-                                            <option value="<?= $v['id']; ?>" <?php if ($v['id'] == $fisik['vendor_hardware_id']) : ?>selected<?php endif; ?>>
-                                                <?= $v['nama_vendor']; ?>
-                                            </option>
+                                        <?php foreach ($kontrak as $k) : ?>
+                                            <option value="<?= $k['id']; ?>" <?php if ($k['id'] == $fisik['vendor_hardware_id']) : ?>selected<?php endif; ?>>
+                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
@@ -351,18 +349,6 @@
                                         <?= $validation->getError('eos'); ?>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <!-- Start Field Nomor PKS -->
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="no_pks">Nomor PKS</label>
-                                    <input id="no_pks" type="text" class="form-control <?php if (session('errors.no_pks')) : ?>is-invalid<?php endif ?>" name="no_pks" value="<?= $fisik['no_pks']; ?>" placeholder="Masukkan no pks">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('no_pks'); ?>
-                                    </div>
-                                </div>
-                                <!-- End Field Nomor PKS -->
                             </div>
 
                             <div class="d-flex justify-content-end">

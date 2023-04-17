@@ -88,33 +88,6 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <div class="form-group col-12">
-                                    <label for="scope_work">Scope of Work</label>
-                                    <textarea id="scope_work" class="form-control <?php if (session('errors.scope_work')) : ?>is-invalid<?php endif ?>" name="scope_work" placeholder="Masukkan scope of work" rows="5" style="height:100%;"><?= old('scope_work') ?></textarea>
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('scope_work'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="nilai_kontrak">Nilai Kontrak</label>
-                                    <input id="nilai_kontrak" type="text" class="form-control <?php if (session('errors.nilai_kontrak')) : ?>is-invalid<?php endif ?>" name="nilai_kontrak" value="<?= old('nilai_kontrak') ?>" placeholder="Masukkan pic phone" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('nilai_kontrak'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="tempo_pembayaran">Tempo Pembayaran</label>
-                                    <input id="tempo_pembayaran" type="text" class="form-control datepicker <?php if (session('errors.tempo_pembayaran')) : ?>is-invalid<?php endif ?>" name="tempo_pembayaran" value="<?= old('tempo_pembayaran') ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('tempo_pembayaran'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="d-flex justify-content-end">
                                 <a href="<?= base_url('vendor') ?>" class="btn btn-md btn-secondary mr-1">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-md">

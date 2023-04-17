@@ -3,10 +3,10 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Vendor</h1>
+        <h1>Kontrak</h1>
         <div class="section-header-breadcrumb buttons">
             <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('vendor/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Vendor</a>
+            <a href="<?= base_url('kontrak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kontrak</a>
         </div>
     </div>
 
@@ -25,53 +25,49 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableVendor" width="100%">
+                            <table class="table table-striped" id="tableKontrak" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
                                             No
                                         </th>
                                         <th>ID</th>
-                                        <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>PIC</th>
-                                        <th>No. HP PIC</th>
-                                        <th>Akun Manager</th>
-                                        <th>No. HP Akun Manager</th>
-                                        <th>Helpdesk</th>
-                                        <th>No. HP Helpdesk</th>
+                                        <th>Nama Kontrak</th>
+                                        <th>No PKS</th>
+                                        <th>Nilai Kontrak</th>
+                                        <th>Scope of Work</th>
+                                        <th>Tempo Pembayaran</th>
+                                        <th>Vendor</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($vendor as $v) : ?>
+                                    foreach ($kontrak as $k) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $v['id']; ?></td>
-                                            <td><?= $v['nama_vendor']; ?></td>
-                                            <td><?= $v['alamat']; ?></td>
-                                            <td><?= $v['pic']; ?></td>
-                                            <td><?= $v['pic_phone']; ?></td>
-                                            <td><?= $v['akun_manager']; ?></td>
-                                            <td><?= $v['akun_manager_phone']; ?></td>
-                                            <td><?= $v['helpdesk']; ?></td>
-                                            <td><?= $v['helpdesk_phone']; ?></td>
+                                            <td><?= $k['id']; ?></td>
+                                            <td><?= $k['nama_kontrak']; ?></td>
+                                            <td><?= $k['no_pks']; ?></td>
+                                            <td>Rp<?= number_format($k['nilai_kontrak'], 0, '', '.'); ?></td>
+                                            <td><?= $k['scope_work']; ?></td>
+                                            <td><?= date("d-m-Y", strtotime($k['tempo_pembayaran'])); ?></td>
+                                            <td><?= $k['nama_vendor']; ?></td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('vendor/edit') . '/' . $v['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('kontrak/edit') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
-                                                    <a href="<?= base_url('vendor/detail') . '/' . $v['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('kontrak/detail') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $v['id'] ?>">
+                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $k['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
                                                 </div>
@@ -79,20 +75,20 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete<?= $v['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete<?= $k['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Delete Vendor</h5>
+                                                        <h5 class="modal-title">Delete Kontrak</h5>
                                                     </div>
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $v['nama_vendor']; ?>
+                                                            <?= $k['nama_kontrak']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/vendor') . '/' . $v['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/kontrak') . '/' . $k['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -118,8 +114,8 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
-                <h5 class="modal-title">File Excel Vendor</h5>
-                <a href="<?= base_url('template_xls/template_vendor.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
+                <h5 class="modal-title">File Excel Kontrak</h5>
+                <a href="<?= base_url('template_xls/template_kontrak.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -131,7 +127,7 @@
                 <?php
                 }
                 ?>
-                <form method="post" action="/vendor/saveExcel" enctype="multipart/form-data">
+                <form method="post" action="/kontrak/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
@@ -161,7 +157,7 @@
             currentdate.getSeconds();
 
         // Datatables with Buttons
-        var datatablesUsers = $("#tableVendor").DataTable({
+        var datatablesUsers = $("#tableKontrak").DataTable({
 
             // responsive: true,
             lengthChange: false,
@@ -170,17 +166,17 @@
                     targets: [0]
                 },
                 {
-                    visible: false,
-                    targets: [4, 5]
+                    // visible: false,
+                    // targets: [4, 5]
                 }
             ],
             buttons: [{
                     extend: 'excelHtml5',
                     className: 'btn btn-outline-success',
-                    title: 'Daftar Vendor' + datetime,
-                    messageTop: 'Data Total Vendor Server Bank BTN',
+                    title: 'Daftar Kontrak' + datetime,
+                    messageTop: 'Data Total Kontrak Infra Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -193,11 +189,11 @@
                     orientation: 'landscape',
                     className: 'btn btn-outline-danger',
                     pageSize: 'LEGAL',
-                    title: 'Daftar Vendor' + datetime,
+                    title: 'Daftar Kontrak' + datetime,
                     // messageBottom: datetime,
-                    messageTop: 'Data Total Vendor Server Bank BTN ',
+                    messageTop: 'Data Total Kontrak Infra Bank BTN ',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -207,7 +203,7 @@
                 }
             ]
         });
-        datatablesUsers.buttons().container().appendTo("#tableVendor_wrapper .col-md-6:eq(0)");
+        datatablesUsers.buttons().container().appendTo("#tableKontrak_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>

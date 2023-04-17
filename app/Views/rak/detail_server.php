@@ -61,12 +61,12 @@
                                         <td><?= $fisik->rak_unit ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Vendor Software</td>
-                                        <td><?= $fisik->v1 ?></td>
+                                        <td>No PKS Vendor Software</td>
+                                        <td><?= $fisik->n1 ?> - <?= $fisik->v1 ?> - <?= $fisik->k1 ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Vendor Hardware</td>
-                                        <td><?= $fisik->v2 ?></td>
+                                        <td>No PKS Vendor Hardware</td>
+                                        <td><?= $fisik->n1 ?> - <?= $fisik->v2 ?> - <?= $fisik->k2 ?></td>
                                     </tr>
                                     <tr>
                                         <td>Merek</td>
@@ -119,10 +119,6 @@
                                     <tr>
                                         <td>End of Service</td>
                                         <td><?= $fisik->eos ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor PKS</td>
-                                        <td><?= $fisik->no_pks ?></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

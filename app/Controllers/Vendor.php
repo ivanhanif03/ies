@@ -61,9 +61,6 @@ class Vendor extends BaseController
             'akun_manager_phone'  => 'required|min_length[9]|max_length[13]',
             'helpdesk'  => 'required',
             'helpdesk_phone'  => 'required|min_length[9]|max_length[13]',
-            'scope_work'  => 'required',
-            'nilai_kontrak'  => 'required',
-            'tempo_pembayaran'  => 'required',
         ])) {
             return redirect()->to('vendor/create')->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -77,9 +74,6 @@ class Vendor extends BaseController
             'akun_manager_phone' => $this->request->getVar('akun_manager_phone'),
             'helpdesk' => $this->request->getVar('helpdesk'),
             'helpdesk_phone' => $this->request->getVar('helpdesk_phone'),
-            'scope_work' => $this->request->getVar('scope_work'),
-            'nilai_kontrak' => $this->request->getVar('nilai_kontrak'),
-            'tempo_pembayaran' => $this->request->getVar('tempo_pembayaran'),
         ]);
 
         session()->setFlashdata('pesan', 'Data vendor baru berhasil ditambahkan');
@@ -112,9 +106,6 @@ class Vendor extends BaseController
             $akun_manager_phone = $row[5];
             $helpdesk = $row[6];
             $helpdesk_phone = $row[7];
-            $scope_work = $row[8];
-            $nilai_kontrak = $row[9];
-            $tempo_pembayaran = $row[10];
 
             $db = \Config\Database::connect();
 
@@ -136,9 +127,6 @@ class Vendor extends BaseController
                     'akun_manager_phone' => $akun_manager_phone,
                     'helpdesk' => $helpdesk,
                     'helpdesk_phone' => $helpdesk_phone,
-                    'scope_work' => $scope_work,
-                    'nilai_kontrak' => $nilai_kontrak,
-                    'tempo_pembayaran' => $tempo_pembayaran,
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data vendor');
             }
@@ -171,9 +159,6 @@ class Vendor extends BaseController
             'akun_manager_phone'  => 'required|min_length[9]|max_length[13]',
             'helpdesk'  => 'required',
             'helpdesk_phone'  => 'required|min_length[9]|max_length[13]',
-            'scope_work'  => 'required',
-            'nilai_kontrak'  => 'required',
-            'tempo_pembayaran'  => 'required',
         ])) {
             return redirect()->to('vendor/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -187,9 +172,6 @@ class Vendor extends BaseController
             'akun_manager_phone' => $this->request->getVar('akun_manager_phone'),
             'helpdesk' => $this->request->getVar('helpdesk'),
             'helpdesk_phone' => $this->request->getVar('helpdesk_phone'),
-            'scope_work' => $this->request->getVar('scope_work'),
-            'nilai_kontrak' => $this->request->getVar('nilai_kontrak'),
-            'tempo_pembayaran' => $this->request->getVar('tempo_pembayaran'),
         ]);
 
         session()->setFlashdata('pesan', 'Data vendor berhasil diedit');

@@ -51,18 +51,6 @@
                                     <td>No HP Helpdesk</td>
                                     <td><?= $vendor['helpdesk_phone'] ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Scope of Work</td>
-                                    <td><?= $vendor['scope_work'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Nilai Kontrak</td>
-                                    <td>Rp <?= number_format($vendor['nilai_kontrak'], 0, '', '.'); ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Tempo Pembayaran</td>
-                                    <td><?= date("d-m-Y", strtotime($vendor['tempo_pembayaran'])); ?></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

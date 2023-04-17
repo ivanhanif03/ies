@@ -14,7 +14,7 @@ class ServerFisikModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'ip_address_management', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'processor', 'sos', 'eos', 'no_pks'];
+    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'ip_address_management', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'processor', 'sos', 'eos'];
 
     // Dates
     protected $useTimestamps = true;
@@ -69,14 +69,20 @@ class ServerFisikModel extends Model
     public function getOneServerFisik($id)
     {
         return $this->db->table('server_fisik')
-            ->join('vendor v_sw', 'server_fisik.vendor_software_id=v_sw.id', 'left')
-            ->join('vendor v_hw', 'server_fisik.vendor_hardware_id=v_hw.id', 'left')
+            ->join('kontrak v_sw', 'server_fisik.vendor_software_id=v_sw.id', 'left')
+            ->join('kontrak v_hw', 'server_fisik.vendor_hardware_id=v_hw.id', 'left')
+            ->join('vendor vs', 'server_fisik.vendor_software_id=vs.id', 'left')
+            ->join('vendor vh', 'server_fisik.vendor_hardware_id=vh.id', 'left')
             ->join('apps', 'apps.id=server_fisik.app_id', 'left')
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
             ->join('os', 'os.id=server_fisik.os_id', 'left')
             ->select('server_fisik.*')
-            ->select('v_sw.nama_vendor v1')
-            ->select('v_hw.nama_vendor v2')
+            ->select('vs.nama_vendor n1')
+            ->select('vh.nama_vendor n2')
+            ->select('v_sw.no_pks v1')
+            ->select('v_hw.no_pks v2')
+            ->select('v_sw.nama_kontrak k1')
+            ->select('v_hw.nama_kontrak k2')
             ->select('apps.*')
             ->select('raks.*')
             ->select('os.*')

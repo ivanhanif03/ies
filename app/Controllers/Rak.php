@@ -124,6 +124,7 @@ class Rak extends BaseController
             // $id = $row[0];
             $nama_rak = $row[0];
             $lokasi = $row[1];
+            $gambar_rak = $row[2];
 
             $db = \Config\Database::connect();
 
@@ -136,6 +137,7 @@ class Rak extends BaseController
                 $this->RakModel->save([
                     'nama_rak' => $nama_rak,
                     'lokasi' => $lokasi,
+                    'gambar_rak' => $gambar_rak,
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data rak');
             }

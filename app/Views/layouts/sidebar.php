@@ -1,9 +1,9 @@
-<div class="main-sidebar ">
+<div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="<?= base_url() ?>">IES PORTAL</a>
-        </div>
-        <div class="sidebar-brand sidebar-brand-sm ">
+</div>
+        <div class="sidebar-brand sidebar-brand-sm">
             <a href="<?= base_url() ?>">IP</a>
         </div>
         <ul class="sidebar-menu">
@@ -43,6 +43,12 @@
                 <li class="<?php if ($menu == 'vendor') {
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('vendor') ?>"><i class="fas fa-users-cog"></i> <span>Vendor</span></a></li>
+
+                <!-- KONTRAK -->
+                <li class="<?php if ($menu == 'kontrak') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('kontrak') ?>"><i class="fas fa-list"></i> <span>Kontrak</span></a></li>
+                            
                 <!-- Cluster -->
                 <li class="<?php if ($menu == 'cluster') {
                                 echo 'active';
@@ -52,7 +58,7 @@
 
 
             <!-- START SECTION SERVER -->
-            <li class="menu-header">Head Office</li>
+            <li class="menu-header">Server</li>
             <!-- SERVER FISIK -->
             <li class="<?php if ($menu == 'fisik') {
                             echo 'active';
@@ -62,55 +68,6 @@
                             echo 'active';
                         } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
             <!-- END SECTION SERVER -->
-
-            <!-- START SECTION SERVER -->
-            <li class="menu-header">Branch Infrastructure</li>
-            <!-- SERVER FISIK -->
-
-            <li class="dropdown <?php if (($menu == 'server_cabang') || ($menu == 'switch') || ($menu == 'router') || ($menu == 'ups') || ($menu == 'pinpad')) {
-                                    echo 'active';
-                                } ?>">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-server"></i></i> <span>Ruang Server</span></a>
-                <ul class="dropdown-menu">
-                    <li class="<?php if ($menu == 'server_cabang') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('ruang_server/server') ?>">Server</a></li>
-                    <li class="<?php if ($menu == 'switch') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('router') ?>">Switch</a></li>
-                    <li class="<?php if ($menu == 'router') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Router</a></li>
-                    <li class="<?php if ($menu == 'pinpad') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>">Pinpad</a></li>
-                    <li class="<?php if ($menu == 'ups') {
-                                    echo 'active';
-                                } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>">UPS</a></li>
-                </ul>
-            </li>
-
-
-            <!-- PC -->
-            <li class="<?php if ($menu == 'vm') {
-                            echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>PC</span></a></li>
-            <!-- END SECTION PC -->
-            <!-- Printer -->
-            <li class="<?php if ($menu == 'vm') {
-                            echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Printer</span></a></li>
-            <!-- END SECTION Printer -->
-            <!-- PINPAD -->
-            <li class="<?php if ($menu == 'vm') {
-                            echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>PINPAD Machine</span></a></li>
-            <!-- END SECTION PINPAD -->
-            <!-- Genset -->
-            <li class="<?php if ($menu == 'vm') {
-                            echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Genset Machine</span></a></li>
-            <!-- END SECTION Genset -->
 
         </ul>
     </aside>

@@ -7,16 +7,16 @@ use App\Models\AppModel;
 use App\Models\OsModel;
 use App\Models\RakModel;
 use App\Models\ServerFisikModel;
-use App\Models\VendorModel;
+use App\Models\KontrakModel;
 
 class ServerFisik extends BaseController
 {
-    protected $ServerFisikModel, $VendorModel, $AppModel, $RakModel, $OsModel;
+    protected $ServerFisikModel, $KontrakModel, $AppModel, $RakModel, $OsModel;
 
     public function __construct()
     {
         $this->ServerFisikModel = new ServerFisikModel();
-        $this->VendorModel = new VendorModel();
+        $this->KontrakModel = new KontrakModel();
         $this->RakModel = new RakModel();
         $this->AppModel = new AppModel();
         $this->OsModel = new OsModel();
@@ -31,8 +31,6 @@ class ServerFisik extends BaseController
             'fisik' => $this->ServerFisikModel->getAll()
         ];
 
-        // dd($data);
-
         return view('server/fisik/index', $data);
     }
 
@@ -42,8 +40,6 @@ class ServerFisik extends BaseController
             'title' => 'Detail Server Fisik',
             'menu' => 'fisik',
             'fisik' => $this->ServerFisikModel->getOneServerFisik($id),
-            // 'nama_vendor' => $this->ServerFisikModel->getNamaVendor($id),
-            // 'vendor' => $this->VendorModel->getVendor()
         ];
 
         return view('server/fisik/detail', $data);
@@ -56,7 +52,7 @@ class ServerFisik extends BaseController
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
             'fisik' => $this->ServerFisikModel->getServerFisik(),
-            'vendor' => $this->VendorModel->getVendor(),
+            'kontrak' => $this->KontrakModel->getKontrak(),
             'app' => $this->AppModel->getApp(),
             'rak' => $this->RakModel->getRak(),
             'os' => $this->OsModel->getOs()
@@ -91,7 +87,6 @@ class ServerFisik extends BaseController
             'processor'  => 'required',
             'sos'  => 'required',
             'eos'  => 'required',
-            'no_pks'  => 'required',
         ])) {
             return redirect()->to('serverfisik/create')->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -119,7 +114,6 @@ class ServerFisik extends BaseController
             'processor' => $this->request->getVar('processor'),
             'sos' => $this->request->getVar('sos'),
             'eos' => $this->request->getVar('eos'),
-            'no_pks' => $this->request->getVar('no_pks'),
         ]);
 
         session()->setFlashdata('pesan', 'Data server fisik baru berhasil ditambahkan');
@@ -166,7 +160,6 @@ class ServerFisik extends BaseController
             $processor = $row[19];
             $sos = $row[20];
             $eos = $row[21];
-            $no_pks = $row[22];
 
             $db = \Config\Database::connect();
 
@@ -175,7 +168,7 @@ class ServerFisik extends BaseController
             if (count($cek_kode_aset) > 0) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kode aset sudah ada</b>');
             }
-            if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($processor == null) || ($sos == null) || ($eos == null) || ($no_pks == null)) {
+            if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($processor == null) || ($sos == null) || ($eos == null)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->ServerFisikModel->save([
@@ -201,7 +194,6 @@ class ServerFisik extends BaseController
                     'processor' => $processor,
                     'sos' => $sos,
                     'eos' => $eos,
-                    'no_pks' => $no_pks,
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data server fisik');
             }
@@ -217,7 +209,7 @@ class ServerFisik extends BaseController
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
             'fisik' => $this->ServerFisikModel->getServerFisik($id),
-            'vendor' => $this->VendorModel->getVendor(),
+            'kontrak' => $this->KontrakModel->getKontrak(),
             'app' => $this->AppModel->getApp(),
             'rak' => $this->RakModel->getRak(),
             'os' => $this->OsModel->getOs()
@@ -252,7 +244,6 @@ class ServerFisik extends BaseController
             'processor'  => 'required',
             'sos'  => 'required',
             'eos'  => 'required',
-            'no_pks'  => 'required',
         ])) {
             return redirect()->to('serverfisik/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -280,7 +271,6 @@ class ServerFisik extends BaseController
             'processor' => $this->request->getVar('processor'),
             'sos' => $this->request->getVar('sos'),
             'eos' => $this->request->getVar('eos'),
-            'no_pks' => $this->request->getVar('no_pks'),
         ]);
 
         session()->setFlashdata('pesan', 'Data server fisik berhasil diedit');

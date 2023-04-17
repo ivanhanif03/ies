@@ -32,7 +32,6 @@ class ServerFisik extends Migration
             'processor'         => ['type' => 'varchar', 'constraint' => 50],
             'sos'               => ['type' => 'date'],
             'eos'               => ['type' => 'date'],
-            'no_pks'           => ['type' => 'varchar', 'constraint' => 100],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

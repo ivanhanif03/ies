@@ -55,7 +55,6 @@
                                         <th>Lokasi</th>
                                         <th>SOS</th>
                                         <th>EOS</th>
-                                        <th>No PKS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,7 +96,6 @@
                                             <td class="text-capitalize"><?= $sf['lokasi']; ?></td>
                                             <td><?= $sf['sos']; ?></td>
                                             <td><?= $sf['eos']; ?></td>
-                                            <td><?= $sf['no_pks']; ?></td>
                                         </tr>
 
                                         <!-- Start Modal Delete -->
@@ -189,7 +187,7 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                targets: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
@@ -197,7 +195,7 @@
                     title: 'Server Fisik Bank BTN' + datetime,
                     messageTop: ' <?= $rak['nama_rak']; ?>',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
