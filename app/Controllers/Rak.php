@@ -72,11 +72,11 @@ class Rak extends BaseController
             'nama_rak'     => 'required|is_unique[raks.nama_rak,id,{id}]',
             'lokasi'    => 'required',
             'gambar_rak' => [
-                'rules' => 'mime_in[gambar_rak,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_rak,1000]',
+                'rules' => 'mime_in[gambar_rak,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_rak,10000]',
                 'errors' => [
                     // 'uploaded' => 'Harus ada Gambar Rak yang diupload',
                     'mime_in' => 'File Extention Harus Berupa jpg,jpeg,gif,png',
-                    'max_size' => 'Ukuran File Maksimal 1 MB'
+                    'max_size' => 'Ukuran File Maksimal 10 MB'
                 ]
 
             ]
@@ -166,11 +166,11 @@ class Rak extends BaseController
             'nama_rak'     => 'required',
             'lokasi'    => 'required',
             'gambar_rak' => [
-                'rules' => 'mime_in[gambar_rak,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_rak,1000]',
+                'rules' => 'mime_in[gambar_rak,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_rak,10000]',
                 'errors' => [
                     // 'uploaded' => 'Harus ada Gambar Rak yang diupload',
                     'mime_in' => 'File extention harus berupa jpg,jpeg,gif,png',
-                    'max_size' => 'Ukuran gambar maksimal 1 MB'
+                    'max_size' => 'Ukuran gambar maksimal 10 MB'
                 ]
 
             ]
