@@ -184,7 +184,7 @@
                                         <option value="" disabled selected>Pilih Rak</option>
                                         <?php foreach ($rak as $r) : ?>
                                             <option value="<?= $r['id']; ?>" <?php if ($r['id'] == $fisik['rak_id']) : ?>selected<?php endif; ?>>
-                                                <?= $r['nama_rak']; ?>
+                                                <?= $r['nama_rak']; ?> - <?= $r['lokasi']; ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -213,7 +213,7 @@
                                         <option value="" disabled selected>Pilih Vendor</option>
                                         <?php foreach ($kontrak as $k) : ?>
                                             <option value="<?= $k['id']; ?>" <?php if ($k['id'] == $fisik['vendor_software_id']) : ?>selected<?php endif; ?>>
-                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>                                            </option>
+                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?> </option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
@@ -229,7 +229,7 @@
                                         <option value="" disabled selected>Pilih Vendor</option>
                                         <?php foreach ($kontrak as $k) : ?>
                                             <option value="<?= $k['id']; ?>" <?php if ($k['id'] == $fisik['vendor_hardware_id']) : ?>selected<?php endif; ?>>
-                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>                                            </option>
+                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?> </option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">

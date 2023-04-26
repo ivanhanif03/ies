@@ -137,7 +137,7 @@
                                         <option value="" disabled selected>Pilih Rak</option>
                                         <?php foreach ($rak as $r) : ?>
                                             <option value="<?= $r['id']; ?>">
-                                                <?= $r['nama_rak']; ?>
+                                                <?= $r['nama_rak']; ?> - <?= $r['lokasi']; ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -183,7 +183,7 @@
                                         <option value="" disabled selected>Pilih Vendor</option>
                                         <?php foreach ($kontrak as $k) : ?>
                                             <option value="<?= $k['id']; ?>">
-                                            <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>
+                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
