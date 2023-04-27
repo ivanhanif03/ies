@@ -86,7 +86,7 @@ class User extends BaseController
             'name'     => 'required',
             'phone'    => 'required|min_length[9]|max_length[13]',
         ])) {
-            return redirect()->to('/user/edit')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('/user/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
         $this->UsersModel->save([
             'id' => $id,

@@ -14,7 +14,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-primary">
-                    <?= view('Myth\Auth\Views\_message_block') ?>
 
                     <div class="card-body">
                         <form action="<?= base_url('user/update') . '/' . $user['id']; ?>" method="POST">
@@ -41,10 +40,16 @@
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="name">Full Name</label>
                                     <input id="name" type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" value="<?= $user['name']; ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('name'); ?>
+                                    </div>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="phone">Phone</label>
                                     <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= $user['phone']; ?>" maxlength="13" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('phone'); ?>
+                                    </div>
                                 </div>
                             </div>
 
