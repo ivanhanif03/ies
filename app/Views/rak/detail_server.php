@@ -66,7 +66,7 @@
                                     </tr>
                                     <tr>
                                         <td>No PKS Vendor Hardware</td>
-                                        <td><?= $fisik->n1 ?> - <?= $fisik->v2 ?> - <?= $fisik->k2 ?></td>
+                                        <td><?= $fisik->n2 ?> - <?= $fisik->v2 ?> - <?= $fisik->k2 ?></td>
                                     </tr>
                                     <tr>
                                         <td>Merek</td>

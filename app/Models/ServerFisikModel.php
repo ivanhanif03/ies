@@ -71,12 +71,11 @@ class ServerFisikModel extends Model
         return $this->db->table('server_fisik')
             ->join('kontrak v_sw', 'server_fisik.vendor_software_id=v_sw.id', 'left')
             ->join('kontrak v_hw', 'server_fisik.vendor_hardware_id=v_hw.id', 'left')
-            ->join('vendor vs', 'server_fisik.vendor_software_id=vs.id', 'left')
-            ->join('vendor vh', 'server_fisik.vendor_hardware_id=vh.id', 'left')
+            ->join('vendor vs', 'v_sw.vendor_id=vs.id')
+            ->join('vendor vh', 'v_hw.vendor_id=vh.id')
             ->join('apps', 'apps.id=server_fisik.app_id', 'left')
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
             ->join('os', 'os.id=server_fisik.os_id', 'left')
-            ->select('server_fisik.*')
             ->select('vs.nama_vendor n1')
             ->select('vh.nama_vendor n2')
             ->select('v_sw.no_pks v1')
@@ -86,6 +85,7 @@ class ServerFisikModel extends Model
             ->select('apps.*')
             ->select('raks.*')
             ->select('os.*')
+            ->select('server_fisik.*')
             ->where('server_fisik.id', $id)
             ->get()->getRow();
     }

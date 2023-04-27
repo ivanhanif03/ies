@@ -22,6 +22,7 @@ class Kontrak extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('vendor_id', 'vendor', 'id', '', 'CASCADE');
 
         $this->forge->createTable('kontrak', true);
     }
