@@ -13,6 +13,14 @@
     <div class="section-body">
         <div class="row">
             <div class="col-12">
+                <!-- Aler Start -->
+                <?= view('Myth\Auth\Views\_message_block') ?>
+                <?php if (session()->getFlashdata('pesan')) : ?>
+                    <div class="alert alert-success" role="alert" id="alert-delete">
+                        <?= session()->getFlashdata('pesan'); ?>
+                    </div>
+                <?php endif; ?>
+                <!-- Aler End -->
                 <div class="card card-primary">
                     <div class="card-body">
                         <form action="<?= base_url('rak/update') . '/' . $rak['id']; ?>" method="post" enctype="multipart/form-data">

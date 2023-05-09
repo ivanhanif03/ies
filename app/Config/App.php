@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost:8080/';
+    public $baseURL = 'http://localhost:8080';
 
     /**
      * --------------------------------------------------------------------------
@@ -172,10 +172,10 @@ class App extends BaseConfig
      *
      * The number of SECONDS you want the session to last.
      * Setting to 0 (zero) means expire when the browser is closed.
-     *
+     * Default 7200
      * @var int
      */
-    public $sessionExpiration = 7200;
+    public $sessionExpiration = 300;
 
     /**
      * --------------------------------------------------------------------------
@@ -216,10 +216,10 @@ class App extends BaseConfig
      * --------------------------------------------------------------------------
      *
      * How many seconds between CI regenerating the session ID.
-     *
+     * Default 300
      * @var int
      */
-    public $sessionTimeToUpdate = 300;
+    public $sessionTimeToUpdate = 150;
 
     /**
      * --------------------------------------------------------------------------

@@ -69,7 +69,7 @@ class Rak extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_rak'     => 'required|is_unique[raks.nama_rak,id,{id}]',
+            'nama_rak'     => 'required',
             'lokasi'    => 'required',
             'gambar_rak' => [
                 'rules' => 'mime_in[gambar_rak,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_rak,10000]',
@@ -132,15 +132,17 @@ class Rak extends BaseController
 
             // if (count($cek_rak) > 0) {
             //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama rak sudah ada</b>');
-            // } else {
-
-            $this->RakModel->save([
-                'nama_rak' => $nama_rak,
-                'lokasi' => $lokasi,
-                'gambar_rak' => $gambar_rak,
-            ]);
-            session()->setFlashdata('message', 'Berhasil import excel data rak');
-            // }
+            // } 
+                if (($nama_rak == null) || ($lokasi == null) || ($gambar_rak == null)) {
+                    session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+                } else {
+                $this->RakModel->save([
+                    'nama_rak' => $nama_rak,
+                    'lokasi' => $lokasi,
+                    'gambar_rak' => $gambar_rak,
+                ]);
+                session()->setFlashdata('message', 'Berhasil import excel data rak');
+            }
         }
 
         return redirect()->to('/rak');

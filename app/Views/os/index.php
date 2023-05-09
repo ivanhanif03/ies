@@ -121,6 +121,7 @@
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
                     </div>
+                    <small class="text-danger">Pastikan melakukan delete kolom pada seluruh bagian kolom yang kosong</small>
             </div>
             <div class="modal-footer bg-whitesmoke justify-content-between">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>

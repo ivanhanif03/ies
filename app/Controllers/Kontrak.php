@@ -57,7 +57,7 @@ class Kontrak extends BaseController
         //Validation
         if (!$this->validate([
             'nama_kontrak'     => 'required',
-            'no_pks'     => 'required|is_unique[kontrak.nama_kontrak,id,{id}]',
+            'no_pks'     => 'required|is_unique[kontrak.no_pks]',
             'nilai_kontrak'    => 'required',
             'scope_work'  => 'required',
             'tempo_pembayaran'  => 'required',
@@ -146,9 +146,16 @@ class Kontrak extends BaseController
     public function update($id)
     {
         //Validation
+        $pksLama = $this->KontrakModel->getAllKontrak($id);
+        if ($pksLama['no_pks'] == $this->request->getVar('no_pks')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[kontrak.no_pks]';
+        }
+
         if (!$this->validate([
             'nama_kontrak'     => 'required',
-            'no_pks'     => 'required|is_unique[kontrak.nama_kontrak,id,{id}]',
+            'no_pks'     => $rule_unique,
             'nilai_kontrak'    => 'required',
             'scope_work'  => 'required',
             'tempo_pembayaran'  => 'required',

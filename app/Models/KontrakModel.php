@@ -17,6 +17,14 @@ class KontrakModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
+    public function getAllKontrak($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id' => $id])->first();
+    }
+
     public function getKontrak()
     {
         return $this->db->table('kontrak')
@@ -31,7 +39,8 @@ class KontrakModel extends Model
     {
         return $this->db->table('kontrak')
             ->join('vendor', 'vendor.id=kontrak.vendor_id', 'left')
-            ->select('*')
+            ->select('vendor.*')
+            ->select('kontrak.*')
             ->where('kontrak.id', $id)
             ->get()->getRow();
     }

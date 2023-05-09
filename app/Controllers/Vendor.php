@@ -53,7 +53,7 @@ class Vendor extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_vendor'     => 'required|is_unique[vendor.nama_vendor,id,{id}]',
+            'nama_vendor'     => 'required|is_unique[vendor.nama_vendor]',
             'alamat'    => 'required',
             'pic'  => 'required',
             'pic_phone'  => 'required|min_length[9]|max_length[13]',
@@ -150,8 +150,15 @@ class Vendor extends BaseController
     public function update($id)
     {
         //Validation
+        $vendorLama = $this->VendorModel->getVendor($id);
+        if ($vendorLama['nama_vendor'] == $this->request->getVar('nama_vendor')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[vendor.nama_vendor]';
+        }
+
         if (!$this->validate([
-            'nama_vendor'     => 'required',
+            'nama_vendor'     => $rule_unique,
             'alamat'    => 'required',
             'pic'  => 'required',
             'pic_phone'  => 'required|min_length[9]|max_length[13]',

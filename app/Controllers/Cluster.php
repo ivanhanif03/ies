@@ -112,9 +112,16 @@ class Cluster extends BaseController
     public function update($id)
     {
         //Validation
+        $clusterLama = $this->ClusterModel->getCluster($id);
+        if ($clusterLama['nama_cluster'] == $this->request->getVar('nama_cluster')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[cluster.nama_cluster]';
+        }
+
         if (!$this->validate([
             'data_center'     => 'required',
-            'nama_cluster'     => 'required',
+            'nama_cluster'     => $rule_unique,
         ])) {
             return redirect()->to('cluster/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }

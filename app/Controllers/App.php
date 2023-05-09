@@ -42,7 +42,7 @@ class App extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_app'     => 'required',
+            'nama_app'     => 'required|is_unique[apps.nama_app]',
             'pic'     => 'required',
             'divisi'     => 'required',
             'no_hp_pic'    => 'required|min_length[9]|max_length[13]',
@@ -122,8 +122,15 @@ class App extends BaseController
     public function update($id)
     {
         //Validation
+        $appLama = $this->AppModel->getApp($id);
+        if ($appLama['nama_app'] == $this->request->getVar('nama_app')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[apps.nama_app]';
+        }
+
         if (!$this->validate([
-            'nama_app'     => 'required',
+            'nama_app'     => $rule_unique,
             'pic'     => 'required',
             'divisi'     => 'required',
             'no_hp_pic'    => 'required|min_length[9]|max_length[13]',

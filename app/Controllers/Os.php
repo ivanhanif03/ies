@@ -109,8 +109,15 @@ class Os extends BaseController
     public function update($id)
     {
         //Validation
+        $osLama = $this->OsModel->getOs($id);
+        if ($osLama['nama_os'] == $this->request->getVar('nama_os')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[os.nama_os]';
+        }
+
         if (!$this->validate([
-            'nama_os'     => 'required',
+            'nama_os'     => $rule_unique,
         ])) {
             return redirect()->to('os/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }

@@ -22,14 +22,14 @@
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="email">Email</label>
-                                    <input id="email" type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= $user['email']; ?>">
+                                    <input id="email" type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= $user['email']; ?>" >
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('email'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="username">Username</label>
-                                    <input id="username" type="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= $user['username']; ?>">
+                                    <input id="username" type="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= $user['username']; ?>" >
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('username'); ?>
                                     </div>
@@ -39,14 +39,14 @@
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="name">Full Name</label>
-                                    <input id="name" type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" value="<?= $user['name']; ?>">
+                                    <input id="name" type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" value="<?= $user['name']; ?>" >
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('name'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="phone">Phone</label>
-                                    <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= $user['phone']; ?>" maxlength="13" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= $user['phone']; ?>" maxlength="13" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');" >
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('phone'); ?>
                                     </div>

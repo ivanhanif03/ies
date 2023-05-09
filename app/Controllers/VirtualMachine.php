@@ -67,7 +67,7 @@ class VirtualMachine extends BaseController
             'os_id'  => 'required',
             'nama_vm'  => 'required|is_unique[virtualmachine.nama_vm,id,{id}]',
             'host'  => 'required',
-            'ip_address'  => 'required',
+            'ip_address'  => 'required|is_unique[virtualmachine.ip_address,id,{id}]',
             'hostname'  => 'required',
             'disk'  => 'required',
             'memory'  => 'required',
@@ -173,12 +173,25 @@ class VirtualMachine extends BaseController
     public function update($id)
     {
         //Validation
+        $vmLama = $this->VirtualMachineModel->getServerVirtualMachine($id);
+        if ($vmLama['nama_vm'] == $this->request->getVar('nama_vm')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[virtualmachine.nama_vm]';
+        }
+
+        if ($vmLama['ip_address'] == $this->request->getVar('ip_address')) {
+            $rule_unique_ip = 'required';
+        } else {
+            $rule_unique_ip = 'required|is_unique[virtualmachine.ip_address]';
+        }
+
         if (!$this->validate([
             'cluster_id'  => 'required',
             'os_id'  => 'required',
-            'nama_vm'  => 'required',
+            'nama_vm'  => $rule_unique,
             'host'  => 'required',
-            'ip_address'  => 'required',
+            'ip_address'  => $rule_unique_ip,
             'hostname'  => 'required',
             'disk'  => 'required',
             'memory'  => 'required',
