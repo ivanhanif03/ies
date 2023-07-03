@@ -33,10 +33,10 @@
                                         <th class=" text-center">
                                             No
                                         </th>
+                                        <th>Aplikasi</th>
                                         <th>Cluster</th>
                                         <th>Operating System</th>
                                         <th>Nama VM</th>
-                                        <th>Host</th>
                                         <th>IP Address</th>
                                         <th>Hostname</th>
                                         <th>Disk</th>
@@ -54,10 +54,10 @@
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
+                                            <td><?= $vm['nama_app']; ?></td>
                                             <td><?= $vm['nama_cluster']; ?></td>
                                             <td><?= $vm['nama_os']; ?></td>
                                             <td><?= $vm['nama_vm']; ?></td>
-                                            <td><?= $vm['host']; ?></td>
                                             <td><?= $vm['ip_address']; ?></td>
                                             <td><?= $vm['hostname']; ?></td>
                                             <td>
@@ -69,7 +69,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td><?= $vm['memory']; ?> Gb</td>
-                                            <td><?= $vm['processor']; ?></td>
+                                            <td><?= $vm['jumlah_core']; ?> X <?= $vm['processor']; ?> Socket (<?= $vm['jumlah_core']*$vm['processor']; ?> Core)</td>
                                             <td><?= $vm['jenis_server']; ?></td>
                                             <td><?= $vm['lisence']; ?></td>
                                             <td class="dropdown text-center">
@@ -78,7 +78,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
                                                     <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if (in_groups('operator') || in_groups('admin')) : ?>
+                                                    <?php if (in_groups('admin')) : ?>
                                                         <a href="<?= base_url('virtualmachine/edit') . '/' . $vm['id'] ?>" class="dropdown-item has-icon">
                                                             <i class="far fa-edit text-success"></i> Edit
                                                         </a>
@@ -90,7 +90,7 @@
                                                     </a>
 
                                                     <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if (in_groups('operator') || in_groups('admin')) : ?>
+                                                    <?php if (in_groups('admin')) : ?>
                                                         <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-vm<?= $vm['id'] ?>">
                                                             <i class="fas fa-trash text-danger"></i> Delete
                                                         </a>
@@ -190,7 +190,7 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [7, 8, 9, 11],
+                targets: [7, 8, 9, 10, 11],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',

@@ -60,6 +60,8 @@ class Kontrak extends BaseController
             'no_pks'     => 'required|is_unique[kontrak.no_pks]',
             'nilai_kontrak'    => 'required',
             'scope_work'  => 'required',
+            'start_kontrak'  => 'required',
+            'end_kontrak'  => 'required',
             'tempo_pembayaran'  => 'required',
             'vendor_id'  => 'required',
         ])) {
@@ -71,6 +73,8 @@ class Kontrak extends BaseController
             'no_pks'   => $this->request->getVar('no_pks'),
             'nilai_kontrak' => $this->request->getVar('nilai_kontrak'),
             'scope_work' => $this->request->getVar('scope_work'),
+            'start_kontrak' => $this->request->getVar('start_kontrak'),
+            'end_kontrak' => $this->request->getVar('end_kontrak'),
             'tempo_pembayaran' => $this->request->getVar('tempo_pembayaran'),
             'vendor_id' => $this->request->getVar('vendor_id'),
         ]);
@@ -101,8 +105,10 @@ class Kontrak extends BaseController
             $no_pks = $row[1];
             $nilai_kontrak = $row[2];
             $scope_work = $row[3];
-            $tempo_pembayaran = $row[4];
-            $vendor_id = $row[5];
+            $start_kontrak = $row[4];
+            $end_kontrak = $row[5];
+            $tempo_pembayaran = $row[6];
+            $vendor_id = $row[7];
 
             $db = \Config\Database::connect();
 
@@ -110,9 +116,9 @@ class Kontrak extends BaseController
 
             if (count($cek_pks) > 0) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nomor pks/spk sudah ada</b>');
-            // }
-            // if (($nama_kontrak == null) || ($no_pks == null) || ($nilai_kontrak == null) || ($scope_work == null) || ($tempo_pembayaran == null) || ($vendor_id == null)) {
-            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+                // }
+                // if (($nama_kontrak == null) || ($no_pks == null) || ($nilai_kontrak == null) || ($scope_work == null) || ($tempo_pembayaran == null) || ($vendor_id == null)) {
+                //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
 
                 $this->KontrakModel->save([
@@ -120,6 +126,8 @@ class Kontrak extends BaseController
                     'no_pks' => $no_pks,
                     'nilai_kontrak' => $nilai_kontrak,
                     'scope_work' => $scope_work,
+                    'start_kontrak' => $start_kontrak,
+                    'end_kontrak' => $end_kontrak,
                     'tempo_pembayaran' => $tempo_pembayaran,
                     'vendor_id' => $vendor_id,
                 ]);
@@ -158,6 +166,8 @@ class Kontrak extends BaseController
             'no_pks'     => $rule_unique,
             'nilai_kontrak'    => 'required',
             'scope_work'  => 'required',
+            'start_kontrak'  => 'required',
+            'end_kontrak'  => 'required',
             'tempo_pembayaran'  => 'required',
             'vendor_id'  => 'required',
         ])) {
@@ -169,6 +179,8 @@ class Kontrak extends BaseController
             'no_pks'   => $this->request->getVar('no_pks'),
             'nilai_kontrak' => $this->request->getVar('nilai_kontrak'),
             'scope_work' => $this->request->getVar('scope_work'),
+            'start_kontrak' => $this->request->getVar('start_kontrak'),
+            'end_kontrak' => $this->request->getVar('end_kontrak'),
             'tempo_pembayaran' => $this->request->getVar('tempo_pembayaran'),
             'vendor_id' => $this->request->getVar('vendor_id'),
         ]);

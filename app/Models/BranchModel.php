@@ -4,20 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ServerBranchModel extends Model
+class BranchModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'serverbranches';
+    protected $table            = 'branch';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['kode_kantor', 'nama_branch', 'regional'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -40,7 +40,7 @@ class ServerBranchModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getServerBranch($id = false)
+    public function getBranch($id = false)
     {
         if ($id == false) {
             return $this->findAll();

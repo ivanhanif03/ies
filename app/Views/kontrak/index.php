@@ -4,10 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Kontrak</h1>
+        <?php if (in_groups('admin')) : ?>
         <div class="section-header-breadcrumb buttons">
             <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
             <a href="<?= base_url('kontrak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kontrak</a>
         </div>
+        <?php endif; ?>
     </div>
 
     <div class="section-body">
@@ -36,6 +38,8 @@
                                         <th>No PKS</th>
                                         <th>Nilai Kontrak</th>
                                         <th>Scope of Work</th>
+                                        <th>Start of Kontrak</th>
+                                        <th>End of Kontrak</th>
                                         <th>Tempo Pembayaran</th>
                                         <th>Vendor</th>
                                         <th class="text-center">Action</th>
@@ -53,23 +57,30 @@
                                             <td><?= $k['no_pks']; ?></td>
                                             <td>Rp<?= number_format($k['nilai_kontrak'], 0, '', '.'); ?></td>
                                             <td><?= $k['scope_work']; ?></td>
+                                            <td><?= date("d-m-Y", strtotime($k['start_kontrak'])); ?></td>
+                                            <td><?= date("d-m-Y", strtotime($k['end_kontrak'])); ?></td>
                                             <td><?= date("d-m-Y", strtotime($k['tempo_pembayaran'])); ?></td>
                                             <td><?= $k['nama_vendor']; ?></td>
                                             <td class="dropdown text-center">
-                                                <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
+                                                    <?php if (in_groups('admin')) : ?>
                                                     <a href="<?= base_url('kontrak/edit') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
+                                                    <?php endif; ?>
+
                                                     <a href="<?= base_url('kontrak/detail') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
+
+                                                    <?php if (in_groups('admin')) : ?>
                                                     <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $k['id'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -177,7 +188,7 @@
                     title: 'Daftar Kontrak' + datetime,
                     messageTop: 'Data Total Kontrak Infra Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -194,7 +205,7 @@
                     // messageBottom: datetime,
                     messageTop: 'Data Total Kontrak Infra Bank BTN ',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button

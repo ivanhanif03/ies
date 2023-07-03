@@ -53,6 +53,11 @@
                 <li class="<?php if ($menu == 'cluster') {
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('cluster') ?>"><i class="fas fa-th-list"></i><span>Cluster VM</span></a></li>
+
+                <!-- Kantor Cabang -->
+                <li class="<?php if ($menu == 'branch') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('branch') ?>"><i class="fas fa-home"></i><span>Kantor Cabang</span></a></li>
                 <!-- END SECTION DATA MASTER -->
             <?php endif; ?>
 
@@ -80,7 +85,7 @@
                     <!-- SERVER -->
                     <li><a class="nav-link <?php if ($menu == 'server_branch') {
                                                 echo 'active';
-                                            } ?>" href="forms-advanced-form.html">Server</a></li>
+                                            } ?>" href="<?= base_url('serverbranch') ?>">Server</a></li>
 
                     <!-- ROUTER -->
                     <li><a class="nav-link <?php if ($menu == 'router') {

@@ -18,9 +18,9 @@ class ServerBranch extends BaseController
     {
         $data = [
             'title' => 'List Server Cabang',
-            'menu' => 'server_cabang',
+            'menu' => 'server_branch',
             'validation' => \Config\Services::validation(),
-            'os' => $this->ServerBranchModel->getOs()
+            'os' => $this->ServerBranchModel->getServerBranch()
         ];
 
         return view('ruang_server/server/index', $data);

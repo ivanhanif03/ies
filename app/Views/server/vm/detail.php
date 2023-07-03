@@ -29,12 +29,12 @@
                                         <td><?= $virtualmachine->nama_os ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Nama Virtual Machine</td>
-                                        <td><?= $virtualmachine->nama_vm ?></td>
+                                        <td>Aplikasi</td>
+                                        <td><?= $virtualmachine->nama_app ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Host</td>
-                                        <td><?= $virtualmachine->host ?></td>
+                                        <td>Nama Virtual Machine</td>
+                                        <td><?= $virtualmachine->nama_vm ?></td>
                                     </tr>
                                     <tr>
                                         <td>IP Address</td>
@@ -62,7 +62,7 @@
                                     </tr>
                                     <tr>
                                         <td>Processor</td>
-                                        <td><?= $virtualmachine->processor ?></td>
+                                        <td><?= $virtualmachine->jumlah_core ?> X <?= $virtualmachine->processor ?> Socket (<?= $virtualmachine->jumlah_core*$virtualmachine->processor ?> Core)</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Server</td>

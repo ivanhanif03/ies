@@ -14,7 +14,7 @@ class ServerFisikModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'ip_address_management', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'processor', 'sos', 'eos'];
+    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'username_os', 'password_os', 'ip_address_management', 'username_ilo', 'password_ilo', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'jumlah_core', 'processor', 'gambar_server'];
 
     // Dates
     protected $useTimestamps = true;
@@ -82,6 +82,8 @@ class ServerFisikModel extends Model
             ->select('v_hw.no_pks v2')
             ->select('v_sw.nama_kontrak k1')
             ->select('v_hw.nama_kontrak k2')
+            ->select('v_hw.start_kontrak sk')
+            ->select('v_hw.end_kontrak ek')
             ->select('apps.*')
             ->select('raks.*')
             ->select('os.*')

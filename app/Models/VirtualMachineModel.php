@@ -14,7 +14,7 @@ class VirtualMachineModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['cluster_id', 'os_id', 'nama_vm', 'host', 'ip_address', 'hostname', 'disk', 'memory', 'processor', 'jenis_server', 'lisence'];
+    protected $allowedFields    = ['cluster_id', 'os_id', 'app_id', 'nama_vm', 'ip_address', 'hostname', 'disk', 'memory', 'jumlah_core', 'processor', 'jenis_server', 'lisence'];
 
     // Dates
     protected $useTimestamps = true;
@@ -53,8 +53,10 @@ class VirtualMachineModel extends Model
         return $this->db->table('virtualmachine')
             ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
             ->join('os', 'os.id=virtualmachine.os_id', 'left')
+            ->join('apps', 'apps.id=virtualmachine.app_id', 'left')
             ->select('cluster.*')
             ->select('os.*')
+            ->select('apps.*')
             ->select('virtualmachine.*')
             ->orderBy('virtualmachine.id')
             ->get()->getResultArray();
@@ -65,8 +67,10 @@ class VirtualMachineModel extends Model
         return $this->db->table('virtualmachine')
             ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
             ->join('os', 'os.id=virtualmachine.os_id', 'left')
+            ->join('apps', 'apps.id=virtualmachine.app_id', 'left')
             ->select('cluster.*')
             ->select('os.*')
+            ->select('apps.*')
             ->select('virtualmachine.*')
             ->where('virtualmachine.id', $id)
             ->get()->getRow();
@@ -160,6 +164,7 @@ class VirtualMachineModel extends Model
         return $this->db->table('virtualmachine')
             ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
             ->join('os', 'os.id=virtualmachine.os_id', 'left')
+            ->join('apps', 'apps.id=virtualmachine.app_id', 'left')
             ->select('*')
             ->limit(5)
             ->orderBy('virtualmachine.id', 'DESC')

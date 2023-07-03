@@ -40,6 +40,14 @@
                                     <td><?= $kontrak->scope_work ?></td>
                                 </tr>
                                 <tr>
+                                    <td>Start of Kontrak</td>
+                                    <td><?= $kontrak->start_kontrak ?></td>
+                                </tr>
+                                <tr>
+                                    <td>End of Kontrak</td>
+                                    <td><?= $kontrak->end_kontrak ?></td>
+                                </tr>
+                                <tr>
                                     <td>Tempo Pembayaran</td>
                                     <td><?= $kontrak->tempo_pembayaran ?></td>
                                 </tr>

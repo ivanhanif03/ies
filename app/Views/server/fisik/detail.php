@@ -12,7 +12,19 @@
 
     <div class="section-body">
         <div class="row">
-            <div class="col-12">
+        <div class="col-lg-3 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="gallery gallery-fw" data-item-height="450">
+                            <div class="gallery-item" data-image="<?= base_url() . "/img/gambar_server/" . $fisik->gambar_server ?>">
+
+                            </div>
+                            <!-- <img class="img-fluid" src="<?= base_url() . "/img/gambar_server/" . $fisik->gambar_server ?>" alt="Gambar <?= $fisik->gambar_server; ?>"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-12">
                 <div class="card card-primary">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -44,6 +56,26 @@
                                         <td>IP Address Management</td>
                                         <td><?= $fisik->ip_address_management ?></td>
                                     </tr>
+
+                                    <?php if (in_groups('admin')) : ?>
+                                    <tr>
+                                        <td>Username OS</td>
+                                        <td><?= $fisik->username_os ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Password OS</td>
+                                        <td><?= $fisik->password_os ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Username ILO</td>
+                                        <td><?= $fisik->username_ilo ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Password ILO</td>
+                                        <td><?= $fisik->password_ilo ?></td>
+                                    </tr>
+                                    <?php endif; ?>
+
                                     <tr>
                                         <td>Hostname</td>
                                         <td><?= $fisik->hostname ?></td>
@@ -106,19 +138,19 @@
                                     </tr>
                                     <tr>
                                         <td>Processor</td>
-                                        <td><?= $fisik->processor ?></td>
+                                        <td><?= $fisik->jumlah_core?> X <?= $fisik->processor?> Sockets (<?= $fisik->jumlah_core*$fisik->processor ?> Core)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Start of Kontrak Hardware</td>
+                                        <td><?= $fisik->sk ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>End of Kontrak Hardware</td>
+                                        <td><?= $fisik->ek ?></td>
                                     </tr>
                                     <tr>
                                         <td>Lokasi</td>
                                         <td><?= $fisik->lokasi ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Start of Service</td>
-                                        <td><?= $fisik->sos ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>End of Service</td>
-                                        <td><?= $fisik->eos ?></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

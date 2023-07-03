@@ -38,6 +38,26 @@
                                 </div>
                                 <!-- End Field Cluster -->
 
+                                <!-- Start Field App -->
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label>Aplikasi</label>
+                                    <select class="form-control select2 text-sm <?php if (session('errors.app_id')) : ?>is-invalid<?php endif ?>" name="app_id" id="app_id" style="width: 100%;">
+                                        <option value="" disabled selected>Pilih Aplikasi</option>
+                                        <?php foreach ($app as $a) : ?>
+                                            <option value="<?= $a['id']; ?>" <?php if ($a['id'] == $virtualmachine['app_id']) : ?>selected<?php endif; ?>>
+                                                <?= $a['nama_app']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('app_id'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field App -->
+                            </div>
+
+
+                            <div class="row">
                                 <!-- Start Field OS -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Operating System</label>
@@ -54,10 +74,7 @@
                                     </div>
                                 </div>
                                 <!-- End Field OS -->
-                            </div>
 
-
-                            <div class="row">
                                 <!-- Start Field Nama VM -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="nama_vm">Nama Virtual Machine</label>
@@ -67,23 +84,14 @@
                                     </div>
                                 </div>
                                 <!-- End Field Nama VM -->
-
-                                <!-- Start Field Host -->
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="host">Host</label>
-                                    <input id="host" type="text" class="form-control <?php if (session('errors.host')) : ?>is-invalid<?php endif ?>" name="host" value="<?= $virtualmachine['host']; ?>" placeholder="Masukkan nama host">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('host'); ?>
-                                    </div>
-                                </div>
-                                <!-- End Field Host -->
                             </div>
 
                             <div class="row">
+
                                 <!-- Start Field IP Address -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="ip_address">IP Address</label>
-                                    <input id="ip_address" type="text" class="form-control <?php if (session('errors.ip_address')) : ?>is-invalid<?php endif ?>" name="ip_address" value="<?= $virtualmachine['ip_address']; ?>" placeholder="Masukkan ip address">
+                                    <input id="ip_address" type="text" class="form-control <?php if (session('errors.ip_address')) : ?>is-invalid<?php endif ?>" name="ip_address" value="<?= $virtualmachine['ip_address']; ?>" placeholder="Masukkan ip address" oninput="this.value = this.value.replace(/[^0-9.:;/]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('ip_address'); ?>
                                     </div>
@@ -111,7 +119,7 @@
                                     </div>
                                 </div>
                                 <!-- End Field Disk -->
-
+                                
                                 <!-- Start Field Memory -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="memory">Memory (GB)</label>
@@ -124,16 +132,27 @@
                             </div>
 
                             <div class="row">
-                                <!-- Start Field Processor -->
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="processor">Processor</label>
-                                    <input id="processor" type="text" class="form-control <?php if (session('errors.processor')) : ?>is-invalid<?php endif ?>" name="processor" value="<?= $virtualmachine['processor']; ?>" placeholder="Masukkan processor">
+                                <!-- Start Field Core per Socket -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="jumlah_core">Core per Socket</label>
+                                    <input id="jumlah_core" type="text" class="form-control <?php if (session('errors.jumlah_core')) : ?>is-invalid<?php endif ?>" name="jumlah_core" value="<?= $virtualmachine['jumlah_core']; ?>" placeholder="Masukkan jumlah core per socket" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('jumlah_core'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Core per Socket -->
+                                
+                                <!-- Start Field Jumlah Socket -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="processor">Jumlah Socket</label>
+                                    <input id="processor" type="text" class="form-control <?php if (session('errors.processor')) : ?>is-invalid<?php endif ?>" name="processor" value="<?= $virtualmachine['processor']; ?>" placeholder="Masukkan jumlah socket" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('processor'); ?>
                                     </div>
                                 </div>
-                                <!-- End Field Processor -->
+                                <!-- End Field Jumlah Socket -->
 
+                                
                                 <!-- Start Field Jenis Server -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Jenis Server</label>
@@ -188,6 +207,7 @@
                                     </div>
                                 </div>
                                 <!-- End Field Jenis Server -->
+
                             </div>
 
                             <div class="row">

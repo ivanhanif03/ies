@@ -8,7 +8,7 @@ class KontrakModel extends Model
 {
     protected $table            = 'kontrak';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['nama_kontrak', 'no_pks', 'nilai_kontrak', 'scope_work', 'tempo_pembayaran', 'vendor_id'];
+    protected $allowedFields    = ['nama_kontrak', 'no_pks', 'nilai_kontrak', 'scope_work', 'start_kontrak', 'end_kontrak', 'tempo_pembayaran', 'vendor_id'];
 
     // Dates
     protected $useTimestamps = true;

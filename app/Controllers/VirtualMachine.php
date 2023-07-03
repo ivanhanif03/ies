@@ -6,16 +6,18 @@ use App\Controllers\BaseController;
 use App\Models\ClusterModel;
 use App\Models\OsModel;
 use App\Models\VirtualMachineModel;
+use App\Models\AppModel;
 
 class VirtualMachine extends BaseController
 {
-    protected $VirtualMachineModel, $ClusterModel, $OsModel;
+    protected $VirtualMachineModel, $ClusterModel, $OsModel, $AppModel;
 
     public function __construct()
     {
         $this->VirtualMachineModel = new VirtualMachineModel();
         $this->ClusterModel = new ClusterModel();
         $this->OsModel = new OsModel();
+        $this->AppModel = new AppModel();
     }
 
     public function index()
@@ -53,7 +55,8 @@ class VirtualMachine extends BaseController
             'validation' => \Config\Services::validation(),
             'virtualmachine' => $this->VirtualMachineModel->getServerVirtualMachine(),
             'cluster' => $this->ClusterModel->getCluster(),
-            'os' => $this->OsModel->getOs()
+            'os' => $this->OsModel->getOs(),
+            'app' => $this->AppModel->getApp()
         ];
 
         return view('server/vm/create', $data);
@@ -65,15 +68,15 @@ class VirtualMachine extends BaseController
         if (!$this->validate([
             'cluster_id'  => 'required',
             'os_id'  => 'required',
+            'app_id'  => 'required',
             'nama_vm'  => 'required|is_unique[virtualmachine.nama_vm,id,{id}]',
-            'host'  => 'required',
             'ip_address'  => 'required|is_unique[virtualmachine.ip_address,id,{id}]',
             'hostname'  => 'required',
             'disk'  => 'required',
             'memory'  => 'required',
+            'jumlah_core'  => 'required',
             'processor'  => 'required',
             'jenis_server'  => 'required',
-            'lisence'  => 'required',
         ])) {
             return redirect()->to('virtualmachine/create')->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -81,12 +84,13 @@ class VirtualMachine extends BaseController
         $this->VirtualMachineModel->save([
             'cluster_id'    => $this->request->getVar('cluster_id'),
             'os_id'   => $this->request->getVar('os_id'),
+            'app_id'   => $this->request->getVar('app_id'),
             'nama_vm' => $this->request->getVar('nama_vm'),
-            'host' => $this->request->getVar('host'),
             'ip_address' => $this->request->getVar('ip_address'),
             'hostname' => $this->request->getVar('hostname'),
             'disk' => $this->request->getVar('disk'),
             'memory' => $this->request->getVar('memory'),
+            'jumlah_core' => $this->request->getVar('jumlah_core'),
             'processor' => $this->request->getVar('processor'),
             'jenis_server' => $this->request->getVar('jenis_server'),
             'lisence' => $this->request->getVar('lisence'),
@@ -117,34 +121,37 @@ class VirtualMachine extends BaseController
             $cluster_id = $row[0];
             $os_id = $row[1];
             $nama_vm = $row[2];
-            $host = $row[3];
-            $ip_address = $row[4];
-            $hostname = $row[5];
-            $disk = $row[6];
-            $memory = $row[7];
+            $ip_address = $row[3];
+            $hostname = $row[4];
+            $disk = $row[5];
+            $memory = $row[6];
+            $jumlah_core = $row[7];
             $processor = $row[8];
             $jenis_server = $row[9];
             $lisence = $row[10];
+            $app_id = $row[11];
 
             $db = \Config\Database::connect();
 
             $cek_kode_aset = $db->table('virtualmachine')->getWhere(['nama_vm' => $nama_vm])->getResult();
+            $cek_ip = $db->table('virtualmachine')->getWhere(['ip_address' => $ip_address])->getResult();
 
-            if (count($cek_kode_aset) > 0) {
+            if ((count($cek_kode_aset) > 0) || (count($cek_ip) > 0)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, vm sudah ada</b>');
             }
-            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($host == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null)) {
+            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($jumlah_core == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null) || ($app_id == null)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->VirtualMachineModel->save([
                     'cluster_id' => $cluster_id,
                     'os_id' => $os_id,
+                    'app_id' => $app_id,
                     'nama_vm' => $nama_vm,
-                    'host' => $host,
                     'ip_address' => $ip_address,
                     'hostname' => $hostname,
                     'disk' => $disk,
                     'memory' => $memory,
+                    'jumlah_core' => $jumlah_core,
                     'processor' => $processor,
                     'jenis_server' => $jenis_server,
                     'lisence' => $lisence,
@@ -164,7 +171,8 @@ class VirtualMachine extends BaseController
             'validation' => \Config\Services::validation(),
             'virtualmachine' => $this->VirtualMachineModel->getServerVirtualMachine($id),
             'cluster' => $this->ClusterModel->getCluster(),
-            'os' => $this->OsModel->getOs()
+            'os' => $this->OsModel->getOs(),
+            'app' => $this->AppModel->getApp()
         ];
 
         return view('server/vm/edit', $data);
@@ -189,12 +197,13 @@ class VirtualMachine extends BaseController
         if (!$this->validate([
             'cluster_id'  => 'required',
             'os_id'  => 'required',
+            'app_id'  => 'required',
             'nama_vm'  => $rule_unique,
-            'host'  => 'required',
             'ip_address'  => $rule_unique_ip,
             'hostname'  => 'required',
             'disk'  => 'required',
             'memory'  => 'required',
+            'jumlah_core'  => 'required',
             'processor'  => 'required',
             'jenis_server'  => 'required',
             'lisence'  => 'required',
@@ -205,12 +214,13 @@ class VirtualMachine extends BaseController
             'id' => $id,
             'cluster_id'    => $this->request->getVar('cluster_id'),
             'os_id'   => $this->request->getVar('os_id'),
+            'app_id'   => $this->request->getVar('app_id'),
             'nama_vm' => $this->request->getVar('nama_vm'),
-            'host' => $this->request->getVar('host'),
             'ip_address' => $this->request->getVar('ip_address'),
             'hostname' => $this->request->getVar('hostname'),
             'disk' => $this->request->getVar('disk'),
             'memory' => $this->request->getVar('memory'),
+            'jumlah_core' => $this->request->getVar('jumlah_core'),
             'processor' => $this->request->getVar('processor'),
             'jenis_server' => $this->request->getVar('jenis_server'),
             'lisence' => $this->request->getVar('lisence'),

@@ -14,6 +14,8 @@ class Kontrak extends Migration
             'no_pks'            => ['type' => 'varchar', 'constraint' => 50],
             'nilai_kontrak'     => ['type' => 'int', 'constraint' => 50],
             'scope_work'        => ['type' => 'varchar', 'constraint' => 500],
+            'start_kontrak'     => ['type' => 'varchar', 'constraint' => 50],
+            'end_kontrak'       => ['type' => 'varchar', 'constraint' => 50],
             'tempo_pembayaran'  => ['type' => 'varchar', 'constraint' => 50],
             'vendor_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'created_at'        => ['type' => 'datetime', 'null' => true],

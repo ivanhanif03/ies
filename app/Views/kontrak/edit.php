@@ -71,6 +71,23 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label for="start_kontrak">Start of Kontrak</label>
+                                    <input id="start_kontrak" type="text" class="form-control datepicker <?php if (session('errors.start_kontrak')) : ?>is-invalid<?php endif ?>" name="start_kontrak" value="<?= $kontrak->start_kontrak; ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('start_kontrak'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label for="end_kontrak">End of Kontrak</label>
+                                    <input id="end_kontrak" type="text" class="form-control datepicker <?php if (session('errors.end_kontrak')) : ?>is-invalid<?php endif ?>" name="end_kontrak" value="<?= $kontrak->end_kontrak; ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('end_kontrak'); ?>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group col-lg-6 col-sm-12">
                                 <label for="tempo_pembayaran">Tempo Pembayaran</label>
                                 <input id="tempo_pembayaran" type="text" class="form-control datepicker <?php if (session('errors.tempo_pembayaran')) : ?>is-invalid<?php endif ?>" name="tempo_pembayaran" value="<?= $kontrak->tempo_pembayaran; ?>">

@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BranchModel;
 
-class Os extends BaseController
+class Branch extends BaseController
 {
     protected $BranchModel;
 
@@ -17,43 +17,48 @@ class Os extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'List Kntor',
-            'menu' => 'os',
+            'title' => 'List Kantor Cabang',
+            'menu' => 'branch',
             'validation' => \Config\Services::validation(),
-            'os' => $this->OsModel->getOs()
+            'branch' => $this->BranchModel->getBranch()
         ];
 
-        return view('os/index', $data);
+        return view('branch/index', $data);
     }
 
     public function create()
     {
         $data = [
-            'title' => 'Tambah Operating System',
-            'menu' => 'os',
+            'title' => 'Tambah Kantor Cabang',
+            'menu' => 'branch',
             'validation' => \Config\Services::validation(),
-            'os' => $this->OsModel->getOs()
+            'branch' => $this->BranchModel->getBranch()
         ];
 
-        return view('os/create', $data);
+        return view('branch/create', $data);
     }
 
     public function save()
     {
         //Validation
         if (!$this->validate([
-            'nama_os'     => 'required|is_unique[os.nama_os,id,{id}]',
+            'kode_kantor'    => 'required|is_unique[branch.kode_kantor]',
+            'nama_branch' => 'required',
+            'regional'    => 'required',
+
         ])) {
-            return redirect()->to('os/create')->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->to('branch/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $this->OsModel->save([
-            'nama_os'    => $this->request->getVar('nama_os'),
+        $this->BranchModel->save([
+            'kode_kantor'    => $this->request->getVar('kode_kantor'),
+            'nama_branch'    => $this->request->getVar('nama_branch'),
+            'regional'    => $this->request->getVar('regional'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data operating system baru berhasil ditambahkan');
+        session()->setFlashdata('pesan', 'Data kantor cabang baru berhasil ditambahkan');
 
-        return redirect()->to('/os');
+        return redirect()->to('/branch');
     }
 
     public function saveExcel()
@@ -74,60 +79,75 @@ class Os extends BaseController
             }
 
             // $id = $row[0];
-            $nama_os = $row[0];
+            $kode_kantor = $row[0];
+            $nama_branch = $row[1];
+            $regional = $row[2];
 
             $db = \Config\Database::connect();
 
-            $cek_os = $db->table('os')->getWhere(['nama_os' => $nama_os])->getResult();
+            $cek_kode_kantor = $db->table('os')->getWhere(['kode_kantor' => $kode_kantor])->getResult();
 
-            if (count($cek_os) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, operating system sudah terdaftar</b>');
+            if (count($cek_kode_kantor) > 0) {
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kode kantor cabang sudah terdaftar</b>');
             } else {
 
-                $this->OsModel->save([
-                    'nama_os' => $nama_os
+                $this->BranchModel->save([
+                    'kode_kantor' => $kode_kantor,
+                    'nama_branch' => $nama_branch,
+                    'regional'    => $regional,
                 ]);
-                session()->setFlashdata('message', 'Berhasil import excel data operating system');
+                session()->setFlashdata('message', 'Berhasil import excel data kantor cabang');
             }
         }
 
-        return redirect()->to('/os');
+        return redirect()->to('/branch');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'Edit Os',
-            'menu' => 'os',
+            'title' => 'Edit Kantor Cabang',
+            'menu' => 'branch',
             'validation' => \Config\Services::validation(),
-            'os' => $this->OsModel->getOs($id)
+            'branch' => $this->BranchModel->getBranch($id)
         ];
 
-        return view('os/edit', $data);
+        return view('branch/edit', $data);
     }
 
     public function update($id)
     {
         //Validation
-        if (!$this->validate([
-            'nama_os'     => 'required',
-        ])) {
-            return redirect()->to('os/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
+        $kodeKantorLama = $this->BranchModel->getBranch($id);
+        if ($kodeKantorLama['kode_kantor'] == $this->request->getVar('kode_kantor')) {
+            $rule_unique = 'required';
+        } else {
+            $rule_unique = 'required|is_unique[branch.kode_kantor]';
         }
-        $this->OsModel->save([
-            'id' => $id,
-            'nama_os'    => $this->request->getVar('nama_os'),
+
+        if (!$this->validate([
+            'kode_kantor'   => $rule_unique,
+            'nama_branch'   => 'required',
+            'regional'      => 'required',
+        ])) {
+            return redirect()->to('branch/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $this->BranchModel->save([
+            'id'            => $id,
+            'kode_kantor'    => $this->request->getVar('kode_kantor'),
+            'nama_branch'    => $this->request->getVar('nama_branch'),
+            'regional'    => $this->request->getVar('regional'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data operating system berhasil diedit');
+        session()->setFlashdata('pesan', 'Data kantor cabang berhasil diedit');
 
-        return redirect()->to('os');
+        return redirect()->to('branch');
     }
 
     public function delete($id)
     {
-        $this->OsModel->delete($id);
-        session()->setFlashdata('pesan', 'Data os berhasil dihapus');
-        return redirect()->to('/os');
+        $this->BranchModel->delete($id);
+        session()->setFlashdata('pesan', 'Data kantor cabang berhasil dihapus');
+        return redirect()->to('/branch');
     }
 }

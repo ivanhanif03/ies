@@ -17,9 +17,9 @@
                 <div class="card card-primary">
 
                     <div class="card-body">
-                        <form action="<?= base_url('serverfisik/update') . '/' . $fisik['id']; ?>" method="post">
+                        <form action="<?= base_url('serverfisik/update') . '/' . $fisik['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-
+                            <input type="hidden" name="gambar_server_lama" value="<?= $fisik['gambar_server'] ?>">
                             <div class="row">
                                 <!-- Start Field Kode Aset -->
                                 <div class="form-group col-lg-6 col-sm-12">
@@ -138,6 +138,50 @@
                                 </div>
                                 <!-- End Field IP Address Management -->
                             </div>
+
+                            <?php if (in_groups('admin')) : ?>
+                            <div class="row">
+                                <!-- Start Field Username OS -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="username_os">Username OS</label>
+                                    <input id="username_os" type="text" class="form-control <?php if (session('errors.username_os')) : ?>is-invalid<?php endif ?>" name="username_os" value="<?= $fisik['username_os']; ?>" placeholder="Masukkan username OS">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('username_os'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Username OS -->
+
+                                <!-- Start Field Password OS -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="password_os">Password OS</label>
+                                    <input id="password_os" type="text" class="form-control <?php if (session('errors.password_os')) : ?>is-invalid<?php endif ?>" name="password_os" value="<?= $fisik['password_os']; ?>" placeholder="Masukkan password OS">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('password_os'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Password OS -->
+
+                                <!-- Start Field Username OS -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="username_ilo">Username ILO</label>
+                                    <input id="username_ilo" type="text" class="form-control <?php if (session('errors.username_ilo')) : ?>is-invalid<?php endif ?>" name="username_ilo" value="<?= $fisik['username_ilo']; ?>" placeholder="Masukkan username ILO">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('username_ilo'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Username OS -->
+
+                                <!-- Start Field Password OS -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="password_ilo">Password ILO</label>
+                                    <input id="password_ilo" type="text" class="form-control <?php if (session('errors.password_ilo')) : ?>is-invalid<?php endif ?>" name="password_ilo" value="<?= $fisik['password_ilo']; ?>" placeholder="Masukkan password ILO">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('password_ilo'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Password OS -->
+                            </div>
+                            <?php endif; ?>
 
                             <div class="row">
                                 <!-- Start Field Hostname -->
@@ -279,15 +323,25 @@
                                 </div>
                                 <!-- End Field OS -->
 
-                                <!-- Start Field Processor -->
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="processor">Processor</label>
-                                    <input id="processor" type="text" class="form-control <?php if (session('errors.processor')) : ?>is-invalid<?php endif ?>" name="processor" value="<?= $fisik['processor']; ?>" placeholder="Masukkan processor">
+                                <!-- Start Field Core per Socket -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="jumlah_core">Core per Socket</label>
+                                    <input id="jumlah_core" type="text" class="form-control <?php if (session('errors.jumlah_core')) : ?>is-invalid<?php endif ?>" name="jumlah_core" value="<?= $fisik['jumlah_core']; ?>" placeholder="Masukkan jumlah core per socket" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('jumlah_core'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Core per Socket -->
+
+                                <!-- Start Field Sockets -->
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label for="processor">Jumlah Socket</label>
+                                    <input id="processor" type="text" class="form-control <?php if (session('errors.processor')) : ?>is-invalid<?php endif ?>" name="processor" value="<?= $fisik['processor']; ?>" placeholder="Masukkan jumlah socket" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('processor'); ?>
                                     </div>
                                 </div>
-                                <!-- End Field Processor -->
+                                <!-- End Field Sockets -->
                             </div>
 
                             <div class="row">
@@ -334,21 +388,21 @@
                                 <!-- End Field Tipe Memory -->
                             </div>
 
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="sos">Start of Support</label>
-                                    <input id="sos" type="text" class="form-control datepicker <?php if (session('errors.sos')) : ?>is-invalid<?php endif ?>" name="sos" value="<?= $fisik['sos']; ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('sos'); ?>
+                            <div class="row mb-3">
+                                <!-- Start Field Gambar Server -->
+                                <div class=" col-lg-2 col-sm-12">
+                                    <img class="img-thumbnail img-preview" src="/img/gambar_server/<?= $fisik['gambar_server'] ?>" alt="Gambar Rak">
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-12">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input <?php if (session('errors.gambar_server')) : ?>is-invalid<?php endif ?>" id="gambar_server" name="gambar_server" onchange="previewImg()">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('gambar_server'); ?>
+                                        </div>
+                                        <label class="custom-file-label" for="gambar_server"><?= $fisik['gambar_server'] ?></label>
                                     </div>
                                 </div>
-                                <div class="form-group col-lg-6 col-sm-12">
-                                    <label for="eos">End of Support</label>
-                                    <input id="eos" type="text" class="form-control datepicker <?php if (session('errors.eos')) : ?>is-invalid<?php endif ?>" name="eos" value="<?= $fisik['eos']; ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('eos'); ?>
-                                    </div>
-                                </div>
+                                <!-- End Field Gambar Server -->
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -367,6 +421,20 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
+    function previewImg() {
+        //Gambar Server
+        const gambar_server = document.querySelector('#gambar_server');
+        const gambar_server_label = document.querySelector('.custom-file-label');
+        const img_preview = document.querySelector('.img-preview');
 
+        gambar_server_label.textContent = gambar_server.files[0].name;
+
+        const file_gambar_server = new FileReader();
+        file_gambar_server.readAsDataURL(gambar_server.files[0]);
+
+        file_gambar_server.onload = function(e) {
+            img_preview.src = e.target.result;
+        }
+    }
 </script>
 <?= $this->endSection(); ?>

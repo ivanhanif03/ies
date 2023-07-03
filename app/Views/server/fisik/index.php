@@ -52,8 +52,6 @@
                                         <th>Memory</th>
                                         <th>Processor</th>
                                         <th>Lokasi</th>
-                                        <th>SOS</th>
-                                        <th>EOS</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -88,17 +86,15 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td><?= $f['memory']; ?> Gb</td>
-                                            <td><?= $f['processor']; ?></td>
+                                            <td><?= $f['jumlah_core'] ?> X <?= $f['processor']; ?> Sockets = <?= $f['jumlah_core']*$f['processor']; ?> Core</td>
                                             <td class="text-capitalize"><?= $f['lokasi']; ?></td>
-                                            <td><?= $f['sos']; ?></td>
-                                            <td><?= $f['eos']; ?></td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
                                                     <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if (in_groups('operator') || in_groups('admin')) : ?>
+                                                    <?php if (in_groups('admin')) : ?>
                                                         <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
                                                             <i class="far fa-edit text-success"></i> Edit
                                                         </a>
@@ -110,7 +106,7 @@
                                                     </a>
 
                                                     <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if (in_groups('operator') || in_groups('admin')) : ?>
+                                                    <?php if (in_groups('admin')) : ?>
                                                         <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
                                                             <i class="fas fa-trash text-danger"></i> Delete
                                                         </a>
@@ -210,7 +206,7 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+                targets: [8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
@@ -218,7 +214,7 @@
                     title: 'Server Fisik Bank BTN' + datetime,
                     messageTop: 'Data Total Server Fisik Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button

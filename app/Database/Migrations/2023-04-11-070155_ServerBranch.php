@@ -33,11 +33,11 @@ class ServerBranch extends Migration
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('os_id', 'os', 'id', '', 'CASCADE');
 
-        $this->forge->createTable('server_fisik', true);
+        $this->forge->createTable('server_branch', true);
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('server_branch', true);
     }
 }
