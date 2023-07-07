@@ -27,7 +27,7 @@ class ServerFisikSeeder extends Seeder
                 'rak_id'          => 1,
                 'rak_unit'        => '2',
                 'vendor_software_id'     => 1,
-                'vendor_hardware_id'     => 2,
+                'vendor_hardware_id'     => 1,
                 'merek'     => 'Dell',
                 'tipe'     => 'R250',
                 'os_id'     => 2,

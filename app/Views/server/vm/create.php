@@ -17,7 +17,7 @@
                 <div class="card card-primary">
 
                     <div class="card-body">
-                        <form action="<?= base_url('/virtualmachine/save') ?>" method="post">
+                        <form action="<?= base_url('/virtualmachine/save') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
 
                             <div class="row">
@@ -58,8 +58,8 @@
 
 
                             <div class="row">
-                                 <!-- Start Field OS -->
-                                 <div class="form-group col-lg-6 col-sm-12">
+                                <!-- Start Field OS -->
+                                <div class="form-group col-lg-6 col-sm-12">
                                     <label>Operating System</label>
                                     <select class="form-control select2 text-sm <?php if (session('errors.os_id')) : ?>is-invalid<?php endif ?>" name="os_id" id="os_id" style="width: 100%;">
                                         <option value="" disabled selected>Pilih OS</option>
@@ -91,7 +91,7 @@
                                 <!-- Start Field IP Address -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="ip_address">IP Address</label>
-                                    <input id="ip_address" type="text" class="form-control <?php if (session('errors.ip_address')) : ?>is-invalid<?php endif ?>" name="ip_address" value="<?= old('ip_address') ?>" placeholder="Masukkan ip address" >
+                                    <input id="ip_address" type="text" class="form-control <?php if (session('errors.ip_address')) : ?>is-invalid<?php endif ?>" name="ip_address" value="<?= old('ip_address') ?>" placeholder="Masukkan ip address">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('ip_address'); ?>
                                     </div>
@@ -181,6 +181,31 @@
                                     </div>
                                 </div>
                                 <!-- End Field Lisence -->
+
+                                <!-- Start Field Masa Aktif -->
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label for="masa_aktif">Masa Aktif</label>
+                                    <input id="masa_aktif" type="text" class="form-control datepicker <?php if (session('errors.masa_aktif')) : ?>is-invalid<?php endif ?>" name="masa_aktif" value="<?= old('masa_aktif') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('masa_aktif'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Masa Aktif -->
+                            </div>
+
+                            <label class="font-weight-bold">Memo VM</label>
+                            <div class="row mb-3">
+                                <!-- Start Field Memo VM -->
+                                <div class="input-group col-lg-6 col-sm-12">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input <?php if (session('errors.memo_vm')) : ?>is-invalid<?php endif ?>" id="memo_vm" name="memo_vm" onchange="previewLabel()">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('memo_vm'); ?>
+                                        </div>
+                                        <label class="custom-file-label" for="memo_vm">Upload Memo VM</label>
+                                    </div>
+                                </div>
+                                <!-- End Field Memo VM -->
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -199,6 +224,12 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
+    function previewLabel() {
+        //Gambar Server
+        const memo_vm = document.querySelector('#memo_vm');
+        const memo_vm_label = document.querySelector('.custom-file-label');
 
+        memo_vm_label.textContent = memo_vm.files[0].name;
+    }
 </script>
 <?= $this->endSection(); ?>

@@ -302,7 +302,7 @@
                   <th>Cluster</th>
                   <th>Operating System</th>
                   <th>Nama VM</th>
-                  <th>Host</th>
+                  <!-- <th>Host</th> -->
                   <th>IP Address</th>
                   <th>Hostname</th>
                   <th>Jenis Server</th>
@@ -319,7 +319,6 @@
                     <td><?= $vt['nama_cluster']; ?></td>
                     <td><?= $vt['nama_os']; ?></td>
                     <td><?= $vt['nama_vm']; ?></td>
-                    <td><?= $vt['host']; ?></td>
                     <td><?= $vt['ip_address']; ?></td>
                     <td><?= $vt['hostname']; ?></td>
                     <td><?= $vt['jenis_server']; ?></td>

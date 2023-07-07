@@ -77,8 +77,31 @@ class VirtualMachine extends BaseController
             'jumlah_core'  => 'required',
             'processor'  => 'required',
             'jenis_server'  => 'required',
+            'lisence'  => 'required',
+            'masa_aktif'  => 'required',
+            'memo_vm' => [
+                'rules' => 'mime_in[memo_vm,application/pdf]|max_size[memo_vm,2048]',
+                'errors' => [
+                    'mime_in' => 'File extention harus berupa PDF',
+                    'max_size' => 'Ukuran File Maksimal 2 MB'
+                ]
+            ]
         ])) {
             return redirect()->to('virtualmachine/create')->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // $fileMemoVm = $this->request->getFile('memo_vm');
+        // $memoVmName = $fileMemoVm->getName();
+        // $fileMemoVm->move('uploads/memo_vm', $memoVmName);
+
+        $fileMemoVm = $this->request->getFile('memo_vm');
+        // dd($gambarServer);
+        //if not upload gambar server
+        if ($fileMemoVm->getError() == 4) {
+            $memoVmName =  'kosong';
+        } else {
+            $memoVmName = $fileMemoVm->getName();
+            $fileMemoVm->move('uploads/memo_vm', $memoVmName);
         }
 
         $this->VirtualMachineModel->save([
@@ -94,6 +117,8 @@ class VirtualMachine extends BaseController
             'processor' => $this->request->getVar('processor'),
             'jenis_server' => $this->request->getVar('jenis_server'),
             'lisence' => $this->request->getVar('lisence'),
+            'masa_aktif' => $this->request->getVar('masa_aktif'),
+            'memo_vm' => $memoVmName
         ]);
 
         session()->setFlashdata('pesan', 'Data server virtual machine baru berhasil ditambahkan');
@@ -130,6 +155,7 @@ class VirtualMachine extends BaseController
             $jenis_server = $row[9];
             $lisence = $row[10];
             $app_id = $row[11];
+            $masa_aktif = $row[12];
 
             $db = \Config\Database::connect();
 
@@ -139,7 +165,7 @@ class VirtualMachine extends BaseController
             if ((count($cek_kode_aset) > 0) || (count($cek_ip) > 0)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, vm sudah ada</b>');
             }
-            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($jumlah_core == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null) || ($app_id == null)) {
+            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($jumlah_core == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null) || ($app_id == null) || ($masa_aktif == null)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->VirtualMachineModel->save([
@@ -155,6 +181,8 @@ class VirtualMachine extends BaseController
                     'processor' => $processor,
                     'jenis_server' => $jenis_server,
                     'lisence' => $lisence,
+                    'masa_aktif' => $masa_aktif,
+
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data server virtual machine');
             }
@@ -207,9 +235,34 @@ class VirtualMachine extends BaseController
             'processor'  => 'required',
             'jenis_server'  => 'required',
             'lisence'  => 'required',
+            'masa_aktif'  => 'required',
+            'memo_vm' => [
+                'rules' => 'mime_in[memo_vm,application/pdf]|max_size[memo_vm,2048]',
+                'errors' => [
+                    'mime_in' => 'File extention harus berupa PDF',
+                    'max_size' => 'Ukuran File Maksimal 2 MB'
+                ]
+            ]
         ])) {
             return redirect()->to('virtualmachine/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
+
+        $fileMemoVm = $this->request->getFile('memo_vm');
+
+        //if not upload gambar rak
+        if ($fileMemoVm->getError() == 4) {
+            $memoVmName =  $this->request->getVar('memo_vm_lama');
+        } else {
+            //generate nama file random
+            $memoVmName = $fileMemoVm->getName();
+            //move to folder gambar rak
+            $fileMemoVm->move('uploads/memo_vm', $memoVmName);
+            //delete old file gambar rak
+            if ($this->request->getVar('memo_vm_lama') != 'kosong') {
+                unlink('uploads/memo_vm/' . $this->request->getVar('memo_vm_lama'));
+            }
+        }
+
         $this->VirtualMachineModel->save([
             'id' => $id,
             'cluster_id'    => $this->request->getVar('cluster_id'),
@@ -224,6 +277,8 @@ class VirtualMachine extends BaseController
             'processor' => $this->request->getVar('processor'),
             'jenis_server' => $this->request->getVar('jenis_server'),
             'lisence' => $this->request->getVar('lisence'),
+            'masa_aktif' => $this->request->getVar('masa_aktif'),
+            'memo_vm'   => $memoVmName,
         ]);
 
         session()->setFlashdata('pesan', 'Data server virtual machine berhasil diedit');

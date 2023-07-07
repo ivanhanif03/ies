@@ -108,47 +108,47 @@
                             </div>
 
                             <?php if (in_groups('admin')) : ?>
-                            <div class="row">
-                                <!-- Start Field Username OS -->
-                                <div class="form-group col-lg-3 col-sm-12">
-                                    <label for="username_os">Username OS</label>
-                                    <input id="username_os" type="text" class="form-control <?php if (session('errors.username_os')) : ?>is-invalid<?php endif ?>" name="username_os" value="<?= old('username_os') ?>" placeholder="Masukkan username OS">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('username_os'); ?>
+                                <div class="row">
+                                    <!-- Start Field Username OS -->
+                                    <div class="form-group col-lg-3 col-sm-12">
+                                        <label for="username_os">Username OS</label>
+                                        <input id="username_os" type="text" class="form-control <?php if (session('errors.username_os')) : ?>is-invalid<?php endif ?>" name="username_os" value="<?= old('username_os') ?>" placeholder="Masukkan username OS">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('username_os'); ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- End Field Username OS -->
+                                    <!-- End Field Username OS -->
 
-                                <!-- Start Field Password OS -->
-                                <div class="form-group col-lg-3 col-sm-12">
-                                    <label for="password_os">Password OS</label>
-                                    <input id="password_os" type="text" class="form-control <?php if (session('errors.password_os')) : ?>is-invalid<?php endif ?>" name="password_os" value="<?= old('password_os') ?>" placeholder="Masukkan password OS">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('password_os'); ?>
+                                    <!-- Start Field Password OS -->
+                                    <div class="form-group col-lg-3 col-sm-12">
+                                        <label for="password_os">Password OS</label>
+                                        <input id="password_os" type="text" class="form-control <?php if (session('errors.password_os')) : ?>is-invalid<?php endif ?>" name="password_os" value="<?= old('password_os') ?>" placeholder="Masukkan password OS">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('password_os'); ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- End Field Password OS -->
+                                    <!-- End Field Password OS -->
 
-                                <!-- Start Field Username OS -->
-                                <div class="form-group col-lg-3 col-sm-12">
-                                    <label for="username_ilo">Username ILO</label>
-                                    <input id="username_ilo" type="text" class="form-control <?php if (session('errors.username_ilo')) : ?>is-invalid<?php endif ?>" name="username_ilo" value="<?= old('username_ilo') ?>" placeholder="Masukkan username ILO">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('username_ilo'); ?>
+                                    <!-- Start Field Username OS -->
+                                    <div class="form-group col-lg-3 col-sm-12">
+                                        <label for="username_ilo">Username ILO</label>
+                                        <input id="username_ilo" type="text" class="form-control <?php if (session('errors.username_ilo')) : ?>is-invalid<?php endif ?>" name="username_ilo" value="<?= old('username_ilo') ?>" placeholder="Masukkan username ILO">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('username_ilo'); ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- End Field Username OS -->
+                                    <!-- End Field Username OS -->
 
-                                <!-- Start Field Password OS -->
-                                <div class="form-group col-lg-3 col-sm-12">
-                                    <label for="password_ilo">Password ILO</label>
-                                    <input id="password_ilo" type="text" class="form-control <?php if (session('errors.password_ilo')) : ?>is-invalid<?php endif ?>" name="password_ilo" value="<?= old('password_ilo') ?>" placeholder="Masukkan password ILO">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('password_ilo'); ?>
+                                    <!-- Start Field Password OS -->
+                                    <div class="form-group col-lg-3 col-sm-12">
+                                        <label for="password_ilo">Password ILO</label>
+                                        <input id="password_ilo" type="text" class="form-control <?php if (session('errors.password_ilo')) : ?>is-invalid<?php endif ?>" name="password_ilo" value="<?= old('password_ilo') ?>" placeholder="Masukkan password ILO">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('password_ilo'); ?>
+                                        </div>
                                     </div>
+                                    <!-- End Field Password OS -->
                                 </div>
-                                <!-- End Field Password OS -->
-                            </div>
                             <?php endif; ?>
 
                             <div class="row">
@@ -232,7 +232,7 @@
                                         <option value="" disabled selected>Pilih Vendor</option>
                                         <?php foreach ($kontrak as $k) : ?>
                                             <option value="<?= $k['id']; ?>">
-                                            <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>
+                                                <?= $k['nama_vendor']; ?> - <?= $k['nama_kontrak']; ?> - <?= $k['no_pks']; ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -348,6 +348,7 @@
                                 <!-- End Field Tipe Memory -->
                             </div>
 
+                            <label class="font-weight-bold">Gambar Server</label>
                             <div class="row mb-3">
                                 <!-- Start Field Gambar Server -->
                                 <div class=" col-lg-2 col-sm-12">

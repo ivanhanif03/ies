@@ -62,7 +62,7 @@
                                     </tr>
                                     <tr>
                                         <td>Processor</td>
-                                        <td><?= $virtualmachine->jumlah_core ?> X <?= $virtualmachine->processor ?> Socket (<?= $virtualmachine->jumlah_core*$virtualmachine->processor ?> Core)</td>
+                                        <td><?= $virtualmachine->jumlah_core ?> X <?= $virtualmachine->processor ?> Socket (<?= $virtualmachine->jumlah_core * $virtualmachine->processor ?> Core)</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Server</td>

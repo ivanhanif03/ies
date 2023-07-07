@@ -17,9 +17,9 @@
                 <div class="card card-primary">
 
                     <div class="card-body">
-                        <form action="<?= base_url('virtualmachine/update') . '/' . $virtualmachine['id']; ?>" method="post">
+                        <form action="<?= base_url('virtualmachine/update') . '/' . $virtualmachine['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-
+                            <input type="hidden" name="memo_vm_lama" value="<?= $virtualmachine['memo_vm'] ?>">
                             <div class="row">
                                 <!-- Start Field Cluster -->
                                 <div class="form-group col-lg-6 col-sm-12">
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                                 <!-- End Field Disk -->
-                                
+
                                 <!-- Start Field Memory -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="memory">Memory (GB)</label>
@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                                 <!-- End Field Core per Socket -->
-                                
+
                                 <!-- Start Field Jumlah Socket -->
                                 <div class="form-group col-lg-3 col-sm-12">
                                     <label for="processor">Jumlah Socket</label>
@@ -152,7 +152,7 @@
                                 </div>
                                 <!-- End Field Jumlah Socket -->
 
-                                
+
                                 <!-- Start Field Jenis Server -->
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label>Jenis Server</label>
@@ -220,6 +220,34 @@
                                     </div>
                                 </div>
                                 <!-- End Field Lisence -->
+
+                                <!-- Start Field Masa Aktif -->
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label for="masa_aktif">Masa Aktif</label>
+                                    <input id="masa_aktif" type="text" class="form-control datepicker <?php if (session('errors.masa_aktif')) : ?>is-invalid<?php endif ?>" name="masa_aktif" value="<?= $virtualmachine['masa_aktif']; ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('masa_aktif'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Masa Aktif -->
+                            </div>
+
+                            <label class="font-weight-bold">Memo VM</label>
+                            <div class="row mb-3">
+                                <!-- Start Field Memo VM -->
+                                <div class="input-group col-lg-6 col-sm-12">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input <?php if (session('errors.memo_vm')) : ?>is-invalid<?php endif ?>" id="memo_vm" name="memo_vm" accept=".pdf" onchange="previewLabel()">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('memo_vm'); ?>
+                                        </div>
+                                        <label class="custom-file-label" for="memo_vm"><?= $virtualmachine['memo_vm'] ?></label>
+                                    </div>
+                                    <p class="text-danger">
+                                        <?= $validation->getError('memo_vm'); ?>
+                                    </p>
+                                </div>
+                                <!-- End Field Memo VM -->
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -238,6 +266,12 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script>
+    function previewLabel() {
+        //Gambar Server
+        const memo_vm = document.querySelector('#memo_vm');
+        const memo_vm_label = document.querySelector('.custom-file-label');
 
+        memo_vm_label.textContent = memo_vm.files[0].name;
+    }
 </script>
 <?= $this->endSection(); ?>

@@ -12,7 +12,7 @@
 
     <div class="section-body">
         <div class="row">
-        <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="gallery gallery-fw" data-item-height="450">
@@ -58,22 +58,22 @@
                                     </tr>
 
                                     <?php if (in_groups('admin')) : ?>
-                                    <tr>
-                                        <td>Username OS</td>
-                                        <td><?= $fisik->username_os ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Password OS</td>
-                                        <td><?= $fisik->password_os ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Username ILO</td>
-                                        <td><?= $fisik->username_ilo ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Password ILO</td>
-                                        <td><?= $fisik->password_ilo ?></td>
-                                    </tr>
+                                        <tr>
+                                            <td>Username OS</td>
+                                            <td><?= $fisik->username_os ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password OS</td>
+                                            <td><?= $fisik->password_os ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username ILO</td>
+                                            <td><?= $fisik->username_ilo ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password ILO</td>
+                                            <td><?= $fisik->password_ilo ?></td>
+                                        </tr>
                                     <?php endif; ?>
 
                                     <tr>
@@ -138,15 +138,7 @@
                                     </tr>
                                     <tr>
                                         <td>Processor</td>
-                                        <td><?= $fisik->jumlah_core?> X <?= $fisik->processor?> Sockets (<?= $fisik->jumlah_core*$fisik->processor ?> Core)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Start of Kontrak Hardware</td>
-                                        <td><?= $fisik->sk ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>End of Kontrak Hardware</td>
-                                        <td><?= $fisik->ek ?></td>
+                                        <td><?= $fisik->jumlah_core ?> X <?= $fisik->processor ?> Sockets (<?= $fisik->jumlah_core * $fisik->processor ?> Core)</td>
                                     </tr>
                                     <tr>
                                         <td>Lokasi</td>

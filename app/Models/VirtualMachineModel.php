@@ -14,7 +14,7 @@ class VirtualMachineModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['cluster_id', 'os_id', 'app_id', 'nama_vm', 'ip_address', 'hostname', 'disk', 'memory', 'jumlah_core', 'processor', 'jenis_server', 'lisence'];
+    protected $allowedFields    = ['cluster_id', 'os_id', 'app_id', 'nama_vm', 'ip_address', 'hostname', 'disk', 'memory', 'jumlah_core', 'processor', 'jenis_server', 'lisence', 'masa_aktif', 'memo_vm'];
 
     // Dates
     protected $useTimestamps = true;

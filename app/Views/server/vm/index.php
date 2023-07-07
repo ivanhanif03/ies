@@ -44,6 +44,8 @@
                                         <th>Processor</th>
                                         <th>Jenis Server</th>
                                         <th>Lisence</th>
+                                        <th>Masa Aktif</th>
+                                        <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -69,9 +71,27 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td><?= $vm['memory']; ?> Gb</td>
-                                            <td><?= $vm['jumlah_core']; ?> X <?= $vm['processor']; ?> Socket (<?= $vm['jumlah_core']*$vm['processor']; ?> Core)</td>
+                                            <td><?= $vm['jumlah_core']; ?> X <?= $vm['processor']; ?> Socket (<?= $vm['jumlah_core'] * $vm['processor']; ?> Core)</td>
                                             <td><?= $vm['jenis_server']; ?></td>
                                             <td><?= $vm['lisence']; ?></td>
+                                            <td><?= $vm['masa_aktif']; ?></td>
+                                            <td class="text-center">
+                                                <?php if (((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) > 604800) && ((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) < 2592000)) : ?>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 30 Hari" href="">
+                                                        <div class="badge badge-secondary">&nbsp;</div>
+                                                    </a>
+                                                <?php elseif (((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) > 86400) && ((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) <= 604800)) : ?>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 7 Hari" href="">
+                                                        <div class="badge badge-warning"></div>
+                                                    </a>
+                                                <?php elseif ((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) <= 86400) : ?>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 7 Hari" href="">
+                                                        <div class="badge badge-danger"></div>
+                                                    </a>
+                                                <?php else : ?>
+
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -198,7 +218,7 @@
                     title: 'Server VM Bank BTN' + datetime,
                     messageTop: 'Data Total Server Virtual Machine Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -214,7 +234,7 @@
                     title: 'Server VM Bank BTN' + datetime,
                     messageTop: 'Data Total Server Virtual Machine Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
