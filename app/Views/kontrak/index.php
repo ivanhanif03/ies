@@ -5,10 +5,10 @@
     <div class="section-header">
         <h1>Kontrak</h1>
         <?php if (in_groups('admin')) : ?>
-        <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('kontrak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kontrak</a>
-        </div>
+            <div class="section-header-breadcrumb buttons">
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('kontrak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kontrak</a>
+            </div>
         <?php endif; ?>
     </div>
 
@@ -42,6 +42,7 @@
                                         <th>End of Kontrak</th>
                                         <th>Tempo Pembayaran</th>
                                         <th>Vendor</th>
+                                        <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -61,15 +62,20 @@
                                             <td><?= date("d-m-Y", strtotime($k['end_kontrak'])); ?></td>
                                             <td><?= date("d-m-Y", strtotime($k['tempo_pembayaran'])); ?></td>
                                             <td><?= $k['nama_vendor']; ?></td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($k['user_log']))[0]
+                                                ?>
+                                            </td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
                                                     <?php if (in_groups('admin')) : ?>
-                                                    <a href="<?= base_url('kontrak/edit') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
-                                                        <i class="far fa-edit text-success"></i> Edit
-                                                    </a>
+                                                        <a href="<?= base_url('kontrak/edit') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
+                                                            <i class="far fa-edit text-success"></i> Edit
+                                                        </a>
                                                     <?php endif; ?>
 
                                                     <a href="<?= base_url('kontrak/detail') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
@@ -77,9 +83,9 @@
                                                     </a>
 
                                                     <?php if (in_groups('admin')) : ?>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $k['id'] ?>">
-                                                        <i class="fas fa-trash text-danger"></i> Delete
-                                                    </a>
+                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $k['id'] ?>">
+                                                            <i class="fas fa-trash text-danger"></i> Delete
+                                                        </a>
                                                     <?php endif; ?>
                                                 </div>
                                             </td>
@@ -140,6 +146,8 @@
                 ?>
                 <form method="post" action="/kontrak/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
+
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>

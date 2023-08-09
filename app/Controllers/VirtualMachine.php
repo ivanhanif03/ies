@@ -69,8 +69,10 @@ class VirtualMachine extends BaseController
             'cluster_id'  => 'required',
             'os_id'  => 'required',
             'app_id'  => 'required',
-            'nama_vm'  => 'required|is_unique[virtualmachine.nama_vm,id,{id}]',
-            'ip_address'  => 'required|is_unique[virtualmachine.ip_address,id,{id}]',
+            // 'nama_vm'  => 'required|is_unique[virtualmachine.nama_vm,id,{id}]',
+            // 'ip_address'  => 'required|is_unique[virtualmachine.ip_address,id,{id}]',
+            'nama_vm'  => 'required',
+            'ip_address'  => 'required',
             'hostname'  => 'required',
             'disk'  => 'required',
             'memory'  => 'required',
@@ -79,6 +81,7 @@ class VirtualMachine extends BaseController
             'jenis_server'  => 'required',
             'lisence'  => 'required',
             'masa_aktif'  => 'required',
+            'replikasi'  => 'required',
             'memo_vm' => [
                 'rules' => 'mime_in[memo_vm,application/pdf]|max_size[memo_vm,2048]',
                 'errors' => [
@@ -118,6 +121,8 @@ class VirtualMachine extends BaseController
             'jenis_server' => $this->request->getVar('jenis_server'),
             'lisence' => $this->request->getVar('lisence'),
             'masa_aktif' => $this->request->getVar('masa_aktif'),
+            'replikasi' => $this->request->getVar('replikasi'),
+            'user_log' => $this->request->getVar('user_log'),
             'memo_vm' => $memoVmName
         ]);
 
@@ -156,16 +161,18 @@ class VirtualMachine extends BaseController
             $lisence = $row[10];
             $app_id = $row[11];
             $masa_aktif = $row[12];
+            $memo_vm = $row[13];
+            $replikasi = $row[14];
 
             $db = \Config\Database::connect();
 
-            $cek_kode_aset = $db->table('virtualmachine')->getWhere(['nama_vm' => $nama_vm])->getResult();
-            $cek_ip = $db->table('virtualmachine')->getWhere(['ip_address' => $ip_address])->getResult();
+            // $cek_kode_aset = $db->table('virtualmachine')->getWhere(['nama_vm' => $nama_vm])->getResult();
+            // $cek_ip = $db->table('virtualmachine')->getWhere(['ip_address' => $ip_address])->getResult();
 
-            if ((count($cek_kode_aset) > 0) || (count($cek_ip) > 0)) {
-                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, vm sudah ada</b>');
-            }
-            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($jumlah_core == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null) || ($app_id == null) || ($masa_aktif == null)) {
+            // if ((count($cek_kode_aset) > 0) || (count($cek_ip) > 0)) {
+            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, vm sudah ada</b>');
+            // }
+            if (($cluster_id == null) || ($os_id == null) || ($nama_vm == null) || ($ip_address == null) || ($hostname == null) || ($disk == null) || ($memory == null) ||  ($jumlah_core == null) ||  ($processor == null) || ($jenis_server == null) || ($lisence == null) || ($app_id == null) || ($masa_aktif == null) || ($memo_vm == null) || ($replikasi == null)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->VirtualMachineModel->save([
@@ -182,6 +189,9 @@ class VirtualMachine extends BaseController
                     'jenis_server' => $jenis_server,
                     'lisence' => $lisence,
                     'masa_aktif' => $masa_aktif,
+                    'memo_vm' => $memo_vm,
+                    'replikasi' => $replikasi,
+                    'user_log' => $this->request->getVar('user_log'),
 
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data server virtual machine');
@@ -226,8 +236,10 @@ class VirtualMachine extends BaseController
             'cluster_id'  => 'required',
             'os_id'  => 'required',
             'app_id'  => 'required',
-            'nama_vm'  => $rule_unique,
-            'ip_address'  => $rule_unique_ip,
+            // 'nama_vm'  => $rule_unique,
+            // 'ip_address'  => $rule_unique_ip,
+            'nama_vm'  => 'required',
+            'ip_address'  => 'required',
             'hostname'  => 'required',
             'disk'  => 'required',
             'memory'  => 'required',
@@ -236,6 +248,7 @@ class VirtualMachine extends BaseController
             'jenis_server'  => 'required',
             'lisence'  => 'required',
             'masa_aktif'  => 'required',
+            'replikasi'  => 'required',
             'memo_vm' => [
                 'rules' => 'mime_in[memo_vm,application/pdf]|max_size[memo_vm,2048]',
                 'errors' => [
@@ -278,6 +291,8 @@ class VirtualMachine extends BaseController
             'jenis_server' => $this->request->getVar('jenis_server'),
             'lisence' => $this->request->getVar('lisence'),
             'masa_aktif' => $this->request->getVar('masa_aktif'),
+            'replikasi' => $this->request->getVar('replikasi'),
+            'user_log' => $this->request->getVar('user_log'),
             'memo_vm'   => $memoVmName,
         ]);
 

@@ -51,6 +51,10 @@
                                     <td>No HP Helpdesk</td>
                                     <td><?= $vendor['helpdesk_phone'] ?></td>
                                 </tr>
+                                <tr>
+                                    <td>User Log</td>
+                                    <td><?= $vendor['user_log'] ?></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

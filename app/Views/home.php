@@ -26,7 +26,7 @@
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
         <div class="card-icon shadow-primary bg-warning">
-          <i class="fa fa-cloud text-white" aria-hidden="true"></i>
+          <i class="fas fa-vr-cardboard text-white" aria-hidden="true"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
@@ -41,14 +41,14 @@
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
         <div class="card-icon shadow-primary bg-danger">
-          <i class="fa fa-rocket text-white" aria-hidden="true"></i>
+          <i class="fas fa-cloud text-white" aria-hidden="true"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Aplikasi</h4>
+            <h4>Total Cloud Server</h4>
           </div>
           <div class="card-body">
-            <?= $total_app_fisik ?>
+            <?= $total_cloud ?>
           </div>
         </div>
       </div>
@@ -332,6 +332,58 @@
       </div>
     </div>
   </div>
+
+  <!-- Table Last Data Cloud -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Cloud Server Terbaru</h4>
+          <div class="card-header-action dropdown">
+            <a href="<?= base_url('cloud') ?>" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped" id="tableCloud" width="100%">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    No
+                  </th>
+                  <th>Provider</th>
+                  <th>Operating System</th>
+                  <th>Nama Cloud</th>
+                  <!-- <th>Host</th> -->
+                  <th>IP Address</th>
+                  <th>Hostname</th>
+                  <th>Jenis Server</th>
+                  <th>Jenis Payment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1;
+                foreach ($cloud_terbaru as $ct) : ?>
+                  <tr>
+                    <td class="text-center">
+                      <?= $i++; ?>
+                    </td>
+                    <td><?= $ct['nama_provider']; ?></td>
+                    <td><?= $ct['nama_os']; ?></td>
+                    <td><?= $ct['nama_cloud']; ?></td>
+                    <td><?= $ct['ip_address']; ?></td>
+                    <td><?= $ct['hostname']; ?></td>
+                    <td><?= $ct['jenis_server']; ?></td>
+                    <td><?= $ct['jenis_payment']; ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
@@ -416,6 +468,21 @@
       }, ],
     });
     datatablesVm.buttons().container().appendTo("#tableVm_wrapper .col-md-6:eq(0)");
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var datatablesCloud = $("#tableCloud").DataTable({
+      paging: false,
+      searching: false,
+      lengthChange: false,
+      columnDefs: [{
+        orderable: false,
+        targets: [0]
+      }, ],
+    });
+    datatablesCloud.buttons().container().appendTo("#tableCloud_wrapper .col-md-6:eq(0)");
   });
 </script>
 <?= $this->endSection(); ?>

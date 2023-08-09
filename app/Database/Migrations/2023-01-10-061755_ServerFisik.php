@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ServerFisik extends Migration
+class ServerFisik1 extends Migration
 {
     public function up()
     {
@@ -35,7 +35,9 @@ class ServerFisik extends Migration
             'tipe_memory'              => ['type' => 'varchar', 'constraint' => 100],
             'jumlah_core'         => ['type' => 'int', 'constraint' => 10],
             'processor'         => ['type' => 'int', 'constraint' => 10],
+            'logical_processor'         => ['type' => 'int', 'constraint' => 10],
             'gambar_server'            => ['type' => 'varchar', 'constraint' => 200],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

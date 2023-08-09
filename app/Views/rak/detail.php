@@ -15,7 +15,7 @@
             <div class="col-lg-3 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="gallery gallery-fw" data-item-height="350">
+                        <div class="gallery gallery-fw" data-item-height="450">
                             <div class="gallery-item" data-image="<?= base_url() . "/img/gambar_rak/" . $rak['gambar_rak']; ?>">
 
                             </div>
@@ -52,9 +52,9 @@
                                         <th>Disk</th>
                                         <th>Memory</th>
                                         <th>Processor</th>
+                                        <th>Logical Processor</th>
                                         <th>Lokasi</th>
-                                        <th>SOS</th>
-                                        <th>EOS</th>
+                                        <th>User Log</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -93,9 +93,13 @@
                                             </td>
                                             <td><?= $sf['memory']; ?> Gb</td>
                                             <td><?= $sf['processor']; ?></td>
+                                            <td><?= $sf['logical_processor']; ?></td>
                                             <td class="text-capitalize"><?= $sf['lokasi']; ?></td>
-                                            <td><?= $sf['sos']; ?></td>
-                                            <td><?= $sf['eos']; ?></td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($sf['user_log']))[0]
+                                                ?>
+                                            </td>
                                         </tr>
 
                                         <!-- Start Modal Delete -->
@@ -114,6 +118,8 @@
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                                                         <form action="<?= base_url('rak') . '/' . $sf['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
+                                                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
+
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
                                                         </form>
@@ -188,15 +194,15 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+                targets: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
                     className: 'btn btn-outline-success',
                     title: 'Server Fisik Bank BTN' + datetime,
-                    messageTop: ' <?= $rak['nama_rak']; ?>',
+                    messageTop: ' <?= $rak['nama_rak']; ?> - <?= $rak['lokasi']; ?>',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button

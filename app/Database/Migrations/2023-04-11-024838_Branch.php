@@ -13,6 +13,7 @@ class Branch extends Migration
             'kode_kantor'         => ['type' => 'integer', 'constraint' => 5],
             'nama_branch'         => ['type' => 'varchar', 'constraint' => 100],
             'regional'         => ['type' => 'integer', 'constraint' => 1],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

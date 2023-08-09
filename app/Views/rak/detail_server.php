@@ -16,10 +16,18 @@
                 <div class="card card-primary">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div class="section-title mt-0 mb-3 font-weight-bold"><?= $fisik->nama_app ?></div>
+                            <div class="section-title mt-0 mb-3 font-weight-bold"><?= $fisik->nama_app ?> - Rak Unit <?= $fisik->rak_unit ?></div>
                             <table class="table table-sm table-striped text-dark">
                                 <thead></thead>
                                 <tbody>
+                                    <tr>
+                                        <td>Rak</td>
+                                        <td><?= $fisik->nama_rak ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rak Unit</td>
+                                        <td><?= $fisik->rak_unit ?></td>
+                                    </tr>
                                     <tr>
                                         <td width="30%">Kode Asset</td>
                                         <td><?= $fisik->kode_aset ?></td>
@@ -44,6 +52,24 @@
                                         <td>IP Address Management</td>
                                         <td><?= $fisik->ip_address_management ?></td>
                                     </tr>
+                                    <?php if (in_groups('admin')) : ?>
+                                        <tr>
+                                            <td>Username OS</td>
+                                            <td><?= $fisik->username_os ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password OS</td>
+                                            <td><?= $fisik->password_os ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username ILO</td>
+                                            <td><?= $fisik->username_ilo ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password ILO</td>
+                                            <td><?= $fisik->password_ilo ?></td>
+                                        </tr>
+                                    <?php endif; ?>
                                     <tr>
                                         <td>Hostname</td>
                                         <td><?= $fisik->hostname ?></td>
@@ -51,14 +77,6 @@
                                     <tr>
                                         <td>Jenis Appliance</td>
                                         <td><?= $fisik->jenis_appliance ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rak</td>
-                                        <td><?= $fisik->nama_rak ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rak Unit</td>
-                                        <td><?= $fisik->rak_unit ?></td>
                                     </tr>
                                     <tr>
                                         <td>No PKS Vendor Software</td>
@@ -109,16 +127,16 @@
                                         <td><?= $fisik->processor ?></td>
                                     </tr>
                                     <tr>
+                                        <td>Logical Processor</td>
+                                        <td><?= $fisik->logical_processor ?></td>
+                                    </tr>
+                                    <tr>
                                         <td>Lokasi</td>
                                         <td><?= $fisik->lokasi ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Start of Service</td>
-                                        <td><?= $fisik->sos ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>End of Service</td>
-                                        <td><?= $fisik->eos ?></td>
+                                        <td>User Log</td>
+                                        <td><?= $fisik->user_log ?></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

@@ -51,6 +51,10 @@
                                     <td>Tempo Pembayaran</td>
                                     <td><?= $kontrak->tempo_pembayaran ?></td>
                                 </tr>
+                                <tr>
+                                    <td>User Log</td>
+                                    <td><?= $kontrak->user_log ?></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -14,6 +14,7 @@ class App extends Migration
             'pic'              => ['type' => 'varchar', 'constraint' => 100],
             'divisi'              => ['type' => 'varchar', 'constraint' => 100],
             'no_hp_pic'        => ['type' => 'varchar', 'constraint' => 20],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

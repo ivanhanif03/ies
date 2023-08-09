@@ -25,6 +25,8 @@
                     <div class="card-body">
                         <form action="<?= base_url('rak/save') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
+
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="nama_rak" class="font-weight-bolder">Nama Rak</label>

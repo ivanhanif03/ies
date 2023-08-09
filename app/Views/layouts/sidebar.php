@@ -54,6 +54,11 @@
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('cluster') ?>"><i class="fas fa-th-list"></i><span>Cluster VM</span></a></li>
 
+                <!-- Provider Cloud -->
+                <li class="<?php if ($menu == 'provider') {
+                                echo 'active';
+                            } ?>"><a class="nav-link" href="<?= base_url('provider') ?>"><i class="fab fa-cloudsmith"></i><span>Provider Cloud</span></a></li>
+
                 <!-- Kantor Cabang -->
                 <li class="<?php if ($menu == 'branch') {
                                 echo 'active';
@@ -71,7 +76,11 @@
             <!-- VIRTUAL MACHINE -->
             <li class="<?php if ($menu == 'vm') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-cloud"></i> <span>Virtual Machine</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url('virtualmachine') ?>"><i class="fas fa-vr-cardboard"></i> <span>Virtual Machine</span></a></li>
+            <!-- CLOUD -->
+            <li class="<?php if ($menu == 'cloud') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('cloud') ?>"><i class="fas fa-cloud"></i> <span>Cloud Server</span></a></li>
             <!-- END SECTION SERVER -->
 
             <!-- START SECTION BRANCH -->

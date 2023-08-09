@@ -27,18 +27,18 @@
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="username">Username</label>
-                                    <input id="username" type="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>" autocomplete="off">
+                                    <input id="username" type="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>" minlength="6" maxlength="10" autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="name">Full Name</label>
-                                    <input id="name" type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" value="<?= old('name') ?>" autocomplete="off">
+                                    <input id="name" type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" value="<?= old('name') ?>" minlength="6" autocomplete="off">
                                 </div>
                                 <div class="form-group col-lg-6 col-sm-12">
                                     <label for="phone">Phone</label>
-                                    <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= old('phone') ?>" maxlength="13" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= old('phone') ?>" minlength="9" maxlength="13" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                             </div>
 

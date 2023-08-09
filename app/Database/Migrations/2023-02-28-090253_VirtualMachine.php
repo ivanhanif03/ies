@@ -23,7 +23,9 @@ class VirtualMachine extends Migration
             'jenis_server'     => ['type' => 'varchar', 'constraint' => 100],
             'lisence'           => ['type' => 'varchar', 'constraint' => 100],
             'masa_aktif'     => ['type' => 'varchar', 'constraint' => 50],
+            'replikasi'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'memo_vm'     => ['type' => 'varchar', 'constraint' => 500, 'null' => true],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],
@@ -32,7 +34,7 @@ class VirtualMachine extends Migration
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('cluster_id', 'cluster', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('os_id', 'os', 'id', '', 'CASCADE');
-        $this->forge->addForeignKey('app_id', 'os', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('app_id', 'apps', 'id', '', 'CASCADE');
 
         $this->forge->createTable('virtualmachine', true);
     }

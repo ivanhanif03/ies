@@ -11,6 +11,7 @@ class Os extends Migration
         $this->forge->addField([
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'nama_os'         => ['type' => 'varchar', 'constraint' => 100],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

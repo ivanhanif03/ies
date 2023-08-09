@@ -4,12 +4,14 @@
 <section class="section">
     <div class="section-header">
         <h1>Server Fisik</h1>
-        <?php if (in_groups('operator') || in_groups('admin')) : ?>
-            <div class="section-header-breadcrumb buttons">
+        <div class="section-header-breadcrumb buttons">
+            <?php if (in_groups('admin')) : ?>
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <?php endif; ?>
+            <?php if (in_groups('operator') || in_groups('admin')) : ?>
                 <a href="<?= base_url('serverfisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="section-body">
@@ -43,15 +45,17 @@
                                         <th>Jenis Appliance</th>
                                         <th>Rak</th>
                                         <th>Rak Unit</th>
-                                        <th>Vendor SW</th>
                                         <th>Vendor HW</th>
+                                        <th>Vendor SW</th>
                                         <th>Merek</th>
                                         <th>Tipe</th>
                                         <th>OS</th>
                                         <th>Disk</th>
                                         <th>Memory</th>
                                         <th>Processor</th>
+                                        <th>Logical Processor</th>
                                         <th>Lokasi</th>
+                                        <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -72,8 +76,8 @@
                                             <td><?= $f['jenis_appliance']; ?></td>
                                             <td><?= $f['nama_rak']; ?></td>
                                             <td><?= $f['rak_unit']; ?></td>
-                                            <td><?= $f['v1']; ?></td>
                                             <td><?= $f['v2']; ?></td>
+                                            <td><?= $f['v1']; ?></td>
                                             <td><?= $f['merek']; ?></td>
                                             <td><?= $f['tipe']; ?></td>
                                             <td class="text-capitalize"><?= $f['nama_os']; ?></td>
@@ -86,8 +90,14 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td><?= $f['memory']; ?> Gb</td>
-                                            <td><?= $f['jumlah_core'] ?> X <?= $f['processor']; ?> Sockets = <?= $f['jumlah_core']*$f['processor']; ?> Core</td>
+                                            <td><?= $f['jumlah_core'] ?> X <?= $f['processor']; ?> Sockets = <?= $f['jumlah_core'] * $f['processor']; ?> Core</td>
+                                            <td><?= $f['logical_processor']; ?></td>
                                             <td class="text-capitalize"><?= $f['lokasi']; ?></td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($f['user_log']))[0]
+                                                ?>
+                                            </td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -170,6 +180,7 @@
                 ?>
                 <form method="post" action="/serverfisik/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
@@ -206,7 +217,7 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19],
+                targets: [8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
@@ -214,7 +225,7 @@
                     title: 'Server Fisik Bank BTN' + datetime,
                     messageTop: 'Data Total Server Fisik Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button

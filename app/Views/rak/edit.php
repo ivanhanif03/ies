@@ -25,6 +25,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('rak/update') . '/' . $rak['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                             <input type="hidden" name="gambar_rak_lama" value="<?= $rak['gambar_rak'] ?>">
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">

@@ -19,6 +19,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('cluster/update') . '/' . $cluster['id']; ?>" method="post">
                             <?= csrf_field() ?>
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
 
                             <div class="row">
                                 <!-- Start Field Data Center -->

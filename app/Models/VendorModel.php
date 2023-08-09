@@ -8,7 +8,12 @@ class VendorModel extends Model
 {
     protected $table            = 'vendor';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['nama_vendor', 'alamat', 'pic', 'pic_phone', 'akun_manager', 'akun_manager_phone', 'helpdesk', 'helpdesk_phone'];
+    protected $useAutoIncrement = true;
+    protected $insertID         = 0;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = true;
+    protected $protectFields    = true;
+    protected $allowedFields    = ['nama_vendor', 'alamat', 'pic', 'pic_phone', 'akun_manager', 'akun_manager_phone', 'helpdesk', 'helpdesk_phone', 'user_log'];
 
     // Dates
     protected $useTimestamps = true;
@@ -20,7 +25,7 @@ class VendorModel extends Model
     public function getVendor($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

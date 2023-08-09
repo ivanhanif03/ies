@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('/virtualmachine/save') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
-
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                             <div class="row">
                                 <!-- Start Field Cluster -->
                                 <div class="form-group col-lg-6 col-sm-12">
@@ -193,10 +193,26 @@
                                 <!-- End Field Masa Aktif -->
                             </div>
 
-                            <label class="font-weight-bold">Memo VM</label>
+                            <!-- <label class="font-weight-bold">Memo VM</label> -->
                             <div class="row mb-3">
+                                <!-- Start Field -->
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label>Replikasi</label>
+                                    <select class="form-control selectric text-sm <?php if (session('errors.replikasi')) : ?>is-invalid<?php endif ?>" name="replikasi" id="replikasi" style="width: 100%;">
+                                        <option value="" disabled selected>Pilih Status Replikasi</option>
+                                        <option value="database_replikasi">Replikasi Database</option>
+                                        <option value="site_recovery_manajemen">Site Recovery Management</option>
+                                        <option value="belum_replikasi">Belum Replikasi</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('replikasi'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field -->
+
                                 <!-- Start Field Memo VM -->
-                                <div class="input-group col-lg-6 col-sm-12">
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label>Memo VM</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input <?php if (session('errors.memo_vm')) : ?>is-invalid<?php endif ?>" id="memo_vm" name="memo_vm" onchange="previewLabel()">
                                         <div class="invalid-feedback">

@@ -12,7 +12,7 @@ class Pinpad extends Migration
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'merek'         => ['type' => 'varchar', 'constraint' => 100],
             'type'         => ['type' => 'varchar', 'constraint' => 100],
-            'seriap_number'         => ['type' => 'varchar', 'constraint' => 100],
+            'serial_number'         => ['type' => 'varchar', 'constraint' => 100],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

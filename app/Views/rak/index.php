@@ -4,10 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Rak Server</h1>
-        <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('rak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Rak</a>
-        </div>
+        <?php if (in_groups('admin')) : ?>
+            <div class="section-header-breadcrumb buttons">
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('rak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Rak</a>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="section-body">
@@ -34,6 +36,7 @@
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Lokasi</th>
+                                        <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -51,6 +54,11 @@
                                                 </a>
                                             </td>
                                             <td><?= $r['lokasi']; ?></td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($r['user_log']))[0]
+                                                ?>
+                                            </td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
@@ -86,6 +94,8 @@
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                                                         <form action="<?= base_url('rak') . '/' . $r['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
+                                                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
+
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
                                                         </form>

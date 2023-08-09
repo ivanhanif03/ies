@@ -141,8 +141,16 @@
                                         <td><?= $fisik->jumlah_core ?> X <?= $fisik->processor ?> Sockets (<?= $fisik->jumlah_core * $fisik->processor ?> Core)</td>
                                     </tr>
                                     <tr>
+                                        <td>Logical Processor</td>
+                                        <td><?= $fisik->logical_processor ?></td>
+                                    </tr>
+                                    <tr>
                                         <td>Lokasi</td>
                                         <td><?= $fisik->lokasi ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>User Log</td>
+                                        <td><?= $fisik->user_log ?></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>

@@ -18,6 +18,7 @@ class Vendor extends Migration
             'akun_manager_phone' => ['type' => 'varchar', 'constraint' => 50],
             'helpdesk'          => ['type' => 'varchar', 'constraint' => 50],
             'helpdesk_phone'    => ['type' => 'varchar', 'constraint' => 50],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'        => ['type' => 'datetime', 'null' => true],
             'updated_at'        => ['type' => 'datetime', 'null' => true],
             'deleted_at'        => ['type' => 'datetime', 'null' => true],

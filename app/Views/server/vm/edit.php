@@ -19,6 +19,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('virtualmachine/update') . '/' . $virtualmachine['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                             <input type="hidden" name="memo_vm_lama" value="<?= $virtualmachine['memo_vm'] ?>">
                             <div class="row">
                                 <!-- Start Field Cluster -->
@@ -232,10 +233,35 @@
                                 <!-- End Field Masa Aktif -->
                             </div>
 
-                            <label class="font-weight-bold">Memo VM</label>
                             <div class="row mb-3">
+                                <!-- Start Field Jenis Server -->
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label>Jenis Server</label>
+                                    <select class="form-control selectric text-sm <?php if (session('errors.replikasi')) : ?>is-invalid<?php endif ?>" name="replikasi" id="replikasi" style="width: 100%;">
+                                        <option value="" disabled selected>Pilih Status Replikasi</option>
+                                        <?php if ($virtualmachine['replikasi'] == 'database_replikasi') : ?>
+                                            <option value="database_replikasi" selected>Replikasi Database</option>
+                                            <option value="site_recovery_manajemen">Site Recovery Management</option>
+                                            <option value="belum_replikasi">Belum Replikasi</option>
+                                        <?php elseif ($virtualmachine['replikasi'] == 'site_recovery_manajemen') : ?>
+                                            <option value="database_replikasi">Replikasi Database</option>
+                                            <option value="site_recovery_manajemen" selected>Site Recovery Management</option>
+                                            <option value="belum_replikasi">Belum Replikasi</option>
+                                        <?php else : ?>
+                                            <option value="database_replikasi">Replikasi Database</option>
+                                            <option value="site_recovery_manajemen">Site Recovery Management</option>
+                                            <option value="belum_replikasi" selected>Belum Replikasi</option>
+                                        <?php endif; ?>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('jenis_server'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Jenis Server -->
+
                                 <!-- Start Field Memo VM -->
-                                <div class="input-group col-lg-6 col-sm-12">
+                                <div class="form-group col-lg-6 col-sm-12">
+                                    <label for="">Memo VM</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input <?php if (session('errors.memo_vm')) : ?>is-invalid<?php endif ?>" id="memo_vm" name="memo_vm" accept=".pdf" onchange="previewLabel()">
                                         <div class="invalid-feedback">

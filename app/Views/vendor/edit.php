@@ -19,6 +19,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('vendor/update') . '/' . $vendor['id']; ?>" method="post">
                             <?= csrf_field() ?>
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
 
                             <div class="row">
                                 <div class="form-group col-lg-6 col-sm-12">

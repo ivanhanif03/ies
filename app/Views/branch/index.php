@@ -4,10 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Daftar Kantor Cabang</h1>
-        <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-branch"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('branch/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kantor Cabang</a>
-        </div>
+        <?php if (in_groups('admin')) : ?>
+            <div class="section-header-breadcrumb buttons">
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-branch"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('branch/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kantor Cabang</a>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="section-body">

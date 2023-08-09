@@ -25,6 +25,7 @@ class ServerBranch extends Migration
             'processor'         => ['type' => 'varchar', 'constraint' => 50],
             'sos'               => ['type' => 'date'],
             'eos'               => ['type' => 'date'],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],

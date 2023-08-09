@@ -12,9 +12,9 @@ class OsModel extends Model
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_os'];
+    protected $allowedFields    = ['nama_os', 'user_log'];
 
     // Dates
     protected $useTimestamps = true;
@@ -43,7 +43,7 @@ class OsModel extends Model
     public function getOs($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

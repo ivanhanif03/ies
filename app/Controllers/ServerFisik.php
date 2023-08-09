@@ -65,12 +65,16 @@ class ServerFisik extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'kode_aset'     => 'required|is_unique[server_fisik.kode_aset,id,{id}]',
-            'serial_number'   => 'required|is_unique[server_fisik.serial_number,id,{id}]',
+            // 'kode_aset'     => 'required|is_unique[server_fisik.kode_aset,id,{id}]',
+            // 'serial_number'   => 'required|is_unique[server_fisik.serial_number,id,{id}]',
+            // 'ip_address_data'  => 'required|is_unique[server_fisik.ip_address_data,id,{id}]',
+            // 'ip_address_management'  => 'required|is_unique[server_fisik.ip_address_management,id,{id}]',
+            'kode_aset'     => 'required',
+            'serial_number'   => 'required',
+            'ip_address_data'  => 'required',
+            'ip_address_management'  => 'required',
             'app_id'  => 'required',
             'jenis_app'  => 'required',
-            'ip_address_data'  => 'required|is_unique[server_fisik.ip_address_data,id,{id}]',
-            'ip_address_management'  => 'required|is_unique[server_fisik.ip_address_management,id,{id}]',
             'hostname'  => 'required',
             'jenis_appliance'  => 'required',
             'rak_id'  => 'required',
@@ -86,6 +90,7 @@ class ServerFisik extends BaseController
             'tipe_memory'  => 'required',
             'jumlah_core'  => 'required',
             'processor'  => 'required',
+            'logical_processor' => 'required',
             'gambar_server' => [
                 'rules' => 'mime_in[gambar_server,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_server,10000]',
                 'errors' => [
@@ -135,6 +140,8 @@ class ServerFisik extends BaseController
             'tipe_memory' => $this->request->getVar('tipe_memory'),
             'jumlah_core' => $this->request->getVar('jumlah_core'),
             'processor' => $this->request->getVar('processor'),
+            'logical_processor' => $this->request->getVar('logical_processor'),
+            'user_log' => $this->request->getVar('user_log'),
             'gambar_server'   => $gambarServerName,
         ]);
 
@@ -185,7 +192,8 @@ class ServerFisik extends BaseController
             $tipe_memory = $row[22];
             $jumlah_core = $row[23];
             $processor = $row[24];
-            $gambar_server = $row[25];
+            $logical_processor = $row[25];
+            $gambar_server = $row[26];
 
             $db = \Config\Database::connect();
 
@@ -194,7 +202,7 @@ class ServerFisik extends BaseController
             if (count($cek_kode_aset) > 0) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kode aset sudah ada</b>');
             }
-            if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($jumlah_core == null) || ($processor == null) || ($gambar_server == null)) {
+            if (($kode_aset == null) || ($serial_number == null) || ($app_id == null) || ($jenis_app == null) || ($ip_address_data == null) || ($ip_address_management == null) || ($hostname == null) ||  ($jenis_appliance == null) || ($rak_id == null) || ($rak_unit == null) || ($vendor_software_id == null) || ($vendor_hardware_id == null) || ($merek == null) || ($tipe == null) || ($os_id == null) || ($disk == null) || ($tipe_disk == null) || ($memory == null) || ($tipe_memory == null) || ($jumlah_core == null) || ($processor == null) || ($logical_processor == null) || ($gambar_server == null)) {
                 session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
                 $this->ServerFisikModel->save([
@@ -223,7 +231,9 @@ class ServerFisik extends BaseController
                     'jumlah_core' => $jumlah_core,
                     'tipe_memory' => $tipe_memory,
                     'processor' => $processor,
+                    'logical_processor' => $logical_processor,
                     'gambar_server' => $gambar_server,
+                    'user_log' => $this->request->getVar('user_log'),
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data server fisik');
             }
@@ -277,12 +287,16 @@ class ServerFisik extends BaseController
         }
 
         if (!$this->validate([
-            'kode_aset'     => $rule_unique_aset,
-            'serial_number'   => $rule_unique_sn,
+            // 'kode_aset'     => $rule_unique_aset,
+            // 'serial_number'   => $rule_unique_sn,
+            // 'ip_address_data'  => $rule_unique_data,
+            // 'ip_address_management'  => $rule_unique_mngmt,
+            'kode_aset'     => 'required',
+            'serial_number'   => 'required',
+            'ip_address_data'  => 'required',
+            'ip_address_management'  => 'required',
             'app_id'  => 'required',
             'jenis_app'  => 'required',
-            'ip_address_data'  => $rule_unique_data,
-            'ip_address_management'  => $rule_unique_mngmt,
             'hostname'  => 'required',
             'jenis_appliance'  => 'required',
             'rak_id'  => 'required',
@@ -298,6 +312,7 @@ class ServerFisik extends BaseController
             'tipe_memory'  => 'required',
             'jumlah_core'  => 'required',
             'processor'  => 'required',
+            'logical_processor'  => 'required',
             'gambar_server' => [
                 'rules' => 'mime_in[gambar_server,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar_server,10000]',
                 'errors' => [
@@ -354,6 +369,8 @@ class ServerFisik extends BaseController
             'tipe_memory' => $this->request->getVar('tipe_memory'),
             'jumlah_core' => $this->request->getVar('jumlah_core'),
             'processor' => $this->request->getVar('processor'),
+            'logical_processor' => $this->request->getVar('logical_processor'),
+            'user_log' => $this->request->getVar('user_log'),
             'gambar_server'   => $gambarServerName,
         ]);
 

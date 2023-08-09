@@ -24,6 +24,8 @@ class VirtualMachineSeeder extends Seeder
                 'jenis_server'          => 'DB',
                 'lisence'          => 'L12312ASA',
                 'masa_aktif'      => '2025-03-03',
+                'replikasi'      => 'database_replikasi',
+                'user_log'      => 'seeder',
                 'memo_vm' => 'kosong',
                 'created_at'    => Time::now(),
                 'updated_at'    => Time::now(),

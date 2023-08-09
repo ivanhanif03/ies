@@ -12,9 +12,9 @@ class VirtualMachineModel extends Model
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['cluster_id', 'os_id', 'app_id', 'nama_vm', 'ip_address', 'hostname', 'disk', 'memory', 'jumlah_core', 'processor', 'jenis_server', 'lisence', 'masa_aktif', 'memo_vm'];
+    protected $allowedFields    = ['cluster_id', 'os_id', 'app_id', 'nama_vm', 'ip_address', 'hostname', 'disk', 'memory', 'jumlah_core', 'processor', 'jenis_server', 'lisence', 'masa_aktif', 'replikasi', 'memo_vm', 'user_log'];
 
     // Dates
     protected $useTimestamps = true;
@@ -58,6 +58,7 @@ class VirtualMachineModel extends Model
             ->select('os.*')
             ->select('apps.*')
             ->select('virtualmachine.*')
+            ->where('virtualmachine.deleted_at', null)
             ->orderBy('virtualmachine.id')
             ->get()->getResultArray();
     }

@@ -12,9 +12,9 @@ class RakModel extends Model
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_rak', 'lokasi', 'gambar_rak'];
+    protected $allowedFields    = ['nama_rak', 'lokasi', 'gambar_rak', 'user_log'];
 
     // Dates
     protected $useTimestamps = true;
@@ -43,7 +43,7 @@ class RakModel extends Model
     public function getRak($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

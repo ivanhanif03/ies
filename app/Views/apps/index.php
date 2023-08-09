@@ -4,10 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Daftar Aplikasi</h1>
-        <div class="section-header-breadcrumb buttons">
-            <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Aplikasi</a>
-        </div>
+        <?php if (in_groups('admin')) : ?>
+            <div class="section-header-breadcrumb buttons">
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Aplikasi</a>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="section-body">
@@ -36,6 +38,7 @@
                                         <th>PIC</th>
                                         <th>Divisi</th>
                                         <th>Nomor HP PIC</th>
+                                        <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -51,6 +54,11 @@
                                             <td><?= $a['pic']; ?></td>
                                             <td><?= $a['divisi']; ?></td>
                                             <td><?= $a['no_hp_pic']; ?></td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($a['user_log']))[0]
+                                                ?>
+                                            </td>
                                             <td class="dropdown text-center">
                                                 <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
@@ -122,6 +130,7 @@
                 ?>
                 <form method="post" action="/apps/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>

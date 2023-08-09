@@ -4,12 +4,14 @@
 <section class="section">
     <div class="section-header">
         <h1>Virtual Machine</h1>
-        <?php if (in_groups('operator') || in_groups('admin')) : ?>
-            <div class="section-header-breadcrumb buttons">
+        <div class="section-header-breadcrumb buttons">
+            <?php if (in_groups('admin')) : ?>
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-vm"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <?php endif; ?>
+            <?php if (in_groups('operator') || in_groups('admin')) : ?>
                 <a href="<?= base_url('virtualmachine/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="section-body">
@@ -44,8 +46,11 @@
                                         <th>Processor</th>
                                         <th>Jenis Server</th>
                                         <th>Lisence</th>
+                                        <th>Lokasi</th>
                                         <th>Masa Aktif</th>
+                                        <th>Status Replikasi</th>
                                         <th>Status</th>
+                                        <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -74,23 +79,47 @@
                                             <td><?= $vm['jumlah_core']; ?> X <?= $vm['processor']; ?> Socket (<?= $vm['jumlah_core'] * $vm['processor']; ?> Core)</td>
                                             <td><?= $vm['jenis_server']; ?></td>
                                             <td><?= $vm['lisence']; ?></td>
+                                            <td><?= $vm['data_center']; ?></td>
                                             <td><?= $vm['masa_aktif']; ?></td>
+                                            <td>
+                                                <?php if ($vm['replikasi'] == 'database_replikasi') : ?>
+                                                    Replikasi Database
+                                                <?php elseif ($vm['replikasi'] == 'site_recovery_manajemen') : ?>
+                                                    Site Recovery Management
+                                                <?php else : ?>
+                                                    Belum Replikasi
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="text-center">
-                                                <?php if (((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) > 604800) && ((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) < 2592000)) : ?>
+                                                <?php
+                                                $status = (strtotime($vm['masa_aktif']) - strtotime(date('y-m-d')));
+                                                if (($status > 604800) && ($status <= 2592000)) : ?>
                                                     <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 30 Hari" href="">
+                                                        <div class="badge badge-success">&nbsp;</div>
+                                                    </a>
+                                                <?php
+                                                elseif (($status > 86400) && ($status <= 604800)) : ?>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 7 Hari" href="">
+                                                        <div class="badge badge-warning">&nbsp;</div>
+                                                    </a>
+                                                <?php
+                                                elseif (($status >= 0) && ($status <= 86400)) : ?>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 1 Hari" href="">
+                                                        <div class="badge badge-danger">&nbsp;</div>
+                                                    </a>
+                                                <?php
+                                                elseif ($status < 0) : ?>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Nonaktif" href="">
                                                         <div class="badge badge-secondary">&nbsp;</div>
-                                                    </a>
-                                                <?php elseif (((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) > 86400) && ((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) <= 604800)) : ?>
-                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 7 Hari" href="">
-                                                        <div class="badge badge-warning"></div>
-                                                    </a>
-                                                <?php elseif ((strtotime(date('y-m-d')) - strtotime($vm['masa_aktif'])) <= 86400) : ?>
-                                                    <a data-toggle="tooltip" data-placement="top" title="Masa aktif kurang dari 7 Hari" href="">
-                                                        <div class="badge badge-danger"></div>
                                                     </a>
                                                 <?php else : ?>
 
                                                 <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($vm['user_log']))[0]
+                                                ?>
                                             </td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
@@ -174,6 +203,7 @@
                 ?>
                 <form method="post" action="/virtualmachine/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>
@@ -210,7 +240,7 @@
                 targets: [0]
             }, {
                 visible: false,
-                targets: [7, 8, 9, 10, 11],
+                targets: [7, 8, 9, 10, 11, 14],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
@@ -218,7 +248,7 @@
                     title: 'Server VM Bank BTN' + datetime,
                     messageTop: 'Data Total Server Virtual Machine Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -234,7 +264,7 @@
                     title: 'Server VM Bank BTN' + datetime,
                     messageTop: 'Data Total Server Virtual Machine Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button

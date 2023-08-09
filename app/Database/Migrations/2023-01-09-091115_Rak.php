@@ -13,6 +13,7 @@ class Rak extends Migration
             'nama_rak'       => ['type' => 'varchar', 'constraint' => 100],
             'lokasi'            => ['type' => 'varchar', 'constraint' => 200],
             'gambar_rak'            => ['type' => 'varchar', 'constraint' => 200],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'        => ['type' => 'datetime', 'null' => true],
             'updated_at'        => ['type' => 'datetime', 'null' => true],
             'deleted_at'        => ['type' => 'datetime', 'null' => true],

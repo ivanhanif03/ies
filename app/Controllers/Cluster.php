@@ -29,7 +29,7 @@ class Cluster extends BaseController
     public function create()
     {
         $data = [
-            'title' => 'Tambah Operating System',
+            'title' => 'Tambah Cluster',
             'menu' => 'cluster',
             'validation' => \Config\Services::validation(),
             'cluster' => $this->ClusterModel->getCluster()
@@ -43,7 +43,8 @@ class Cluster extends BaseController
         //Validation
         if (!$this->validate([
             'data_center'     => 'required',
-            'nama_cluster'     => 'required|is_unique[cluster.nama_cluster,id,{id}]',
+            // 'nama_cluster'     => 'required|is_unique[cluster.nama_cluster,id,{id}]',
+            'nama_cluster'     => 'required',
         ])) {
             return redirect()->to('/cluster/create')->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -51,6 +52,7 @@ class Cluster extends BaseController
         $this->ClusterModel->save([
             'data_center'    => $this->request->getVar('data_center'),
             'nama_cluster'    => $this->request->getVar('nama_cluster'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data cluster baru berhasil ditambahkan');
@@ -78,17 +80,21 @@ class Cluster extends BaseController
             $data_center = $row[0];
             $nama_cluster = $row[1];
 
-            $db = \Config\Database::connect();
+            // $db = \Config\Database::connect();
 
-            $cek_cluster = $db->table('cluster')->getWhere(['nama_cluster' => $nama_cluster])->getResult();
+            // $cek_cluster = $db->table('cluster')->getWhere(['nama_cluster' => $nama_cluster])->getResult();
 
-            if (count($cek_cluster) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, cluster sudah terdaftar</b>');
+            // if (count($cek_cluster) > 0) {
+            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, cluster sudah terdaftar</b>');
+            // } else {
+            if (($data_center == null) || ($nama_cluster == null)) {
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
 
                 $this->ClusterModel->save([
                     'data_center' => $data_center,
-                    'nama_cluster' => $nama_cluster
+                    'nama_cluster' => $nama_cluster,
+                    'user_log'    => $this->request->getVar('user_log'),
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data cluster');
             }
@@ -121,7 +127,8 @@ class Cluster extends BaseController
 
         if (!$this->validate([
             'data_center'     => 'required',
-            'nama_cluster'     => $rule_unique,
+            // 'nama_cluster'     => $rule_unique,
+            'nama_cluster'     => 'required',
         ])) {
             return redirect()->to('cluster/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -129,6 +136,7 @@ class Cluster extends BaseController
             'id' => $id,
             'data_center'    => $this->request->getVar('data_center'),
             'nama_cluster'    => $this->request->getVar('nama_cluster'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data cluster berhasil diedit');

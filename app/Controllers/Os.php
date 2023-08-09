@@ -42,13 +42,15 @@ class Os extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_os'     => 'required|is_unique[os.nama_os,id,{id}]',
+            // 'nama_os'     => 'required|is_unique[os.nama_os,id,{id}]',
+            'nama_os'     => 'required',
         ])) {
             return redirect()->to('os/create')->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $this->OsModel->save([
             'nama_os'    => $this->request->getVar('nama_os'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data operating system baru berhasil ditambahkan');
@@ -76,19 +78,20 @@ class Os extends BaseController
             // $id = $row[0];
             $nama_os = $row[0];
 
-            $db = \Config\Database::connect();
+            // $db = \Config\Database::connect();
 
-            $cek_os = $db->table('os')->getWhere(['nama_os' => $nama_os])->getResult();
+            // $cek_os = $db->table('os')->getWhere(['nama_os' => $nama_os])->getResult();
 
-            if (count($cek_os) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, operating system sudah terdaftar</b>');
-            } else {
+            // if (count($cek_os) > 0) {
+            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, operating system sudah terdaftar</b>');
+            // } else {
 
-                $this->OsModel->save([
-                    'nama_os' => $nama_os
-                ]);
-                session()->setFlashdata('message', 'Berhasil import excel data operating system');
-            }
+            $this->OsModel->save([
+                'nama_os' => $nama_os,
+                'user_log'    => $this->request->getVar('user_log'),
+            ]);
+            session()->setFlashdata('message', 'Berhasil import excel data operating system');
+            // }
         }
 
         return redirect()->to('/os');
@@ -117,13 +120,15 @@ class Os extends BaseController
         }
 
         if (!$this->validate([
-            'nama_os'     => $rule_unique,
+            // 'nama_os'     => $rule_unique,
+            'nama_os'     => 'required',
         ])) {
             return redirect()->to('os/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
         $this->OsModel->save([
             'id' => $id,
             'nama_os'    => $this->request->getVar('nama_os'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data operating system berhasil diedit');

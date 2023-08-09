@@ -97,6 +97,7 @@ class Rak extends BaseController
             'nama_rak'    => $this->request->getVar('nama_rak'),
             'lokasi'   => $this->request->getVar('lokasi'),
             'gambar_rak'   => $gambarRakName,
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data rak baru berhasil ditambahkan');
@@ -133,13 +134,14 @@ class Rak extends BaseController
             // if (count($cek_rak) > 0) {
             //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama rak sudah ada</b>');
             // } 
-                if (($nama_rak == null) || ($lokasi == null) || ($gambar_rak == null)) {
-                    session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
-                } else {
+            if (($nama_rak == null) || ($lokasi == null) || ($gambar_rak == null)) {
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+            } else {
                 $this->RakModel->save([
                     'nama_rak' => $nama_rak,
                     'lokasi' => $lokasi,
                     'gambar_rak' => $gambar_rak,
+                    'user_log'    => $this->request->getVar('user_log'),
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data rak');
             }
@@ -201,6 +203,7 @@ class Rak extends BaseController
             'nama_rak'    => $this->request->getVar('nama_rak'),
             'lokasi'   => $this->request->getVar('lokasi'),
             'gambar_rak'   => $gambarRakName,
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data rak berhasil diedit');

@@ -19,6 +19,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('serverfisik/update') . '/' . $fisik['id']; ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field() ?>
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                             <input type="hidden" name="gambar_server_lama" value="<?= $fisik['gambar_server'] ?>">
                             <div class="row">
                                 <!-- Start Field Kode Aset -->
@@ -324,7 +325,7 @@
                                 <!-- End Field OS -->
 
                                 <!-- Start Field Core per Socket -->
-                                <div class="form-group col-lg-3 col-sm-12">
+                                <div class="form-group col-lg-2 col-sm-12">
                                     <label for="jumlah_core">Core per Socket</label>
                                     <input id="jumlah_core" type="text" class="form-control <?php if (session('errors.jumlah_core')) : ?>is-invalid<?php endif ?>" name="jumlah_core" value="<?= $fisik['jumlah_core']; ?>" placeholder="Masukkan jumlah core per socket" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
@@ -334,7 +335,7 @@
                                 <!-- End Field Core per Socket -->
 
                                 <!-- Start Field Sockets -->
-                                <div class="form-group col-lg-3 col-sm-12">
+                                <div class="form-group col-lg-2 col-sm-12">
                                     <label for="processor">Jumlah Socket</label>
                                     <input id="processor" type="text" class="form-control <?php if (session('errors.processor')) : ?>is-invalid<?php endif ?>" name="processor" value="<?= $fisik['processor']; ?>" placeholder="Masukkan jumlah socket" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                                     <div class="invalid-feedback">
@@ -342,6 +343,16 @@
                                     </div>
                                 </div>
                                 <!-- End Field Sockets -->
+
+                                <!-- Start Field Logical Processor -->
+                                <div class="form-group col-lg-2 col-sm-12">
+                                    <label for="logical_processor">Logical Processor</label>
+                                    <input id="logical_processor" type="text" class="form-control <?php if (session('errors.logical_processor')) : ?>is-invalid<?php endif ?>" name="logical_processor" value="<?= $fisik['logical_processor']; ?>" placeholder="Masukkan jumlah logical processor" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('logical_processor'); ?>
+                                    </div>
+                                </div>
+                                <!-- End Field Logical Processor -->
                             </div>
 
                             <div class="row">
@@ -388,7 +399,6 @@
                                 <!-- End Field Tipe Memory -->
                             </div>
 
-                            <label class="font-weight-bold">Gambar Server</label>
                             <div class="row mb-3">
                                 <!-- Start Field Gambar Server -->
                                 <div class=" col-lg-2 col-sm-12">

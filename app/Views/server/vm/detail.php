@@ -72,6 +72,77 @@
                                         <td>Lisence</td>
                                         <td><?= $virtualmachine->lisence ?></td>
                                     </tr>
+                                    <tr>
+                                        <td>Lokasi</td>
+                                        <td><?= $virtualmachine->data_center ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Masa Aktif</td>
+                                        <td><?= $virtualmachine->masa_aktif ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status Replikasi</td>
+                                        <?php if ($virtualmachine->replikasi == 'database_replikasi') : ?>
+                                            <td>Replikasi Database</td>
+                                        <?php elseif ($virtualmachine->replikasi == 'site_recovery_manajemen') : ?>
+                                            <td>SRM</td>
+                                        <?php else : ?>
+                                            <td>Belum Replikasi</td>
+                                        <?php endif; ?>
+                                    </tr>
+                                    <tr>
+                                        <td>Memo</td>
+                                        <td>
+                                            <?php if ($virtualmachine->memo_vm == 'kosong') : ?>
+                                                Tidak ada MEMO
+                                            <?php else : ?>
+                                                <a href="<?= base_url('uploads/memo_vm/' . $virtualmachine->memo_vm) ?>" target="_blank"><?= $virtualmachine->memo_vm ?></a>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <?php
+                                        $status = (strtotime($virtualmachine->masa_aktif) - strtotime(date('y-m-d')));
+                                        if (($status > 604800) && ($status <= 2592000)) : ?>
+                                            <td>
+                                                <div class="badge badge-success">
+                                                    Masa aktif kurang dari 30 Hari
+                                                </div>
+                                            </td>
+                                        <?php
+                                        elseif (($status > 86400) && ($status <= 604800)) : ?>
+                                            <td>
+                                                <div class="badge badge-warning">
+                                                    Masa aktif kurang dari 7 Hari
+                                                </div>
+                                            </td>
+                                        <?php
+                                        elseif (($status > 0) && ($status <= 86400)) : ?>
+                                            <td>
+                                                <div class="badge badge-danger">
+                                                    Masa aktif kurang dari 1 Hari
+                                                </div>
+                                            </td>
+                                        <?php
+                                        elseif ($status < 0) : ?>
+                                            <td>
+                                                <div class="badge badge-secondary">
+                                                    Nonaktif
+                                                </div>
+                                            </td>
+                                        <?php else : ?>
+                                            <td>
+                                                <div class="badge badge-primary">
+                                                    Masa aktif lebih dari 30 hari
+                                                </div>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                    <tr>
+                                        <td>User Log</td>
+                                        <td><?= $virtualmachine->user_log ?></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

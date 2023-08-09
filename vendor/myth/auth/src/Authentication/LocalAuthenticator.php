@@ -40,7 +40,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             return false;
         }
 
-        if (! $this->user->isActivated()) {
+        if (!$this->user->isActivated()) {
             // Always record a login attempt, whether success or not.
             $ipAddress = service('request')->getIPAddress();
             $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
@@ -49,7 +49,8 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
                 'login' => urlencode($credentials['email'] ?? $credentials['username']),
             ]);
 
-            $this->error = lang('Auth.notActivated') . ' ' . anchor(route_to('resend-activate-account') . '?' . $param, lang('Auth.activationResend'));
+            // $this->error = lang('Auth.notActivated') . ' ' . anchor(route_to('resend-activate-account') . '?' . $param, lang('Auth.activationResend'));
+            $this->error = lang('Auth.notActivated');
 
             $this->user = null;
 
@@ -90,7 +91,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             return false;
         }
 
-        if (! hash_equals($token->hashedValidator, $validator)) {
+        if (!hash_equals($token->hashedValidator, $validator)) {
             return false;
         }
 
@@ -132,21 +133,21 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         }
 
         // Ensure that the fields are allowed validation fields
-        if (! in_array(key($credentials), $this->config->validFields, true)) {
+        if (!in_array(key($credentials), $this->config->validFields, true)) {
             throw AuthException::forInvalidFields(key($credentials));
         }
 
         // Can we find a user with those credentials?
         $user = $this->userModel->where($credentials)->first();
 
-        if (! $user instanceof User) {
+        if (!$user instanceof User) {
             $this->error = lang('Auth.badAttempt');
 
             return false;
         }
 
         // Now, try matching the passwords.
-        if (! Password::verify((string) $password, $user->password_hash)) {
+        if (!Password::verify((string) $password, $user->password_hash)) {
             $this->error = lang('Auth.invalidPassword');
 
             return false;

@@ -12,12 +12,12 @@ class ClusterModel extends Model
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['data_center', 'nama_cluster'];
+    protected $allowedFields    = ['data_center', 'nama_cluster', 'user_log'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -43,7 +43,7 @@ class ClusterModel extends Model
     public function getCluster($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

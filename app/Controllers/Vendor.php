@@ -53,7 +53,8 @@ class Vendor extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_vendor'     => 'required|is_unique[vendor.nama_vendor]',
+            // 'nama_vendor'     => 'required|is_unique[vendor.nama_vendor]',
+            'nama_vendor'     => 'required',
             'alamat'    => 'required',
             'pic'  => 'required',
             'pic_phone'  => 'required|min_length[9]|max_length[13]',
@@ -74,6 +75,7 @@ class Vendor extends BaseController
             'akun_manager_phone' => $this->request->getVar('akun_manager_phone'),
             'helpdesk' => $this->request->getVar('helpdesk'),
             'helpdesk_phone' => $this->request->getVar('helpdesk_phone'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data vendor baru berhasil ditambahkan');
@@ -109,13 +111,13 @@ class Vendor extends BaseController
 
             $db = \Config\Database::connect();
 
-            $cek_vendor = $db->table('vendor')->getWhere(['nama_vendor' => $nama_vendor])->getResult();
+            // $cek_vendor = $db->table('vendor')->getWhere(['nama_vendor' => $nama_vendor])->getResult();
 
-            if (count($cek_vendor) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama vendor sudah ada</b>');
-            // }
-            // if (($nama_vendor == null) || ($alamat == null) || ($pic == null) || ($pic_phone == null) || ($akun_manager == null) || ($akun_manager_phone == null) || ($helpdesk == null) || ($helpdesk_phone == null) || ($scope_work == null) || ($nilai_kontrak == null) || ($tempo_pembayaran == null)) {
-            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
+            // if (count($cek_vendor) > 0) {
+            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama vendor sudah ada</b>');
+            //     }
+            if (($nama_vendor == null) || ($alamat == null) || ($pic == null) || ($pic_phone == null) || ($akun_manager == null) || ($akun_manager_phone == null) || ($helpdesk == null) || ($helpdesk_phone == null)) {
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
 
                 $this->VendorModel->save([
@@ -127,6 +129,7 @@ class Vendor extends BaseController
                     'akun_manager_phone' => $akun_manager_phone,
                     'helpdesk' => $helpdesk,
                     'helpdesk_phone' => $helpdesk_phone,
+                    'user_log'    => $this->request->getVar('user_log'),
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data vendor');
             }
@@ -158,7 +161,8 @@ class Vendor extends BaseController
         }
 
         if (!$this->validate([
-            'nama_vendor'     => $rule_unique,
+            // 'nama_vendor'     => $rule_unique,
+            'nama_vendor'     => 'required',
             'alamat'    => 'required',
             'pic'  => 'required',
             'pic_phone'  => 'required|min_length[9]|max_length[13]',
@@ -179,6 +183,7 @@ class Vendor extends BaseController
             'akun_manager_phone' => $this->request->getVar('akun_manager_phone'),
             'helpdesk' => $this->request->getVar('helpdesk'),
             'helpdesk_phone' => $this->request->getVar('helpdesk_phone'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data vendor berhasil diedit');

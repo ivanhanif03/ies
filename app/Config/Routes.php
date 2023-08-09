@@ -70,6 +70,17 @@ $routes->get('/virtualmachine/edit/(:segment)', 'VirtualMachine::edit/$1');
 $routes->post('/virtualmachine/update/(:segment)', 'VirtualMachine::update/$1');
 $routes->delete('/virtualmachine/(:num)', 'VirtualMachine::delete/$1');
 
+//SERVER CLOUD
+$routes->get('/cloud', 'Cloud::index');
+$routes->get('/cloud/index', 'Cloud::index');
+$routes->get('/cloud/detail/(:segment)', 'Cloud::detail/$1');
+$routes->get('/cloud/create', 'Cloud::create');
+$routes->post('/cloud/save', 'Cloud::save');
+$routes->post('/cloud/saveExcel', 'Cloud::saveExcel');
+$routes->get('/cloud/edit/(:segment)', 'Cloud::edit/$1');
+$routes->post('/cloud/update/(:segment)', 'Cloud::update/$1');
+$routes->delete('/cloud/(:num)', 'Cloud::delete/$1');
+
 //VENDOR
 $routes->get('/vendor', 'Vendor::index', ['filter' => 'role:admin, operator']);
 $routes->get('/vendor/index', 'Vendor::index', ['filter' => 'role:admin, operator']);
@@ -133,6 +144,16 @@ $routes->post('/cluster/saveExcel', 'Cluster::saveExcel', ['filter' => 'role:adm
 $routes->get('/cluster/edit/(:segment)', 'Cluster::edit/$1', ['filter' => 'role:admin, operator']);
 $routes->post('/cluster/update/(:segment)', 'Cluster::update/$1', ['filter' => 'role:admin, operator']);
 $routes->delete('/cluster/(:num)', 'Cluster::delete/$1', ['filter' => 'role:admin, operator']);
+
+//Provider Cloud
+$routes->get('/provider', 'Provider::index', ['filter' => 'role:admin, operator']);
+$routes->get('/provider/index', 'Provider::index', ['filter' => 'role:admin, operator']);
+$routes->get('/provider/create', 'Provider::create', ['filter' => 'role:admin, operator']);
+$routes->post('/provider/save', 'Provider::save', ['filter' => 'role:admin, operator']);
+$routes->post('/provider/saveExcel', 'Provider::saveExcel', ['filter' => 'role:admin, operator']);
+$routes->get('/provider/edit/(:segment)', 'Provider::edit/$1', ['filter' => 'role:admin, operator']);
+$routes->post('/provider/update/(:segment)', 'Provider::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/provider/(:num)', 'Provider::delete/$1', ['filter' => 'role:admin, operator']);
 
 //Branch
 $routes->get('/branch', 'Branch::index', ['filter' => 'role:admin, operator']);

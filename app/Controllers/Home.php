@@ -2,17 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Models\CloudModel;
 use App\Models\ServerFisikModel;
 use App\Models\VirtualMachineModel;
 
 class Home extends BaseController
 {
-    protected $ServerFisikModel, $VirtualMachineModel;
+    protected $ServerFisikModel, $VirtualMachineModel, $CloudModel;
 
     public function __construct()
     {
         $this->ServerFisikModel = new ServerFisikModel();
         $this->VirtualMachineModel = new VirtualMachineModel();
+        $this->CloudModel = new CloudModel();
     }
 
     public function index()
@@ -41,7 +43,9 @@ class Home extends BaseController
             'total_jenis_dev_vm' => $this->VirtualMachineModel->getTotalJenisDevVm(),
             'aplikasi_terbaru' => $this->ServerFisikModel->getAplikasiTerbaru(),
             'server_fisik_terbaru' => $this->ServerFisikModel->getServerFisikTerbaru(),
-            'vm_terbaru' => $this->VirtualMachineModel->getVmTerbaru()
+            'vm_terbaru' => $this->VirtualMachineModel->getVmTerbaru(),
+            'total_cloud' => $this->CloudModel->getTotalCloud(),
+            'cloud_terbaru' => $this->CloudModel->getCloudTerbaru(),
         ];
 
         // dd($data);

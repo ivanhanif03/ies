@@ -18,6 +18,7 @@ class Kontrak extends Migration
             'end_kontrak'       => ['type' => 'varchar', 'constraint' => 50],
             'tempo_pembayaran'  => ['type' => 'varchar', 'constraint' => 50],
             'vendor_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
             'created_at'        => ['type' => 'datetime', 'null' => true],
             'updated_at'        => ['type' => 'datetime', 'null' => true],
             'deleted_at'        => ['type' => 'datetime', 'null' => true],

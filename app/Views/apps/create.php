@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <form action="<?= base_url('/apps/save') ?>" method="post">
                             <?= csrf_field() ?>
-
+                            <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                             <div class="row">
                                 <div class="form-group col-12">
                                     <label for="nama_app" class="font-weight-bolder">Nama Aplikasi</label>

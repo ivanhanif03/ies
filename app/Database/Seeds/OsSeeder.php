@@ -12,11 +12,13 @@ class OsSeeder extends Seeder
         $data = [
             [
                 'nama_os' => 'Windows Server 2003',
+                'user_log'      => 'seeder',
                 'created_at'            => Time::now(),
                 'updated_at'            => Time::now(),
             ],
             [
                 'nama_os' => 'Windows Server 2019',
+                'user_log'      => 'seeder',
                 'created_at'            => Time::now(),
                 'updated_at'            => Time::now(),
             ],

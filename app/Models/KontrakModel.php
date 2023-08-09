@@ -8,7 +8,7 @@ class KontrakModel extends Model
 {
     protected $table            = 'kontrak';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['nama_kontrak', 'no_pks', 'nilai_kontrak', 'scope_work', 'start_kontrak', 'end_kontrak', 'tempo_pembayaran', 'vendor_id'];
+    protected $allowedFields    = ['nama_kontrak', 'no_pks', 'nilai_kontrak', 'scope_work', 'start_kontrak', 'end_kontrak', 'tempo_pembayaran', 'vendor_id', 'user_log'];
 
     // Dates
     protected $useTimestamps = true;
@@ -20,7 +20,7 @@ class KontrakModel extends Model
     public function getAllKontrak($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->findAll();
         }
         return $this->where(['id' => $id])->first();
     }
@@ -31,6 +31,7 @@ class KontrakModel extends Model
             ->join('vendor', 'vendor.id=kontrak.vendor_id', 'left')
             ->select('vendor.*')
             ->select('kontrak.*')
+            ->where('kontrak.deleted_at', null)
             ->orderBy('kontrak.id')
             ->get()->getResultArray();
     }

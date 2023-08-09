@@ -42,7 +42,8 @@ class App extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'nama_app'     => 'required|is_unique[apps.nama_app]',
+            // 'nama_app'     => 'required|is_unique[apps.nama_app]',
+            'nama_app'     => 'required',
             'pic'     => 'required',
             'divisi'     => 'required',
             'no_hp_pic'    => 'required|min_length[9]|max_length[13]',
@@ -55,6 +56,7 @@ class App extends BaseController
             'pic'   => $this->request->getVar('pic'),
             'divisi'   => $this->request->getVar('divisi'),
             'no_hp_pic' => $this->request->getVar('no_hp_pic'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data app baru berhasil ditambahkan');
@@ -85,20 +87,23 @@ class App extends BaseController
             $divisi = $row[2];
             $no_hp_pic = $row[3];
 
-            $db = \Config\Database::connect();
+            // $db = \Config\Database::connect();
 
-            $cek_app = $db->table('apps')->getWhere(['nama_app' => $nama_app])->getResult();
-            // dd($cek_app);
+            // $cek_app = $db->table('apps')->getWhere(['nama_app' => $nama_app])->getResult();
+            // // dd($cek_app);
 
-            if (count($cek_app) > 0) {
-                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama aplikasi sudah terdaftar</b>');
+            // if (count($cek_app) > 0) {
+            //     session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, nama aplikasi sudah terdaftar</b>');
+            // } else {
+            if (($nama_app == null) || ($pic == null) || ($divisi == null) || ($no_hp_pic == null)) {
+                session()->setFlashdata('message', '<b class="text-danger bg-white p-2 rounded-lg">Data gagal diimport, kolom pada file import excel tidak boleh kosong</b>');
             } else {
-
                 $this->AppModel->save([
                     'nama_app' => $nama_app,
                     'pic' => $pic,
                     'divisi' => $divisi,
-                    'no_hp_pic' => $no_hp_pic
+                    'no_hp_pic' => $no_hp_pic,
+                    'user_log'    => $this->request->getVar('user_log'),
                 ]);
                 session()->setFlashdata('message', 'Berhasil import excel data aplikasi');
             }
@@ -130,7 +135,8 @@ class App extends BaseController
         }
 
         if (!$this->validate([
-            'nama_app'     => $rule_unique,
+            // 'nama_app'     => $rule_unique,
+            'nama_app'     => 'required',
             'pic'     => 'required',
             'divisi'     => 'required',
             'no_hp_pic'    => 'required|min_length[9]|max_length[13]',
@@ -143,6 +149,7 @@ class App extends BaseController
             'pic'   => $this->request->getVar('pic'),
             'divisi'   => $this->request->getVar('divisi'),
             'no_hp_pic' => $this->request->getVar('no_hp_pic'),
+            'user_log'    => $this->request->getVar('user_log'),
         ]);
 
         session()->setFlashdata('pesan', 'Data app berhasil diedit');
