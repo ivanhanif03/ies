@@ -43,7 +43,7 @@ class ServerFisikModel extends Model
     public function getServerFisik($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->orderBy('server_fisik.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }
@@ -65,7 +65,7 @@ class ServerFisikModel extends Model
             ->select('os.*')
             ->select('server_fisik.*')
             ->where('server_fisik.deleted_at', null)
-            ->orderBy('server_fisik.id')
+            ->orderBy('server_fisik.updated_at', 'DESC')
             ->get()->getResultArray();
     }
 

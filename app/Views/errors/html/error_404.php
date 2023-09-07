@@ -1,77 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>404 Page Not Found</title>
+    <link rel="icon" href="<?= base_url('img/ies_icon.png') ?>">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="<?= base_url('stisla/modules/bootstrap/bootstrap.min.css') ?>">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="<?= base_url('stisla/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('stisla/css/components.css') ?>">
 
     <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
         body {
+            width: 99%;
             height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
-            font-weight: 300;
+            background-color: #fff;
+            color: #052b69;
         }
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
+
+        div {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            z-index: 15;
+            top: 30%;
+            left: 50%;
+            margin: -100px 0 0 -200px;
             text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
         }
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
+
+        h1,
+        h2 {
+            text-align: center;
         }
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
         }
+
+        h2,
         p {
-            margin-top: 1.5rem;
+            margin-bottom: 20px;
         }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
+
+        a {
+            margin-top: 10px;
+            text-decoration: none;
+            padding: 10px 25px;
+            background-color: #052b69;
+            color: white;
+            margin-top: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body>
-    <div class="wrap">
-        <h1>404 - File Not Found</h1>
 
+<body>
+    <div>
+        <h1>
+            <img src="<?= base_url('img/error_404.png') ?>" width="400px">
+        </h1>
+        <h2>Page not found</h2>
         <p>
             <?php if (ENVIRONMENT !== 'production') : ?>
                 <?= nl2br(esc($message)) ?>
@@ -79,6 +75,16 @@
                 Sorry! Cannot seem to find the page you were looking for.
             <?php endif ?>
         </p>
+        <a href='<?= base_url() ?>'>Back to Site</a>
     </div>
+
+    <!-- General JS Scripts -->
+    <script src="<?= base_url('stisla/modules/bootstrap/bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('stisla/js/stisla.js') ?>"></script>
+
+    <!-- Template JS File -->
+    <script src="<?= base_url('stisla/js/scripts.js') ?>"></script>
+    <script src="<?= base_url('stisla/js/custom.js') ?>"></script>
 </body>
+
 </html>

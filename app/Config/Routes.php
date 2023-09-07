@@ -43,6 +43,8 @@ $routes->get('/user/index', 'User::index', ['filter' => 'role:admin']);
 $routes->get('/user/register', 'User::register', ['filter' => 'role:admin']);
 $routes->get('/user/edit/(:segment)', 'User::edit/$1', ['filter' => 'role:admin']);
 $routes->post('/user/update/(:segment)', 'User::update/$1', ['filter' => 'role:admin']);
+$routes->post('/user/aktif/(:segment)', 'User::aktif/$1', ['filter' => 'role:admin']);
+$routes->post('/user/nonaktif/(:segment)', 'User::nonaktif/$1', ['filter' => 'role:admin']);
 // $routes->post('/user/resetPassword/(:segment)', 'User::resetPassword/$1', ['filter' => 'role:admin']);
 $routes->get('/user/role/(:segment)', 'User::role/$1', ['filter' => 'role:admin']);
 $routes->post('/user/updateRole/(:segment)', 'User::updateRole/$1', ['filter' => 'role:admin']);
@@ -155,25 +157,37 @@ $routes->get('/provider/edit/(:segment)', 'Provider::edit/$1', ['filter' => 'rol
 $routes->post('/provider/update/(:segment)', 'Provider::update/$1', ['filter' => 'role:admin, operator']);
 $routes->delete('/provider/(:num)', 'Provider::delete/$1', ['filter' => 'role:admin, operator']);
 
-//Branch
-$routes->get('/branch', 'Branch::index', ['filter' => 'role:admin, operator']);
-$routes->get('/branch/index', 'Branch::index', ['filter' => 'role:admin, operator']);
-$routes->get('/branch/create', 'Branch::create', ['filter' => 'role:admin, operator']);
-$routes->post('/branch/save', 'Branch::save', ['filter' => 'role:admin, operator']);
-$routes->post('/branch/saveExcel', 'Branch::saveExcel', ['filter' => 'role:admin, operator']);
-$routes->get('/branch/edit/(:segment)', 'Branch::edit/$1', ['filter' => 'role:admin, operator']);
-$routes->post('/branch/update/(:segment)', 'Branch::update/$1', ['filter' => 'role:admin, operator']);
-$routes->delete('/branch/(:num)', 'Branch::delete/$1', ['filter' => 'role:admin, operator']);
+//KC
+$routes->get('/kantor_cabang', 'KantorCabang::index', ['filter' => 'role:admin, operator']);
+$routes->get('/kantor_cabang/index', 'KantorCabang::index', ['filter' => 'role:admin, operator']);
+$routes->get('/kantor_cabang/create', 'KantorCabang::create', ['filter' => 'role:admin, operator']);
+$routes->post('/kantor_cabang/save', 'KantorCabang::save', ['filter' => 'role:admin, operator']);
+$routes->post('/kantor_cabang/saveExcel', 'KantorCabang::saveExcel', ['filter' => 'role:admin, operator']);
+$routes->get('/kantor_cabang/edit/(:segment)', 'KantorCabang::edit/$1', ['filter' => 'role:admin, operator']);
+$routes->post('/kantor_cabang/update/(:segment)', 'KantorCabang::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/kantor_cabang/(:num)', 'KantorCabang::delete/$1', ['filter' => 'role:admin, operator']);
+
+//KCP
+$routes->get('/kantor_cabang_pembantu', 'KantorCabangPembantu::index', ['filter' => 'role:admin, operator']);
+$routes->get('/kantor_cabang_pembantu/index', 'KantorCabangPembantu::index', ['filter' => 'role:admin, operator']);
+$routes->get('/kantor_cabang_pembantu/create', 'KantorCabangPembantu::create', ['filter' => 'role:admin, operator']);
+$routes->post('/kantor_cabang_pembantu/save', 'KantorCabangPembantu::save', ['filter' => 'role:admin, operator']);
+$routes->post('/kantor_cabang_pembantu/saveExcel', 'KantorCabangPembantu::saveExcel', ['filter' => 'role:admin, operator']);
+$routes->get('/kantor_cabang_pembantu/edit/(:segment)', 'KantorCabangPembantu::edit/$1', ['filter' => 'role:admin, operator']);
+$routes->post('/kantor_cabang_pembantu/update/(:segment)', 'KantorCabangPembantu::update/$1', ['filter' => 'role:admin, operator']);
+$routes->delete('/kantor_cabang_pembantu/(:num)', 'KantorCabangPembantu::delete/$1', ['filter' => 'role:admin, operator']);
 
 //Server Branch
-$routes->get('/serverbranch', 'ServerBranch::index', ['filter' => 'role:admin, operator']);
-$routes->get('/serverbranch/index', 'ServerBranch::index', ['filter' => 'role:admin, operator']);
-$routes->get('/serverbranch/create', 'ServerBranch::create', ['filter' => 'role:admin, operator']);
-$routes->post('/serverbranch/save', 'ServerBranch::save', ['filter' => 'role:admin, operator']);
-$routes->post('/serverbranch/saveExcel', 'ServerBranch::saveExcel', ['filter' => 'role:admin, operator']);
-$routes->get('/serverbranch/edit/(:segment)', 'ServerBranch::edit/$1', ['filter' => 'role:admin, operator']);
-$routes->post('/serverbranch/update/(:segment)', 'ServerBranch::update/$1', ['filter' => 'role:admin, operator']);
-$routes->delete('/serverbranch/(:num)', 'ServerBranch::delete/$1', ['filter' => 'role:admin, operator']);
+$routes->get('/serverbranch', 'ServerBranch::index');
+$routes->get('/serverbranch/index', 'ServerBranch::index');
+$routes->get('/serverbranch/detail/(:segment)', 'ServerBranch::detail/$1');
+$routes->get('/serverbranch/create', 'ServerBranch::create');
+$routes->post('/serverbranch/save', 'ServerBranch::save');
+$routes->post('/serverbranch/saveExcel', 'ServerBranch::saveExcel');
+$routes->get('/serverbranch/edit/(:segment)', 'ServerBranch::edit/$1');
+$routes->post('/serverbranch/action', 'ServerBranch::action');
+$routes->post('/serverbranch/update/(:segment)', 'ServerBranch::update/$1');
+$routes->delete('/serverbranch/(:num)', 'ServerBranch::delete/$1');
 
 /*
  * --------------------------------------------------------------------

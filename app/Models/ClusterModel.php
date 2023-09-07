@@ -43,7 +43,7 @@ class ClusterModel extends Model
     public function getCluster($id = false)
     {
         if ($id == false) {
-            return $this->where('deleted_at', null)->findAll();
+            return $this->where('deleted_at', null)->orderBy('cluster.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

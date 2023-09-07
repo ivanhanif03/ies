@@ -14,7 +14,7 @@ class UsersModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['email', 'username', 'name', 'phone'];
+    protected $allowedFields    = ['email', 'username', 'name', 'phone', 'active'];
 
     // Dates
     protected $useTimestamps = true;
@@ -47,4 +47,27 @@ class UsersModel extends Model
         }
         return $this->where(['id' => $id])->first();
     }
+
+    public function getTotalUserOs()
+    {
+        return $this->db->table('os')
+            ->select('user_log, COUNT(user_log) as total_log')
+            ->groupBy('user_log')
+            ->orderBy('total_log', 'desc')
+            ->get()->getResult();
+    }
+
+    public function getTotalUserApp()
+    {
+        return $this->db->table('apps')
+            ->select('user_log, COUNT(user_log) as total_log')
+            ->groupBy('user_log')
+            ->orderBy('total_log', 'desc')
+            ->get()->getResultArray();
+    }
+
+    // $this->db->select('user_id, COUNT(user_id) as total');
+    // $this->db->group_by('user_id'); 
+    // $this->db->order_by('total', 'desc'); 
+    // $this->db->get('tablename', 10);
 }

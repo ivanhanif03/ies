@@ -25,7 +25,7 @@ class VendorModel extends Model
     public function getVendor($id = false)
     {
         if ($id == false) {
-            return $this->where('deleted_at', null)->findAll();
+            return $this->where('deleted_at', null)->orderBy('vendor.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

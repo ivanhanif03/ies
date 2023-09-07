@@ -43,7 +43,7 @@ class OsModel extends Model
     public function getOs($id = false)
     {
         if ($id == false) {
-            return $this->where('deleted_at', null)->findAll();
+            return $this->where('deleted_at', null)->orderBy('os.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

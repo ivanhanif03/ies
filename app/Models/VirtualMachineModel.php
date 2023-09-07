@@ -43,7 +43,7 @@ class VirtualMachineModel extends Model
     public function getServerVirtualMachine($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->where('deleted_at', null)->orderBy('virtualmachine.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }
@@ -59,7 +59,7 @@ class VirtualMachineModel extends Model
             ->select('apps.*')
             ->select('virtualmachine.*')
             ->where('virtualmachine.deleted_at', null)
-            ->orderBy('virtualmachine.id')
+            ->orderBy('virtualmachine.updated_at', 'DESC')
             ->get()->getResultArray();
     }
 

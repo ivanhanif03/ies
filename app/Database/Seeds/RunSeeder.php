@@ -18,6 +18,9 @@ class RunSeeder extends Seeder
         $this->call('VendorSeeder');
         $this->call('KontrakSeeder');
         $this->call('ProviderSeeder');
+        $this->call('KantorCabangSeeder');
+        $this->call('KantorCabangPembantuSeeder');
+        $this->call('ServerBranchSeeder');
         $this->call('CloudSeeder');
         $this->call('VirtualMachineSeeder');
         $this->call('ServerFisikSeeder');

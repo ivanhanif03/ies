@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AppModel extends Model
+class KantorCabangModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'apps';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $table            = 'kantor_cabang';
+    protected $primaryKey       = 'kode_kantor';
+    protected $useAutoIncrement = false;
     protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_app', 'pic', 'divisi', 'no_hp_pic', 'user_log'];
+    protected $allowedFields    = ['regional', 'kode_kantor', 'nama_kantor', 'jenis_kantor', 'user_log', 'alamat', 'no_telp'];
 
     // Dates
     protected $useTimestamps = true;
@@ -40,11 +40,11 @@ class AppModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getApp($id = false)
+    public function getKantorCabang($kode_kantor = false)
     {
-        if ($id == false) {
-            return $this->where('deleted_at', null)->orderBy('apps.updated_at', 'DESC')->findAll();
+        if ($kode_kantor == false) {
+            return $this->where('deleted_at', null)->orderBy('kantor_cabang.updated_at', 'DESC')->findAll();
         }
-        return $this->where(['id' => $id])->first();
+        return $this->where(['kode_kantor' => $kode_kantor])->first();
     }
 }

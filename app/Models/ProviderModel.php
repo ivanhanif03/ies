@@ -43,7 +43,7 @@ class ProviderModel extends Model
     public function getProviders($id = false)
     {
         if ($id == false) {
-            return $this->where('deleted_at', null)->findAll();
+            return $this->where('deleted_at', null)->orderBy('provider.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }

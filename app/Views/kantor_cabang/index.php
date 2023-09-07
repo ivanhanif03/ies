@@ -6,8 +6,8 @@
         <h1>Daftar Kantor Cabang</h1>
         <?php if (in_groups('admin')) : ?>
             <div class="section-header-breadcrumb buttons">
-                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-branch"><i class="fas fa-file-excel"></i> Import Excel</a>
-                <a href="<?= base_url('branch/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kantor Cabang</a>
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-kantor_cabang"><i class="fas fa-file-excel"></i> Import Excel</a>
+                <a href="<?= base_url('kantor_cabang/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah KC</a>
             </div>
         <?php endif; ?>
     </div>
@@ -27,39 +27,49 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableBranch" width="100%">
+                            <table class="table table-striped" id="tablekantor_cabang" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center" width="5%">
                                             No
                                         </th>
-                                        <th>ID</th>
-                                        <th>Kode Kantor</th>
-                                        <th>Kantor Cabang</th>
                                         <th>Regional</th>
+                                        <th>Kode Kantor</th>
+                                        <th>Nama Kantor Cabang</th>
+                                        <th>Jenis Kantor Cabang</th>
+                                        <th>Alamat</th>
+                                        <th>Nomot Telpon</th>
+                                        <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($branch as $b) : ?>
+                                    foreach ($kantor_cabang as $kc) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $b['id']; ?></td>
-                                            <td><?= $b['kode_kantor']; ?></td>
-                                            <td><?= $b['nama_branch']; ?></td>
-                                            <td><?= $b['regional']; ?></td>
+                                            <td><?= $kc['regional']; ?></td>
+                                            <td><?= $kc['kode_kantor']; ?></td>
+                                            <td><?= $kc['nama_kantor']; ?></td>
+                                            <td><?= $kc['jenis_kantor']; ?></td>
+                                            <td><?= $kc['alamat']; ?></td>
+                                            <td><?= $kc['no_telp']; ?></td>
+                                            <td>
+                                                <?=
+                                                explode(' ', trim($kc['user_log']))[0]
+                                                ?>
+                                            </td>
                                             <td class="dropdown text-center">
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('branch/edit') . '/' . $b['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('kantor_cabang/edit') . '/' . $kc['kode_kantor'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-branch<?= $b['id'] ?>">
+                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-kantor_cabang<?= $kc['kode_kantor'] ?>">
                                                         <i class="fas fa-trash text-danger"></i> Delete
                                                     </a>
                                                 </div>
@@ -67,7 +77,7 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-branch<?= $b['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-kantor_cabang<?= $kc['kode_kantor'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
@@ -76,11 +86,11 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $b['nama_branch']; ?>
+                                                            <?= $kc['nama_kantor']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/branch') . '/' . $b['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/kantor_cabang') . '/' . $kc['kode_kantor']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -102,7 +112,7 @@
 </section>
 
 <!-- Start Modal Upload Excel -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-branch">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-kantor_cabang">
     <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
@@ -119,8 +129,10 @@
                 <?php
                 }
                 ?>
-                <form method="post" action="/branch/saveExcel" enctype="multipart/form-data">
+                <form method="post" action="/kantor_cabang/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
+
                     <div class="form-group">
                         <br>
                         <label for="filexcel">Upload file excel</label>
@@ -150,7 +162,7 @@
             currentdate.getSeconds();
 
         // Datatables with Buttons
-        var datatablesOs = $("#tableBranch").DataTable({
+        var datatablesOs = $("#tablekantor_cabang").DataTable({
             // responsive: true,
             lengthChange: false,
             columnDefs: [{
@@ -166,7 +178,7 @@
                     className: 'btn btn-outline-success',
                     messageTop: 'Data Total Kantor Cabang Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2]
+                        columns: [0, 1, 2, 3, 4, 5, 6]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -183,7 +195,7 @@
                     title: 'Daftar Kantor Cabang' + datetime,
                     messageTop: 'Data Total Kantor Cabang Bank BTN',
                     exportOptions: {
-                        columns: [0, 2]
+                        columns: [0, 1, 2, 3, 4, 5, 6]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -193,7 +205,7 @@
                 }
             ]
         });
-        datatablesOs.buttons().container().appendTo("#tableBranch_wrapper .col-md-6:eq(0)");
+        datatablesOs.buttons().container().appendTo("#tablekantor_cabang_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>

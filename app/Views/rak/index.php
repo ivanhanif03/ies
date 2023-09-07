@@ -26,6 +26,13 @@
 
                 <div class="card">
                     <div class="card-body">
+                        <div class="text-right mb-3">
+                            <span class="font-weight-bold h6">Filter : </span>
+                            <button id="sentul" class="btn btn-outline-danger btn-md mb-2">Sentul</button>
+                            <button id="surabaya" class="btn btn-outline-danger btn-md mb-2">Surabaya</button>
+                            <button id="oc" class="btn btn-outline-danger btn-md mb-2">OC/HO</button>
+                            <button id="all" class="btn btn-outline-warning btn-md mb-2">ALL</button>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped" id="tableRak" width="100%">
                                 <thead>
@@ -207,6 +214,59 @@
             ]
         });
         datatablesRaks.buttons().container().appendTo("#tableRak_wrapper .col-md-6:eq(0)");
+    });
+</script>
+<script>
+    //FILTER SENTUL
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(3).search(value).draw();
+        }
+
+        var table = $('#tableRak').DataTable();
+
+        $('#sentul').on('click', function() {
+            filterColumn('Sentul');
+        })
+    });
+
+    //FILTER SURABAYA
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(3).search(value).draw();
+        }
+
+        var table = $('#tableRak').DataTable();
+
+        $('#surabaya').on('click', function() {
+            filterColumn('Surabaya');
+        })
+    });
+
+    //FILTER OC
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(3).search(value).draw();
+        }
+
+        var table = $('#tableRak').DataTable();
+
+        $('#oc').on('click', function() {
+            filterColumn('HO');
+        })
+    });
+
+    //FILTER OC
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(3).search(value).draw();
+        }
+
+        var table = $('#tableRak').DataTable();
+
+        $('#all').on('click', function() {
+            filterColumn('');
+        })
     });
 </script>
 <?= $this->endSection(); ?>

@@ -43,7 +43,7 @@ class RakModel extends Model
     public function getRak($id = false)
     {
         if ($id == false) {
-            return $this->where('deleted_at', null)->findAll();
+            return $this->where('deleted_at', null)->orderBy('raks.updated_at', 'DESC')->findAll();
         }
         return $this->where(['id' => $id])->first();
     }
@@ -63,6 +63,7 @@ class RakModel extends Model
             ->select('os.*')
             ->select('server_fisik.*')
             ->where('server_fisik.rak_id', $id)
+            ->orderBy('server_fisik.updated_at', 'DESC')
             ->get()->getResultArray();
     }
 

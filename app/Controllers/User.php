@@ -19,13 +19,34 @@ class User extends BaseController
 
     public function index()
     {
+        $os = $this->UsersModel->getTotalUserOs();
+        $array_os = json_decode(json_encode($os), false);
+        $app = $this->UsersModel->getTotalUserApp();
+        $array_app = json_decode(json_encode($app), false);
+
+        // dd($array_os);
+        $sum_os = array_column($array_os, 'total_log', 'user_log');
+        $sum_app = array_column($array_app, 'total_log', 'user_log');
+
+        foreach ([$sum_os, $sum_app] as $a) {
+            foreach ($a as $key => $value) {
+                $merged[$key] = $value + (isset($merged[$key]) ? $merged[$key] : 0);
+            }
+        }
+
+        $rank = array($merged);
+
         $data = [
             'title' => 'User List',
             'menu' => 'users',
             'validation' => \Config\Services::validation(),
-            'users' => $this->UsersModel->getUser()
+            'users' => $this->UsersModel->getUser(),
+            'sum_os' => $this->UsersModel->getTotalUserOs(),
+            'sum_app' => $this->UsersModel->getTotalUserApp(),
+            'merged' => $rank
         ];
 
+        // dd($data);
         return view('user/index', $data);
     }
 
@@ -106,5 +127,33 @@ class User extends BaseController
         $this->UsersModel->delete($id);
         session()->setFlashdata('pesan', 'Data deleted successfully');
         return redirect()->to('user/index');
+    }
+
+    public function aktif($id)
+    {
+        $active = 1;
+
+        $this->UsersModel->save([
+            'id' => $id,
+            'active' => $active
+        ]);
+
+        session()->setFlashdata('pesan', 'User berhasil diaktifkan');
+
+        return redirect()->to('/user');
+    }
+
+    public function nonaktif($id)
+    {
+        $nonactive = 0;
+
+        $this->UsersModel->save([
+            'id' => $id,
+            'active' => $nonactive
+        ]);
+
+        session()->setFlashdata('pesan', 'User berhasil dinonaktifkan');
+
+        return redirect()->to('/user');
     }
 }

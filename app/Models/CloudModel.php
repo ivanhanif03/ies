@@ -59,7 +59,7 @@ class CloudModel extends Model
             ->select('apps.*')
             ->select('cloud.*')
             ->where('cloud.deleted_at', null)
-            ->orderBy('cloud.id')
+            ->orderBy('cloud.updated_at', 'DESC')
             ->get()->getResultArray();
     }
 
