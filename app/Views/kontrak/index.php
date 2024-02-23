@@ -4,7 +4,7 @@
 <section class="section">
     <div class="section-header">
         <h1>Kontrak</h1>
-        <?php if (in_groups('admin')) : ?>
+        <?php if (in_groups('admin') || in_groups('superadmin')) : ?>
             <div class="section-header-breadcrumb buttons">
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
                 <a href="<?= base_url('kontrak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Kontrak</a>
@@ -72,7 +72,7 @@
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <?php if (in_groups('admin')) : ?>
+                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                                                         <a href="<?= base_url('kontrak/edit') . '/' . $k['id'] ?>" class="dropdown-item has-icon">
                                                             <i class="far fa-edit text-success"></i> Edit
                                                         </a>
@@ -82,7 +82,7 @@
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
 
-                                                    <?php if (in_groups('admin')) : ?>
+                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                                                         <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete<?= $k['id'] ?>">
                                                             <i class="fas fa-trash text-danger"></i> Delete
                                                         </a>

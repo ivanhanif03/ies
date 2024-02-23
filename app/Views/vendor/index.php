@@ -4,7 +4,7 @@
 <section class="section">
     <div class="section-header">
         <h1>Vendor</h1>
-        <?php if (in_groups('admin')) : ?>
+        <?php if (in_groups('admin') || in_groups('superadmin')) : ?>
             <div class="section-header-breadcrumb buttons">
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
                 <a href="<?= base_url('vendor/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Vendor</a>

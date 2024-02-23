@@ -5,10 +5,10 @@
     <div class="section-header">
         <h1>Cloud Server</h1>
         <div class="section-header-breadcrumb buttons">
-            <?php if (in_groups('admin')) : ?>
+            <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-cloud"><i class="fas fa-file-excel"></i> Import Excel</a>
             <?php endif; ?>
-            <?php if (in_groups('operator') || in_groups('admin')) : ?>
+            <?php if ((in_groups('operator') || in_groups('admin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                 <a href="<?= base_url('cloud/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
             <?php endif; ?>
         </div>
@@ -117,7 +117,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
                                                     <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if (in_groups('admin')) : ?>
+                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                                                         <a href="<?= base_url('cloud/edit') . '/' . $cloud['id'] ?>" class="dropdown-item has-icon">
                                                             <i class="far fa-edit text-success"></i> Edit
                                                         </a>
@@ -129,7 +129,7 @@
                                                     </a>
 
                                                     <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if (in_groups('admin')) : ?>
+                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                                                         <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-cloud<?= $cloud['id'] ?>">
                                                             <i class="fas fa-trash text-danger"></i> Delete
                                                         </a>

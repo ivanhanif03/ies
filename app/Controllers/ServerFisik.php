@@ -28,10 +28,22 @@ class ServerFisik extends BaseController
             'title' => 'Daftar Server Fisik',
             'menu' => 'fisik',
             'validation' => \Config\Services::validation(),
-            'fisik' => $this->ServerFisikModel->getAll()
+            'fisik' => $this->ServerFisikModel->getAll(),
         ];
 
         return view('server/fisik/index', $data);
+    }
+
+    public function dismantle()
+    {
+        $data = [
+            'title' => 'Daftar Server Fisik Dismantle',
+            'menu' => 'fisik_dismantle',
+            'validation' => \Config\Services::validation(),
+            'fisik_dismantle' => $this->ServerFisikModel->getAllDismantle()
+        ];
+
+        return view('server/fisik/dismantle', $data);
     }
 
     public function detail($id)
@@ -43,6 +55,17 @@ class ServerFisik extends BaseController
         ];
 
         return view('server/fisik/detail', $data);
+    }
+
+    public function detailDismantle($id)
+    {
+        $data = [
+            'title' => 'Detail Server Fisik Dismantle',
+            'menu' => 'fisik_dismantle',
+            'fisik' => $this->ServerFisikModel->getOneServerFisik($id),
+        ];
+
+        return view('server/fisik/detail_dismantle', $data);
     }
 
     public function create()
@@ -393,5 +416,35 @@ class ServerFisik extends BaseController
         $this->ServerFisikModel->delete($id);
         session()->setFlashdata('pesan', 'Data server fisik berhasil dihapus');
         return redirect()->to('serverfisik');
+    }
+
+    public function dismantleBtn($id)
+    {
+        $date_now = date('y-m-d');
+
+        // dd($date_now);
+        $this->ServerFisikModel->save([
+            'id' => $id,
+            'dismantle' => $date_now
+        ]);
+
+        session()->setFlashdata('pesan', 'Server fisik berhasil di dismantle');
+
+        return redirect()->to('serverfisik');
+    }
+
+    public function nonDismantleBtn($id)
+    {
+        $date_now = null;
+
+        // dd($date_now);
+        $this->ServerFisikModel->save([
+            'id' => $id,
+            'dismantle' => $date_now
+        ]);
+
+        session()->setFlashdata('pesan', 'Server fisik batal di dismantle');
+
+        return redirect()->to('serverfisik/dismantle');
     }
 }

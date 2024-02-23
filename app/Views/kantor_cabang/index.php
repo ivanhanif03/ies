@@ -4,7 +4,7 @@
 <section class="section">
     <div class="section-header">
         <h1>Daftar Kantor Cabang</h1>
-        <?php if (in_groups('admin')) : ?>
+        <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
             <div class="section-header-breadcrumb buttons">
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-kantor_cabang"><i class="fas fa-file-excel"></i> Import Excel</a>
                 <a href="<?= base_url('kantor_cabang/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah KC</a>
@@ -26,6 +26,16 @@
 
                 <div class="card">
                     <div class="card-body">
+                        <div class="text-right mb-3">
+                            <span class="font-weight-bold h6">RO : </span>
+                            <button id="1" class="btn btn-outline-primary btn-md mb-2">1</button>
+                            <button id="2" class="btn btn-outline-primary btn-md mb-2">2</button>
+                            <button id="3" class="btn btn-outline-primary btn-md mb-2">3</button>
+                            <button id="4" class="btn btn-outline-primary btn-md mb-2">4</button>
+                            <button id="5" class="btn btn-outline-primary btn-md mb-2">5</button>
+                            <button id="6" class="btn btn-outline-primary btn-md mb-2">6</button>
+                            <button id="all" class="btn btn-outline-warning btn-md mb-2">ALL RO</button>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped" id="tablekantor_cabang" width="100%">
                                 <thead>
@@ -206,6 +216,90 @@
             ]
         });
         datatablesOs.buttons().container().appendTo("#tablekantor_cabang_wrapper .col-md-6:eq(0)");
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#1').on('click', function() {
+            filterColumn('1');
+        })
+    });
+
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#2').on('click', function() {
+            filterColumn('2');
+        })
+    });
+
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#3').on('click', function() {
+            filterColumn('3');
+        })
+    });
+
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#4').on('click', function() {
+            filterColumn('4');
+        })
+    });
+
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#5').on('click', function() {
+            filterColumn('5');
+        })
+    });
+
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#6').on('click', function() {
+            filterColumn('6');
+        })
+    });
+    $(document).ready(function() {
+        function filterColumn(value) {
+            table.column(1).search(value).draw();
+        }
+
+        var table = $('#tablekantor_cabang').DataTable();
+
+        $('#all').on('click', function() {
+            filterColumn('');
+        })
     });
 </script>
 <?= $this->endSection(); ?>

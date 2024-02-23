@@ -2,10 +2,10 @@
 
 <?= $this->section('content'); ?>
 <section class="section">
-    <div class="section-header">
-        <h1>Detail Server Fisik</h1>
+    <div class="section-header bg-secondary">
+        <h1>Detail Server Fisik Dismantle</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="<?= base_url('serverfisik') ?>">Server Fisik</a></div>
+            <div class="breadcrumb-item active"><a href="<?= base_url('serverfisik/dismantle') ?>">Server Fisik Dismantel</a></div>
             <div class="breadcrumb-item">Detail</div>
         </div>
     </div>
@@ -148,6 +148,13 @@
                                         <td>Lokasi</td>
                                         <td><?= $fisik->lokasi ?></td>
                                     </tr>
+                                    <?php if ($fisik->dismantle != null) : ?>
+                                        <tr>
+                                            <td>Tanggal Dismantle</td>
+                                            <td><?= $fisik->dismantle ?></td>
+                                        </tr>
+                                    <?php else : ?>
+                                    <?php endif; ?>
                                     <tr>
                                         <td>User Log</td>
                                         <td><?= $fisik->user_log ?></td>
@@ -160,7 +167,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <a href="<?= base_url('serverfisik') ?>" class="btn btn-md btn-primary mr-1">Kembali</a>
+                        <a href="<?= base_url('serverfisik/dismantle') ?>" class="btn btn-md btn-primary mr-1">Kembali</a>
                     </div>
                 </div>
             </div>

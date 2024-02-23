@@ -10,12 +10,16 @@ class GroupSeeder extends Seeder
     {
         $data = [
             [
+                'name' => 'superadmin',
+                'description'    => 'Super Admin',
+            ],
+            [
                 'name' => 'admin',
                 'description'    => 'Admin',
             ],
             [
                 'name' => 'operator',
-                'description'    => 'Operator Input',
+                'description'    => 'Operator',
             ],
             [
                 'name' => 'user',

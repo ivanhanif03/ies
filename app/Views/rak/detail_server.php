@@ -52,7 +52,7 @@
                                         <td>IP Address Management</td>
                                         <td><?= $fisik->ip_address_management ?></td>
                                     </tr>
-                                    <?php if (in_groups('admin')) : ?>
+                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                                         <tr>
                                             <td>Username OS</td>
                                             <td><?= $fisik->username_os ?></td>

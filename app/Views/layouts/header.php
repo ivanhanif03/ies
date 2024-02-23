@@ -41,10 +41,6 @@
             color: #c7c7c7;
         }
 
-        /* 
-Extra small devices (portrait phones, less than 544px) 
-No media query since this is the default in Bootstrap because it is "mobile first"
-*/
         h1 {
             font-size: 1rem;
         }

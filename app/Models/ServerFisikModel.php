@@ -14,7 +14,7 @@ class ServerFisikModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'username_os', 'password_os', 'ip_address_management', 'username_ilo', 'password_ilo', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'jumlah_core', 'processor', 'logical_processor', 'gambar_server', 'user_log'];
+    protected $allowedFields    = ['kode_aset', 'serial_number', 'app_id', 'jenis_app', 'ip_address_data', 'username_os', 'password_os', 'ip_address_management', 'username_ilo', 'password_ilo', 'hostname', 'jenis_appliance', 'rak_id', 'rak_unit', 'vendor_software_id', 'vendor_hardware_id', 'merek', 'tipe', 'os_id', 'disk', 'tipe_disk', 'memory', 'tipe_memory', 'jumlah_core', 'processor', 'logical_processor', 'gambar_server', 'dismantle', 'user_log'];
 
     // Dates
     protected $useTimestamps = true;
@@ -65,6 +65,29 @@ class ServerFisikModel extends Model
             ->select('os.*')
             ->select('server_fisik.*')
             ->where('server_fisik.deleted_at', null)
+            ->where('server_fisik.dismantle', null)
+            ->orderBy('server_fisik.updated_at', 'DESC')
+            ->get()->getResultArray();
+    }
+
+    public function getAllDismantle()
+    {
+        return $this->db->table('server_fisik')
+            ->join('kontrak v_sw', 'server_fisik.vendor_software_id=v_sw.id', 'left')
+            ->join('kontrak v_hw', 'server_fisik.vendor_hardware_id=v_hw.id', 'left')
+            ->join('vendor vs', 'v_sw.vendor_id=vs.id', 'left')
+            ->join('vendor vh', 'v_hw.vendor_id=vh.id', 'left')
+            ->join('apps', 'apps.id=server_fisik.app_id', 'left')
+            ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
+            ->join('os', 'os.id=server_fisik.os_id', 'left')
+            ->select('vs.nama_vendor v1')
+            ->select('vh.nama_vendor v2')
+            ->select('apps.*')
+            ->select('raks.*')
+            ->select('os.*')
+            ->select('server_fisik.*')
+            ->where('server_fisik.deleted_at', null)
+            ->where('server_fisik.dismantle !=', null)
             ->orderBy('server_fisik.updated_at', 'DESC')
             ->get()->getResultArray();
     }
@@ -101,6 +124,7 @@ class ServerFisikModel extends Model
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
             ->select('*')
             ->where('raks.lokasi', 'Sentul')
+            ->where('server_fisik.deleted_at', NULL)
             ->countAllResults();
     }
 
@@ -110,6 +134,7 @@ class ServerFisikModel extends Model
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
             ->select('*')
             ->where('raks.lokasi', 'Surabaya')
+            ->where('server_fisik.deleted_at', NULL)
             ->countAllResults();
     }
 
@@ -119,6 +144,7 @@ class ServerFisikModel extends Model
             ->join('raks', 'raks.id=server_fisik.rak_id', 'left')
             ->select('*')
             ->where('raks.lokasi', 'HO')
+            ->where('server_fisik.deleted_at', NULL)
             ->countAllResults();
     }
 

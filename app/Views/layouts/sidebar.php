@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="<?= base_url() ?>">IES PORTAL</a>
+            <a href="<?= base_url() ?>">IVAN PORTAL</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="<?= base_url() ?>">IP</a>
@@ -9,20 +9,42 @@
         <ul class="sidebar-menu">
             <!-- DASHBOARD -->
             <li class="menu-header">HOME</li>
+            <!-- HOME -->
+
             <li class="<?php if ($menu == 'home') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-columns"></i> <span>Dashboard</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url() ?>"><i class="fas fa-columns"></i> <span>Home</span></a></li>
 
-            <!-- START SECTION DATA MASTER -->
-
-            <!-- USER -->
-            <?php if (in_groups('admin')) : ?>
+            <!-- HOME IES -->
+            <li class="<?php if ($menu == 'home_ies') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('ies') ?>"><i class="fas fa-columns"></i> <span>Dashboard IES</span></a></li>
+            <!-- HOME NOP -->
+            <li class="<?php if ($menu == 'home_nop') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('nop') ?>"><i class="fas fa-columns"></i> <span>Dashboard NOP</span></a></li>
+            <!-- HOME NOP -->
+            <li class="<?php if ($menu == 'home_acm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('nop') ?>"><i class="fas fa-columns"></i> <span>Dashboard ACM</span></a></li>
+            <!-- HOME NOP -->
+            <li class="<?php if ($menu == 'home_dfm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('nop') ?>"><i class="fas fa-columns"></i> <span>Dashboard DFM</span></a></li>
+            <!-- HOME NOP -->
+            <li class="<?php if ($menu == 'home_sdm') {
+                            echo 'active';
+                        } ?>"><a class="nav-link" href="<?= base_url('nop') ?>"><i class="fas fa-columns"></i> <span>Dashboard SDM</span></a></li>
+            <!-- USER ONLY SUPERADMIN -->
+            <?php if (in_groups('superadmin')) : ?>
                 <li class="<?php if ($menu == 'users') {
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('user') ?>"><i class="fas fa-user"></i> <span>User</span></a></li>
             <?php endif; ?>
 
-            <?php if (in_groups('admin')) : ?>
+            <!-- MENU IES -->
+            <?php if (in_groups('admin') || in_groups('superadmin')) : ?>
+                <!-- START SECTION DATA MASTER -->
                 <li class="menu-header">Data Master</li>
                 <!-- OS -->
                 <li class="<?php if ($menu == 'os') {
@@ -48,7 +70,7 @@
 
             <!-- START SECTION HO -->
             <li class="menu-header">HO</li>
-            <?php if (in_groups('admin')) : ?>
+            <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
 
                 <!-- RAK SERVER -->
                 <li class="<?php if ($menu == 'rak') {
@@ -59,12 +81,24 @@
                 <li class="<?php if ($menu == 'cluster') {
                                 echo 'active';
                             } ?>"><a class="nav-link" href="<?= base_url('cluster') ?>"><i class="fas fa-th-list"></i><span>Cluster VM</span></a></li>
-
-                <!-- SERVER FISIK -->
             <?php endif; ?>
-            <li class="<?php if ($menu == 'fisik') {
-                            echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>"><i class="fas fa-server"></i> <span>Server Fisik</span></a></li>
+            <!-- SERVER FISIK -->
+            <li class="dropdown <?php if (($menu == 'fisik') || ($menu == 'fisik_dismantle')) {
+                                    echo 'active';
+                                } ?>">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-building"></i> <span>Server Fisik</span></a>
+                <ul class="dropdown-menu">
+                    <!-- ON -->
+                    <li class="<?php if ($menu == 'fisik') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('serverfisik') ?>">On</a></li>
+
+                    <!-- DISMANTLE -->
+                    <li class="<?php if ($menu == 'fisik_dismantle') {
+                                    echo 'active';
+                                } ?>"><a class="nav-link" href="<?= base_url('serverfisik/dismantle') ?>">Dismantle</a></li>
+                </ul>
+            </li>
             <!-- VIRTUAL MACHINE -->
             <li class="<?php if ($menu == 'vm') {
                             echo 'active';
@@ -72,7 +106,7 @@
             <!-- END SECTION HO -->
 
             <li class="menu-header">Cloud</li>
-            <?php if (in_groups('admin')) : ?>
+            <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                 <!-- START SECTION SERVER -->
                 <!-- Provider Cloud -->
                 <li class="<?php if ($menu == 'provider') {
@@ -87,7 +121,7 @@
 
             <!-- START SECTION BRANCH -->
             <li class="menu-header">Branch </li>
-            <?php if (in_groups('admin')) : ?>
+            <?php if (in_groups('admin') || in_groups('superadmin')) : ?>
                 <!-- Kantor Cabang -->
                 <li class="<?php if ($menu == 'KC') {
                                 echo 'active';
@@ -115,9 +149,9 @@
             </li>
 
             <!-- PC -->
-            <li class="<?php if ($menu == 'pc') {
+            <li class="<?php if ($menu == 'PC Branch') {
                             echo 'active';
-                        } ?>"><a class="nav-link" href="<?= base_url('pc') ?>"><i class="fas fa-desktop"></i> <span>PC</span></a></li>
+                        } ?>"><a class="nav-link" href="<?= base_url('pcbranch') ?>"><i class="fas fa-desktop"></i> <span>PC</span></a></li>
 
             <!-- PINPAD -->
             <li class="<?php if ($menu == 'pinpad') {

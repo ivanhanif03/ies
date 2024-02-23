@@ -2,16 +2,8 @@
 
 <?= $this->section('content'); ?>
 <section class="section">
-    <div class="section-header">
-        <h1>Server Fisik</h1>
-        <div class="section-header-breadcrumb buttons">
-            <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
-                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-            <?php endif; ?>
-            <?php if ((in_groups('operator') || in_groups('admin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
-                <a href="<?= base_url('serverfisik/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Server</a>
-            <?php endif; ?>
-        </div>
+    <div class="section-header bg-white">
+        <h1>Server Fisik Dismantle</h1>
     </div>
 
     <div class="section-body">
@@ -55,47 +47,49 @@
                                         <th>Processor</th>
                                         <th>Logical Processor</th>
                                         <th>Lokasi</th>
+                                        <th>Tanggal Dismantle</th>
                                         <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($fisik as $f) : ?>
+                                    foreach ($fisik_dismantle as $fd) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $f['kode_aset']; ?></td>
-                                            <td><?= $f['serial_number']; ?></td>
-                                            <td><?= $f['nama_app']; ?></td>
-                                            <td><?= $f['jenis_app']; ?></td>
-                                            <td><?= $f['ip_address_data']; ?></td>
-                                            <td><?= $f['ip_address_management']; ?></td>
-                                            <td><?= $f['hostname']; ?></td>
-                                            <td><?= $f['jenis_appliance']; ?></td>
-                                            <td><?= $f['nama_rak']; ?></td>
-                                            <td><?= $f['rak_unit']; ?></td>
-                                            <td><?= $f['v2']; ?></td>
-                                            <td><?= $f['v1']; ?></td>
-                                            <td><?= $f['merek']; ?></td>
-                                            <td><?= $f['tipe']; ?></td>
-                                            <td class="text-capitalize"><?= $f['nama_os']; ?></td>
+                                            <td><?= $fd['kode_aset']; ?></td>
+                                            <td><?= $fd['serial_number']; ?></td>
+                                            <td><?= $fd['nama_app']; ?></td>
+                                            <td><?= $fd['jenis_app']; ?></td>
+                                            <td><?= $fd['ip_address_data']; ?></td>
+                                            <td><?= $fd['ip_address_management']; ?></td>
+                                            <td><?= $fd['hostname']; ?></td>
+                                            <td><?= $fd['jenis_appliance']; ?></td>
+                                            <td><?= $fd['nama_rak']; ?></td>
+                                            <td><?= $fd['rak_unit']; ?></td>
+                                            <td><?= $fd['v2']; ?></td>
+                                            <td><?= $fd['v1']; ?></td>
+                                            <td><?= $fd['merek']; ?></td>
+                                            <td><?= $fd['tipe']; ?></td>
+                                            <td class="text-capitalize"><?= $fd['nama_os']; ?></td>
                                             <td>
                                                 <?php
-                                                if ($f['disk'] > 999) : ?>
-                                                    <?= $f['disk'] / 1000 ?> Tb
+                                                if ($fd['disk'] > 999) : ?>
+                                                    <?= $fd['disk'] / 1000 ?> Tb
                                                 <?php else : ?>
-                                                    <?= $f['disk'] ?> Gb
+                                                    <?= $fd['disk'] ?> Gb
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?= $f['memory']; ?> Gb</td>
-                                            <td><?= $f['jumlah_core'] ?> X <?= $f['processor']; ?> Sockets = <?= $f['jumlah_core'] * $f['processor']; ?> Core</td>
-                                            <td><?= $f['logical_processor']; ?></td>
-                                            <td class="text-capitalize"><?= $f['lokasi']; ?></td>
+                                            <td><?= $fd['memory']; ?> Gb</td>
+                                            <td><?= $fd['jumlah_core'] ?> X <?= $fd['processor']; ?> Sockets = <?= $fd['jumlah_core'] * $fd['processor']; ?> Core</td>
+                                            <td><?= $fd['logical_processor']; ?></td>
+                                            <td class="text-capitalize"><?= $fd['lokasi']; ?></td>
+                                            <td><?= $fd['dismantle']; ?></td>
                                             <td>
                                                 <?=
-                                                explode(' ', trim($f['user_log']))[0]
+                                                explode(' ', trim($fd['user_log']))[0]
                                                 ?>
                                             </td>
                                             <td class="dropdown text-center">
@@ -103,32 +97,28 @@
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <!-- AKSES ADMIN & OPERATOR -->
-                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
-                                                        <a href="<?= base_url('serverfisik/edit') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
-                                                            <i class="far fa-edit text-success"></i> Edit
-                                                        </a>
-                                                    <?php endif; ?>
 
                                                     <!-- AKSES ALL -->
-                                                    <a href="<?= base_url('serverfisik/detail') . '/' . $f['id'] ?>" class="dropdown-item has-icon">
+                                                    <a href="<?= base_url('serverfisik/detail_dismantle') . '/' . $fd['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
 
                                                     <!-- AKSES ADMIN & OPERATOR -->
                                                     <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
-                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-fisik<?= $f['id'] ?>">
-                                                            <i class="fas fa-trash text-danger"></i> Delete
-                                                        </a>
                                                         <hr>
                                                         <a>
-                                                            <?php if ($f['dismantle'] == null) : ?>
-                                                                <form action="<?= base_url('serverfisik/dismantlebtn') . '/' . $f['id'] ?>" method="POST">
+                                                            <?php if ($fd['dismantle'] == null) : ?>
+                                                                <form action="<?= base_url('serverfisik/dismantlebtn') . '/' . $fd['id'] ?>" method="POST">
                                                                     <?= csrf_field() ?>
                                                                     <button type="submit" class="dropdown-item text-center text-danger font-weight-bold">Dismantle
                                                                     </button>
                                                                 </form>
                                                             <?php else : ?>
+                                                                <form action="<?= base_url('serverfisik/nondismantlebtn') . '/' . $fd['id'] ?>" method="POST">
+                                                                    <?= csrf_field() ?>
+                                                                    <button type="submit" class="dropdown-item text-center text-danger font-weight-bold">Batal Dismantle
+                                                                    </button>
+                                                                </form>
                                                             <?php endif; ?>
                                                         </a>
                                                     <?php endif; ?>
@@ -137,7 +127,7 @@
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-fisik<?= $f['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-fisik<?= $fd['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
@@ -146,11 +136,11 @@
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $f['nama_app']; ?>
+                                                            <?= $fd['nama_app']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/serverfisik') . '/' . $f['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/serverfisik') . '/' . $fd['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -159,8 +149,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                         <!-- End Modal Delete -->
                                     <?php endforeach; ?>
                                 </tbody>
@@ -238,7 +226,7 @@
                     title: 'Server Fisik Bank BTN' + datetime,
                     messageTop: 'Data Total Server Fisik Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button

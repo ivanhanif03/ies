@@ -36,9 +36,20 @@
                                     <label for="name">Full Name</label>
                                     <input id="name" type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" value="<?= old('name') ?>" minlength="6" autocomplete="off">
                                 </div>
-                                <div class="form-group col-lg-6 col-sm-12">
+                                <div class="form-group col-lg-3 col-sm-12">
                                     <label for="phone">Phone</label>
                                     <input id="phone" type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" value="<?= old('phone') ?>" minlength="9" maxlength="13" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                                <div class="form-group col-lg-3 col-sm-12">
+                                    <label>Department</label>
+                                    <select class="form-control selectric text-sm <?php if (session('errors.department')) : ?>is-invalid<?php endif ?>" name="department" id="department" style="width: 100%;">
+                                        <option value="" disabled selected>Pilih department</option>
+                                        <option value="IES">IES</option>
+                                        <option value="NOP">NOP</option>
+                                        <option value="ACM">ACM</option>
+                                        <option value="DFM">DFM</option>
+                                        <option value="SDM">SDM</option>
+                                    </select>
                                 </div>
                             </div>
 

@@ -7,6 +7,16 @@
 
   <!-- Primary Info -->
   <div class="row">
+    <div class="col-12">
+      <!-- Aler Start -->
+      <?= view('Myth\Auth\Views\_message_block') ?>
+      <?php if (session()->getFlashdata('pesan')) : ?>
+        <div class="alert alert-success" role="alert" id="alert-delete">
+          <?= session()->getFlashdata('pesan'); ?>
+        </div>
+      <?php endif; ?>
+      <!-- Aler End -->
+    </div>
     <div class="col-lg-4 col-sm-12">
       <div class="card card-statistic-2">
         <div class="card-icon shadow-primary bg-primary">

@@ -4,7 +4,7 @@
 <section class="section">
     <div class="section-header">
         <h1>Daftar Operating System</h1>
-        <?php if (in_groups('admin')) : ?>
+        <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
             <div class="section-header-breadcrumb buttons">
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-os"><i class="fas fa-file-excel"></i> Import Excel</a>
                 <a href="<?= base_url('os/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah OS</a>

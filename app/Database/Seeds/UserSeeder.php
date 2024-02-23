@@ -12,9 +12,23 @@ class UserSeeder extends Seeder
         $data = [
             [
                 'email'                 => 'muhammad.vidiansyah@btn.co.id',
+                'username'              => 'superadmin',
+                'name'                  => 'M Ivan Hanif V',
+                'phone'                 => '085293679662',
+                'department'                 => 'SUPERADMIN',
+                //PASSWORD : batara123
+                'password_hash'         => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
+                'active'                => '1',
+                'force_pass_reset'      => '0',
+                'created_at'            => Time::now(),
+                'updated_at'            => Time::now(),
+            ],
+            [
+                'email'                 => 'ivan.hanif@btn.co.id',
                 'username'              => 'admin',
                 'name'                  => 'M Ivan Hanif V',
                 'phone'                 => '085293679662',
+                'department'                 => 'IES',
                 //PASSWORD : batara123
                 'password_hash'         => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
                 'active'                => '1',
@@ -27,6 +41,7 @@ class UserSeeder extends Seeder
                 'username'              => 'operator',
                 'name'                  => 'Gundala',
                 'phone'                 => '085213249987',
+                'department'                 => 'ACM',
                 //PASSWORD : batara123
                 'password_hash'         => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
                 'active'                => '1',
@@ -39,6 +54,7 @@ class UserSeeder extends Seeder
                 'username'              => 'user',
                 'name'                  => 'Sriasih',
                 'phone'                 => '082144458792',
+                'department'                 => 'NOP',
                 //PASSWORD : batara123
                 'password_hash'         => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
                 'active'                => '1',

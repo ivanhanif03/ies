@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\GroupsModel;
 use App\Models\RoleModel;
 use App\Models\UsersModel;
-use Myth\Auth\Password;
 
 class User extends BaseController
 {
@@ -18,7 +17,7 @@ class User extends BaseController
         $this->GroupsModel = new GroupsModel();
     }
 
-    public function index()
+    public function indexx()
     {
         $os = $this->UsersModel->getTotalUserOs();
         $array_os = json_decode(json_encode($os), false);
@@ -49,6 +48,50 @@ class User extends BaseController
 
         // dd($data);
         return view('user/index', $data);
+    }
+
+    public function index()
+    {
+        $data = [
+            'title' => 'User List',
+            'menu' => 'users',
+            'validation' => \Config\Services::validation(),
+        ];
+
+        return view('user/index', $data);
+    }
+
+    public function listdata()
+    {
+        $request = \Config\Services::request();
+        $list_data = $this->UsersModel;
+        $where = ['id !=' => 0];
+        //Column Order Harus Sesuai Urutan Kolom Pada Header Tabel di bagian View
+        //Awali nama kolom tabel dengan nama tabel->tanda titik->nama kolom seperti pengguna.nama
+        $column_order = array(NULL, 'users.email', 'users.username', 'users.name', 'users.phone');
+        $column_search = array('users.email', 'users.username', 'users.name', 'users.phone');
+        $order = array('users.email' => 'asc');
+        $list = $list_data->get_datatables('users', $column_order, $column_search, $order, $where);
+        $data = array();
+        $no = $request->getPost("start");
+        foreach ($list as $lists) {
+            $no++;
+            $row    = array();
+            $row[] = $no;
+            $row[] = $lists->email;
+            $row[] = $lists->username;
+            $row[] = $lists->name;
+            $row[] = $lists->phone;
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $request->getPost("draw"),
+            "recordsTotal" => $list_data->count_all('users', $where),
+            "recordsFiltered" => $list_data->count_filtered('users', $column_order, $column_search, $order, $where),
+            "data" => $data,
+        );
+
+        return json_encode($output);
     }
 
     public function register()
@@ -107,7 +150,6 @@ class User extends BaseController
             'email'    => 'required|valid_email',
             'name'     => 'required',
             'phone'    => 'required|min_length[9]|max_length[13]',
-            'department'    => 'required',
         ])) {
             return redirect()->to('/user/edit/' . $id)->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -117,7 +159,6 @@ class User extends BaseController
             'email' => $this->request->getVar('email'),
             'name' => $this->request->getVar('name'),
             'phone' => $this->request->getVar('phone'),
-            'department' => $this->request->getVar('department'),
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diupdate');
@@ -158,73 +199,5 @@ class User extends BaseController
         session()->setFlashdata('pesan', 'User berhasil dinonaktifkan');
 
         return redirect()->to('/user');
-    }
-
-    public function changePassword($id)
-    {
-
-        $data = [
-            'title' => 'Reset Password',
-            'menu' => 'users',
-            'validation' => \Config\Services::validation(),
-            'user' => $this->UsersModel->getUser($id)
-        ];
-
-        return view('user/reset_pass', $data);
-    }
-
-    public function setPassword($id)
-    {
-        if (!$this->validate([
-            'password'     => 'required|strong_password',
-            'pass_confirm' => 'required|matches[password]',
-        ])) {
-            return redirect()->to('/user/changePassword/' . $id)->withInput()->with('errors', $this->validator->getErrors());
-        }
-        $this->UsersModel->save([
-            'id' => $id,
-            'password_hash' => Password::hash($this->request->getVar('password')),
-            'reset_hash' => null,
-            'reset_at' => null,
-            'reset_expires' => null,
-        ]);
-
-        session()->setFlashdata('pesan', 'Password berhasil diganti');
-
-        return redirect()->to('/user');
-    }
-
-    public function changeSelfPassword($id)
-    {
-
-        $data = [
-            'title' => 'Reset Password',
-            'menu' => 'self_user',
-            'validation' => \Config\Services::validation(),
-            'user' => $this->UsersModel->getUser($id)
-        ];
-
-        return view('user/self_reset_pass', $data);
-    }
-
-    public function setSelfPassword($id)
-    {
-        if (!$this->validate([
-            'password'     => 'required|strong_password',
-            'pass_confirm' => 'required|matches[password]',
-        ])) {
-            return redirect()->to('/user/changeSelfPassword/' . $id)->withInput()->with('errors', $this->validator->getErrors());
-        }
-        $this->UsersModel->save([
-            'id' => $id,
-            'password_hash' => Password::hash($this->request->getVar('password')),
-            'reset_hash' => null,
-            'reset_at' => null,
-            'reset_expires' => null,
-        ]);
-
-        session()->setFlashdata('pesan', 'Password berhasil diganti');
-
-        return redirect()->to('/');
     }
 }

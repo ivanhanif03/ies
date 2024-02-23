@@ -3,13 +3,15 @@
 <?= $this->section('content'); ?>
 <section class="section">
     <div class="section-header">
-        <h1>Daftar Aplikasi</h1>
-        <?php if (in_groups('admin') || in_groups('superadmin')) : ?>
-            <div class="section-header-breadcrumb buttons">
-                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
-                <a href="<?= base_url('apps/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Aplikasi</a>
-            </div>
-        <?php endif; ?>
+        <h1>Daftar PC Branch</h1>
+        <div class="section-header-breadcrumb buttons">
+            <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
+                <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-pc-branch"><i class="fas fa-file-excel"></i> Import Excel</a>
+            <?php endif; ?>
+            <?php if ((in_groups('operator') || in_groups('admin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
+                <a href="<?= base_url('pcbranch/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah PC Branch</a>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="section-body">
@@ -27,69 +29,114 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="tableApp" width="100%">
+                            <table class="table table-striped" id="tablePcBranch" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
+                                        <th class="text-center" width="5%">
                                             No
                                         </th>
-                                        <th>ID</th>
-                                        <th>Nama Aplikasi</th>
-                                        <th>PIC</th>
-                                        <th>Divisi</th>
-                                        <th>Nomor HP PIC</th>
+                                        <th>KC/KCS</th>
+                                        <th>KCP/KCPS</th>
+                                        <th>Kode Aset</th>
+                                        <th>Serial Number</th>
+                                        <th>IP Address</th>
+                                        <th>Hostname</th>
+                                        <th>OS</th>
+                                        <th>Processor</th>
+                                        <th>Merek</th>
+                                        <th>Tipe</th>
+                                        <th>Disk</th>
+                                        <th>Tipe Disk</th>
+                                        <th>Memory</th>
+                                        <th>Tipe Memory</th>
                                         <th>User Log</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($app as $a) : ?>
+                                    foreach ($pc_branch as $pcb) : ?>
                                         <tr>
                                             <td class="text-center">
                                                 <?= $i++; ?>
                                             </td>
-                                            <td><?= $a['id']; ?></td>
-                                            <td><?= $a['nama_app']; ?></td>
-                                            <td><?= $a['pic']; ?></td>
-                                            <td><?= $a['divisi']; ?></td>
-                                            <td><?= $a['no_hp_pic']; ?></td>
+                                            <td><?= $pcb['jenis_kc']; ?>&nbsp;<?= $pcb['nama_kc'] ?></td>
+                                            <?php
+                                            if ($pcb['kcp_id'] == null) :
+                                            ?>
+                                                <td><?= $pcb['jenis_kc']; ?>&nbsp;<?= $pcb['nama_kc'] ?></td>
+                                            <?php
+                                            else :
+                                            ?>
+                                                <td><?= $pcb['jenis_kcp']; ?>&nbsp;<?= $pcb['nama_kcp'] ?></td>
+                                            <?php endif; ?>
+
+                                            <td><?= $pcb['kode_aset']; ?></td>
+                                            <td><?= $pcb['serial_number']; ?></td>
+                                            <td><?= $pcb['ip_address']; ?></td>
+                                            <td><?= $pcb['hostname']; ?></td>
+                                            <td><?= $pcb['nama_os']; ?></td>
+                                            <td><?= $pcb['processor']; ?></td>
+                                            <td><?= $pcb['merek']; ?></td>
+                                            <td><?= $pcb['tipe']; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($pcb['disk'] > 999) : ?>
+                                                    <?= $pcb['disk'] / 1000 ?> TB
+                                                <?php else : ?>
+                                                    <?= $pcb['disk'] ?> GB
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= $pcb['tipe_disk']; ?> </td>
+                                            <td><?= $pcb['memory']; ?> GB</td>
+                                            <td><?= $pcb['tipe_memory']; ?> </td>
                                             <td>
                                                 <?=
-                                                explode(' ', trim($a['user_log']))[0]
+                                                explode(' ', trim($pcb['user_log']))[0]
                                                 ?>
                                             </td>
                                             <td class="dropdown text-center">
-                                                <!-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i></a> -->
                                                 <a href="#" data-toggle="dropdown">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right w-50">
-                                                    <a href="<?= base_url('apps/edit') . '/' . $a['id'] ?>" class="dropdown-item has-icon">
-                                                        <i class="far fa-edit text-success"></i> Edit
+                                                    <!-- AKSES ADMIN & OPERATOR -->
+                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
+                                                        <a href="<?= base_url('pcbranch/edit') . '/' . $pcb['id'] ?>" class="dropdown-item has-icon">
+                                                            <i class="far fa-edit text-success"></i> Edit
+                                                        </a>
+                                                    <?php endif; ?>
+
+                                                    <!-- AKSES ALL -->
+                                                    <a href="<?= base_url('pcbranch/detail') . '/' . $pcb['id'] ?>" class="dropdown-item has-icon">
+                                                        <i class="fas fa-info text-primary"></i> Detail
                                                     </a>
-                                                    <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-app<?= $a['id'] ?>">
-                                                        <i class="fas fa-trash text-danger"></i> Delete
-                                                    </a>
+
+                                                    <!-- AKSES ADMIN & OPERATOR -->
+                                                    <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
+                                                        <a href="" class="dropdown-item has-icon" data-backdrop="false" data-toggle="modal" data-target="#modal-delete-pc-branch<?= $pcb['id'] ?>">
+                                                            <i class="fas fa-trash text-danger"></i> Delete
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
                                         </tr>
 
                                         <!-- Start Modal Delete -->
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-app<?= $a['id'] ?>">
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="modal-delete-pc-branch<?= $pcb['id'] ?>">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content border-0">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Delete Aplikasi</h5>
+                                                        <h5 class="modal-title">Delete PC Branch</h5>
                                                     </div>
                                                     <div class="modal-body text-center">
                                                         <span>Apakah anda yakin?</span><br>
                                                         <span class="text-capitalize font-weight-bolder text-primary">
-                                                            <?= $a['nama_app']; ?>
+                                                            <?= $pcb['kode_aset']; ?>
                                                     </div>
                                                     <div class="modal-footer bg-whitesmoke justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                                                        <form action="<?= base_url('/apps') . '/' . $a['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/serverbranch') . '/' . $pcb['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Yes</button>
@@ -111,12 +158,12 @@
 </section>
 
 <!-- Start Modal Upload Excel -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-app">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-upload-excel-pc-branch">
     <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
-                <h5 class="modal-title">File Excel Aplikasi</h5>
-                <a href="<?= base_url('template_xls/template_aplikasi.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
+                <h5 class="modal-title">File Excel PC Branch</h5>
+                <a href="<?= base_url('template_xls/template_pcbranch.xlsx') ?>" target="_blank"><small class="text-success">Download Template Excel</small></a>
             </div>
             <div class="modal-body text-center">
                 <?php
@@ -128,7 +175,7 @@
                 <?php
                 }
                 ?>
-                <form method="post" action="/apps/saveExcel" enctype="multipart/form-data">
+                <form method="post" action="/pcbranch/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
                     <div class="form-group">
@@ -160,23 +207,23 @@
             currentdate.getSeconds();
 
         // Datatables with Buttons
-        var datatablesApps = $("#tableApp").DataTable({
+        var datatablePcBranch = $("#tablePcBranch").DataTable({
             // responsive: true,
             lengthChange: false,
             columnDefs: [{
                 orderable: false,
                 targets: [0]
             }, {
-                // visible: false,
-                // targets: [1],
+                visible: false,
+                targets: [4, 9, 10, 12, 14],
             }, ],
             buttons: [{
                     extend: 'excelHtml5',
-                    title: 'Daftar Aplikasi' + datetime,
+                    title: 'Daftar PC Branch' + datetime,
                     className: 'btn btn-outline-success',
-                    messageTop: 'Data Total Aplikasi Bank BTN',
+                    messageTop: 'Data Total PC Branch Bank BTN',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -188,12 +235,12 @@
                     extend: 'pdfHtml5',
                     className: 'btn btn-outline-danger',
                     // text: 'Download PDF',
-                    // orientation: 'landscape',
+                    orientation: 'landscape',
                     pageSize: 'LEGAL',
-                    title: 'Daftar Aplikasi' + datetime,
-                    messageTop: 'Data Total Aplikasi Bank BTN',
+                    title: 'Daftar PC Branch' + datetime,
+                    messageTop: 'Data Total PC Branch Bank BTN',
                     exportOptions: {
-                        columns: [0, 2, 3, 4, 5]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     },
                     action: function(e, dt, button, config) {
                         //The action of the button
@@ -203,7 +250,7 @@
                 }
             ]
         });
-        datatablesApps.buttons().container().appendTo("#tableApp_wrapper .col-md-6:eq(0)");
+        datatablePcBranch.buttons().container().appendTo("#tablePcBranch_wrapper .col-md-6:eq(0)");
     });
 </script>
 <?= $this->endSection(); ?>

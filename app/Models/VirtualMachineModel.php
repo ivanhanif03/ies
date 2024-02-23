@@ -83,6 +83,7 @@ class VirtualMachineModel extends Model
             ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
             ->select('*')
             ->where('cluster.data_center', 'Sentul')
+            ->where('virtualmachine.deleted_at', NULL)
             ->countAllResults();
     }
 
@@ -92,6 +93,7 @@ class VirtualMachineModel extends Model
             ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
             ->select('*')
             ->where('cluster.data_center', 'Surabaya')
+            ->where('virtualmachine.deleted_at', NULL)
             ->countAllResults();
     }
 
@@ -101,6 +103,7 @@ class VirtualMachineModel extends Model
             ->join('cluster', 'cluster.id=virtualmachine.cluster_id', 'left')
             ->select('*')
             ->where('cluster.data_center', 'HO')
+            ->where('virtualmachine.deleted_at', NULL)
             ->countAllResults();
     }
 

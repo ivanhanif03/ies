@@ -82,6 +82,7 @@ class CloudModel extends Model
         return $this->db->table('cloud')
             ->join('provider', 'provider.id=cloud.provider_id', 'left')
             ->select('*')
+            ->where('cloud.deleted_at', NULL)
             ->countAllResults();
     }
 

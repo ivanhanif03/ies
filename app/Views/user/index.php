@@ -121,6 +121,9 @@
                                                     <a href="<?= base_url('user/edit') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="far fa-edit text-success"></i> Edit
                                                     </a>
+                                                    <a href="<?= base_url('user/changePassword') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
+                                                        <i class="fas fa-key text-warning"></i> Reset Pass
+                                                    </a>
                                                     <a href="<?= base_url('user/role') . '/' . $u['id'] ?>" class="dropdown-item has-icon">
                                                         <i class="fas fa-flag text-primary"></i> Role
                                                     </a>

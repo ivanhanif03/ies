@@ -108,7 +108,7 @@
                                 <!-- End Field IP Address Management -->
                             </div>
 
-                            <?php if (in_groups('admin')) : ?>
+                            <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
                                 <div class="row">
                                     <!-- Start Field Username OS -->
                                     <div class="form-group col-lg-3 col-sm-12">

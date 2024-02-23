@@ -4,7 +4,7 @@
 <section class="section">
     <div class="section-header">
         <h1>Rak Server</h1>
-        <?php if (in_groups('admin')) : ?>
+        <?php if ((in_groups('admin') || in_groups('superadmin')) && ((user()->department) == "IES" || (user()->department) == "SUPERADMIN")) : ?>
             <div class="section-header-breadcrumb buttons">
                 <a href="" class="btn btn-outline-success btn-md" data-toggle="modal" data-target="#modal-upload-excel-app"><i class="fas fa-file-excel"></i> Import Excel</a>
                 <a href="<?= base_url('rak/create') ?>" class="btn btn-md btn-success"><i class="fas fa-plus"></i> Tambah Rak</a>
@@ -142,6 +142,8 @@
                 ?>
                 <form method="post" action="/rak/saveExcel" enctype="multipart/form-data">
                     <?= csrf_field() ?>
+                    <input type="hidden" name="user_log" value="<?= user()->username; ?> - <?= user()->email; ?> - <?= user()->name; ?>">
+
                     <div class="form-group">
                         <label for="filexcel">Upload file excel</label>
                         <input type="file" name="fileexcel" class="form-control" id="file" required accept=".xls, .xlsx" /></p>

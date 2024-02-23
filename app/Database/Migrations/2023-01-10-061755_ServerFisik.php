@@ -38,6 +38,7 @@ class ServerFisik1 extends Migration
             'logical_processor'         => ['type' => 'int', 'constraint' => 10],
             'gambar_server'            => ['type' => 'varchar', 'constraint' => 200],
             'user_log'     => ['type' => 'varchar', 'constraint' => 100, 'null' => true],
+            'dismantle'       => ['type' => 'date', 'null' => true],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true],
             'deleted_at'       => ['type' => 'datetime', 'null' => true],
